@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.19)  25 MAY 2018 18:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.19)  13 JUL 2018 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -852,31 +852,38 @@ Package babel Warning: Last declared language option is `italian',
 \ULC@box=\box47
 Package: ulem 2012/05/18
 \ULdepth=\dimen259
-) (./thesis.bbl)
-(./thesis.aux
-LaTeX Font Info:    Try loading font information for LGR+cmr on input line 21.
- (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
+) (./acronyms.tex)
+\glswrite=\write4
+\glo@main@file=\write5
+\openout5 = `thesis.glo'.
+
+Package glossaries Info: Writing glossary file thesis.glo on input line 74.
+
+(./thesis.bbl) (./thesis.aux
+LaTeX Font Info:    Try loading font information for LGR+cmr on input line 25.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2013/09/01 v1.0 Greek European Computer Regular
 ))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 90.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 93.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -885,20 +892,20 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: custom
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * bindingoffset: 11.38092pt
 * modes: twoside 
-* h-part:(L,W,R)=(56.9055pt, 358.50491pt, 56.9055pt)
-* v-part:(T,H,B)=(65.44142pt, 560.51921pt, 56.9055pt)
-* \paperwidth=483.69684pt
-* \paperheight=682.86613pt
-* \textwidth=358.50491pt
-* \textheight=560.51921pt
-* \oddsidemargin=-3.98357pt
-* \evensidemargin=-15.36449pt
-* \topmargin=-36.89606pt
+* h-part:(L,W,R)=(85.35826pt, 415.41043pt, 85.35826pt)
+* v-part:(T,H,B)=(108.12054pt, 651.56804pt, 85.35826pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=415.41043pt
+* \textheight=651.56804pt
+* \oddsidemargin=24.4692pt
+* \evensidemargin=13.08827pt
+* \topmargin=5.78307pt
 * \headheight=12.0pt
 * \headsep=18.06749pt
 * \topskip=10.0pt
@@ -944,9 +951,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package crop Info: requested driver: `pdftex' on input line 90.
-Package crop Info: detected driver: `pdftex' on input line 90.
-Package crop Info: using `pdftex' graphics driver on input line 90.
+Package crop Info: requested driver: `pdftex' on input line 93.
+Package crop Info: detected driver: `pdftex' on input line 93.
+Package crop Info: using `pdftex' graphics driver on input line 93.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
@@ -962,7 +969,7 @@ Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count194
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 90.
+Package hyperref Info: Link coloring OFF on input line 93.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -972,38 +979,41 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count195
 )
-LaTeX Info: Redefining \ref on input line 90.
-LaTeX Info: Redefining \pageref on input line 90.
-LaTeX Info: Redefining \nameref on input line 90.
+LaTeX Info: Redefining \ref on input line 93.
+LaTeX Info: Redefining \pageref on input line 93.
+LaTeX Info: Redefining \nameref on input line 93.
 
 (./thesis.out) (./thesis.out)
-\@outlinefile=\write4
-\openout4 = `thesis.out'.
+\@outlinefile=\write6
+\openout6 = `thesis.out'.
 
-LaTeX Font Info:    Try loading font information for LGR+ptm on input line 90.
-LaTeX Font Info:    No file LGRptm.fd. on input line 90.
+LaTeX Font Info:    Try loading font information for LGR+ptm on input line 93.
+LaTeX Font Info:    No file LGRptm.fd. on input line 93.
 
 
 LaTeX Font Warning: Font shape `LGR/ptm/m/n' undefined
-(Font)              using `LGR/cmr/m/n' instead on input line 90.
+(Font)              using `LGR/cmr/m/n' instead on input line 93.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
-<img/logopoli.png, id=44, 175.65625pt x 175.65625pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
+<img/logopoli.png, id=12, 175.65625pt x 175.65625pt>
 File: img/logopoli.png Graphic file (type png)
  <use img/logopoli.png>
-Package pdftex.def Info: img/logopoli.png used on input line 94.
+Package pdftex.def Info: img/logopoli.png used on input line 97.
 (pdftex.def)             Requested size: 73.97716pt x 73.9788pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 Non-PDF special ignored!
-Non-PDF special ignored! <./img/logopoli.png>] [2
+Non-PDF special ignored!
+\openout4 = `thesis.ist'.
+
+ <./img/logopoli.png>] [2
 
 ] (./chapters/abstract.tex
 LaTeX Font Info:    Try loading font information for T1+phv on input line 1.
@@ -1028,13 +1038,27 @@ LaTeX Font Info:    Try loading font information for OT1+phv on input line 5.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 ))
-\tf@toc=\write5
-\openout5 = `thesis.toc'.
+\tf@toc=\write7
+\openout7 = `thesis.toc'.
 
  [5] [6
 
 ]
-(./chapters/chapter1.tex
+(./thesis.lof)
+\tf@lof=\write8
+\openout8 = `thesis.lof'.
+
+ [7
+
+] [8
+
+] (./thesis.lot)
+\tf@lot=\write9
+\openout9 = `thesis.lot'.
+
+ [9] [10
+
+] (./chapters/introduction.tex
 Chapter 1.
 LaTeX Font Info:    Try loading font information for OT1+pzc on input line 1.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pzc.fd
@@ -1046,86 +1070,64 @@ LaTeX Font Info:    Font shape `OT1/pzc/m/n' in size <17.28> not available
 (Font)              Font shape `OT1/pzc/mb/it' tried instead on input line 1.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 5.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-File: img/logopoli.png Graphic file (type png)
-
-<use img/logopoli.png>
-Package pdftex.def Info: img/logopoli.png used on input line 22.
-(pdftex.def)             Requested size: 105.39455pt x 105.39455pt.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 31.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.32 				\item i
-                tem 2 [1
+l.148 \cleardoublepage
+                       [1
 
-
-]
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 83.
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
+]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.83 	\end{equation}
-                     [2]) [3] [4
+l.148 \cleardoublepage
+                       [2
 
-] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 150.
- [5
+] (./thesis.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+)
+
+Package glossaries Warning: No \printglossary or \printglossaries found.
+(Remove \makeglossaries if you don't want any glossaries.)
+This document will not have a glossary.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 155.
+[3
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 150.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 150.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 150.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 155.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 3111AD3B6CF9153C32016D3959DBA223;602.
+(rerunfilecheck)             Checksum: 4C3444A7B2CDADBE761E5C3F21C44C97;93.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 16776 strings out of 493029
- 247145 string characters out of 6136234
- 405898 words of memory out of 5000000
- 19851 multiletter control sequences out of 15000+600000
- 85289 words of font info for 102 fonts, out of 8000000 for 9000
+ 16679 strings out of 493029
+ 245871 string characters out of 6136234
+ 402252 words of memory out of 5000000
+ 19776 multiletter control sequences out of 15000+600000
+ 55913 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,12n,45p,1954b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,11n,45p,1954b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
-uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/
-uzcmi8a.pfb>
-Output written on thesis.pdf (13 pages, 136999 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
+Output written on thesis.pdf (15 pages, 77189 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
- 164 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
+ 23 named destinations out of 1000 (max. 500000)
+ 22 words of extra memory for PDF output out of 10000 (max. 10000000)
 

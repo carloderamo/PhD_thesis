@@ -73,7 +73,7 @@
 \input{acronyms}
 \makeglossaries
 
-\hypersetup{pdftitle={On the Maximum Expected Value Estimate and Exploration-Exploitation Dilemma in Reinforcement Learning}, pdfauthor={Carlo D'Eramo}}
+\hypersetup{pdftitle={Title}, pdfauthor={Carlo D'Eramo}}
 
 \nobibliography*
 
