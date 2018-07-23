@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.19)  17 JUL 2018 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.19)  23 JUL 2018 17:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -996,7 +996,7 @@ LaTeX Font Warning: Font shape `LGR/ptm/m/n' undefined
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
-<img/logopoli.png, id=12, 175.65625pt x 175.65625pt>
+<img/logopoli.png, id=48, 175.65625pt x 175.65625pt>
 File: img/logopoli.png Graphic file (type png)
  <use img/logopoli.png>
 Package pdftex.def Info: img/logopoli.png used on input line 97.
@@ -1070,53 +1070,78 @@ LaTeX Font Info:    Font shape `OT1/pzc/m/n' in size <17.28> not available
 (Font)              Font shape `OT1/pzc/mb/it' tried instead on input line 1.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.145 
-       [1
+l.7 
+     [1
 
-]
+]) (./chapters/preliminaries.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 148.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.148 \cleardoublepage
-                       [2] (./thesis.bbl
+l.1 \chapter
+            {Preliminaries} [2]
+Chapter 2.
+) (./chapters/mev.tex [3
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
+] [4
 
-)
+]
+Chapter 3.
+) (./chapters/exploration.tex [5] [6
+
+]
+Chapter 4.
+) (./chapters/deep.tex [7] [8
+
+]
+Chapter 5.
+) (./chapters/mushroom.tex [9] [10
+
+]
+Chapter 6.
+) (./chapters/conclusion.tex [11] [12
+
+]
+Chapter 7.
+) [13] [14
+
+] (./thesis.bbl)
 
 Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.)
 This document will not have a glossary.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 155.
-[3
-
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
+[15
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 155.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4C3444A7B2CDADBE761E5C3F21C44C97;93.
+(rerunfilecheck)             Checksum: 9B35427F213CF8AB8E5D4D0A99BB787A;625.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 16686 strings out of 493029
- 245945 string characters out of 6136234
- 405252 words of memory out of 5000000
- 19780 multiletter control sequences out of 15000+600000
- 63227 words of font info for 75 fonts, out of 8000000 for 9000
+ 16793 strings out of 493029
+ 247331 string characters out of 6136234
+ 406705 words of memory out of 5000000
+ 19844 multiletter control sequences out of 15000+600000
+ 73252 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  53i,11n,45p,1954b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1127,10 +1152,10 @@ pe1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/time
 s/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (15 pages, 88388 bytes).
+Output written on thesis.pdf (27 pages, 111907 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
- 23 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 94 words of extra memory for PDF output out of 10000 (max. 10000000)
 

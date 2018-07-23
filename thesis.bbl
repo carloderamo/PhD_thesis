@@ -1,3 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{sutton1998reinforcement}
+Richard~S Sutton, Andrew~G Barto, et~al.
+\newblock {\em Reinforcement learning: An introduction}.
+\newblock MIT press, 1998.
 
 \end{thebibliography}
