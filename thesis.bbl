@@ -1,8 +1,42 @@
 \begin{thebibliography}{1}
 
+\bibitem{agrawal2012analysis}
+Shipra Agrawal and Navin Goyal.
+\newblock Analysis of thompson sampling for the multi-armed bandit problem.
+\newblock In {\em Conference on Learning Theory}, pages 39--1, 2012.
+
+\bibitem{auer2002finite}
+Peter Auer, Nicolo Cesa-Bianchi, and Paul Fischer.
+\newblock Finite-time analysis of the multiarmed bandit problem.
+\newblock {\em Machine learning}, 47(2-3):235--256, 2002.
+
+\bibitem{bubeck2012regret}
+S{\'e}bastien Bubeck, Nicolo Cesa-Bianchi, et~al.
+\newblock Regret analysis of stochastic and nonstochastic multi-armed bandit
+  problems.
+\newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
+  5(1):1--122, 2012.
+
+\bibitem{lai1985asymptotically}
+Tze~Leung Lai and Herbert Robbins.
+\newblock Asymptotically efficient adaptive allocation rules.
+\newblock {\em Advances in applied mathematics}, 6(1):4--22, 1985.
+
 \bibitem{sutton1998reinforcement}
 Richard~S Sutton, Andrew~G Barto, et~al.
 \newblock {\em Reinforcement learning: An introduction}.
 \newblock MIT press, 1998.
+
+\bibitem{thompson1933likelihood}
+William~R Thompson.
+\newblock On the likelihood that one unknown probability exceeds another in
+  view of the evidence of two samples.
+\newblock {\em Biometrika}, 25(3/4):285--294, 1933.
+
+\bibitem{vermorel2005multi}
+Joannes Vermorel and Mehryar Mohri.
+\newblock Multi-armed bandit algorithms and empirical evaluation.
+\newblock In {\em European conference on machine learning}, pages 437--448.
+  Springer, 2005.
 
 \end{thebibliography}

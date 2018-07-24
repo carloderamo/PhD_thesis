@@ -2,10 +2,12 @@
 \BOOKMARK [1][]{section.1.1}{Perception and interaction}{chapter.1}% 2
 \BOOKMARK [1][]{section.1.2}{Learn how to act with Reinforcement Learning}{chapter.1}% 3
 \BOOKMARK [2][]{subsection.1.2.1}{Uncertainty in Reinforcement Learning}{section.1.2}% 4
-\BOOKMARK [0][]{chapter.2}{Preliminaries}{}% 5
-\BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimate}{}% 6
-\BOOKMARK [0][]{chapter.4}{Exploration}{}% 7
-\BOOKMARK [0][]{chapter.5}{Deep}{}% 8
-\BOOKMARK [0][]{chapter.6}{Mushroom}{}% 9
-\BOOKMARK [0][]{chapter.7}{Conclusion}{}% 10
-\BOOKMARK [0][]{section*.7}{Bibliography}{}% 11
+\BOOKMARK [2][]{subsection.1.2.2}{Balancing exploration and exploitation}{section.1.2}% 5
+\BOOKMARK [1][]{section.1.3}{My research}{chapter.1}% 6
+\BOOKMARK [0][]{chapter.2}{Preliminaries}{}% 7
+\BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimate}{}% 8
+\BOOKMARK [0][]{chapter.4}{Exploration}{}% 9
+\BOOKMARK [0][]{chapter.5}{Deep}{}% 10
+\BOOKMARK [0][]{chapter.6}{Mushroom}{}% 11
+\BOOKMARK [0][]{chapter.7}{Conclusion}{}% 12
+\BOOKMARK [0][]{section*.8}{Bibliography}{}% 13
