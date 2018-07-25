@@ -43,3 +43,61 @@
   year={2005},
   organization={Springer}
 }
+
+@article{auer2002finite,
+  title={Finite-time analysis of the multiarmed bandit problem},
+  author={Auer, Peter and Cesa-Bianchi, Nicolo and Fischer, Paul},
+  journal={Machine learning},
+  volume={47},
+  number={2-3},
+  pages={235--256},
+  year={2002},
+  publisher={Springer}
+}
+
+@article{thompson1933likelihood,
+  title={On the likelihood that one unknown probability exceeds another in view of the evidence of two samples},
+  author={Thompson, William R},
+  journal={Biometrika},
+  volume={25},
+  number={3/4},
+  pages={285--294},
+  year={1933},
+  publisher={JSTOR}
+}
+
+@article{mnih2015human,
+  title={Human-level control through deep reinforcement learning},
+  author={Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and Rusu, Andrei A and Veness, Joel and Bellemare, Marc G and Graves, Alex and Riedmiller, Martin and Fidjeland, Andreas K and Ostrovski, Georg and others},
+  journal={Nature},
+  volume={518},
+  number={7540},
+  pages={529},
+  year={2015},
+  publisher={Nature Publishing Group}
+}
+
+@inproceedings{van2016deep,
+  title={Deep Reinforcement Learning with Double Q-Learning.},
+  author={Van Hasselt, Hado and Guez, Arthur and Silver, David},
+  booktitle={AAAI},
+  volume={2},
+  pages={5},
+  year={2016},
+  organization={Phoenix, AZ}
+}
+
+@article{wang2015dueling,
+  title={Dueling network architectures for deep reinforcement learning},
+  author={Wang, Ziyu and Schaul, Tom and Hessel, Matteo and Van Hasselt, Hado and Lanctot, Marc and De Freitas, Nando},
+  journal={arXiv preprint arXiv:1511.06581},
+  year={2015}
+}
+
+@inproceedings{schulman2015trust,
+  title={Trust region policy optimization},
+  author={Schulman, John and Levine, Sergey and Abbeel, Pieter and Jordan, Michael and Moritz, Philipp},
+  booktitle={International Conference on Machine Learning},
+  pages={1889--1897},
+  year={2015}
+}
