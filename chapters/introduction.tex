@@ -1,4 +1,4 @@
-\chapter{Introduction}
+\chapter{Introduction}\label{C:intro}
 \lettrine{E}{veryone} experiences the process of taking decisions during his life. As a matter of fact, drastically the life of an individual can be synthesized in its \textit{perception} of the world and its \textit{interaction} with it. The concepts of perception and interaction might seem quite straightforward to understand: for a human the perception of the world comes from its senses and the interaction comes from its possibility to change its surroundings. On the contrary, these concepts are actually absolutely hard to define and aroused, during the centuries, a strong debate between scientists, biologists, and even philosophers.
 
 \section{Perception and interaction}
@@ -11,7 +11,7 @@ It is arguable that discussing about the concept of true information and the con
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.75]{img/rl.jpg}
+  \includegraphics[scale=.1]{img/rl.png}
 \end{center}
 \end{minipage}
 \caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:rl}
@@ -32,12 +32,12 @@ The strong connection between uncertainty and the exploration-exploitation dilem
 
 During my Ph.D., I studied ways to develop algorithms that exploit uncertainty since the explicit consideration of uncertainty has been shown to be often helpful in order to improve the performance and efficiency of learning. One of the most common technique to explore is known as $\varepsilon$-greedy and consists in performing, at each state, a random action with probability $\varepsilon$ and the action considered to be the best one with probability $1 - \varepsilon$. This exploratory policy does not consider the uncertainty of the agent and simply randomly moves it with the drawback of requiring a huge amount of experience to learn effective policies. This is shown especially in recent works on the field of \gls{drl}~\cite{mnih2015human, van2016deep, wang2015dueling} which studies the application of \gls{dl} models and methodologies to exploit their strong ability to generalize with the purpose to solve highly complex problems that were unfeasible before. Research on \gls{drl}, brought to the realization of groundbreaking works where authors have been able to reach the state-of-the-art in extremely complex games such as Go~\cite{silver2016mastering, silver2017mastering} and chess~\cite{silver2017chess}.
 
-The extraordinariness of these results is comparable to the amount of experience required by these algorithms to work. For instance, in~\cite{mnih2015human} the experiments are performed using 50M samples corresponding to three days of computation and weeks of human play. This work does not address the problem of data-efficiency aiming more to other goals (e.g. maximizing the cumulative reward) and for this reason the previously described exploration policy of $\epsilon$-greedy is used. However, data-efficiency can be pursued exploiting uncertainty in order to balance the knowledge of the agent of already known states and unknown ones, for instance letting it explore unknown states with higher probability. Moreover, the exploitation of uncertainty can also help to improve other aspect involved in learning algorithms which will explained more in details during the thesis.
+The extraordinariness of these results is comparable to the amount of experience required by these algorithms to work. For instance, in~\cite{mnih2015human} the experiments are performed using 50M samples corresponding to three days of computation and weeks of human play. This work does not address the problem of data-efficiency aiming more to other goals (e.g. maximizing the cumulative reward) and for this reason the previously described exploration policy of $\varepsilon$-greedy is used. However, data-efficiency can be pursued exploiting uncertainty in order to balance the knowledge of the agent of already known states and unknown ones, for instance letting it explore unknown states with higher probability. Moreover, the exploitation of uncertainty can also help to improve other aspect involved in learning algorithms which will explained more in details during the thesis.
 
 My Ph.D. research brought to the publication of four conference papers, most of them focused on the previously described topic. I also developed, together with a colleague of mine, a \gls{rl} Python library which had the initial purpose to facilitate my research, but which has become larger and larger allowing now to do \gls{rl} research for general purposes. Other works are still ongoing and others have not been accepted for publications, still I think they worth to be mentioned in this thesis anyway. The whole document is composed of seven chapters, with this introduction being the first of them:
 \begin{itemize}
  \item \textbf{second} chapter resumes the main concepts of \gls{rl} starting from the fundamental theory behind it and then giving a description of several methodologies related to this thesis. This chapter has the purpose to provide a general, but useful, overview of what is necessary to understand the following chapters;
- \item \textbf{third} chapter describes two publications I made about ways to exploit uncertainty in the context of Value-Based \gls{rl} and more in particular in the famous algorithm of Q-Learning;
+ \item \textbf{third} chapter describes three publications I made about ways to exploit uncertainty in the context of Value-Based \gls{rl} and more in particular in the famous algorithm of Q-Learning;
  \item \textbf{fourth} chapter deals with the description of novel algorithms that exploit uncertainty in order to improve exploration;
  \item \textbf{fifth} chapter extends the previous work to the \gls{drl} framework;
  \item \textbf{sixth} chapter provides a description of the \gls{rl} Python library I developed;
