@@ -1,0 +1,18 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{D}\relax \glsresetentrylist %
+\glossentry{dl}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}}}%
+\glossentry{drl}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{4}}}\glsgroupskip
+\glsgroupheading{M}\relax \glsresetentrylist %
+\glossentry{mab}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3}}}%
+\glossentry{mdp}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{6\delimN 7}}}%
+\glossentry{ml}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{2}}}\glsgroupskip
+\glsgroupheading{R}\relax \glsresetentrylist %
+\glossentry{rl}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{2\delimR 5}}}%
+\end{theglossary}\glossarypostamble

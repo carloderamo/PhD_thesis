@@ -69,7 +69,7 @@
 \usepackage{ulem}
 \normalem
 
-\usepackage[toc]{glossaries}
+\usepackage{glossaries}
 \makeglossaries
 \input{acronyms}
 

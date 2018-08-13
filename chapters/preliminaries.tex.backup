@@ -32,7 +32,7 @@ The interaction of the agent with the environment is performed with the purpose 
  J = \sum_{t=0}^\infty \gamma^t r_t.
 \end{equation}
 \end{itemize}
-The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$ which has the purpose to give different importance to rewards w.r.t. the time step they have been collected. If $\gamma = 1$ the equation reduces to~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards far in time.
+The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$, called \textit{discount factor}, which has the purpose to give different importance to rewards w.r.t. the time step they have been collected. If $\gamma = 1$ the equation reduces to~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards far in time.
 
 \section{Markov Decision Processes}
 \begin{figure}[t]
@@ -41,6 +41,25 @@ The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$
   \includegraphics[scale=.6]{img/mdp2.png}
 \end{center}
 \end{minipage}
-\caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:mdp1}
+\caption[Markov Decision Process]{...}\label{F:mdp2}
 \end{figure}
-The mathematical framework to study the interaction of the agent with the environment is provided by the theory behind \glspl{mdp}.
+The mathematical framework to study the interaction of the agent with the environment is provided by the theory behind \glspl{mdp}. A \gls{mdp} is defined as a $6$-tuple where $<\mathcal{S}, \mathcal{A}, \mathcal{R}, \mathcal{T}, \gamma, \mu>$:
+\begin{itemize}
+ \item $\mathcal{S}$ is the set of states where the agent can be in the environment;
+ \item $\mathcal{A}$ is the set of actions that the agent can execute in the environment;
+ \item $\mathcal{R}$ is the set of rewards obtainable by the agent;
+ \item $\mathcal{T}$ is the \textit{transition function} consisting in the probability of reaching a state $s_{t+1}$ executing action $a_t$ in state $s_t$: $\mathcal{T}(s_t, a_t) = P(s_{t+1} | s_t, a_t)$;
+ \item $\gamma$ is the discount factor;
+ \item $\mu$ is the probability of each state to be the initial one: $\mu(s) = P(s_0 = s)$.
+\end{itemize}
+A \gls{mdp} is called \textit{finite}, or \textit{discrete}, if the set of states $\mathcal{S}$ and set of actions $\mathcal{A}$ are finite; it is called \textit{infinite}, or \textit{continuous}, when the set of states $\mathcal{S}$ is infinite and/or the set of actions $\mathcal{A}$ is infinite. For facilitating the discussion of the following concepts, let $S_t$, $A_t$ and $R_t$ be respectively the state, executed action and obtained reward of the agent at time step $t$.
+
+\subsection{Value functions}
+Recalling that the goal of the agent is to maximize the cumulative (discounted) reward obtained during an episode, a \gls{mdp} is considered \textit{solved} when the agent learns the actions to perform in each state which maximizes this measure. The function defining the probability of executing action $a$ in a state $s$ is called \textit{policy}: $\pi(s) = P(a|s)$. An \textit{optimal} policy $\pi^*$ is the one which, when followed, allows the agent to solve the \gls{mdp}. Considering the stochasticity in the transition function $\mathcal{T}$ and in the policy $\pi$, the expected value of the cumulative discounted reward obtainable following $\pi$ is called \textit{state value function}:
+\begin{equation}
+ V_\pi(s) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k R_{t+k} | S_t = s], \forall s \in \mathcal{S}.
+\end{equation}
+Then, an optimal policy can be defined also as the one which maximizes the value function of each state:
+\begin{equation}
+ V^*(s) = \max_\pi v_\pi(s), \forall s \in \mathcal{S}.
+\end{equation}
