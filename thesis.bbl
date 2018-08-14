@@ -10,6 +10,17 @@ Peter Auer, Nicolo Cesa-Bianchi, and Paul Fischer.
 \newblock Finite-time analysis of the multiarmed bandit problem.
 \newblock {\em Machine learning}, 47(2-3):235--256, 2002.
 
+\bibitem{bellman2013dynamic}
+Richard Bellman.
+\newblock {\em Dynamic programming}.
+\newblock Courier Corporation, 2013.
+
+\bibitem{bertsekas2005dynamic}
+Dimitri~P Bertsekas, Dimitri~P Bertsekas, Dimitri~P Bertsekas, and Dimitri~P
+  Bertsekas.
+\newblock {\em Dynamic programming and optimal control}, volume~1.
+\newblock Athena scientific Belmont, MA, 2005.
+
 \bibitem{bubeck2012regret}
 S{\'e}bastien Bubeck, Nicolo Cesa-Bianchi, et~al.
 \newblock Regret analysis of stochastic and nonstochastic multi-armed bandit
