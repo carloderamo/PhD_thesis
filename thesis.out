@@ -13,8 +13,13 @@
 \BOOKMARK [2][]{subsection.2.3.1}{Dynamic Programming}{section.2.3}% 13
 \BOOKMARK [2][]{subsection.2.3.2}{Reinforcement Learning}{section.2.3}% 14
 \BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimate}{}% 15
-\BOOKMARK [0][]{chapter.4}{Exploration}{}% 16
-\BOOKMARK [0][]{chapter.5}{Deep}{}% 17
-\BOOKMARK [0][]{chapter.6}{Mushroom}{}% 18
-\BOOKMARK [0][]{chapter.7}{Conclusion}{}% 19
-\BOOKMARK [0][]{section*.18}{Bibliography}{}% 20
+\BOOKMARK [1][]{section.3.1}{Estimating the MEV}{chapter.3}% 16
+\BOOKMARK [1][]{section.3.2}{Related works}{chapter.3}% 17
+\BOOKMARK [1][]{section.3.3}{The Proposed Method}{chapter.3}% 18
+\BOOKMARK [1][]{section.3.4}{Estimation Error}{chapter.3}% 19
+\BOOKMARK [2][]{subsection.3.4.1}{Bias}{section.3.4}% 20
+\BOOKMARK [0][]{chapter.4}{Exploration}{}% 21
+\BOOKMARK [0][]{chapter.5}{Deep}{}% 22
+\BOOKMARK [0][]{chapter.6}{Mushroom}{}% 23
+\BOOKMARK [0][]{chapter.7}{Conclusion}{}% 24
+\BOOKMARK [0][]{section*.20}{Bibliography}{}% 25

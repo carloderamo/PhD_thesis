@@ -1,5 +1,5 @@
 \chapter{Preliminaries}
-\gls{rl} is intuitively explainable as the process of learning from interaction with the environment, but this hasty explanation is only a very high level description of it; indeed, a more formal way to model the problem is required to properly analyze it. This chapter provides a description of the mathematical framework required to model \gls{rl}. It also explains a selection of algorithms that are related to the work done in this thesis in order to provide enough knowledge about the literature I dealt with during my years of Ph.D. research.
+\gls{rl} is intuitively describable as the process of learning from interaction with the environment, but this hasty explanation is only a very high level description of it; indeed, a more formal way to model the problem is required to properly analyze it. This chapter provides a description of the mathematical framework required to model \gls{rl}. It also explains a selection of algorithms that are related to the work done in this thesis in order to provide enough knowledge about the literature I dealt with during my years of Ph.D. research.
 
 \section{Agent and environment}
 \begin{figure}[b]
@@ -10,7 +10,7 @@
 \end{minipage}
 \caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:mdp1}
 \end{figure}
-The interaction of an agent inside an environment can be seen as the execution of actions to move itself in the environment and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $S_t$ of the environment, executes an action $A_t$ and observes the new representation of the environment $S_{t+1}$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspect of the sensory data acquired from the environment the agent are used. Together with $S_{t+1}$, the agent also sees a return $R_t$ which is not given by the environment, but it is a measure considered by the agent to evaluate the convenience of the consequences of the actions it executes. The total number of time steps is called \textit{horizon} $H$ and determines a first taxonomy of problems:
+The interaction of an agent inside an environment can be seen as the execution of actions to move itself and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $S_t$ of the environment, executes an action $A_t$ and observes the new representation of the environment $S_{t+1}$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspect of the sensory data acquired from the environment the agent are used. Together with $S_{t+1}$, the agent also sees a return $R_t$ which is not given by the environment, but is a measure considered by the agent to evaluate the convenience of the consequences of the actions it executes. The total number of time steps is called \textit{horizon} $H$ and determines a first taxonomy of problems:
 \begin{itemize}
  \item finite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, H)$;
  \item infinite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, \infty)$.
@@ -53,6 +53,12 @@ The mathematical framework to study the interaction of the agent with the enviro
  \item $\mu$ is the probability of each state to be the initial one: $\mu(s) = P(s_0 = s)$.
 \end{itemize}
 A \gls{mdp} is called \textit{finite}, or \textit{discrete}, if the set of states $\mathcal{S}$ and set of actions $\mathcal{A}$ are finite; it is called \textit{infinite}, or \textit{continuous}, when the set of states $\mathcal{S}$ is infinite and/or the set of actions $\mathcal{A}$ is infinite.
+Two important properties of the \glspl{mdp}:
+\begin{itemize}
+ \item \textbf{stationarity:} the transition function $\mathcal{T}$ does not change over time;
+ \item \textbf{Markovian assumption:} the transition and reward function depend only on the current time step and not on the previous ones.
+\end{itemize}
+These two properties are taken as assumptions by most of the literature about \glspl{mdp} and by the work presented in this thesis too.
 
 \subsection{Value functions}
 Recalling that the goal of the agent is to maximize the cumulative (discounted) reward obtained during an episode, a \gls{mdp} is considered \textit{solved} when the agent learns the actions to perform in each state which maximizes this measure. The function defining the probability of executing action $a$ in a state $s$ is called \textit{policy}: $\pi(s) = P(a|s)$. An \textit{optimal} policy $\pi^*$ is the one which, when followed, allows the agent to solve the \gls{mdp}. Considering the stochasticity in the transition function $\mathcal{T}$ and in the policy $\pi$, the expected value of the cumulative discounted reward obtainable following $\pi$ is called \textit{state value function}:
@@ -147,6 +153,7 @@ for all $s \in \mathcal{S}$. Desirably, Value Iteration maintains the properties
 As stated at the beginning of the section, the previous methods can be applied only when the full model of the \gls{mdp} is known. However, in most of real cases the full model is not available and the agent must move in the environment in order to understand it.
 
 \subsection{Reinforcement Learning}
+
 
 \subsubsection{Online}
 

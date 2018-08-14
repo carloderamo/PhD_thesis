@@ -8,6 +8,10 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Reinforcement Learning problem scheme}}{5}{figure.caption.11}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Markov Decision Process}}{7}{figure.caption.12}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Comparison of the bias of the different estimators varying the difference of the means\relax }}{15}{figure.caption.18}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Comparison of the absolute bias of the different estimators varying the difference of the means.\relax }}{15}{figure.caption.18}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison of the variance of the different estimators varying the difference of the means.\relax }}{16}{figure.caption.19}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Comparison of the \gls {mse} of the different estimators varying the difference of the means.\relax }}{16}{figure.caption.19}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

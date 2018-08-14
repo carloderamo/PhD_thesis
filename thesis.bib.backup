@@ -130,3 +130,101 @@
   journal={arXiv preprint arXiv:1712.01815},
   year={2017}
 }
+
+@book{puterman2014markov,
+  title={Markov decision processes: discrete stochastic dynamic programming},
+  author={Puterman, Martin L},
+  year={2014},
+  publisher={John Wiley \& Sons}
+}
+
+@article{bellman1954theory,
+  title={The theory of dynamic programming},
+  author={Bellman, Richard},
+  journal={Bulletin of the American Mathematical Society},
+  volume={60},
+  number={6},
+  pages={503--515},
+  year={1954}
+}
+
+@book{bertsekas2005dynamic,
+  title={Dynamic programming and optimal control},
+  author={Bertsekas, Dimitri P and Bertsekas, Dimitri P and Bertsekas, Dimitri P and Bertsekas, Dimitri P},
+  volume={1},
+  number={3},
+  year={2005},
+  publisher={Athena scientific Belmont, MA}
+}
+
+@book{bellman2013dynamic,
+  title={Dynamic programming},
+  author={Bellman, Richard},
+  year={2013},
+  publisher={Courier Corporation}
+}
+
+@inproceedings{van2010double,
+  title={Double Q-learning},
+  author={Van Hasselt, Hado},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2613--2621},
+  year={2010}
+}
+
+@article{van2004rational,
+  title={Rational overoptimism (and other biases)},
+  author={Van den Steen, Eric},
+  journal={American Economic Review},
+  pages={1141--1151},
+  year={2004},
+  publisher={JSTOR}
+}
+
+@article{smith2006optimizer,
+  title={The optimizer's curse: Skepticism and postdecision surprise in decision analysis},
+  author={Smith, James E and Winkler, Robert L},
+  journal={Management Science},
+  volume={52},
+  number={3},
+  pages={311--322},
+  year={2006},
+  publisher={INFORMS}
+}
+
+@incollection{xu2013mab, 
+    Title = {Estimation Bias in Multi-Armed Bandit Algorithms for Search Advertising}, 
+    Url = {http://media.nips.cc/nipsbooks/nipspapers/paper_files/nips26/1137.pdf}, 
+    Booktitle = {Advances in Neural Information Processing Systems 26}, 
+    Author = {Min Xu and Tao Qin and Tie-yan Liu}, 
+    Editor = {C.j.c., Burges and L., Bottou and M., Welling and Z., Ghahramani and K.q., Weinberger}, 
+    Year = {2013}, 
+    Pages = {2400--2408} 
+   }
+   
+@article{van2013estimating,
+  title={Estimating the Maximum Expected Value: an Analysis of (Nested) Cross-Validation and the Maximum Sample Average},
+  author={Van Hasselt, Hado},
+  journal={arXiv preprint arXiv:1302.7175},
+  year={2013}
+}
+
+@article{blumenthal1968estimation,
+  title={Estimation of the larger of two normal means},
+  author={Blumenthal, Saul and Cohen, Arthur},
+  journal={Journal of the American Statistical Association},
+  volume={63},
+  number={323},
+  pages={861--876},
+  year={1968},
+  publisher={Taylor \& Francis}
+}
+
+@article{van2004rational,
+  title={Rational overoptimism (and other biases)},
+  author={Van den Steen, Eric},
+  journal={American Economic Review},
+  pages={1141--1151},
+  year={2004},
+  publisher={JSTOR}
+}

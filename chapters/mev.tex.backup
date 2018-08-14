@@ -1,0 +1,180 @@
+\chapter{Maximum Expected Value estimate}
+In many machine learning problems it is necessary to estimate the \gls{mev} of a set of random variables, given samples collected from each variable~\cite{van2013estimating}.
+For instance, in \gls{rl}, the optimal policy can be found by taking, in each state, the action that attains the maximum expected cumulative reward.
+The optimal value of an action in a state, on its turn, depends on the maximum expected values of the actions available in the reached states.
+Since errors propagate through all the state-action pairs, a bad estimator for the maximum expected value negatively affects the speed of learning~\cite{van2010double}.
+Another example of the importance of producing accurate estimates for the maximum expected value is provided by sponsored search auctions, where the search engine needs to select which ad to show from a pool of candidates.
+To select the best ad, usually, one needs to estimate the probability that a random user will click on it.
+Since, each time an ad is clicked, the search engine charges to the advertiser a fee that depends on the click probabilities of the top two ads, a good estimate of the maximum expected value is essential to maximize the revenue of the search engine~\cite{xu2013mab}.
+
+The most common estimator is the \gls{me}, which consists of taking the maximum of the sample means.
+It is well known~\cite{smith2006optimizer,van2004rational,van2010double} that ME overestimates the maximum expected value.
+To avoid such positive bias, a common approach is the \gls{de}, that consists in a cross-validatory approach where the sample set is split into two sample sets $A$ and $B$~\cite{stone1974cross}. \gls{de} results from the average of two estimates.
+For the first estimate, the sample set $A$ is used to determine which is the variable with the largest mean, while sample set $B$ is used to estimate the value of the variable.
+The second estimate is obtained by switching the roles of $A$ and $B$.
+Although the absolute bias of \gls{de} can be larger than the one of \gls{me}~\cite{van2013estimating}, \gls{de} is negatively biased and this can be an advantage in some applications~\cite{van2010double,xu2013mab,van2015deep}.
+Unfortunately, an unbiased estimator for the maximum expected value \emph{does not exist} for many common distributions (e.g., Gaussian, Binomial, and Beta)~\cite{blumenthal1968estimation,dhariyal85}.
+On the other hand, having an unbiased estimator does not entail a small expected \gls{mse}, since also the variance of the estimator has to be considered.
+
+In this paper we propose to estimate the maximum expected value using the \gls{we}, that consists of a weighted average of the sample means, where the weights are obtained by estimating the probability that each variable has the largest expected value.
+To compute such probabilities we would need to know the distributions of the sample means.
+Relying on the central limit theorem, we approximate the distributions of the samples means with Gaussian distributions parameterized by the sample mean and sample variance.
+Such weighting mechanism reduces the bias w.r.t. \gls{me} without increasing the variance as \gls{de} does.
+
+\section{Estimating the MEV}\label{S:Preliminaries}
+We consider the problem of finding the maximum expected value of a finite set of $M \geq 2$ independent random variables $X = \lbrace X_{1}, ..., X_{M} \rbrace$.
+We denote with $f_i : \mathbb{R} \rightarrow \mathbb{R}$ the \gls{pdf}, with $F_i : \mathbb{R} \rightarrow \mathbb{R}$ the \gls{cdf}, with $\mu_i$ the mean, and with $\sigma^2_i$ the variance of variable $X_i$.
+The \gls{me} $\mu_{*}(X)$ is defined as
+\begin{align}\label{eq:maxExp}
+\mu_{*}(X) = \max_{i} \mu_{i} = \max_{i} \int_{-\infty}^{+\infty}xf_i(x)~\mathrm{d}x.
+\end{align}
+Assuming that the \glspl{pdf} are unknown, $\mu_{*}(X)$ cannot be found analytically.
+Given a set of noisy samples $S = \lbrace S_{1}, ..., S_{N} \rbrace$ retrieved by the unknown distributions of each $X_{i}$, we are interested in finding an accurate estimator $\hat{\mu}_*(S) \approx \mu_{*}(X)$.
+These random samples have means $\hat{\mu}_{1}, ..., \hat{\mu}_{N}$ that are unbiased estimators of the true mean $\mu_{i}$.
+The \gls{pdf} and \gls{cdf} of $\hat{\mu}_{i}(S)$ are denoted by $\hat f_i^S$ and $\hat F_i^S$.
+
+\section{Related works}
+The maximum expected value can be approximated with the maximum of the sample means:
+\begin{equation}\label{E:biasME}
+\hat{\mu}_*^{ME}(S) = \max_{i}\hat{\mu}_{i}(S) \approx \mu_{*}(X).
+\end{equation}
+This method is called \gls{me} and it is used, for instance, by Q-Learning to approximate the value of the following state by maximizing over the estimated action values in that state. Unfortunately, as proved in \cite{smith2006optimizer}, this estimator is positively biased and this is critical in Q-Learning where the approximation error can increase step by step due to the overestimation of the state-action values. To understand the presence of this positive bias, consider the \gls{cdf} $\hat{F}_{\max}(x)$ of the maximal estimator $\max_{i}\hat\mu_{i}$ that is the probability that \gls{me} is less than or equal to $x$. This probability is equal to the probability that all other estimates are less than or equal to $x$: $\hat F_{\max}(x) = P(\max_{i}\hat\mu_{i} \leq x) = \prod^M_{i=1} P(\hat\mu_{i} \leq x) = \prod^M_{i=1} \hat F_i(x)$. Considering the \gls{pdf} $\hat f_{\max}$, the expected value of the \gls{me} is $E\left[\hat{\mu}_*^{ME}\right] = E [ \max_{i}\hat\mu_{i} ] = \int^{\infty}_{-\infty} x \hat f_{\max}(x) dx$. This is equal to
+\begin{align}
+E\left[\hat{\mu}_*^{ME}\right] &= \int^{\infty}_{-\infty} x \frac{d}{dx} \prod^M_{j=1} \hat F_j(x)~\mathrm{d}x \nonumber \\ 
+&=\sum^M_i \int^{\infty}_{-\infty} x \hat f_i(x) \prod^M_{i \neq j} \hat F_j(x)~\mathrm{d}x.
+\end{align}
+However, this is the expected value of the \gls{me}, not the \gls{mev} in~\eqref{eq:maxExp}. The positive bias can be explained by the presence of $x$ in the integral which correlates with the monotonically increasing product $\prod^M_{i \neq j} \hat F_j(x)$.
+
+In order to avoid this issue, an alternative method, called \gls{de}, has been proposed in \cite{van2010double} and theoretically analyzed in~\cite{van2013estimating}. In this technique, like in the case of the maximum estimator, a sample set $S$ retrieved by the true unknown distribution is used, but in this case it is divided in two disjoint subsets $S^A = \lbrace S^A_{1}, ..., S^A_{N} \rbrace$ and $S^B = \lbrace S^B_{1}, ..., S^B_{N} \rbrace$. If the sets are split in a proper way, for instance randomly, the sample means $\hat{\mu}^A_{i}$ and $\hat{\mu}^B_{i}$ are unbiased, like the means $\hat{\mu}_{i}$ in the case of the single estimator. An estimator $a^*$, such that $\hat\mu^A_{a^*}(X) = \max_{i}\hat\mu^A_{i}(X)$, is used to pick an estimator $\hat\mu^B_{a^*}$ that is an estimate for $\max_{i}E [ \hat\mu^B_{i} ]$ and for $\max_{i}E [ X_{i} ]$. Obviously, this can be done the opposite way, using an estimator $b^*$ to retrieve the estimator value $\hat{\mu}^A_{b^*}$. 
+\gls{de} takes the average of these two estimators.
+The bias of \gls{de} can be found in the same way as for \gls{me} with
+\begin{equation}\label{E:biasCV}
+E\left[\hat{\mu}_*^{DE}\right]=\sum^M_i E \left[ \hat\mu^B_i \right] \int^{\infty}_{-\infty} \hat f^A_i(x) \prod^M_{j \neq i} \hat F^A_j(x)~\mathrm{d}x
+\end{equation}
+when using an estimator $a^*$ (the same holds by swapping A and B).
+This formula can be seen as a weighted sum of the expected values of the random variables where the weights are the probabilities of each variable to be the maximum. Since these probabilities sum to one, the approximation given by \gls{de} results in a value that is lower than or equal to the maximal expected value. Even if the underestimation does not guarantee better estimation than the \gls{me}, it can be helpful to avoid an incremental approximation error in some learning problems. For instance, Double Q-Learning \cite{van2010double} is a variation of Q-Learning that exploits this technique to avoid the previously described issues due to overestimation. Double Q-Learning has been tested in some very noisy environments and succeeded to find better policies than Q-Learning.
+Another remarkable application of \gls{de} is presented in \cite{xu2013mab} where it achieves better results than \gls{me} in a sponsored search auction problem.
+
+\section{The Proposed Method}\label{S:Method}
+
+Differently from \gls{me} and \gls{de} that output the sample average of the variable that is estimated to be the one with the largest mean, we propose to estimate the maximum expected value $\mu_*(X)$ with the \gls{we} that computes a weighted mean of all the sample averages:
+\begin{equation*}\label{E:WE}
+\hat{\mu}_*^{WE}(S) = \sum_{i=1}^M \hat\mu_i(S) w_i^S.
+\end{equation*}
+Ideally, each weight $w_i^S$ should be the probability of $\hat\mu_i(S)$ being larger than all other samples means:  
+$$w_i^S = P\left(\hat\mu_i(S) = \max_j \hat\mu_j(S)\right).$$
+If we knew the \glspl{pdf} $\hat{f}_i^S$ for each $\hat\mu_i(S)$ we could compute the \gls{dawe}:
+\begin{equation}\label{E:OptimalWE}
+\hat{\mu}_*^{DAWE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \hat{f}_i^S(x) \prod_{j\neq i}\hat{F}_j^S(x)~\mathrm{d}x.
+\end{equation}
+We know that the sample mean $\hat\mu_i(S)$ is a random variable whose expected value is $\mu_i$ and whose variance is $\frac{\sigma^2_i}{|S_i|}$.
+Unfortunately, its \gls{pdf} $\hat f_i^S$ depends on the \gls{pdf} $f_i$ of variable $X_i$ that is assumed to be unknown.
+In particular, if $X_i$ is normally distributed, then, independently of the sample size, the sampling distribution of its sample mean is normal too: $\hat\mu_i(S)\sim\mathcal{N}\left(\mu_i,\frac{\sigma_i^2}{|S_i|}\right)$.
+On the other hand, by the central limit theorem, the sampling distribution $\hat f_i^S$ of the sample mean $\hat\mu_i(S)$ approaches the normal distribution as the number of samples $|S_i|$ increases, independently of the distribution of $X_i$.
+Leveraging on these considerations, we propose to approximate the distribution of the sample mean $\hat\mu_i(S)$ with a normal distribution, where we replace the (unknown) population mean and variance of variable $X_i$ with their (unbiased) sample estimates $\hat\mu_i(S)$ and $\hat\sigma_i(S)$:
+$$\hat f_i^S \approx \tilde f_i^S = \mathcal{N}\left(\hat\mu_i(S),\frac{\hat\sigma^2_i(S)}{|S_i|}\right),$$
+so that \gls{we} is computed as:
+\begin{equation}\label{E:WE2}
+\hat{\mu}_*^{WE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \tilde{f}_i^S(x) \prod_{j\neq i}\tilde{F}_j^S(x)~\mathrm{d}x.
+\end{equation}
+
+It is worth noting that \gls{we} is consistent with $\mu_*(X)$. In fact, as the number of samples grows to infinity, each sample mean $\hat\mu_i$ converges to the related population mean $\mu_i$, and the variance of the normal distribution $\tilde f_i$ tends to zero, so that the weights of the variables with expected value less than $\mu_*(X)$ go to zero, so that $\hat{\mu}_*^{WE} \rightarrow \mu_*(X)$.
+
+\section{Estimation Error}\label{S:Analysis}
+
+In this section, we theoretically analyze the estimation error of $\est{\WE}(S)$ in terms of bias and variance, comparing it with the results available for \ME~and \CV.
+Although \OWE~cannot be used in practice, we include it in the following analysis since it provides an upper limit to the accuracy of \WE.
+
+\subsection{Bias}
+
+\begin{figure*}[t]
+    \begin{minipage}{0.45\textwidth}
+    \centering 
+    \setlength\figureheight{4cm}
+    \setlength\figurewidth{6cm}
+    \input{imgs/bias.tikz} 
+    \caption{Comparison of the bias of the different estimators.}\label{F:bias}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.54\textwidth}    
+    \centering 
+    \setlength\figureheight{4cm}
+    \setlength\figurewidth{6cm}
+    \input{imgs/absolute_bias.tikz} 
+    \caption{Comparison of the absolute bias of the different estimators.}\label{F:absolute_bias}
+    \end{minipage}
+\end{figure*}
+
+We start with summarizing the main results about the bias of \ME~and \CV~reported in~\cite{van2013estimating}.
+For what concerns the direction of the bias, \ME~is positively biased, while \CV~is negatively biased.
+If we look at the absolute bias, there is no clear winner. 
+For instance, when all the random variables are identically distributed, \CV~is unbiased, while the same setting represents a worst case for \ME~.
+On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \ME~can be significantly smaller than the one of \CV~(see Section~\ref{S:Experiments}).
+The bias of \ME~is bounded by:
+$$\mathrm{Bias}\left(\est{\ME}\right) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
+For the bias of \CV, \citet{van2013estimating} conjectures the following bound (which is proved for two variables):
+$$\mathrm{Bias}\left(\est{\CV}\right) \geq -\frac{1}{2}\left(\sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^A_i|}} + \sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^B_i|}}\right). $$
+
+In the next theorem we provide a relationship between the bias of \WE~and the one of \ME.
+\begin{theorem}\label{T:BiasWEME}
+ For any given set $X$ of $M$ random variables:
+ $$\mathrm{Bias}(\hat{\mu}_*^{WE}) \leq \mathrm{Bias}(\est{\ME}) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
+\end{theorem}
+As we will see in Section~\ref{S:Experiments}, this does not mean that the absolute bias of \gls{we} is necessarily smaller than the one of \gls{me}, since (as we will see later) the bias of \gls{we} can be also negative.
+In order to better characterize the bias of \gls{we}, we put it in relation with the bias of \gls{de}.
+\begin{theorem}\label{T:BiasWECV}
+ For any given set $X$ of $M$ random variables:
+  $$\mathrm{Bias}(\hat{\mu}_*^{WE}) \geq \mathrm{Bias}(\est{\CV}).$$
+\end{theorem}
+
+\textbf{Example} In Figures~\ref{F:bias} and~\ref{F:absolute_bias} we visualize the bias of the different \gls{mev} estimators in a setting with two normally distributed random variables ($X_1\sim\mathcal{N}(\mu_1,\sigma_1^2)$ and $X_2\sim\mathcal{N}(\mu_2,\sigma_2^2)$) as a function of the difference of their expected values. Both variables have variance equal to 10 ($\sigma_1^2=\sigma_2^2=10$) and we assume to have 100 samples for each variable ($|S_1|=|S_2|=100$).
+Figure~\ref{F:bias} confirms the previous theoretical analysis: the bias of \gls{me} is always positive, while the biases of \gls{dawe} and \gls{de} are always negative, with the latter always worse than the former.
+The bias of \gls{we} can be positive or negative according to the situation, but it always falls in the range identified by the biases of \gls{me} and \gls{de}.
+Looking at the absolute biases shown in Figure~\ref{F:absolute_bias}, we can notice that there is not a clear winner.
+As previously mentioned, when the variables have the same mean, both \gls{de} and \gls{dawe} are unbiased, while it represents a worst case for the bias of \gls{me} and \gls{we}. It follows that, when the difference of the two means is small (less than 0.5 in the example), \gls{de} suffers less absolute bias than \gls{me} and \gls{we}. For moderate differences of the means (between 0.5 and 1.8 in the example), \gls{we} has the minimum absolute bias, while \gls{me} is preferable for larger differences.
+Such results can be generalized as follows: \gls{de} suffers a small bias when there are several variables that have expected values close (w.r.t.~their variances) to the maximum one, while \gls{me} provides the best estimate when there is one variable whose expected value is significantly larger (w.r.t.~the variances) than all the expected values of all the other variables. In all the other cases, \gls{we} is less biased.
+
+\subsection{Variance}
+\begin{figure*}
+    \begin{minipage}{0.5\textwidth}
+    \centering 
+    \setlength\figureheight{4cm}
+    \setlength\figurewidth{6cm}
+    \input{imgs/variance.tikz} 
+    \caption{Comparison of the variance of the different estimators.}\label{F:variance}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+     \centering 
+    \setlength\figureheight{4cm}
+    \setlength\figurewidth{6cm}
+    \input{imgs/mse.tikz} 
+    \caption{Comparison of the \gls{mse} of the different estimators.}\label{F:mse}
+    \end{minipage}
+\end{figure*}
+
+We cannot evaluate the goodness of an estimator by analyzing only its bias.
+In fact, since the \gls{mse} of an estimator is the sum of its squared bias and its variance, we need to take into consideration also the latter.
+
+\citet{van2013estimating} proved that both the variance of \gls{me} and the one of \gls{de} can be upper bounded with the sum of the variances of the sample means:
+$ \mathrm{Var}\left(\hat{\mu}_*^{ME}}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$, $\mathrm{Var}\left(\est{\CV}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$.
+The next theorem shows that the same upper bound holds also for the variance of \gls{we}.
+\begin{theorem}\label{T:VarianceWE}
+ The variance of \gls{we} is upper bounded by
+ $$\mathrm{Var}\left(\hat{\mu}_*^{WE}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}.$$
+\end{theorem}
+The bound in Theorem~\ref{T:VarianceWE} is overly pessimistic; in fact, even if each weight $w_i^S$ is correlated to the other weights and to the sample mean $\hat\mu_i(S)$, their sum is equal to one.
+For sake of comparison, we upper bound the variance of \gls{dawe}.
+\begin{theorem}\label{T:VarianceOWE}
+ The variance of \gls{dawe} is upper bounded by
+ $$\mathrm{Var}\left(\hat{\mu}_*^{DAWE}\right) \leq \max_{i\in{1,\dots,M}} \frac{\sigma^2_i}{|S_i|}.$$
+\end{theorem}
+
+\textbf{Example} As done for the bias, in Figure~\ref{F:variance} we show the variance of the different estimators under the same settings described above.
+As the difference of the means of the two variables grows, the variance of all the estimators converges to the variance of the sample mean of the variable with the maximum expected value.
+\gls{de} is the estimator with the largest variance since its sample means are computed using half the number of samples w.r.t.~the other estimators.
+\gls{we} exhibits a variance slightly larger than the one of \gls{me}, while, as expected, the variance of \gls{dawe} is always the smallest.
+
+Finally, in Figure~\ref{F:mse} we show the MSE (variance + bias$^2$) of the different estimators.
+When the difference between the two means is less than one, \WE~suffers from a lower MSE than the other two estimators.
+On the other hand, \ME~is preferable when there is a variable with an expected value that is significantly larger than the other ones.

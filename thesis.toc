@@ -15,15 +15,20 @@
 \contentsline {subsection}{\numberline {2.2.1}Value functions}{7}{subsection.2.2.1}
 \contentsline {section}{\numberline {2.3}Solving a MDP}{8}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Dynamic Programming}{8}{subsection.2.3.1}
-\contentsline {subsubsection}{Policy Iteration}{8}{subsubsection*.13}
-\contentsline {subsubsection}{Value Iteration}{9}{subsubsection*.14}
+\contentsline {subsubsection}{Policy Iteration}{9}{subsubsection*.13}
+\contentsline {subsubsection}{Value Iteration}{10}{subsubsection*.14}
 \contentsline {subsection}{\numberline {2.3.2}Reinforcement Learning}{10}{subsection.2.3.2}
 \contentsline {subsubsection}{Online}{10}{subsubsection*.15}
 \contentsline {subsubsection}{Batch}{10}{subsubsection*.16}
 \contentsline {subsubsection}{Deep Reinforcement Learning}{10}{subsubsection*.17}
 \contentsline {chapter}{\numberline {3}Maximum Expected Value estimate}{11}{chapter.3}
-\contentsline {chapter}{\numberline {4}Exploration}{13}{chapter.4}
-\contentsline {chapter}{\numberline {5}Deep}{15}{chapter.5}
-\contentsline {chapter}{\numberline {6}Mushroom}{17}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion}{19}{chapter.7}
-\contentsline {chapter}{Bibliography}{21}{section*.18}
+\contentsline {section}{\numberline {3.1}Estimating the MEV}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Related works}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}The Proposed Method}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}Estimation Error}{14}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Bias}{14}{subsection.3.4.1}
+\contentsline {chapter}{\numberline {4}Exploration}{19}{chapter.4}
+\contentsline {chapter}{\numberline {5}Deep}{21}{chapter.5}
+\contentsline {chapter}{\numberline {6}Mushroom}{23}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{25}{chapter.7}
+\contentsline {chapter}{Bibliography}{27}{section*.20}
