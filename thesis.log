@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  15 AUG 2018 18:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  15 AUG 2018 18:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1557,195 +1557,207 @@ Chapter 3.
 [11
 
 ] [12] [13] [14]
-Overfull \hbox (43.73671pt too wide) in paragraph at lines 100--102
+Overfull \hbox (43.73671pt too wide) in paragraph at lines 101--103
 \T1/ptm/m/n/12 the clas-si-cal cal-cu-lus through the fol-low-ing re-la-tion: $
 [][] \OML/cmm/m/it/12 F[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )[]
  = [] []$ \T1/ptm/m/n/12 [[]9[]]. 
  []
 
 [15]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 130.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 131.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [16]
 
-LaTeX Warning: Citation `Ernst2005tree' on page 17 undefined on input line 176.
+LaTeX Warning: Citation `Ernst2005tree' on page 17 undefined on input line 177.
 
 
 
 LaTeX Warning: Reference `E:qlearningrule' on page 17 undefined on input line 1
-81.
+82.
 
 
-Overfull \hbox (6.20483pt too wide) in paragraph at lines 180--182
+Overfull \hbox (6.20483pt too wide) in paragraph at lines 181--183
 \T1/ptm/m/n/12 (DFQI), and the vari-ant which uses []WE is called []Weighted Fi
 t-ted Q-Iteration (WFQI) [[]7[]]. 
  []
 
 [17]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 189.
- [18] [19]
-<./img/internetAds-impressions.pdf, id=592, 334.7948pt x 304.06999pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 190.
+ [18]
+<./img/internetAds-impressions.pdf, id=581, 334.7948pt x 304.06999pt>
 File: ./img/internetAds-impressions.pdf Graphic file (type pdf)
 
 <use ./img/internetAds-impressions.pdf>
 Package pdftex.def Info: ./img/internetAds-impressions.pdf used on input line 2
-66.
+48.
 (pdftex.def)             Requested size: 142.28845pt x 129.23035pt.
 
-<./img/internetAds-actions.pdf, id=593, 313.7592pt x 297.74538pt>
+<./img/internetAds-actions.pdf, id=582, 313.7592pt x 297.74538pt>
 File: ./img/internetAds-actions.pdf Graphic file (type pdf)
 
 <use ./img/internetAds-actions.pdf>
-Package pdftex.def Info: ./img/internetAds-actions.pdf used on input line 267.
+Package pdftex.def Info: ./img/internetAds-actions.pdf used on input line 249.
 (pdftex.def)             Requested size: 133.34828pt x 126.54237pt.
 
-<./img/internetAds-probs.pdf, id=594, 313.7592pt x 308.1392pt>
+<./img/internetAds-probs.pdf, id=583, 313.7592pt x 308.1392pt>
 File: ./img/internetAds-probs.pdf Graphic file (type pdf)
 
 <use ./img/internetAds-probs.pdf>
-Package pdftex.def Info: ./img/internetAds-probs.pdf used on input line 268.
+Package pdftex.def Info: ./img/internetAds-probs.pdf used on input line 250.
 (pdftex.def)             Requested size: 133.34828pt x 130.95978pt.
 
 
-LaTeX Warning: Reference `F:absolute_bias' on page 20 undefined on input line 2
-74.
+LaTeX Warning: Reference `F:absolute_bias' on page 19 undefined on input line 2
+56.
 
 
-LaTeX Warning: Reference `F:variance' on page 20 undefined on input line 278.
+LaTeX Warning: Reference `F:variance' on page 19 undefined on input line 260.
 
-[20 <./img/internetAds-impressions.pdf> <./img/internetAds-actions.pdf> <./img/
-internetAds-probs.pdf>]
-<./img/sponsoredSearch.pdf, id=645, 298.96796pt x 206.17628pt>
+<./img/sponsoredSearch.pdf, id=588, 298.96796pt x 206.17628pt>
 File: ./img/sponsoredSearch.pdf Graphic file (type pdf)
 
 <use ./img/sponsoredSearch.pdf>
-Package pdftex.def Info: ./img/sponsoredSearch.pdf used on input line 284.
+Package pdftex.def Info: ./img/sponsoredSearch.pdf used on input line 266.
 (pdftex.def)             Requested size: 269.06865pt x 185.55693pt.
- [21 <./img/sponsoredSearch.pdf>]
 
-LaTeX Warning: Citation `lee2012intelligent' on page 22 undefined on input line
- 302.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<./img/gridexp08-ng.pdf, id=681, 157.05676pt x 254.77283pt>
+ [19 <./img/internetAds-impressions.pdf> <./img/internetAds-actions.pdf> <./img
+/internetAds-probs.pdf>]
+
+LaTeX Warning: Citation `lee2012intelligent' on page 20 undefined on input line
+ 284.
+
+<./img/gridexp08-ng.pdf, id=643, 157.05676pt x 254.77283pt>
 File: ./img/gridexp08-ng.pdf Graphic file (type pdf)
 
 <use ./img/gridexp08-ng.pdf>
-Package pdftex.def Info: ./img/gridexp08-ng.pdf used on input line 312.
+Package pdftex.def Info: ./img/gridexp08-ng.pdf used on input line 294.
 (pdftex.def)             Requested size: 157.05637pt x 254.77219pt.
 
-<./img/gridexp08-g.pdf, id=682, 124.99599pt x 254.13545pt>
+<./img/gridexp08-g.pdf, id=644, 124.99599pt x 254.13545pt>
 File: ./img/gridexp08-g.pdf Graphic file (type pdf)
 
 <use ./img/gridexp08-g.pdf>
-Package pdftex.def Info: ./img/gridexp08-g.pdf used on input line 314.
+Package pdftex.def Info: ./img/gridexp08-g.pdf used on input line 296.
 (pdftex.def)             Requested size: 124.99567pt x 254.13481pt.
 
-<./img/gridexp08-g-sigma1.pdf, id=683, 151.27415pt x 259.86787pt>
+<./img/gridexp08-g-sigma1.pdf, id=645, 151.27415pt x 259.86787pt>
 File: ./img/gridexp08-g-sigma1.pdf Graphic file (type pdf)
 
 <use ./img/gridexp08-g-sigma1.pdf>
-Package pdftex.def Info: ./img/gridexp08-g-sigma1.pdf used on input line 316.
+Package pdftex.def Info: ./img/gridexp08-g-sigma1.pdf used on input line 298.
 (pdftex.def)             Requested size: 151.27377pt x 259.86723pt.
 
-<./img/forexTrain.pdf, id=687, 312.16827pt x 217.44237pt>
+Underfull \vbox (badness 3815) has occurred while \output is active []
+
+ [20 <./img/sponsoredSearch.pdf>]
+<./img/forexTrain.pdf, id=674, 312.16827pt x 217.44237pt>
 File: ./img/forexTrain.pdf Graphic file (type pdf)
 
 <use ./img/forexTrain.pdf>
-Package pdftex.def Info: ./img/forexTrain.pdf used on input line 327.
+Package pdftex.def Info: ./img/forexTrain.pdf used on input line 309.
 (pdftex.def)             Requested size: 218.51628pt x 152.2086pt.
 
-<./img/forexTest.pdf, id=688, 290.15302pt x 217.44838pt>
+<./img/forexTest.pdf, id=675, 290.15302pt x 217.44838pt>
 File: ./img/forexTest.pdf Graphic file (type pdf)
 
 <use ./img/forexTest.pdf>
-Package pdftex.def Info: ./img/forexTest.pdf used on input line 328.
+Package pdftex.def Info: ./img/forexTest.pdf used on input line 310.
 (pdftex.def)             Requested size: 203.10571pt x 152.21281pt.
- [22]
-Overfull \hbox (9.03706pt too wide) in paragraph at lines 341--344
+ [21]
+Overfull \hbox (9.03706pt too wide) in paragraph at lines 323--326
 \T1/ptm/m/n/12 main were trained us-ing his-tor-i-cal daily data of GBP/USD ex-
 change rate from 09/22/1997
  []
 
-[23 <./img/gridexp08-ng.pdf> <./img/gridexp08-g.pdf> <./img/gridexp08-g-sigma1.
-pdf>] [24 <./img/forexTrain.pdf> <./img/forexTest.pdf>]
-<./img/MM_123_new_noabs.pdf, id=765, 626.60301pt x 196.90865pt>
+[22 <./img/gridexp08-ng.pdf> <./img/gridexp08-g.pdf> <./img/gridexp08-g-sigma1.
+pdf>] [23 <./img/forexTrain.pdf> <./img/forexTest.pdf>]
+<./img/MM_123_new_noabs.pdf, id=753, 626.60301pt x 196.90865pt>
 File: ./img/MM_123_new_noabs.pdf Graphic file (type pdf)
 
 <use ./img/MM_123_new_noabs.pdf>
-Package pdftex.def Info: ./img/MM_123_new_noabs.pdf used on input line 370.
+Package pdftex.def Info: ./img/MM_123_new_noabs.pdf used on input line 352.
 (pdftex.def)             Requested size: 411.2586pt x 129.236pt.
 
-<./img/MM_45_new_noabs.pdf, id=766, 626.60301pt x 191.39706pt>
+<./img/MM_45_new_noabs.pdf, id=754, 626.60301pt x 191.39706pt>
 File: ./img/MM_45_new_noabs.pdf Graphic file (type pdf)
 
 <use ./img/MM_45_new_noabs.pdf>
-Package pdftex.def Info: ./img/MM_45_new_noabs.pdf used on input line 371.
+Package pdftex.def Info: ./img/MM_45_new_noabs.pdf used on input line 353.
 (pdftex.def)             Requested size: 411.2586pt x 125.61859pt.
 
-<./img/MM_123_new_var.pdf, id=767, 612.73314pt x 188.38179pt>
+<./img/MM_123_new_var.pdf, id=755, 612.73314pt x 188.38179pt>
 File: ./img/MM_123_new_var.pdf Graphic file (type pdf)
 
 <use ./img/MM_123_new_var.pdf>
-Package pdftex.def Info: ./img/MM_123_new_var.pdf used on input line 380.
+Package pdftex.def Info: ./img/MM_123_new_var.pdf used on input line 362.
 (pdftex.def)             Requested size: 411.2586pt x 126.43933pt.
 
-<./img/MM_45_new_var.pdf, id=768, 612.58763pt x 185.35748pt>
+<./img/MM_45_new_var.pdf, id=756, 612.58763pt x 185.35748pt>
 File: ./img/MM_45_new_var.pdf Graphic file (type pdf)
 
 <use ./img/MM_45_new_var.pdf>
-Package pdftex.def Info: ./img/MM_45_new_var.pdf used on input line 381.
+Package pdftex.def Info: ./img/MM_45_new_var.pdf used on input line 363.
 (pdftex.def)             Requested size: 411.2586pt x 124.4434pt.
- [25]
 
-LaTeX Warning: Citation `doya2000reinforcement' on page 26 undefined on input l
-ine 396.
 
-<./img/pendulumDiscrete.pdf, id=776, 580.32808pt x 447.35129pt>
+LaTeX Warning: Citation `doya2000reinforcement' on page 24 undefined on input l
+ine 378.
+
+<./img/pendulumDiscrete.pdf, id=759, 580.32808pt x 447.35129pt>
 File: ./img/pendulumDiscrete.pdf Graphic file (type pdf)
 
 <use ./img/pendulumDiscrete.pdf>
-Package pdftex.def Info: ./img/pendulumDiscrete.pdf used on input line 404.
+Package pdftex.def Info: ./img/pendulumDiscrete.pdf used on input line 386.
 (pdftex.def)             Requested size: 223.42256pt x 172.22736pt.
 
-<./img/pendulumContinuous.pdf, id=777, 581.77347pt x 447.35129pt>
+<./img/pendulumContinuous.pdf, id=760, 581.77347pt x 447.35129pt>
 File: ./img/pendulumContinuous.pdf Graphic file (type pdf)
 
 <use ./img/pendulumContinuous.pdf>
-Package pdftex.def Info: ./img/pendulumContinuous.pdf used on input line 406.
+Package pdftex.def Info: ./img/pendulumContinuous.pdf used on input line 388.
 (pdftex.def)             Requested size: 223.97903pt x 172.22736pt.
- [26 <./img/MM_123_new_noabs.pdf> <./img/MM_45_new_noabs.pdf>] <./img/acrobot.p
-df, id=814, 722.7pt x 450.2421pt>
-File: ./img/acrobot.pdf Graphic file (type pdf)
+) (./chapters/exploration.tex
+Underfull \vbox (badness 2689) has occurred while \output is active []
 
-<use ./img/acrobot.pdf>
-Package pdftex.def Info: ./img/acrobot.pdf used on input line 427.
+ [24]
+[25 <./img/MM_123_new_noabs.pdf> <./img/MM_45_new_noabs.pdf>] [26 <./img/MM_123
+_new_var.pdf> <./img/MM_45_new_var.pdf>] [27 <./img/pendulumDiscrete.pdf> <./im
+g/pendulumContinuous.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./img/pendulumContinuous.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>] [28
+
+]
+Chapter 4.
+) (./chapters/deep.tex [29] [30
+
+]
+Chapter 5.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 3.
+
+[31] <./img/acrobot.pdf, id=952, 722.7pt x 450.2421pt>
+File: ./img/acrobot.pdf Graphic file (type pdf)
+ <use ./img/acrobot.pdf>
+Package pdftex.def Info: ./img/acrobot.pdf used on input line 26.
 (pdftex.def)             Requested size: 433.62334pt x 270.14732pt.
 
-Overfull \hbox (18.2129pt too wide) in paragraph at lines 427--429
+Overfull \hbox (18.2129pt too wide) in paragraph at lines 26--28
  [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 470.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 69.
 
-LaTeX Warning: Citation `gym' on page 27 undefined on input line 470.
+LaTeX Warning: Citation `gym' on page 32 undefined on input line 69.
 
-) (./chapters/exploration.tex [27 <./img/MM_123_new_var.pdf> <./img/MM_45_new_v
-ar.pdf>] [28 <./img/pendulumDiscrete.pdf> <./img/pendulumContinuous.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/pendulumContinuous.pdf): PDF incl
-usion: multiple pdfs with page group included in a single page
->] [29 <./img/acrobot.pdf>] [30]
-Chapter 4.
-) (./chapters/deep.tex [31
-
-] [32
-
-]
-Chapter 5.
-) (./chapters/mushroom.tex [33] [34
+[32]) (./chapters/mushroom.tex [33 <./img/acrobot.pdf>] [34
 
 ]
 Chapter 6.
@@ -1769,7 +1781,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 273AB6906FD3EB45DE5C3257641D3EBD;2138.
+(rerunfilecheck)             Checksum: 0171C5BDC6205308317DBCC3905647E8;2141.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1783,8 +1795,8 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  37201 strings out of 493029
- 789150 string characters out of 6136234
- 1006464 words of memory out of 5000000
+ 789149 string characters out of 6136234
+ 1007464 words of memory out of 5000000
  39630 multiletter control sequences out of 15000+600000
  105623 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1826,7 +1838,7 @@ nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan
 /uzcmi8a.pfb>
-Output written on thesis.pdf (56 pages, 799566 bytes).
+Output written on thesis.pdf (56 pages, 799738 bytes).
 PDF statistics:
  1214 PDF objects out of 1440 (max. 8388607)
  970 compressed objects within 10 object streams

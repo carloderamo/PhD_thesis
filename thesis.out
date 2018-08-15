@@ -20,13 +20,13 @@
 \BOOKMARK [1][]{section.3.3}{Maximum Expected Value estimation in Reinforcement Learning}{chapter.3}% 20
 \BOOKMARK [2][]{subsection.3.3.1}{Online}{section.3.3}% 21
 \BOOKMARK [2][]{subsection.3.3.2}{Batch}{section.3.3}% 22
-\BOOKMARK [2][]{subsection.3.3.3}{Deep Reinforcement Learning}{section.3.3}% 23
-\BOOKMARK [1][]{section.3.4}{Empirical results}{chapter.3}% 24
-\BOOKMARK [2][]{subsection.3.4.1}{Discrete States and Action Spaces}{section.3.4}% 25
-\BOOKMARK [2][]{subsection.3.4.2}{Continuous state spaces}{section.3.4}% 26
-\BOOKMARK [2][]{subsection.3.4.3}{Deep Reinforcement Learning Scenario}{section.3.4}% 27
-\BOOKMARK [0][]{chapter.4}{Exploration}{}% 28
-\BOOKMARK [0][]{chapter.5}{Deep}{}% 29
+\BOOKMARK [1][]{section.3.4}{Empirical results}{chapter.3}% 23
+\BOOKMARK [2][]{subsection.3.4.1}{Discrete States and Action Spaces}{section.3.4}% 24
+\BOOKMARK [2][]{subsection.3.4.2}{Continuous state spaces}{section.3.4}% 25
+\BOOKMARK [0][]{chapter.4}{Exploration}{}% 26
+\BOOKMARK [0][]{chapter.5}{Deep}{}% 27
+\BOOKMARK [1][]{subsection.5.0.1}{Deep Reinforcement Learning}{chapter.5}% 28
+\BOOKMARK [2][]{subsection.5.0.2}{Deep Reinforcement Learning Scenario}{subsection.5.0.1}% 29
 \BOOKMARK [0][]{chapter.6}{Mushroom}{}% 30
 \BOOKMARK [0][]{chapter.7}{Conclusion}{}% 31
 \BOOKMARK [0][]{section*.39}{Bibliography}{}% 32
