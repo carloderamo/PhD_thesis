@@ -33,10 +33,21 @@
 \contentsline {subsubsection}{Weighted Q-Learning}{17}{subsubsection*.20}
 \contentsline {subsection}{\numberline {3.3.2}Batch}{17}{subsection.3.3.2}
 \contentsline {paragraph}{Weighted Fitted Q-Iteration}{18}{paragraph*.21}
-\contentsline {subsubsection}{Weighted Estimator in Deep Reinforcement Learning}{18}{subsubsection*.22}
-\contentsline {paragraph}{Weighted Deep Q-Network}{19}{paragraph*.23}
-\contentsline {chapter}{\numberline {4}Exploration}{21}{chapter.4}
-\contentsline {chapter}{\numberline {5}Deep}{23}{chapter.5}
-\contentsline {chapter}{\numberline {6}Mushroom}{25}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion}{27}{chapter.7}
-\contentsline {chapter}{Bibliography}{29}{section*.24}
+\contentsline {subsection}{\numberline {3.3.3}Deep Reinforcement Learning}{18}{subsection.3.3.3}
+\contentsline {paragraph}{Weighted Deep Q-Network}{19}{paragraph*.22}
+\contentsline {section}{\numberline {3.4}Empirical results}{19}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Discrete States and Action Spaces}{20}{subsection.3.4.1}
+\contentsline {subsubsection}{Internet Ads}{20}{subsubsection*.23}
+\contentsline {subsubsection}{Sponsored Search Auctions}{21}{subsubsection*.26}
+\contentsline {subsubsection}{Grid World}{22}{subsubsection*.27}
+\contentsline {subsubsection}{Forex}{22}{subsubsection*.30}
+\contentsline {subsection}{\numberline {3.4.2}Continuous state spaces}{25}{subsection.3.4.2}
+\contentsline {subsubsection}{Pricing Problem}{25}{subsubsection*.31}
+\contentsline {subsubsection}{Swing-Up Pendulum}{26}{subsubsection*.34}
+\contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning Scenario}{27}{subsection.3.4.3}
+\contentsline {subsubsection}{Acrobot}{27}{subsubsection*.36}
+\contentsline {chapter}{\numberline {4}Exploration}{31}{chapter.4}
+\contentsline {chapter}{\numberline {5}Deep}{33}{chapter.5}
+\contentsline {chapter}{\numberline {6}Mushroom}{35}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{37}{chapter.7}
+\contentsline {chapter}{Bibliography}{39}{section*.39}

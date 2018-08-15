@@ -8,6 +8,24 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Reinforcement Learning problem scheme}}{5}{figure.caption.11}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Markov Decision Process}}{7}{figure.caption.12}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces MSE for each setting. Results are averaged over 2000 experiments.\relax }}{20}{figure.caption.24}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Increasing number of impressions.}}}{20}{figure.caption.24}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Increasing number of ads.}}}{20}{figure.caption.24}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{20}{figure.caption.24}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Relative player 1 utility gain for different value of the bid defined as $\frac {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }}{21}{figure.caption.25}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }}{23}{figure.caption.28}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Bernoulli.}}}{23}{figure.caption.28}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{23}{figure.caption.28}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{23}{figure.caption.28}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Profit per year averaged over 100 experiments.\relax }}{24}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Training phase.}}}{24}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Test phase.}}}{24}{figure.caption.29}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Mean bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }}{26}{figure.caption.32}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Variance of the bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins. \relax }}{27}{figure.caption.33}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Average reward averaged on 100 experiments.\relax }}{28}{figure.caption.35}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Discrete actions.}}}{28}{figure.caption.35}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Continuous actions.}}}{28}{figure.caption.35}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{29}{figure.caption.37}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

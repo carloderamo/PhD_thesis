@@ -6,7 +6,7 @@ While sometimes only the order of preference of these alternatives matters, many
 For instance, in \gls{rl} the optimal policy can be found by taking, in each state, the action that attains the maximum expected cumulative reward. The optimal value of an action in a state, on its turn, depends on the \glspl{mev} of the actions available in the reached states.
 Since errors propagate through all the state-action pairs, a bad estimator for the \gls{mev} negatively affects the speed of learning~\cite{van2010double}.
 
-Generally, we use this estimation when we need to know not only which is the variable with the \gls{mev} from a set of variables, but we want to have also a good estimation of such expected value. The most widespread approach to this estimation problem is the \gls{me} which simply takes the maximum estimated utility. As proved in~\cite{smith2006optimizer}, this estimate is positively biased and, if used in iterative algorithms, can increase the approximation error step-by step~\cite{van2010double}. More effective estimators have been proposed in the recent years. The \gls{de}~\cite{van2013estimating} approximates the maximum by splitting the sample set into two disjoint sample sets. One of this set is used to pick the element with the maximum approximate value and its value is picked from the other set. This has to be done the opposite way switching the role of the two sets. Eventually, the average (or a convex combination) of the two values is considered. This approach has been proven to have negative bias~\cite{van2013estimating} which, in some applications, allows to overcome the problem of \gls{me}.
+Generally, we use this estimation when we need to know not only which is the variable with the \gls{mev} from a set of variables, but we want to have also a good estimation of such expected value. The most used approach to this estimation problem is the \gls{me} which simply takes the maximum estimated utility. As proved in~\cite{smith2006optimizer}, this estimate is positively biased and, if used in iterative algorithms, can increase the approximation error step-by step~\cite{van2010double}. More effective estimators have been proposed in the recent years. The \gls{de}~\cite{van2013estimating} approximates the maximum by splitting the sample set into two disjoint sample sets. One of this set is used to pick the element with the maximum approximate value and its value is picked from the other set. This has to be done the opposite way switching the role of the two sets. Eventually, the average (or a convex combination) of the two values is considered. This approach has been proven to have negative bias~\cite{van2013estimating} which, in some applications, allows to overcome the problem of \gls{me}.
 
 During my research, I analyzed this problem and proposed the \gls{we}~\cite{deramo2016estimating} which approximates the maximum value by a sum of different values weighted by their probability of being the maximum. \gls{we} can have both negative and positive bias, but its bias always stays in the range between the \gls{me} and \gls{de} biases.
 
@@ -43,7 +43,7 @@ The expected value of \gls{de} can be found in the same way as for \gls{me} with
 E\left[\est{DE}\right]=\sum^M_i E \left[ \hat\mu^B_i \right] \int^{\infty}_{-\infty} \hat f^A_i(x) \prod^M_{j \neq i} \hat F^A_j(x)~\mathrm{d}x
 \end{equation}
 when using an estimator $a^*$ (the same holds by swapping A and B).
-This formula can be seen as a weighted sum of the expected values of the random variables where the weights are the probabilities of each variable to be the maximum. Since these probabilities sum to one, the approximation given by \gls{de} results in a value that is lower than or equal to the maximal expected value. Even if the underestimation does not guarantee better estimation than the \gls{me}, it can be helpful to avoid an incremental approximation error in some learning problems. For instance, Double $Q$-Learning~\cite{van2010double} is a variation of $Q$-Learning that exploits this technique to avoid the previously described issues due to overestimation. Double $Q$-Learning has been tested in some very noisy environments and succeeded to find better policies than Q-Learning. Another remarkable application of \gls{de} is presented in~\cite{xu2013mab} where it achieves better results than \gls{me} in a sponsored search auction problem.
+This formula can be seen as a weighted sum of the expected values of the random variables where the weights are the probabilities of each variable to be the maximum. Since these probabilities sum to one, the approximation given by \gls{de} results in a value that is lower than or equal to the maximal expected value. Even if the underestimation does not guarantee better estimation than the \gls{me}, it can be helpful to avoid an incremental approximation error in some learning problems. For instance, Double $Q$-Learning~\cite{van2010double} is a variation of $Q$-Learning that exploits this technique to avoid the previously described issues due to overestimation. Double $Q$-Learning has been tested in some very noisy environments and succeeded to find better policies than $Q$-Learning. Another remarkable application of \gls{de} is presented in~\cite{xu2013mab} where it achieves better results than \gls{me} in a sponsored search auction problem.
 
 \section{Weighted Estimator}
 Differently from \gls{me} and \gls{de} that output the sample average of the variable that is estimated to be the one with the largest mean, the proposed \gls{we} estimates the \gls{mev} $\mu_*(X)$ computing a weighted mean of all the sample averages:
@@ -223,7 +223,7 @@ The \gls{fqi} update, similarly to the $Q$-Learning update (see equation~\ref{E:
 \end{small}
 \end{algorithm}
 
-\subsubsection{Weighted Estimator in Deep Reinforcement Learning}\label{S:WDQN}
+\subsection{Deep Reinforcement Learning}\label{S:WDQN}
 In the last few years, value-based \gls{rl} algorithms exploiting deep neural networks for $Q$-function approximation proved to be a very powerful way to solve complex highly dimensional \glspl{mdp}. The most famous algorithm is the Deep $Q$-Learning algorithm~\cite{mnih2015human}, more known as \gls{dqn} algorithm, where the $Q$-function is approximated with a deep neural network in an online setting. \gls{dqn} consists of a neural network to be trained online and another one that builds the target of the previous one. The target network is used for stability reasons, and it is updated with the weights of the online network every time a specified number of samples have been collected. The algorithm updates the online network using minibatch of samples collected using a $\varepsilon$-greedy policy, and stored in a replay memory, minimizing a loss function between the current estimate of the target network and the following target:
 $$\hat{Q} =
   \begin{cases}
@@ -233,11 +233,240 @@ $$\hat{Q} =
 $$
 where $\theta^-$ are the parameters of the target network. The overestimation problem caused by \gls{me} happens also in \gls{dqn} and results in critical loss of performance in some problems due to instability. The \gls{ddqn} algorithm~\cite{hasselt2015double} replaces \gls{me} with \gls{de} and shows considerable improvements and performance and stability.
 
-\paragraph{Weighted Deep Q-Network} The replacement of \gls{me} with \gls{we} is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks. We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep}. This work follows the \gls{dqn} algorithm described in~\cite{mnih2015human} with few, but important changes. The output of the neural network is splitted in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in {0,1}$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follow the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
+\paragraph{Weighted Deep Q-Network} The replacement of \gls{me} with \gls{we} is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks. We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep}. This work follows the \gls{dqn} algorithm described in~\cite{mnih2015human} with few, but important changes. The output of the neural network is split in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in {0,1}$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follow the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
 
-We propose to use the architecture of \gls{bdqn} replacing the \gls{de} with \gls{we} and to approximate the weights of its update formula using the sampling strategy in Section \ref{S:sampling} where the samples are the output of each head. The resulting update formula is:
+We propose to use the architecture of \gls{bdqn} replacing the \gls{de} with \gls{we} and to approximate the weights of its update formula using the output of each head. The resulting update formula is:
 \begin{equation}
 Q_{t+1}^k \leftarrow Q_t^k + r_t + \gamma \sum_{i \in {1, \dots, \#\mathcal{A}}} w_t^i Q_t^k(s_{t+1}, a_i; \theta_k^-),
 \end{equation}
 where $w_t^i$ is the weight of \gls{we} for action $i$ at time $t$ and $\theta_k^-$ are the parameters of the target network of the head $k$. Since the $Q$-values of the next state are computed using the target network, we propose to compute the weights using the online network in order to emulate the desirable behavior of \gls{de}. Note that the weights vector $\mathbf{w}_t = \langle w_t^1, w_t^2, \dots, w_t^K \rangle$ is the same for all heads.
 The resulting algorithm is a slight change to the original \gls{bdqn} that allows to use the \gls{we} in the \gls{dqn} framework without differences in computational time and memory requirements w.r.t. \gls{bdqn}. We call this algorithm \gls{wdqn}.
+
+\section{Empirical results}
+We evaluate the performance of \gls{me}, \gls{de} and \gls{we} in \gls{mab} and \gls{rl} problems. We start from considering discrete state and action spaces, then we move to continuous ones and, eventually, to deep \gls{rl} problems.
+
+\subsection{Discrete States and Action Spaces}
+
+\subsubsection{Internet Ads}
+We consider this \gls{mab} problem as formulated in~\citep{van2013estimating}.
+The goal in this problem is to select the most convenient ad to show on a website among a set of $M$ possible ads, each one with an unknown expected return per visitor. 
+It is assumed that each ad has the same return per click, therefore the best ad is the one with the maximum \gls{ctr}.
+Since the \glspl{ctr} are unknown, they have to be estimated from data.
+In our setting, given $N$ visitors, each ad is shown the same number of times, so that we have $N/M$ samples to compute the sample \gls{ctr}.
+It is desirable to obtain a quick and accurate estimate of the maximum \gls{ctr} in order to effectively determine future investment strategies.
+We compare the results of \gls{me}, \gls{de} and \gls{we} in three different settings. 
+We consider a default configuration where we have $N=300000$ visitors, $M = 30$ ads and mean \gls{ctr} uniformly sampled from the interval $[0.02,0.05]$.
+In the first setting, we vary the number of visitors $N = \lbrace 30000, 60000, ..., 270000, 300000 \rbrace$, so that the number of impressions per ad ranges from $1000$ to $10000$.
+In the second setting, we vary the number of ads $M = \lbrace 10, 20, ..., 90, 100 \rbrace$ and the number of visitors is set to $N=10000M$.
+In the last setting, we modify the interval of the mean \gls{ctr} by changing the value of the upper limit with values in $\lbrace 0.02, 0.03, ..., 0.09, 0.1 \rbrace$, with the lower fixed at $0.02$.
+
+\begin{figure*}[t]
+    \begin{minipage}{\textwidth}
+    \centering
+    \subfigure[Increasing number of impressions.\label{F:ia_first}]{\includegraphics[scale=.425]{./img/internetAds-impressions.pdf}}
+    \subfigure[Increasing number of ads.\label{F:ia_second}]{\includegraphics[scale=.425]{./img/internetAds-actions.pdf}}
+    \subfigure[Increasing value of maximum CTR.\label{F:ia_third}]{\includegraphics[scale=.425]{./img/internetAds-probs.pdf}}
+    \caption{MSE for each setting. Results are averaged over 2000 experiments.}\label{F:iAds}
+    \end{minipage}
+\end{figure*}
+
+In Figure \ref{F:iAds}, we show the $MSE = bias^2 + variance$ for the three settings comparing the results obtained by each estimator. 
+In the first setting (Figure~\ref{F:ia_first}) reasonably the \gls{mse} decreases for all estimators as the number of impressions increases and WE has the lowest \gls{mse} in all cases. Interestingly, the \gls{me} estimator has a very large bias in the leftmost case, showing that the \gls{me} estimator suffers large bias when the variances of the sample means are large due to lack of samples (as showed also in Figure \ref{F:absolute_bias}).
+Figure~\ref{F:ia_second} shows that an increasing number of actions has a negative effect on \gls{me} and a positive effect on the \gls{de} due to the fact that a larger number of ads implies a larger number of variables with a mean close to the \gls{mev} that represents a worst case for \gls{me} and a best case for \gls{de}. 
+The \gls{mse} of \gls{we} is the lowest in all cases and does not seem to suffer the increasing number of actions. 
+The same happens in Figure~\ref{F:ia_third} when all the ads share the same click rate (0.02), where \gls{de} is the best.
+However, it starts to have large variance as soon as the range of probabilities increases (Figure \ref{F:variance}). 
+The \gls{mse} of \gls{we} is the lowest \gls{mse}, but it gets similar to the \gls{mse} of \gls{me} as the range increases.
+
+\begin{figure}[t]
+    \begin{minipage}{\columnwidth}
+    \centering 
+    \includegraphics[scale=0.9]{./imgs/sponsoredSearch.pdf}
+    \caption{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
+    \end{minipage}
+\end{figure}
+
+\subsubsection{Sponsored Search Auctions}
+We consider this MAB problem as described in~\citep{xu2013mab}. In this problem a search engine runs an auction to select the best ad to show from a pool of candidates with the goal of maximizing over a value that depends on the bid of each advertiser and its click probability. 
+When an ad is clicked, the advertiser is charged from the search engine of a fee that depends on the bids $b$ of the advertisers and the click rates (CTRs) $\rho$ of the ads. 
+CTRs are generally unknown, therefore the search engine should use data to estimate which is the best ad (i.e., the one that maximizes $b\cdot\rho$) and the payment in case of click; reasonably, wrong estimations may significantly harm the revenue.
+On the other hand, the advertisers have to decide the value of their bid $b_i$ according to the true values $v_i$ of a click. A desirable condition in auctions, called \textit{incentive compatibility}, requires that the advertisers maximize their utility by truthfully bidding $b_i = v_i$. Incentive compatibility may not occur when the estimate of the click probabilities are not accurate. We want to evaluate how the estimators favor the incentive compatibility.
+We measure the utility gain of advertiser $1$, whose true per click value is $v_1 = 1$, for different bid $b_1$ values and competing with four other advertisers whose bids are $b_{-1} = \lbrace 0.9, 1, 2, 1 \rbrace$. The CTRs are: $\rho = \lbrace 0.15, 0.11, 0.1, 0.05, 0.01 \rbrace$. 
+CTRs are estimated from data collected using the UCB1 algorithm~\citep{auer2002finite} in a learning phase consisting of $10000$ rounds of exploration (i.e. impressions), as done in~\citep{xu2013mab}.
+
+Figure \ref{F:spSearch} shows the utility gain of advertiser $1$ when using ME, DE, and WE.\footnote{The debiasing algorithm proposed in~\cite{xu2013mab} is a cross validation approach, but differs from the estimators considered in this paper. It averages the values used for selection and the values used for estimation, thus being a hybrid of DE and ME.}
+The true bid price is highlighted with a black vertical bar. ME results to be only one not able to achieve incentive compatibility, since the utility has positive values before the true bid price. On the contrary with DE and WE the advertiser has no incentive to underbid, but there is an incentive to overbid using DE. Therefore WE is the only estimator which succeeds to achieve incentive compatibility.
+
+\subsubsection{Grid World}
+This simple MDP consists of a $3 \times 3$ grid world where the start state in the lower-left cell and the goal state in the upper-right cell~\citep{van2010double}. 
+In this domain, we compare the three estimators together with the performance of an algorithm called Bias-corrected $Q$-Learning, a modified version of $Q$-learning that, assuming Gaussian rewards, corrects the positive bias of ME by subtracting to each $Q$-value a quantity that depends on the standard deviation of the reward and on the number of actions~\citep{lee2012intelligent,lee2013bias}. Moreover, we test Weighted $Q$-Learning also using a different policy, that we call \textit{weighted policy}, which samples the action to perform in a state from the probability distribution of the weights of WE.
+We use an $\varepsilon$-greedy policy with $\varepsilon = \frac{1}{\sqrt{n(s)}}$ where $n(s)$ is the number of times the state $s$ has been visited.
+Learning rate is $\alpha_t(s, a) = \frac{1}{n_t(s, a)^{0.8}}$ where $n_t(s, a)$ is the current number of updates of that action value and the discount factor is $\gamma = 0.95$. 
+In Double $Q$-Learning we use two learning rates $\alpha_t^A(s, a) = \frac{1}{n_t^A(s, a)^{0.8}}$ and $\alpha_t^B(s, a) = \frac{1}{n_t^B(s, a)^{0.8}}$ where $n_t^A(s, a)$ and $n_t^B(s, a)$ are respectively the number of times when table A and table B are updated. 
+The reward function is considered in three different settings: Bernoulli, $-12$ or $10$ randomly at each step, Gaussian with mean $\mu = -1$ and standard deviation $\sigma = 5$, Gaussian with mean $\mu = -1$ and standard deviation $\sigma = 1$. 
+Once in the goal state, each action ends the episode and returns a reward of $5$. The optimal policy ends the episode in five actions, therefore the optimal average reward per step is $0.2$. Moreover, the optimal value of the action maximizing the $Q$-value is $5\gamma^4 - \sum_{k=0}^3 \gamma^k \approx 0.36$.
+In Figure \ref{F:grid}, the top plots show the average reward per step obtained by each algorithm and the plots at the bottom show the estimate of the maximum state-action value at the starting state for each algorithm.
+\begin{figure*}
+  \begin{minipage}{\textwidth}
+    \centering
+    \subfigure[Bernoulli.\label{F:bernoulli}]{\includegraphics{./imgs/gridexp08-ng.pdf}}
+    \hspace{-.5cm}
+    \subfigure[$\mathcal{N}(-1, 5)$.\label{F:gaussian5}]{\includegraphics{./imgs/gridexp08-g.pdf}}
+    \hspace{-.5cm}
+    \subfigure[$\mathcal{N}(-1, 1)$.\label{F:gaussian1}]{\includegraphics{./imgs/gridexp08-g-sigma1.pdf}}
+    \caption{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.}\label{F:grid}
+  \end{minipage}
+\end{figure*}
+Figures~\ref{F:bernoulli} and~\ref{F:gaussian5} show that, regardless of the bad approximation of the $Q$-function, the underestimation of Double $Q$-Learning allows to learn the best policy faster than other algorithm in these noisy settings.
+Bias-corrected $Q$-Learning estimates the $Q$-function better than Double $Q$-Learning, but performs worse than the other algorithms, except for $Q$-Learning, when the variance is large.
+Weighted $Q$-Learning shows much less bias than the other estimators in all settings; moreover, the use of the weighted policy generally reduces the bias of the estimation and achieves the best performance in the case with $\sigma = 1$ (see Figure~\ref{F:gaussian1}). These good results are explained considering that the weighted policy is able to reduce the exploration faster than $\varepsilon$ greedy due to exploiting of the good approximation of the $Q$-function computed by Weighted $Q$-Learning. It is worth to point out that Weighted $Q$-Learning works well for both Gaussian and Bernoullian rewards, showing that WE is effective even with non-Gaussian distributions even if it uses a Gaussian approximation of $Q$-values,
+
+\begin{figure*}
+\begin{minipage}{\textwidth}
+\centering
+\subfigure[Training phase.\label{F:forex_train}]{\includegraphics[scale=0.7]{./imgs/forexTrain.pdf}}
+\subfigure[Test phase.\label{F:forex_test}]{\includegraphics[scale=0.7]{./imgs/forexTest.pdf}}
+\end{minipage}
+\caption{Profit per year averaged over 100 experiments.}\label{F:forex}
+\end{figure*}
+
+\subsubsection{Forex}
+We evaluate the performance of the three estimators in a more challenging discrete MDP.
+We build an MDP based on the Foreign Exchange Market (Forex), an environment with acknowledged hardly predictable dynamics that complicate the estimate of the $Q$-values and, therefore, of the expected profit. The MDP we build is a simplified version of the real Forex market. In our Forex MDP the agent enters in the market always with 1\$ and each time the agent enters on long or short position a fixed spread value of 0.0002\$ is paid.
+The possible actions taken from the agent can be -1, 0 or 1, which mean respectively \textit{'enter on a short position'}, \textit{'close a position'} and \textit{'enter on long position'}.
+The state space is composed of the suggestion (in terms of actions) provided by 7 common Forex indicators and the action chosen by the agent at the previous time step.
+The state space is $S = \lbrace -1, 0, 1 \rbrace ^8$ with $s_{i = 1...7}(t) = \lbrace -1, 0, 1 \rbrace$ and $s_8(t) = a(t - 1)$.
+The action taken by the agent is $a(t) = \lbrace -1, 0, 1 \rbrace$.
+The reward $r(t)$ is a function of the previous and current action chosen and of the difference between the current closing price $c(t)$ and the previous closing price $c(t - 1)$:
+$$r(t) = a(t - 1)(c(t) - c(t - 1)) + 0.5 * spread |a(t) - a(t - 1)|.$$
+The same algorithms used in the grid world, except for Bias-Corrected $Q$-Learning, domain were trained using historical daily data of GBP/USD exchange rate from 09/22/1997 to 01/10/2005 and tested on data from 01/11/2005 to 05/27/08. 
+During the training phase, we set learning rate $\alpha(s,a)=\frac{1}{n(s, a)}$, discount factor $\gamma=0.8$ and $\varepsilon=\frac{1}{\sqrt{n(s)}}$.
+
+Figure \ref{F:forex} shows the profit per year, w.r.t. the number of training episodes, of the four algorithms during the training phase (Figure~\ref{F:forex_train}) and during a test phase where the learned policy is run with a greedy policy (Figure~\ref{F:forex_test}). In the training phase an $\varepsilon$-greedy policy is used for $Q$-learning and Double $Q$-Learning, while Weighted $Q$-Learning uses both the $\varepsilon$-greedy policy and the weighted policy.
+During the training phase, $Q$-learning performs better than Double $Q$-learning and also than Weighted $Q$-learning. Interestingly, Weighted $Q$-learning with the weighted policy reaches the worst performance in the training phase, but it reaches the best performance in the test phase. This happens because more exploration is induced by the weighted policy w.r.t. the $\varepsilon$-greedy policy, resulting in bad performance during the training phase, but also in better estimates of the $Q$-values.
+Double $Q$-learning performs worse than $Q$-learning and Weighted $Q$-learning both in training phase and test phase. 
+The reason is that in many states there is an action that is significantly better than the others, that represents the case where ME gives the best results, and the case where DE suffers the most.
+
+\subsection{Continuous state spaces}
+
+\subsubsection{Pricing Problem}
+This problem consists in estimating the MEV of the gross profit in a pricing problem. In this MAB problem we validate the WE with infinite random variables ($\text{WE}_{\infty}$) and we compare its performance against ME and DE whose support (actions) has been discretized.
+It is crucial to estimate the value of the gross profit accurately in order to evaluate, for example, an investment decision or to analyze the profitability of products.
+The support (action) space is bounded but continuous, and represents the price $p$ to be shown to the user ($p \in [0,10]$).
+The reserve price $\tau$ , which is the highest price that a buyer is willing to pay, is modeled as a mixture of $3$ Gaussian distributions with mean $\mu=\lbrace 2, 4, 8 \rbrace$, covariances $\sigma^2= \lbrace 0.01, 0.01, 0.09 \rbrace$ and weights $w = \lbrace 0.6, 0.1, 0.3 \rbrace$.
+The revenue function $r_{\tau}(p)$ is $p$ when $\tau \geq p$ and $0$ otherwise.
+The maximum revenue is about $2.17$.
+In each test the algorithms are fed with a set of samples $\mathcal{D} = \left\{ \langle p_i, r_i \rangle \right\}_{i=1}^{n_s}$. Each sample is obtained by sampling a reserve price $\tau_i$ from the Gaussian mixture, a price $p_i$ from a uniform distribution over the price range, and by evaluating the revenue function ($r_i=r_{\tau_i}(p_i)$). Clearly, the reserve price is unknown to the algorithm.
+Results are averaged on $50$ runs in order and confidence intervals at $95\%$ are shown.
+WE exploits a Gaussian process with squared exponential kernel to generalize over the continuous price (GP parameters are learned from $\mathcal{D}$), while ME and DE discretize the price space into $n_b$ uniformly spaced bins.
+As shown in Figure~\ref{F:pricing_bias}, the number $n_b$ of optimal bins varies with the number $n_s$ of available samples.
+This means that, once the samples have been collected, ME and DE need an optimization phase for selecting the appropriate number of bins (not required by WE). 
+WE is able to achieve the lowest or a comparable level of bias with every batch dimension even through it exploits a sensibly wider action space (infinite).
+In fact, as shown by the experiments, the performance of ME and DE may degrade as the number of bins increases, \ie the action space increases.
+This means that, if you want to be accurate, you cannot increase the number of bins arbitrarily (it is somehow counterintuitive).
+\begin{figure*}
+ \begin{minipage}{.99\columnwidth}
+ \centering
+  \includegraphics[width=\textwidth]{./tikz/MM_123_new_noabs.pdf}\\
+  \includegraphics[width=\textwidth]{./tikz/MM_45_new_noabs.pdf}
+ \end{minipage}
+  \caption{Mean bias obtained by ME, DE and $\text{WE}_{\infty}$ with different sample sizes  and bins (only for ME and DE).
+  }
+  \label{F:pricing_bias}
+\end{figure*}
+\begin{figure*}[t]
+ \begin{minipage}{.99\columnwidth}
+ \centering
+  \includegraphics[width=\textwidth]{./tikz/MM_123_new_var.pdf}\\
+  \includegraphics[width=\textwidth]{./tikz/MM_45_new_var.pdf}
+ \end{minipage}
+  \caption{Variance of the bias obtained by ME, DE and $\text{WE}_{\infty}$ with different sample sizes and bins.
+  }
+  \label{F:pricing_variance}
+\end{figure*}
+Additionally, Figure~\ref{F:pricing_variance} shows that the higher complexity of WE has practically no impact on the variance of the estimate.
+The variance is always comparable to the one of the best configuration of WE and DE.
+Finally, several applications do not consider positive and negative bias to be the same, in particular, in iterative application positive bias can lead to large overestimates that have proven to be critical (\eg in RL).
+This is not the case because this pricing problem is not iterated. From Figure~\ref{F:pricing_bias} we can see that ME is prone to provide positive bias, while WE bias is almost always the smaller or stays between ME and DE.
+The reason for which the ME bias is not always positive, as stated by its theoretical property (for finite case), is due 
+to the use of binning for the discretization of the continuous MAB.
+This discrete approximation introduces an additional (here negative) term to the bias.
+
+\subsubsection{Swing-Up Pendulum}
+A more complex scenario is represented by the continuous control problem analyzed in this section: the Swing-Up Pendulum with limited torque~\citep{doya2000reinforcement}.
+The aim of these experiments is to compare the newly proposed extensions of FQI (Double FQI and Weighted FQI) in a continuous state domain with both discrete and continuous actions.
+The peculiarity of this domain resides in the fact that the control with a limited torque ($u \in [-5,5]$) makes the policy learning non-trivial.
+The continuous state space is $x = (\theta, \omega)$, where $\theta$ is the angle and $\omega$ is the angular velocity.
+An episode starts with $x_0 = (\theta_0, 0)$ where $\theta_0 \sim \mathcal{U}(-\pi, \pi)$, evolves according to the the dynamic system $\dot{\theta}=\omega$ and $ml^2\dot{\omega}=-\mu\omega + mgl \sin(\theta) + u$, and terminates after $100$ steps. The physical parameters are mass $m=1$, length $l=1$, $g=9.8$, step time $\tau_0=0.01$.
+\begin{figure*}
+\begin{minipage}{\textwidth}
+\centering
+\subfigure[Discrete actions.\label{F:pendulum_discrete}]{\includegraphics[scale=0.385]{./imgs/pendulumDiscrete.pdf}}
+\hspace{-1.025cm}
+\subfigure[Continuous actions.\label{F:pendulum_continuous}]{\includegraphics[scale=0.385]{./imgs/pendulumContinuous.pdf}}
+\end{minipage}
+\caption{Average reward averaged on 100 experiments.}\label{F:forex}
+\end{figure*}
+The reward depends on the height of the pendulum: $r(x) = \cos(\theta)$.
+The problem is discounted with $\gamma = 0.9$.
+The GP uses a squared exponential kernel with independent length scale for each input dimension (ARD SE). The hyperparameters are fitted on the samples and the input values are normalized between $[-1,1]$.
+We collected training sets of different sizes using a random policy.
+The FQI horizon is $10$ iterations.
+The final performance of the algorithm is the \emph{average reward}, calculated starting from $36$ different initial angles $\theta_0 = \lbrace \frac{2\pi k}{36} | k=\left\{0, 1, \ldots, 35\right\}\rbrace$.
+We consider two settings of this problem: one with a discrete set of 11 uniformly spaced torque values in $[-5,5]$ and another with a continuous action space.
+In the former setting we use a different GP for each action.
+Results show that Weighted FQI for discrete actions \ref{A:WFQI} and FQI are robust with respect to the number of episodes and Weighted FQI reaches the highest average reward in each case (with statistical confidence obtained over $100$ runs and level $95\%$).
+Double FQI performance is reasonably poor with few examples since it uses a half of the training set to train each regressor.
+In the latter setting, the only algorithm that is able to directly handle continuous space is the Weighted FQI defined in Algorithm~\ref{A:continuousWFQI}.
+The other algorithms use a GP with $100$ actions to approximate the maximum.
+
+\subsection{Deep Reinforcement Learning Scenario}
+\subsubsection{Acrobot}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[scale=.6]{./imgs/acrobot.pdf}
+  \caption{Average reward averaged on 10 experiments.
+  }
+  \label{F:acrobot}
+\end{figure*}
+\begin{table*}[t]
+ \centering
+ \caption{Average reward in continuous action MDP.}
+ \label{T:acrobot_pars}
+\begin{small}
+\setlength{\tabcolsep}{4pt}
+ \begin{tabular}{|c|c|}
+\hline
+Replay memory size & 50000\\
+\hline
+Initial replay size & 5000\\
+\hline
+Agent history length & 1\\
+\hline
+Target network update frequency & 100\\
+\hline
+Masking probability $p$ & $\nicefrac{2}{3}$\\
+\hline
+Number of hidden layers & 2\\
+\hline
+Number of neurons & 80\\
+\hline
+Number of heads & 10\\
+\hline
+Test samples & 5000\\
+\hline
+Evaluation frequency & 5000\\
+\hline
+Max no-op actions & 0\\
+\hline
+Total number of steps & 250000\\
+\hline
+Optimizer & Adam\\
+\hline
+ \end{tabular}
+ \end{small}
+\end{table*}
+
+We evaluate the performance of Bootstrapped DQN with ME and DE and Weighted DQN on the RL problem of Acrobot. This is a well-known problem consisting in swinging up a two-link robot over a certain threshold. The state space and the dynamics of the problem make it a complex MDP to be solved\footnote{We use the Acrobot-v1 environment of the OpenAI Gym library \citep{gym}.}. The reward of the MDP is -1 at each step and 0 when the arm of the bot reaches the threshold height. The discount factor is $\gamma = 0.99$. The horizon is set to 200. The training phase policy is the Bootstrapped policy described in Section \ref{S:WDQN}, while the evaluation policy computes the best action through ensemble voting. The hyperparameters of DQN are the same used in the Atari experiments in \citep{osband2017deep}, except for the ones specified in Table \ref{T:acrobot_pars}. The policy used is the Bootstrapped policy used in \citep{osband2017deep}, where at the beginning of an episode a head is chosen randomly and the greedy policy derived by that head is followed. In our setting, we choose a random head at each step instead at each episode in order to favor exploration.
+
+Figure \ref{F:acrobot} shows that all algorithms converges to the same performance, but Weighted DQN achieves it considerably faster than the others. Moreover, the score obtained by Weighted DQN is more stable during the training epochs, showing that WE helps also to stabilize the learning which is an important issue in the deep RL scenario.
