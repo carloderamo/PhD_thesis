@@ -1,180 +1,243 @@
-\chapter{Maximum Expected Value estimate}
-In many machine learning problems it is necessary to estimate the \gls{mev} of a set of random variables, given samples collected from each variable~\cite{van2013estimating}.
-For instance, in \gls{rl}, the optimal policy can be found by taking, in each state, the action that attains the maximum expected cumulative reward.
-The optimal value of an action in a state, on its turn, depends on the maximum expected values of the actions available in the reached states.
-Since errors propagate through all the state-action pairs, a bad estimator for the maximum expected value negatively affects the speed of learning~\cite{van2010double}.
-Another example of the importance of producing accurate estimates for the maximum expected value is provided by sponsored search auctions, where the search engine needs to select which ad to show from a pool of candidates.
-To select the best ad, usually, one needs to estimate the probability that a random user will click on it.
-Since, each time an ad is clicked, the search engine charges to the advertiser a fee that depends on the click probabilities of the top two ads, a good estimate of the maximum expected value is essential to maximize the revenue of the search engine~\cite{xu2013mab}.
+\chapter{Maximum Expected Value estimation}
+\newcommand{\est}[1]{\hat\mu_*^{#1}}
+\newcommand{\transpose}[1]{{#1}^\texttt{T}}
+The computation of the \gls{mev} is required in several applications. Indeed, almost any process of acting involves the optimization of an expected utility function. For example, in the daily life decisions are usually made by considering the possible outcomes of each action based on partial information.
+While sometimes only the order of preference of these alternatives matters, many applications require an explicit computation of the maximum utility.
+For instance, in \gls{rl} the optimal policy can be found by taking, in each state, the action that attains the maximum expected cumulative reward. The optimal value of an action in a state, on its turn, depends on the \glspl{mev} of the actions available in the reached states.
+Since errors propagate through all the state-action pairs, a bad estimator for the \gls{mev} negatively affects the speed of learning~\cite{van2010double}.
 
-The most common estimator is the \gls{me}, which consists of taking the maximum of the sample means.
-It is well known~\cite{smith2006optimizer,van2004rational,van2010double} that ME overestimates the maximum expected value.
-To avoid such positive bias, a common approach is the \gls{de}, that consists in a cross-validatory approach where the sample set is split into two sample sets $A$ and $B$~\cite{stone1974cross}. \gls{de} results from the average of two estimates.
-For the first estimate, the sample set $A$ is used to determine which is the variable with the largest mean, while sample set $B$ is used to estimate the value of the variable.
-The second estimate is obtained by switching the roles of $A$ and $B$.
-Although the absolute bias of \gls{de} can be larger than the one of \gls{me}~\cite{van2013estimating}, \gls{de} is negatively biased and this can be an advantage in some applications~\cite{van2010double,xu2013mab,van2015deep}.
-Unfortunately, an unbiased estimator for the maximum expected value \emph{does not exist} for many common distributions (e.g., Gaussian, Binomial, and Beta)~\cite{blumenthal1968estimation,dhariyal85}.
-On the other hand, having an unbiased estimator does not entail a small expected \gls{mse}, since also the variance of the estimator has to be considered.
+Generally, we use this estimation when we need to know not only which is the variable with the \gls{mev} from a set of variables, but we want to have also a good estimation of such expected value. The most widespread approach to this estimation problem is the \gls{me} which simply takes the maximum estimated utility. As proved in~\cite{smith2006optimizer}, this estimate is positively biased and, if used in iterative algorithms, can increase the approximation error step-by step~\cite{van2010double}. More effective estimators have been proposed in the recent years. The \gls{de}~\cite{van2013estimating} approximates the maximum by splitting the sample set into two disjoint sample sets. One of this set is used to pick the element with the maximum approximate value and its value is picked from the other set. This has to be done the opposite way switching the role of the two sets. Eventually, the average (or a convex combination) of the two values is considered. This approach has been proven to have negative bias~\cite{van2013estimating} which, in some applications, allows to overcome the problem of \gls{me}.
 
-In this paper we propose to estimate the maximum expected value using the \gls{we}, that consists of a weighted average of the sample means, where the weights are obtained by estimating the probability that each variable has the largest expected value.
-To compute such probabilities we would need to know the distributions of the sample means.
-Relying on the central limit theorem, we approximate the distributions of the samples means with Gaussian distributions parameterized by the sample mean and sample variance.
-Such weighting mechanism reduces the bias w.r.t. \gls{me} without increasing the variance as \gls{de} does.
+During my research, I analyzed this problem and proposed the \gls{we}~\cite{deramo2016estimating} which approximates the maximum value by a sum of different values weighted by their probability of being the maximum. \gls{we} can have both negative and positive bias, but its bias always stays in the range between the \gls{me} and \gls{de} biases.
 
-\section{Estimating the MEV}\label{S:Preliminaries}
-We consider the problem of finding the maximum expected value of a finite set of $M \geq 2$ independent random variables $X = \lbrace X_{1}, ..., X_{M} \rbrace$.
-We denote with $f_i : \mathbb{R} \rightarrow \mathbb{R}$ the \gls{pdf}, with $F_i : \mathbb{R} \rightarrow \mathbb{R}$ the \gls{cdf}, with $\mu_i$ the mean, and with $\sigma^2_i$ the variance of variable $X_i$.
-The \gls{me} $\mu_{*}(X)$ is defined as
-\begin{align}\label{eq:maxExp}
+All the mentioned approaches are limited to finite random variables, thus, in a subsequent work, I extended the study to problems with infinite random variables and proposed an extension of \gls{we}~\cite{deramo2017maximum} to address them. By exploiting the \gls{clt} and the spatial correlation among variables, the probability distribution of each random variable is approximated as a normal distribution whose means and variances are estimated by means of \glspl{gp}~\cite{rasmussen2005gaussian}.
+
+\section{Problem definition}
+Given a finite set of $M \geq 2$ independent random variables $X = \lbrace X_{1}, ..., X_{M} \rbrace$, for each variable $X_i$ we denote with $f_i : \mathbb{R} \rightarrow \mathbb{R}$ its \gls{pdf}, with $F_i : \mathbb{R} \rightarrow \mathbb{R}$ its \gls{cdf}, with $\mu_i$ its mean, and with $\sigma^2_i$ its variance.
+The \gls{mev} $\mu_{*}(X)$ is defined as
+\begin{align}\label{E:maxExp}
 \mu_{*}(X) = \max_{i} \mu_{i} = \max_{i} \int_{-\infty}^{+\infty}xf_i(x)~\mathrm{d}x.
 \end{align}
-Assuming that the \glspl{pdf} are unknown, $\mu_{*}(X)$ cannot be found analytically.
-Given a set of noisy samples $S = \lbrace S_{1}, ..., S_{N} \rbrace$ retrieved by the unknown distributions of each $X_{i}$, we are interested in finding an accurate estimator $\hat{\mu}_*(S) \approx \mu_{*}(X)$.
-These random samples have means $\hat{\mu}_{1}, ..., \hat{\mu}_{N}$ that are unbiased estimators of the true mean $\mu_{i}$.
-The \gls{pdf} and \gls{cdf} of $\hat{\mu}_{i}(S)$ are denoted by $\hat f_i^S$ and $\hat F_i^S$.
+Unfortunately, $\mu_{*}(X)$ cannot be found analytically if the \glspl{pdf} are unknown.
+However it can be approximated using a given set of noisy samples $S = \lbrace S_{1}, ..., S_{N} \rbrace$ retrieved by the unknown distributions of each $X_{i}$ finding an accurate estimator $\est{}(S) \approx \mu_{*}(X)$. 
+The random samples means $\hat{\mu}_{1}, ..., \hat{\mu}_{N}$ are unbiased estimators of the true means $\mu_{1}, ..., \mu_{N}$.
+Eventually, the \gls{pdf} and \gls{cdf} of $\hat{\mu}_{i}(S)$ are denoted by $\hat f_i^S$ and $\hat F_i^S$.
 
-\section{Related works}
-The maximum expected value can be approximated with the maximum of the sample means:
+\subsection{Related Works}
+Several methods to estimate the \gls{mev} have been proposed in the literature. The most straightforward one is the \gls{me} which consists in approximating the \gls{mev} with the maximum of the sample means:
 \begin{equation}\label{E:biasME}
-\hat{\mu}_*^{ME}(S) = \max_{i}\hat{\mu}_{i}(S) \approx \mu_{*}(X).
+\est{ME}(S) = \max_{i}\hat{\mu}_{i}(S) \approx \mu_{*}(X).
 \end{equation}
-This method is called \gls{me} and it is used, for instance, by Q-Learning to approximate the value of the following state by maximizing over the estimated action values in that state. Unfortunately, as proved in \cite{smith2006optimizer}, this estimator is positively biased and this is critical in Q-Learning where the approximation error can increase step by step due to the overestimation of the state-action values. To understand the presence of this positive bias, consider the \gls{cdf} $\hat{F}_{\max}(x)$ of the maximal estimator $\max_{i}\hat\mu_{i}$ that is the probability that \gls{me} is less than or equal to $x$. This probability is equal to the probability that all other estimates are less than or equal to $x$: $\hat F_{\max}(x) = P(\max_{i}\hat\mu_{i} \leq x) = \prod^M_{i=1} P(\hat\mu_{i} \leq x) = \prod^M_{i=1} \hat F_i(x)$. Considering the \gls{pdf} $\hat f_{\max}$, the expected value of the \gls{me} is $E\left[\hat{\mu}_*^{ME}\right] = E [ \max_{i}\hat\mu_{i} ] = \int^{\infty}_{-\infty} x \hat f_{\max}(x) dx$. This is equal to
-\begin{align}
-E\left[\hat{\mu}_*^{ME}\right] &= \int^{\infty}_{-\infty} x \frac{d}{dx} \prod^M_{j=1} \hat F_j(x)~\mathrm{d}x \nonumber \\ 
-&=\sum^M_i \int^{\infty}_{-\infty} x \hat f_i(x) \prod^M_{i \neq j} \hat F_j(x)~\mathrm{d}x.
-\end{align}
-However, this is the expected value of the \gls{me}, not the \gls{mev} in~\eqref{eq:maxExp}. The positive bias can be explained by the presence of $x$ in the integral which correlates with the monotonically increasing product $\prod^M_{i \neq j} \hat F_j(x)$.
+Unfortunately, as proved in~\cite{smith2006optimizer}, this estimator has a positive bias that may cause issues in applications of \gls{me}, such as in the \gls{rl} algorithm of $Q$-Learning where the overestimation of the state-action values due to the positive bias can cause an error that increases step by step. However, the expected value of the \gls{me} is different from the \gls{mev} in~\ref{E:maxExp}. Consider the \gls{cdf} $\hat{F}_{\max}(x)$ of the \gls{me} $\max_{i}\hat\mu_{i}$ corresponding to the probability that \gls{me} is less than or equal to $x$. This probability is equal to the probability that all other estimates are less than or equal to $x$: 
+$$\hat F_{\max}(x) = P(\max_{i}\hat\mu_{i} \leq x) = \prod^M_{i=1} P(\hat\mu_{i} \leq x) = \prod^M_{i=1} \hat F_i(x).$$
+Considering the \gls{pdf} $\hat f_{\max}$, the expected value of the \gls{me} is $E\left[\est{ME}\right] = E [ \max_{i}\hat\mu_{i} ] = \int^{\infty}_{-\infty} x \hat f_{\max}(x) dx$. This is equal to
+\begin{equation*}
+E\left[\est{ME}\right] = \int^{\infty}_{-\infty} x \frac{d}{dx} \prod^M_{j=1} \hat F_j(x)~\mathrm{d}x =\sum^M_i \int^{\infty}_{-\infty} x \hat f_i(x) \prod^M_{i \neq j} \hat F_j(x)~\mathrm{d}x.
+\end{equation*}
+The presence of $x$ in the integral correlates with the monotonically increasing product $\prod^M_{i \neq j} \hat F_j(x)$ and causes the positive bias.
 
-In order to avoid this issue, an alternative method, called \gls{de}, has been proposed in \cite{van2010double} and theoretically analyzed in~\cite{van2013estimating}. In this technique, like in the case of the maximum estimator, a sample set $S$ retrieved by the true unknown distribution is used, but in this case it is divided in two disjoint subsets $S^A = \lbrace S^A_{1}, ..., S^A_{N} \rbrace$ and $S^B = \lbrace S^B_{1}, ..., S^B_{N} \rbrace$. If the sets are split in a proper way, for instance randomly, the sample means $\hat{\mu}^A_{i}$ and $\hat{\mu}^B_{i}$ are unbiased, like the means $\hat{\mu}_{i}$ in the case of the single estimator. An estimator $a^*$, such that $\hat\mu^A_{a^*}(X) = \max_{i}\hat\mu^A_{i}(X)$, is used to pick an estimator $\hat\mu^B_{a^*}$ that is an estimate for $\max_{i}E [ \hat\mu^B_{i} ]$ and for $\max_{i}E [ X_{i} ]$. Obviously, this can be done the opposite way, using an estimator $b^*$ to retrieve the estimator value $\hat{\mu}^A_{b^*}$. 
+To solve this overestimation problem, a method called \gls{de} has been proposed in~\cite{van2010double} and theoretically analyzed in~\cite{van2013estimating}. \gls{de} uses a sample set $S$ retrieved by the true unknown distribution like \gls{me}, but splits it in two disjoint subsets $S^A = \lbrace S^A_{1}, ..., S^A_{N} \rbrace$ and $S^B = \lbrace S^B_{1}, ..., S^B_{N} \rbrace$. If the sets are split in a proper way, for instance randomly, the sample means $\hat{\mu}^A_{i}$ and $\hat{\mu}^B_{i}$ are unbiased, like the means $\hat{\mu}_{i}$ in the case of the \gls{me}. An estimator $a^*$, such that $\hat\mu^A_{a^*}(X) = \max_{i}\hat\mu^A_{i}(X)$, is used to pick an estimator $\hat\mu^B_{a^*}$ that is an estimate for $\max_{i}E [ \hat\mu^B_{i} ]$ and for $\max_{i}E [ X_{i} ]$. Obviously, this can be done the opposite way, using an estimator $b^*$ to retrieve the estimator value $\hat{\mu}^A_{b^*}$. 
 \gls{de} takes the average of these two estimators.
-The bias of \gls{de} can be found in the same way as for \gls{me} with
+The expected value of \gls{de} can be found in the same way as for \gls{me} with
 \begin{equation}\label{E:biasCV}
-E\left[\hat{\mu}_*^{DE}\right]=\sum^M_i E \left[ \hat\mu^B_i \right] \int^{\infty}_{-\infty} \hat f^A_i(x) \prod^M_{j \neq i} \hat F^A_j(x)~\mathrm{d}x
+E\left[\est{DE}\right]=\sum^M_i E \left[ \hat\mu^B_i \right] \int^{\infty}_{-\infty} \hat f^A_i(x) \prod^M_{j \neq i} \hat F^A_j(x)~\mathrm{d}x
 \end{equation}
 when using an estimator $a^*$ (the same holds by swapping A and B).
-This formula can be seen as a weighted sum of the expected values of the random variables where the weights are the probabilities of each variable to be the maximum. Since these probabilities sum to one, the approximation given by \gls{de} results in a value that is lower than or equal to the maximal expected value. Even if the underestimation does not guarantee better estimation than the \gls{me}, it can be helpful to avoid an incremental approximation error in some learning problems. For instance, Double Q-Learning \cite{van2010double} is a variation of Q-Learning that exploits this technique to avoid the previously described issues due to overestimation. Double Q-Learning has been tested in some very noisy environments and succeeded to find better policies than Q-Learning.
-Another remarkable application of \gls{de} is presented in \cite{xu2013mab} where it achieves better results than \gls{me} in a sponsored search auction problem.
+This formula can be seen as a weighted sum of the expected values of the random variables where the weights are the probabilities of each variable to be the maximum. Since these probabilities sum to one, the approximation given by \gls{de} results in a value that is lower than or equal to the maximal expected value. Even if the underestimation does not guarantee better estimation than the \gls{me}, it can be helpful to avoid an incremental approximation error in some learning problems. For instance, Double $Q$-Learning~\cite{van2010double} is a variation of $Q$-Learning that exploits this technique to avoid the previously described issues due to overestimation. Double $Q$-Learning has been tested in some very noisy environments and succeeded to find better policies than Q-Learning. Another remarkable application of \gls{de} is presented in~\cite{xu2013mab} where it achieves better results than \gls{me} in a sponsored search auction problem.
 
-\section{The Proposed Method}\label{S:Method}
-
-Differently from \gls{me} and \gls{de} that output the sample average of the variable that is estimated to be the one with the largest mean, we propose to estimate the maximum expected value $\mu_*(X)$ with the \gls{we} that computes a weighted mean of all the sample averages:
-\begin{equation*}\label{E:WE}
-\hat{\mu}_*^{WE}(S) = \sum_{i=1}^M \hat\mu_i(S) w_i^S.
-\end{equation*}
+\section{Weighted Estimator}
+Differently from \gls{me} and \gls{de} that output the sample average of the variable that is estimated to be the one with the largest mean, the proposed \gls{we} estimates the \gls{mev} $\mu_*(X)$ computing a weighted mean of all the sample averages:
+\begin{equation}\label{E:WE}
+\est{WE}(S) = \sum_{i=1}^M \hat\mu_i(S) w_i^S.
+\end{equation}
 Ideally, each weight $w_i^S$ should be the probability of $\hat\mu_i(S)$ being larger than all other samples means:  
 $$w_i^S = P\left(\hat\mu_i(S) = \max_j \hat\mu_j(S)\right).$$
 If we knew the \glspl{pdf} $\hat{f}_i^S$ for each $\hat\mu_i(S)$ we could compute the \gls{dawe}:
 \begin{equation}\label{E:OptimalWE}
-\hat{\mu}_*^{DAWE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \hat{f}_i^S(x) \prod_{j\neq i}\hat{F}_j^S(x)~\mathrm{d}x.
+\est{DWE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \hat{f}_i^S(x) \prod_{j\neq i}\hat{F}_j^S(x)~\mathrm{d}x.
 \end{equation}
 We know that the sample mean $\hat\mu_i(S)$ is a random variable whose expected value is $\mu_i$ and whose variance is $\frac{\sigma^2_i}{|S_i|}$.
 Unfortunately, its \gls{pdf} $\hat f_i^S$ depends on the \gls{pdf} $f_i$ of variable $X_i$ that is assumed to be unknown.
 In particular, if $X_i$ is normally distributed, then, independently of the sample size, the sampling distribution of its sample mean is normal too: $\hat\mu_i(S)\sim\mathcal{N}\left(\mu_i,\frac{\sigma_i^2}{|S_i|}\right)$.
-On the other hand, by the central limit theorem, the sampling distribution $\hat f_i^S$ of the sample mean $\hat\mu_i(S)$ approaches the normal distribution as the number of samples $|S_i|$ increases, independently of the distribution of $X_i$.
+On the other hand, by the \gls{clt}, the sampling distribution $\hat f_i^S$ of the sample mean $\hat\mu_i(S)$ approaches the normal distribution as the number of samples $|S_i|$ increases, independently of the distribution of $X_i$.
 Leveraging on these considerations, we propose to approximate the distribution of the sample mean $\hat\mu_i(S)$ with a normal distribution, where we replace the (unknown) population mean and variance of variable $X_i$ with their (unbiased) sample estimates $\hat\mu_i(S)$ and $\hat\sigma_i(S)$:
 $$\hat f_i^S \approx \tilde f_i^S = \mathcal{N}\left(\hat\mu_i(S),\frac{\hat\sigma^2_i(S)}{|S_i|}\right),$$
 so that \gls{we} is computed as:
 \begin{equation}\label{E:WE2}
-\hat{\mu}_*^{WE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \tilde{f}_i^S(x) \prod_{j\neq i}\tilde{F}_j^S(x)~\mathrm{d}x.
+\est{WE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \tilde{f}_i^S(x) \prod_{j\neq i}\tilde{F}_j^S(x)~\mathrm{d}x.
 \end{equation}
 
-It is worth noting that \gls{we} is consistent with $\mu_*(X)$. In fact, as the number of samples grows to infinity, each sample mean $\hat\mu_i$ converges to the related population mean $\mu_i$, and the variance of the normal distribution $\tilde f_i$ tends to zero, so that the weights of the variables with expected value less than $\mu_*(X)$ go to zero, so that $\hat{\mu}_*^{WE} \rightarrow \mu_*(X)$.
+It is worth noting that \gls{we} is consistent with $\mu_*(X)$. In fact, as the number of samples grows to infinity, each sample mean $\hat\mu_i$ converges to the related population mean $\mu_i$, and the variance of the normal distribution $\tilde f_i$ tends to zero, so that the weights of the variables with expected value less than $\mu_*(X)$ go to zero, so that $\est{WE} \rightarrow \mu_*(X)$.
 
-\section{Estimation Error}\label{S:Analysis}
+\subsection{Generalization to Infinite Random Variables}
+\label{S: infinite}
+As far as we know, previous literature has focused only on the finite case and no approaches that natively handle continuous sets of random variables (e.g. without discretization) are available.
+Let us consider a continuous space of random variables $\mathcal{Z}$ equipped with some metric (e.g. a Polish space) and assume that variables in $\mathcal{Z}$ have some spatial correlation.
+Here, we consider $\mathcal{Z}$ to be a closed interval in $\mathbb{R}$ and that each variable $z \in \mathcal{Z}$ has unknown mean $\mu_z$ and variance $\sigma^2_z$.
+Given a set of samples $S$ we assume to have an estimate $\hat{\mu}_z(S)$ of the expected value $\mu_z$ for any variable $z \in \mathcal{Z}$ (in the next section we will discuss the spatial assumption and we will explain how to obtain this estimate).
+As a result, the weighted sum of equation~\ref{E:WE} generalizes to an integral over the space $\mathcal{Z}$:
+\begin{align}\label{E:continuousWE}
+\hat{\mu}_*^{\textrm{WE}}(S) = \int_{\mathcal{Z}} \hat{\mu}_z(S) \, 
+\mathfrak{f}_z^*(S) \mathrm{d}z ,
+\end{align}
+where $\mathfrak{f}_z^*(S)$ 
+is the probability density for $z$ of \emph{being the variable with the largest mean}, that plays the same role of the weights used in~\ref{E:WE}.
+Given the distribution $f_{\hat{\mu}_z}^S$ of $\hat{\mu}_z(S)$, the computation of such density is similar to what is done in~\ref{E:WE2} for the computation of the weights $w_i^S$, with the major difference that in the continuous case we have to (ideally) consider a product of infinite cumulative distributions.
+Let us provide a tractable formulation of such density function:
 
-In this section, we theoretically analyze the estimation error of $\est{\WE}(S)$ in terms of bias and variance, comparing it with the results available for \ME~and \CV.
-Although \OWE~cannot be used in practice, we include it in the following analysis since it provides an upper limit to the accuracy of \WE.
+\begin{small}
+\begin{align}
+\nonumber \mathfrak{f}_z^*&(S) = f\left(\hat{\mu}_z(S) = \sup_{y \in \mathcal{Z}} \hat{\mu}_y(S)\right)\\
+\nonumber &= \int_{-\infty}^{\infty}f(\hat{\mu}_z(S) = x) \; P \bigg( \hat{\mu}_y(S) \leq x, \; \forall y \in \mathcal{Z} \setminus \{z\} \bigg) \mathrm{d}x \\
+\label{E:probability_events}
+&= \int_{-\infty}^{\infty} f_{\hat{\mu}_z}^S(x) \; P \left( \bigwedge_{y \in \mathcal{Z} \setminus \{z\}} \hat{\mu}_y(S) \leq x \right) \mathrm{d}x \\
+\label{E:probability_division}
+&= \int_{-\infty}^{\infty} f_{\hat{\mu}_z}^S(x) \; \frac{P \left( \bigwedge_{y \in \mathcal{Z}} \hat{\mu}_y(S) \leq x \right)}{P \left( \hat{\mu}_{z}(S) \leq x \right)} \mathrm{d}x \\
+\nonumber &= \int_{-\infty}^{\infty} f_{\hat{\mu}_z}^S(x) \; \frac{\Prodi_{\mathcal{Z}} F_{\hat{\mu}_y}^S(x)^{dy}}{F_{\hat{\mu}_z}^S(x)}\mathrm{d}x
+\end{align}
+\end{small}
 
-\subsection{Bias}
+\noindent where~\ref{E:probability_events}-\ref{E:probability_division} follow from the independence assumption.
+The term $\prodi_{\mathcal{Z}} F^S_{\hat{\mu}_y}(x)^{dy} = P \left( \bigwedge_{y \in \mathcal{Z}} \hat{\mu}_y(S) \leq x \right)$ is the product integral defined in the geometric calculus (that is the generalization of the product operator to continuous supports) and can be related to the classical calculus through the following relation: $\Prodi_{\mathcal{Z}} F_{\hat{\mu}_y}^S(x)^{dy} = \exp{\left( \int_{\mathcal{Z}} \ln F_{\hat{\mu}_y}^S(x)dy \right)}$~\cite{grossman1972non}.
 
-\begin{figure*}[t]
-    \begin{minipage}{0.45\textwidth}
-    \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/bias.tikz} 
-    \caption{Comparison of the bias of the different estimators.}\label{F:bias}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.54\textwidth}    
-    \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/absolute_bias.tikz} 
-    \caption{Comparison of the absolute bias of the different estimators.}\label{F:absolute_bias}
-    \end{minipage}
-\end{figure*}
+\subsubsection{Spatially Correlated Variables}
+The issues that remain to be addressed are I) the computation of the empirical mean $\hat{\mu}_z(S)$ and II) the computation of the density function $f_{\hat{\mu}_z}^S$ (for each random variable $z \in \mathcal{Z}$).
+In order to face the former issue we have assumed the random variables to be spatially correlated.
+In this way we can use any regression technique to approximate the empirical means and generalize over poorly or unobserved regions.
 
-We start with summarizing the main results about the bias of \ME~and \CV~reported in~\cite{van2013estimating}.
-For what concerns the direction of the bias, \ME~is positively biased, while \CV~is negatively biased.
-If we look at the absolute bias, there is no clear winner. 
-For instance, when all the random variables are identically distributed, \CV~is unbiased, while the same setting represents a worst case for \ME~.
-On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \ME~can be significantly smaller than the one of \CV~(see Section~\ref{S:Experiments}).
-The bias of \ME~is bounded by:
-$$\mathrm{Bias}\left(\est{\ME}\right) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
-For the bias of \CV, \citet{van2013estimating} conjectures the following bound (which is proved for two variables):
-$$\mathrm{Bias}\left(\est{\CV}\right) \geq -\frac{1}{2}\left(\sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^A_i|}} + \sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^B_i|}}\right). $$
+In order to face the second issue, we need to restrict the regression class to methods for which it is possible to evaluate the uncertainty of the outcome.
+Let $g$ be a generic regressor whose predictions are the mean of a variable $z$ and the \emph{confidence (variance) of the predicted mean} $\left(\text{i.e.}\; \hat{\mu}_z, \hat{\sigma}_{\hat{\mu}_z}^2 \leftarrow g(z) \right)$.
+As done in the discrete case, we exploit the \gls{clt} to approximate the distribution of the sample mean $f_{\hat{\mu}_z}^S$ with a normal distribution $\tilde{f}_{\hat{\mu}_z}^S = \mathcal{N}\left(\hat{\mu}_z, \hat{\sigma}^2_{\hat{\mu}_z} \right)$.
 
-In the next theorem we provide a relationship between the bias of \WE~and the one of \ME.
-\begin{theorem}\label{T:BiasWEME}
- For any given set $X$ of $M$ random variables:
- $$\mathrm{Bias}(\hat{\mu}_*^{WE}) \leq \mathrm{Bias}(\est{\ME}) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
-\end{theorem}
-As we will see in Section~\ref{S:Experiments}, this does not mean that the absolute bias of \gls{we} is necessarily smaller than the one of \gls{me}, since (as we will see later) the bias of \gls{we} can be also negative.
-In order to better characterize the bias of \gls{we}, we put it in relation with the bias of \gls{de}.
-\begin{theorem}\label{T:BiasWECV}
- For any given set $X$ of $M$ random variables:
-  $$\mathrm{Bias}(\hat{\mu}_*^{WE}) \geq \mathrm{Bias}(\est{\CV}).$$
-\end{theorem}
+As a result, the \gls{we} for the continuous case can be computed as follows:
+% \begin{small}
+\begin{align}\label{E:continuousWE2}
+\hat{\mu}_*^{\textrm{WE}}(S) = \int_{\mathcal{Z}} \int_{-\infty}^{\infty}  \frac{\hat{\mu}_z(S)  \tilde{f}_{\hat{\mu}_z}^S(x)}{\tilde{F}_{\hat{\mu}_z}^S(x)} e^{\int_{\mathcal{Z}} \ln \tilde{F}_{\hat{\mu}_y}^S(x)\mathrm{d}y}\mathrm{d}x\mathrm{d}z.
+\end{align}
+% \end{small}
+Since in the general case no closed-form solution exists for the above integrals, as in the finite case, the \gls{we} can be computed through numerical integration.
 
-\textbf{Example} In Figures~\ref{F:bias} and~\ref{F:absolute_bias} we visualize the bias of the different \gls{mev} estimators in a setting with two normally distributed random variables ($X_1\sim\mathcal{N}(\mu_1,\sigma_1^2)$ and $X_2\sim\mathcal{N}(\mu_2,\sigma_2^2)$) as a function of the difference of their expected values. Both variables have variance equal to 10 ($\sigma_1^2=\sigma_2^2=10$) and we assume to have 100 samples for each variable ($|S_1|=|S_2|=100$).
-Figure~\ref{F:bias} confirms the previous theoretical analysis: the bias of \gls{me} is always positive, while the biases of \gls{dawe} and \gls{de} are always negative, with the latter always worse than the former.
-The bias of \gls{we} can be positive or negative according to the situation, but it always falls in the range identified by the biases of \gls{me} and \gls{de}.
-Looking at the absolute biases shown in Figure~\ref{F:absolute_bias}, we can notice that there is not a clear winner.
-As previously mentioned, when the variables have the same mean, both \gls{de} and \gls{dawe} are unbiased, while it represents a worst case for the bias of \gls{me} and \gls{we}. It follows that, when the difference of the two means is small (less than 0.5 in the example), \gls{de} suffers less absolute bias than \gls{me} and \gls{we}. For moderate differences of the means (between 0.5 and 1.8 in the example), \gls{we} has the minimum absolute bias, while \gls{me} is preferable for larger differences.
-Such results can be generalized as follows: \gls{de} suffers a small bias when there are several variables that have expected values close (w.r.t.~their variances) to the maximum one, while \gls{me} provides the best estimate when there is one variable whose expected value is significantly larger (w.r.t.~the variances) than all the expected values of all the other variables. In all the other cases, \gls{we} is less biased.
+\subsubsection{Gaussian Process Regression}
+While several regression techniques can be exploited (e.g. linear regression), the natural choice in this case is the \gls{gp} regression since it provides both an estimate of the process mean and variance.
+Consider to have a \gls{gp} trained on a dataset of $N$ samples $\mathcal{D}=\{z_i, q_i\}_{i=1}^{N}$, where $q_i$ is a sample drawn from the distribution of $z_i$.
+Our objective is to predict the target $q_*$ of an input variable $z_*$ such that $q_* = f(z_*) + \epsilon$ where $\epsilon \sim \mathcal{N}(0, \sigma_n^2)$.
+Given a kernel function $k$ used to measure the covariance between two points $(z_i,z_j)$ and an estimate of the noise variance $\sigma^2_n$, the \gls{gp} approximation for a certain variable $z^*$ is $q_* \sim \mathcal{N}\left(\hat{\mu}_{z^*}, \hat{\sigma}^2_{\hat{\mu}_{z_*}} + \sigma_n^2\, I \right)$ where:
+\begin{align}\label{E:gpmean}
+\hat{\mu}_{z_*} &= \mathbf{k}^T_* \left(K + \sigma^2_n I\right)^{-1}\mathbf{q},\\
+\nonumber
+\hat{\sigma}^2_{\hat{\mu}_{z_*}} &= 
+\text{Cov}\left(\mu_{z_*}\right) = k(z_*, z_*) - \transpose{\mathbf{k}}_* \left( K + \sigma^2_n I \right)^{-1}\mathbf{k}_*,
+\end{align}
+and $\mathbf{k}_*$ is the column vector of covariances between $z_*$ and all the input points in $\mathcal{D}$ ($\mathbf{k}_*^{(i)} = K(z_i, z_*)$), $K$ is the covariance matrix computed over the training inputs ($K^{(ij)} = k(z_i,z_j)$), and $\mathbf{q}$ is the vector of training targets.
+Given the mean estimate in~\ref{E:gpmean}, the application of \gls{me} and \gls{de} is straightforward, while using \gls{we} requires to estimate also the \emph{variance of the mean estimates}.
+The variance of the \gls{gp} target $q_*$ is composed by the variance of the mean ($\hat{\sigma}^2_{\hat{\mu}_{z_*}}$) and the variance of the noise ($\sigma^2_n$)~\cite{rasmussen2005gaussian}.
+As a result, by only considering the mean contribute, we approximate the distribution of the sample mean by  $\tilde{f}_{\hat{\mu}_z}^S = \mathcal{N}\left(\hat{\mu}_z, \hat{\sigma}^2_{\hat{\mu}_z} \right)$ as defined in equations~\ref{E:gpmean}.
 
-\subsection{Variance}
-\begin{figure*}
-    \begin{minipage}{0.5\textwidth}
-    \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/variance.tikz} 
-    \caption{Comparison of the variance of the different estimators.}\label{F:variance}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.45\textwidth}
-     \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/mse.tikz} 
-    \caption{Comparison of the \gls{mse} of the different estimators.}\label{F:mse}
-    \end{minipage}
-\end{figure*}
+\section{Maximum Expected Value estimation in Reinforcement Learning}
+Among value-based methods, we consider online and offline algorithms that approximate the optimal $Q$-values without the need of a model of the environment. We consider mostly \glspl{mdp} with discrete action spaces, except for the batch algorithm based on \gls{we} that can be extended also to \glspl{mdp} with continuous action spaces.
 
-We cannot evaluate the goodness of an estimator by analyzing only its bias.
-In fact, since the \gls{mse} of an estimator is the sum of its squared bias and its variance, we need to take into consideration also the latter.
+\subsection{Online}
+A famous online algorithm is $Q$-learning~\cite{watkins1989learning}, an off-policy algorithm that updates the action value function $Q$ at each step using the following formula:
+\begin{equation}\label{eq:Q-formula}
+ Q_{t+1}(s_t,a_t) \leftarrow Q_t(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q_t(s_{t+1},a) - Q_t(s_t,a_t)\right),
+\end{equation}
+where $\alpha_t(s_t,a_t)$ is a learning rate, $\gamma$ is a discount factor and $r_t$ is the immediate reward obtained by taking action $a_t$ in state $s_t$.
+It is demonstrated that since $Q$-learning is a stochastic approximation algorithm, under the assumption that each state-action pair is visited infinitely often and the step sequence satisfies certain conditions, $Q_k$ converges to $Q^{*}$~\cite{watkins1989learning}. However, under particular conditions, such as a wrong tuning of parameters and noisy environments, the $Q$-function could converge to $Q^{*}$ too much slowly. One of the main reasons is that the $Q$-learning uses the \gls{me} to estimate the current maximum $Q$-value of the next state $s_{t+1}$. Since this estimator is positively biased, and since the error is propagated at each step, the $Q$-function can be wrongly estimated and the algorithm could fail.
+In the last years, different approaches have been proposed trying to overcome this issue~\cite{lee2013bias,bellemare2015increasing,ijcai2017-483}. In particular, the most successful one is the Double $Q$-Learning algorithm~\cite{van2010double} which replaces the \gls{me} used in $Q$-Learning with \gls{de}. The underestimation of the $Q$-function performed by Double $Q$-Learning allows to learn a good policy in very noisy environments where $Q$-Learning fails.
 
-\citet{van2013estimating} proved that both the variance of \gls{me} and the one of \gls{de} can be upper bounded with the sum of the variances of the sample means:
-$ \mathrm{Var}\left(\hat{\mu}_*^{ME}}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$, $\mathrm{Var}\left(\est{\CV}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$.
-The next theorem shows that the same upper bound holds also for the variance of \gls{we}.
-\begin{theorem}\label{T:VarianceWE}
- The variance of \gls{we} is upper bounded by
- $$\mathrm{Var}\left(\hat{\mu}_*^{WE}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}.$$
-\end{theorem}
-The bound in Theorem~\ref{T:VarianceWE} is overly pessimistic; in fact, even if each weight $w_i^S$ is correlated to the other weights and to the sample mean $\hat\mu_i(S)$, their sum is equal to one.
-For sake of comparison, we upper bound the variance of \gls{dawe}.
-\begin{theorem}\label{T:VarianceOWE}
- The variance of \gls{dawe} is upper bounded by
- $$\mathrm{Var}\left(\hat{\mu}_*^{DAWE}\right) \leq \max_{i\in{1,\dots,M}} \frac{\sigma^2_i}{|S_i|}.$$
-\end{theorem}
+\begin{algorithm}[t]
+\caption{Weighted Q-learning}
+\label{A:WQ-Learning}
+\begin{algorithmic}[1]
+\STATE Initialize $Q(s,a) = 0$, $\mu(s,a) = 0$, $\sigma(s,a) = \infty$ and $s$
+\REPEAT
+\STATE $a \leftarrow$ drawn from policy $\pi(\cdot|s)$ (e.g., $\varepsilon$-greedy)
+\STATE $s',r \leftarrow \text{MDP}(s,a)$
+\STATE $\tilde{f}_m^S \leftarrow \mathcal{N}(\mu(s,a_m), \sigma^2(s,a_m))\quad \forall a_m \in \mathcal{A}$ 
+\STATE $w_m \leftarrow \int_{-\infty}^{+\infty} \tilde{f}_m^S(x) \prod_{k\neq m} \tilde{F}^S_k(x) \mathrm{d}x \quad \forall a_m \in \mathcal{A}$
+\STATE $W(s') \leftarrow \sum_{a_m \in \mathcal{A}} w_m Q(s',a_m)$
+\STATE $Q(s,a) \leftarrow Q(s,a) + \alpha(s,a) (r + \gamma W(s') - Q(s,a))$
+\STATE Update $\mu(s,a)$ and $\sigma(s,a)$ using tuple $\langle s,a,r \rangle$
+\STATE $s \leftarrow s'$
+\UNTIL {terminal condition}
+\end{algorithmic}
+\end{algorithm}
 
-\textbf{Example} As done for the bias, in Figure~\ref{F:variance} we show the variance of the different estimators under the same settings described above.
-As the difference of the means of the two variables grows, the variance of all the estimators converges to the variance of the sample mean of the variable with the maximum expected value.
-\gls{de} is the estimator with the largest variance since its sample means are computed using half the number of samples w.r.t.~the other estimators.
-\gls{we} exhibits a variance slightly larger than the one of \gls{me}, while, as expected, the variance of \gls{dawe} is always the smallest.
+\subsubsection{Weighted Q-Learning}
+Recently, the replacement of \gls{me} with \gls{we} has been proposed in the \textit{Weighted $Q$-Learning} algorithm~\cite{deramo2016estimating}. Weighted $Q$-Learning maintains an estimate of the mean value of the $Q$-function and its variance in order to compute the weights of \gls{we} (Algorithm \ref{A:WQ-Learning}).
+While the mean value corresponds to the current estimate of the $Q$-function, the variance is not straightforward to be computed. Indeed, it is not simply the variance of the $Q$-function approximator, but it is the variance of the process consisting of an update formula with a variable learning rate. Considering this, it can be showed that the variance can be computed incrementally at each step $t$ with:
+$$\sigma^2_t(s,a) \leftarrow n_t(s,a) \dfrac{(Q_{2_t}(s,a) - Q_t(s,a)^2)}{n_t(s,a) - 1} \omega_t(s,a),$$
+where $Q_t(s,a)$ is the current $Q$-value of action $a$ in state $s$, $n_t(s,a)$ is the current number of updates of $Q(s,a)$ and
+$$Q_{2_t}(s,a) = Q_{2_{t-1}}(s,a) + \dfrac{(r_t + \gamma W_t(s'))^2 - Q_{2_{t-1}}(s,a)}{n_t(s,a)},$$
+$$\omega_t(s,a) \leftarrow (1 - \alpha_t(s,a))^2 \omega_{t-1}(s,a) + \alpha_t(s,a)^2$$
+where $W_t(s')$ is the current value of \gls{we} in state $s'$.
 
-Finally, in Figure~\ref{F:mse} we show the MSE (variance + bias$^2$) of the different estimators.
-When the difference between the two means is less than one, \WE~suffers from a lower MSE than the other two estimators.
-On the other hand, \ME~is preferable when there is a variable with an expected value that is significantly larger than the other ones.
+\subsection{Batch}
+A well known batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{Ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems.
+Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
+\begin{equation}
+ \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} Q_{t-1}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
+\end{equation}
+The \gls{fqi} update, similarly to the $Q$-Learning update (see equation~\ref{E:qlearningrule}), requires the computation of \gls{me} which causes the same overestimation problem of $Q$-Learning. Intuitively, the replacement of \gls{me} with \gls{de} or \gls{we} can help to solve this issue also in \gls{fqi}. The \gls{fqi} variant which replaces \gls{me} with \gls{de} is called \gls{dfqi}, and the variant which uses \gls{we} is called \gls{wfqi}~\cite{deramo2017maximum}.
+\paragraph{Weighted Fitted Q-Iteration} \gls{wfqi} uses \gls{gp} regression in order to compute the mean $Q$-value and its variance in continuous state spaces (Algorithm \ref{A:WFQI}). The interesting aspect of \gls{wfqi} is that it can handle infinite action spaces too, as explained in Section \ref{S: infinite} and showed in Algorithm \ref{A:continuousWFQI}. At the best of our knowledge, this makes it the only value-based algorithm able to deal with infinite action spaces.
+
+\begin{algorithm}[t]
+\caption{Weighted FQI (finite actions)}
+\label{A:WFQI}
+\begin{small}
+\begin{algorithmic} 
+\STATE \textbf{Inputs:} dataset $\mathcal{D}=\{s_i,a_i,r_i,s'_i\}_{i=1}^{K}$, GP regressor $\widehat{Q}$, horizon $T \in \mathbb{N}$, discrete action space $\mathcal{A} = \{a_1,\ldots, a_M\}$
+\STATE Train $\widehat{Q}_0^{\bar a}$ on $\mathcal{T}_0 = \{\langle s_i, r_i\rangle  \text{ s.t. } a_i = \bar{a} \}$ ($\forall \bar{a} \in \mathcal{A}$)
+\FOR{t=1 \TO T}
+\FOR{j=1 \TO K}
+\FOR{m=1 \TO M}
+\STATE $\hat{\mu}_{m}, \sigma^2_{\hat{\mu}_{m}} \leftarrow \widehat{Q}_{t-1}^{a_m}(s'_j)$ (evaluate GP)
+\STATE $\tilde{f}_{\hat{\mu}_{m}}^S \leftarrow \mathcal{N}(\hat{\mu}_{m}, \sigma^2_{\hat{\mu}_m})$ ($\tilde{F}_{\hat{\mu}_{m}}^S$ is the associated CDF) 
+\STATE $w_{a_m} \leftarrow \int_{-\infty}^{+\infty} \tilde{f}_{\hat{\mu}_{m}}^S(x) \prod_{k\neq m} \tilde{F}^S_{\hat{\mu}_{m}}(x) \mathrm{d}x$
+\ENDFOR
+\STATE $\mathcal{T}_t \leftarrow \mathcal{T}_t \cup \{(s_j,a_j), r_j + \gamma \sum_{a_m \in \mathcal{A}} w_{a_m} \mu_{a_m}\}$
+\ENDFOR
+\STATE Train $\widehat{Q}_t^{\bar a}$ on $\mathcal{T}_t = \{\langle s_i, r_i\rangle  \text{ s.t. } a_i = \bar{a} \}$ ($\forall \bar{a} \in \mathcal{A}$)
+\ENDFOR
+\end{algorithmic}
+\end{small}
+\end{algorithm}
+
+\begin{algorithm}[t]
+\caption{Weighted FQI$_{\infty}$ (continuous actions)}
+\label{A:continuousWFQI}
+\begin{small}
+\begin{algorithmic} 
+\STATE \textbf{Inputs:} dataset $\mathcal{D}=\{s_i,a_i,r_i,s'_i\}_{i=1}^{K}$, GP regressor $\widehat{Q}$, horizon $T \in \mathbb{N}$
+\STATE Train $\widehat{Q}_0$ on $\mathcal{T}_0 = \{\langle (s_i, a_i), r_i\rangle \}$
+\FOR{t=1 \TO T}
+\FOR{i=1 \TO K}
+\STATE $\hat{\mu}_{z}, \sigma^2_{\hat{\mu}_{z}} \leftarrow \widehat{Q}_{t-1}(s'_i, z)$ (evaluate GP)
+\STATE $\tilde{f}_{\hat{\mu}_z}^S \leftarrow \mathcal{N}(\hat{\mu}_{z}, \sigma^2_{\hat{\mu}_z})$ ($\tilde{F}_{\hat{\mu}_z}^S$ is the associated CDF) 
+\STATE $v_i \leftarrow \int_{-\infty}^{\infty} \exp{\left( \int_{\mathcal{Z}} \ln \tilde{F}_{\hat{\mu}_y}^S(x)\mathrm{d}y \right)} \int_{\mathcal{Z}}  \frac{\hat{\mu}_z(S)  \tilde{f}_{\hat{\mu}_z}^S(x)}{\tilde{F}_{\hat{\mu}_z}^S(x)} \mathrm{d}z\mathrm{d}x$
+\STATE $\mathcal{T}_t \leftarrow \mathcal{T}_t \cup \{(s_i,a_i), r_i + \gamma v_i\}$
+\ENDFOR
+\STATE Train $\widehat{Q}_t$ on $\mathcal{T}_t$
+\ENDFOR
+\end{algorithmic}
+\end{small}
+\end{algorithm}
+
+\subsubsection{Weighted Estimator in Deep Reinforcement Learning}\label{S:WDQN}
+In the last few years, value-based \gls{rl} algorithms exploiting deep neural networks for $Q$-function approximation proved to be a very powerful way to solve complex highly dimensional \glspl{mdp}. The most famous algorithm is the Deep $Q$-Learning algorithm~\cite{mnih2015human}, more known as \gls{dqn} algorithm, where the $Q$-function is approximated with a deep neural network in an online setting. \gls{dqn} consists of a neural network to be trained online and another one that builds the target of the previous one. The target network is used for stability reasons, and it is updated with the weights of the online network every time a specified number of samples have been collected. The algorithm updates the online network using minibatch of samples collected using a $\varepsilon$-greedy policy, and stored in a replay memory, minimizing a loss function between the current estimate of the target network and the following target:
+$$\hat{Q} =
+  \begin{cases}
+    r_t & \text{if $s_{t+1}$ is an absorbing state} \\
+    r_t + \gamma \max_{a'} \hat{Q}(s_{t+1}, a'; \theta^-) & \text{otherwise}
+  \end{cases}.
+$$
+where $\theta^-$ are the parameters of the target network. The overestimation problem caused by \gls{me} happens also in \gls{dqn} and results in critical loss of performance in some problems due to instability. The \gls{ddqn} algorithm~\cite{hasselt2015double} replaces \gls{me} with \gls{de} and shows considerable improvements and performance and stability.
+
+\paragraph{Weighted Deep Q-Network} The replacement of \gls{me} with \gls{we} is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks. We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep}. This work follows the \gls{dqn} algorithm described in~\cite{mnih2015human} with few, but important changes. The output of the neural network is splitted in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in {0,1}$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follow the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
+
+We propose to use the architecture of \gls{bdqn} replacing the \gls{de} with \gls{we} and to approximate the weights of its update formula using the sampling strategy in Section \ref{S:sampling} where the samples are the output of each head. The resulting update formula is:
+\begin{equation}
+Q_{t+1}^k \leftarrow Q_t^k + r_t + \gamma \sum_{i \in {1, \dots, \#\mathcal{A}}} w_t^i Q_t^k(s_{t+1}, a_i; \theta_k^-),
+\end{equation}
+where $w_t^i$ is the weight of \gls{we} for action $i$ at time $t$ and $\theta_k^-$ are the parameters of the target network of the head $k$. Since the $Q$-values of the next state are computed using the target network, we propose to compute the weights using the online network in order to emulate the desirable behavior of \gls{de}. Note that the weights vector $\mathbf{w}_t = \langle w_t^1, w_t^2, \dots, w_t^K \rangle$ is the same for all heads.
+The resulting algorithm is a slight change to the original \gls{bdqn} that allows to use the \gls{we} in the \gls{dqn} framework without differences in computational time and memory requirements w.r.t. \gls{bdqn}. We call this algorithm \gls{wdqn}.

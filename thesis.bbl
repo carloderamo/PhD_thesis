@@ -10,6 +10,13 @@ Peter Auer, Nicolo Cesa-Bianchi, and Paul Fischer.
 \newblock Finite-time analysis of the multiarmed bandit problem.
 \newblock {\em Machine learning}, 47(2-3):235--256, 2002.
 
+\bibitem{bellemare2015increasing}
+Marc~G. Bellemare, Georg Ostrovski, Arthur Guez, Philip~S. Thomas, and
+  R{\'{e}}mi Munos.
+\newblock Increasing the action gap: New operators for reinforcement learning.
+\newblock In {\em Proceedings of the thirtieth AAAI Conference on Artificial
+  Intelligence}, 2016.
+
 \bibitem{bellman2013dynamic}
 Richard Bellman.
 \newblock {\em Dynamic programming}.
@@ -21,12 +28,6 @@ Dimitri~P Bertsekas, Dimitri~P Bertsekas, Dimitri~P Bertsekas, and Dimitri~P
 \newblock {\em Dynamic programming and optimal control}, volume~1.
 \newblock Athena scientific Belmont, MA, 2005.
 
-\bibitem{blumenthal1968estimation}
-Saul Blumenthal and Arthur Cohen.
-\newblock Estimation of the larger of two normal means.
-\newblock {\em Journal of the American Statistical Association},
-  63(323):861--876, 1968.
-
 \bibitem{bubeck2012regret}
 S{\'e}bastien Bubeck, Nicolo Cesa-Bianchi, et~al.
 \newblock Regret analysis of stochastic and nonstochastic multi-armed bandit
@@ -34,15 +35,34 @@ S{\'e}bastien Bubeck, Nicolo Cesa-Bianchi, et~al.
 \newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
   5(1):1--122, 2012.
 
-\bibitem{dhariyal85}
-Bhaeiyal~Ishwaei D., Divakar Shabma, and K.~Krishnamoorthy.
-\newblock Non-existence of unbiased estimators of ordered parameters.
-\newblock {\em Statistics}, 16(1):89--95, 1985.
+\bibitem{deramo2017maximum}
+Carlo D'Eramo, Alessandro Nuara, Matteo Pirotta, and Marcello Restelli.
+\newblock Estimating the maximum expected value in continuous reinforcement
+  learning problems.
+\newblock In {\em {AAAI}}, pages XXX--XXX. {AAAI} Press, 2017.
+
+\bibitem{deramo2016estimating}
+Carlo D'Eramo, Marcello Restelli, and Alessandro Nuara.
+\newblock Estimating maximum expected value through gaussian approximation.
+\newblock In {\em {ICML}}, volume~48 of {\em {JMLR} Workshop and Conference
+  Proceedings}, pages 1032--1040. JMLR.org, 2016.
+
+\bibitem{grossman1972non}
+Michael Grossman and Robert Katz.
+\newblock {\em Non-Newtonian Calculus: A Self-contained, Elementary Exposition
+  of the Authors' Investigations...}
+\newblock Non-Newtonian Calculus, 1972.
 
 \bibitem{lai1985asymptotically}
 Tze~Leung Lai and Herbert Robbins.
 \newblock Asymptotically efficient adaptive allocation rules.
 \newblock {\em Advances in applied mathematics}, 6(1):4--22, 1985.
+
+\bibitem{lee2013bias}
+Daewoo Lee, Boris Defourny, and Warren~B Powell.
+\newblock Bias-corrected q-learning to control max-operator bias in q-learning.
+\newblock In {\em Adaptive Dynamic Programming And Reinforcement Learning
+  (ADPRL), 2013 IEEE Symposium on}, pages 93--99. IEEE, 2013.
 
 \bibitem{mnih2015human}
 Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
@@ -50,6 +70,12 @@ Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
   Ostrovski, et~al.
 \newblock Human-level control through deep reinforcement learning.
 \newblock {\em Nature}, 518(7540):529, 2015.
+
+\bibitem{rasmussen2005gaussian}
+Carl~Edward Rasmussen and Christopher K.~I. Williams.
+\newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
+  and Machine Learning)}.
+\newblock The MIT Press, 2005.
 
 \bibitem{silver2016mastering}
 David Silver, Aja Huang, Chris~J Maddison, Arthur Guez, Laurent Sifre, George
@@ -79,12 +105,6 @@ James~E Smith and Robert~L Winkler.
   decision analysis.
 \newblock {\em Management Science}, 52(3):311--322, 2006.
 
-\bibitem{stone1974cross}
-Mervyn Stone.
-\newblock Cross-validatory choice and assessment of statistical predictions.
-\newblock {\em Journal of the royal statistical society. Series B
-  (Methodological)}, pages 111--147, 1974.
-
 \bibitem{sutton1998reinforcement}
 Richard~S Sutton, Andrew~G Barto, et~al.
 \newblock {\em Reinforcement learning: An introduction}.
@@ -95,11 +115,6 @@ William~R Thompson.
 \newblock On the likelihood that one unknown probability exceeds another in
   view of the evidence of two samples.
 \newblock {\em Biometrika}, 25(3/4):285--294, 1933.
-
-\bibitem{van2004rational}
-Eric Van~den Steen.
-\newblock Rational overoptimism (and other biases).
-\newblock {\em American Economic Review}, pages 1141--1151, 2004.
 
 \bibitem{van2010double}
 Hado Van~Hasselt.
@@ -112,11 +127,6 @@ Hado Van~Hasselt.
 \newblock Estimating the maximum expected value: an analysis of (nested)
   cross-validation and the maximum sample average.
 \newblock {\em arXiv preprint arXiv:1302.7175}, 2013.
-
-\bibitem{van2015deep}
-Hado Van~Hasselt, Arthur Guez, and David Silver.
-\newblock Deep reinforcement learning with double q-learning.
-\newblock {\em CoRR}, abs/1509.06461, 2015.
 
 \bibitem{van2016deep}
 Hado Van~Hasselt, Arthur Guez, and David Silver.
@@ -135,6 +145,11 @@ Ziyu Wang, Tom Schaul, Matteo Hessel, Hado Van~Hasselt, Marc Lanctot, and Nando
 \newblock Dueling network architectures for deep reinforcement learning.
 \newblock {\em arXiv preprint arXiv:1511.06581}, 2015.
 
+\bibitem{watkins1989learning}
+Christopher John Cornish~Hellaby Watkins.
+\newblock {\em Learning from delayed rewards}.
+\newblock PhD thesis, University of Cambridge England, 1989.
+
 \bibitem{xu2013mab}
 Min Xu, Tao Qin, and Tie yan Liu.
 \newblock Estimation bias in multi-armed bandit algorithms for search
@@ -142,5 +157,11 @@ Min Xu, Tao Qin, and Tie yan Liu.
 \newblock In Burges C.j.c., Bottou L., Welling M., Ghahramani Z., and
   Weinberger K.q., editors, {\em Advances in Neural Information Processing
   Systems 26}, pages 2400--2408. 2013.
+
+\bibitem{ijcai2017-483}
+Zhang Zongzhang, Pan Zhiyuan, and Kochenderfer Mykel~J.
+\newblock Weighted double q-learning.
+\newblock In {\em Proceedings of the Twenty-Sixth International Joint
+  Conference on Artificial Intelligence, {IJCAI-17}}, pages 3455--3461, 2017.
 
 \end{thebibliography}

@@ -126,7 +126,7 @@ Once the value functions have converged, it is interesting to see if the current
 Whenever $Q_\pi(s,a) > Q_\pi(s, \pi(s))$ it is convenient to update the policy such as $\pi(s) = a$. This procedure is called \textit{policy improvement}.
 The process of alternating steps of iterative policy evaluation and policy improvement brings to the estimation of the optimal value functions and is resumed in an algorithm called \textit{Policy Iteration} (Algorithm~\ref{A:piter}).
 \begin{algorithm}[t]
- \caption{Iterative Policy Evaluation}
+ \caption{Value Iteration}
  \begin{algorithmic}[1]\label{A:piter}
   \STATE \textbf{Initialize:} $\pi(s) \in \mathcal{A}$ arbitrarily for all $s \in \mathcal{S}$
   \REPEAT

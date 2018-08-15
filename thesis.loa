@@ -1,2 +1,5 @@
 \contentsline {algorithm}{\numberline {1}{\ignorespaces Iterative Policy Evaluation\relax }}{9}{algorithm.1}
-\contentsline {algorithm}{\numberline {2}{\ignorespaces Iterative Policy Evaluation\relax }}{9}{algorithm.2}
+\contentsline {algorithm}{\numberline {2}{\ignorespaces Value Iteration\relax }}{9}{algorithm.2}
+\contentsline {algorithm}{\numberline {3}{\ignorespaces Weighted Q-learning\relax }}{17}{algorithm.3}
+\contentsline {algorithm}{\numberline {4}{\ignorespaces Weighted FQI (finite actions)\relax }}{18}{algorithm.4}
+\contentsline {algorithm}{\numberline {5}{\ignorespaces Weighted FQI$_{\infty }$ (continuous actions)\relax }}{18}{algorithm.5}

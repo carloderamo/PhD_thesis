@@ -12,14 +12,16 @@
 \BOOKMARK [1][]{section.2.3}{Solving a MDP}{chapter.2}% 12
 \BOOKMARK [2][]{subsection.2.3.1}{Dynamic Programming}{section.2.3}% 13
 \BOOKMARK [2][]{subsection.2.3.2}{Reinforcement Learning}{section.2.3}% 14
-\BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimate}{}% 15
-\BOOKMARK [1][]{section.3.1}{Estimating the MEV}{chapter.3}% 16
-\BOOKMARK [1][]{section.3.2}{Related works}{chapter.3}% 17
-\BOOKMARK [1][]{section.3.3}{The Proposed Method}{chapter.3}% 18
-\BOOKMARK [1][]{section.3.4}{Estimation Error}{chapter.3}% 19
-\BOOKMARK [2][]{subsection.3.4.1}{Bias}{section.3.4}% 20
-\BOOKMARK [0][]{chapter.4}{Exploration}{}% 21
-\BOOKMARK [0][]{chapter.5}{Deep}{}% 22
-\BOOKMARK [0][]{chapter.6}{Mushroom}{}% 23
-\BOOKMARK [0][]{chapter.7}{Conclusion}{}% 24
-\BOOKMARK [0][]{section*.20}{Bibliography}{}% 25
+\BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimation}{}% 15
+\BOOKMARK [1][]{section.3.1}{Problem definition}{chapter.3}% 16
+\BOOKMARK [2][]{subsection.3.1.1}{Related Works}{section.3.1}% 17
+\BOOKMARK [1][]{section.3.2}{Weighted Estimator}{chapter.3}% 18
+\BOOKMARK [2][]{subsection.3.2.1}{Generalization to Infinite Random Variables}{section.3.2}% 19
+\BOOKMARK [1][]{section.3.3}{Maximum Expected Value estimation in Reinforcement Learning}{chapter.3}% 20
+\BOOKMARK [2][]{subsection.3.3.1}{Online}{section.3.3}% 21
+\BOOKMARK [2][]{subsection.3.3.2}{Batch}{section.3.3}% 22
+\BOOKMARK [0][]{chapter.4}{Exploration}{}% 23
+\BOOKMARK [0][]{chapter.5}{Deep}{}% 24
+\BOOKMARK [0][]{chapter.6}{Mushroom}{}% 25
+\BOOKMARK [0][]{chapter.7}{Conclusion}{}% 26
+\BOOKMARK [0][]{section*.24}{Bibliography}{}% 27
