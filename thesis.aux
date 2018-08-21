@@ -38,10 +38,10 @@
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\gdef \LT@i {\LT@entry 
-    {1}{39.33574pt}\LT@entry 
-    {1}{219.0021pt}}
 \@writefile{toc}{\contentsline {chapter}{Glossary}{\textlatin  {XIII}}{section*.8}}
+\gdef \LT@i {\LT@entry 
+    {3}{49.3198pt}\LT@entry 
+    {1}{219.0021pt}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -98,20 +98,19 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \citation{deramo2017maximum}
-\citation{rasmussen2005gaussian}
 \citation{smith2006optimizer}
+\citation{van2010double}
+\citation{van2013estimating}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Problem definition}{12}{section.3.1}}
 \newlabel{E:maxExp}{{3.1}{12}{Problem definition}{equation.3.1.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Related Works}{12}{subsection.3.1.1}}
 \newlabel{E:biasME}{{3.2}{12}{Related Works}{equation.3.1.2}{}}
 \citation{van2010double}
-\citation{van2013estimating}
-\citation{van2010double}
 \citation{xu2013mab}
 \newlabel{E:biasCV}{{3.3}{13}{Related Works}{equation.3.1.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Weighted Estimator}{13}{section.3.2}}
 \newlabel{E:WE}{{3.4}{13}{Weighted Estimator}{equation.3.2.4}{}}
-\newlabel{E:OptimalWE}{{3.5}{14}{Weighted Estimator}{equation.3.2.5}{}}
+\newlabel{E:OptimalWE}{{3.5}{13}{Weighted Estimator}{equation.3.2.5}{}}
 \newlabel{E:WE2}{{3.6}{14}{Weighted Estimator}{equation.3.2.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Generalization to Infinite Random Variables}{14}{subsection.3.2.1}}
 \newlabel{S: infinite}{{3.2.1}{14}{Generalization to Infinite Random Variables}{subsection.3.2.1}{}}
@@ -123,144 +122,322 @@
 \newlabel{E:continuousWE2}{{3.10}{15}{Spatially Correlated Variables}{equation.3.2.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Gaussian Process Regression}{15}{subsubsection*.19}}
 \citation{rasmussen2005gaussian}
+\citation{van2013estimating}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Comparison of the bias of the different estimators varying the difference of the means\relax }}{16}{figure.caption.20}}
+\newlabel{F:bias}{{3.1}{16}{Comparison of the bias of the different estimators varying the difference of the means\relax }{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Comparison of the absolute bias of the different estimators varying the difference of the means.\relax }}{16}{figure.caption.20}}
+\newlabel{F:absolute_bias}{{3.2}{16}{Comparison of the absolute bias of the different estimators varying the difference of the means.\relax }{figure.caption.20}{}}
+\newlabel{E:gpmean}{{3.11}{16}{Gaussian Process Regression}{equation.3.2.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Analysis of Weighted Estimator}{16}{section.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Bias}{16}{subsection.3.3.1}}
+\citation{van2013estimating}
+\newlabel{T:BiasWEME}{{1}{17}{}{theorem.1}{}}
+\newlabel{T:BiasWECV}{{2}{17}{}{theorem.2}{}}
+\citation{van2013estimating}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison of the variance of the different estimators varying the difference of the means.\relax }}{18}{figure.caption.21}}
+\newlabel{F:variance}{{3.3}{18}{Comparison of the variance of the different estimators varying the difference of the means.\relax }{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Comparison of the MSE of the different estimators varying the difference of the means.\relax }}{18}{figure.caption.21}}
+\newlabel{F:mse}{{3.4}{18}{Comparison of the MSE of the different estimators varying the difference of the means.\relax }{figure.caption.21}{}}
+\newlabel{F:Variance_mse}{{\caption@xref {F:Variance_mse}{ on input line 201}}{18}{Variance}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Variance}{18}{subsection.3.3.2}}
+\newlabel{T:VarianceWE}{{3}{18}{}{theorem.3}{}}
+\newlabel{T:VarianceOWE}{{4}{18}{}{theorem.4}{}}
 \citation{watkins1989learning}
 \citation{watkins1989learning}
 \citation{lee2013bias,bellemare2015increasing,ijcai2017-483}
 \citation{van2010double}
 \citation{deramo2016estimating}
-\newlabel{E:gpmean}{{3.11}{16}{Gaussian Process Regression}{equation.3.2.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Maximum Expected Value estimation in Reinforcement Learning}{16}{section.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Online}{16}{subsection.3.3.1}}
-\newlabel{eq:Q-formula}{{3.12}{16}{Online}{equation.3.3.12}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Weighted Q-learning\relax }}{19}{algorithm.3}}
+\newlabel{A:WQ-Learning}{{3}{19}{Weighted Q-learning\relax }{algorithm.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Maximum Expected Value estimation in Reinforcement Learning}{19}{section.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Online}{19}{subsection.3.4.1}}
+\newlabel{eq:Q-formula}{{3.12}{19}{Online}{equation.3.4.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Weighted Q-Learning}{19}{subsubsection*.22}}
 \citation{Ernst2005tree}
 \citation{deramo2017maximum}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Weighted Q-learning\relax }}{17}{algorithm.3}}
-\newlabel{A:WQ-Learning}{{3}{17}{Weighted Q-learning\relax }{algorithm.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Weighted Q-Learning}{17}{subsubsection*.20}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Batch}{17}{subsection.3.3.2}}
 \citation{van2013estimating}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Weighted FQI (finite actions)\relax }}{18}{algorithm.4}}
-\newlabel{A:WFQI}{{4}{18}{Weighted FQI (finite actions)\relax }{algorithm.4}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Weighted FQI$_{\infty }$ (continuous actions)\relax }}{18}{algorithm.5}}
-\newlabel{A:continuousWFQI}{{5}{18}{Weighted FQI$_{\infty }$ (continuous actions)\relax }{algorithm.5}{}}
-\@writefile{toc}{\contentsline {paragraph}{Weighted Fitted Q-Iteration}{18}{paragraph*.21}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Empirical results}{18}{section.3.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Discrete States and Action Spaces}{18}{subsection.3.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Internet Ads}{18}{subsubsection*.22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Batch}{20}{subsection.3.4.2}}
+\@writefile{toc}{\contentsline {paragraph}{Weighted Fitted Q-Iteration}{20}{paragraph*.23}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Empirical results}{20}{section.3.5}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Weighted FQI (finite actions)\relax }}{21}{algorithm.4}}
+\newlabel{A:WFQI}{{4}{21}{Weighted FQI (finite actions)\relax }{algorithm.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Weighted FQI$_{\infty }$ (continuous actions)\relax }}{21}{algorithm.5}}
+\newlabel{A:continuousWFQI}{{5}{21}{Weighted FQI$_{\infty }$ (continuous actions)\relax }{algorithm.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Discrete States and Action Spaces}{21}{subsection.3.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{Internet Ads}{21}{subsubsection*.24}}
 \citation{xu2013mab}
 \citation{auer2002finite}
 \citation{xu2013mab}
-\newlabel{F:ia_first}{{3.1(a)}{19}{Subfigure 3 3.1(a)}{subfigure.3.1.1}{}}
-\newlabel{sub@F:ia_first}{{(a)}{19}{Subfigure 3 3.1(a)\relax }{subfigure.3.1.1}{}}
-\newlabel{F:ia_second}{{3.1(b)}{19}{Subfigure 3 3.1(b)}{subfigure.3.1.2}{}}
-\newlabel{sub@F:ia_second}{{(b)}{19}{Subfigure 3 3.1(b)\relax }{subfigure.3.1.2}{}}
-\newlabel{F:ia_third}{{3.1(c)}{19}{Subfigure 3 3.1(c)}{subfigure.3.1.3}{}}
-\newlabel{sub@F:ia_third}{{(c)}{19}{Subfigure 3 3.1(c)\relax }{subfigure.3.1.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces MSE for each setting. Results are averaged over 2000 experiments.\relax }}{19}{figure.caption.23}}
-\newlabel{F:iAds}{{3.1}{19}{MSE for each setting. Results are averaged over 2000 experiments.\relax }{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Increasing number of impressions.}}}{19}{figure.caption.23}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Increasing number of ads.}}}{19}{figure.caption.23}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{19}{figure.caption.23}}
+\newlabel{F:ia_first}{{3.5(a)}{22}{Subfigure 3 3.5(a)}{subfigure.3.5.1}{}}
+\newlabel{sub@F:ia_first}{{(a)}{22}{Subfigure 3 3.5(a)\relax }{subfigure.3.5.1}{}}
+\newlabel{F:ia_second}{{3.5(b)}{22}{Subfigure 3 3.5(b)}{subfigure.3.5.2}{}}
+\newlabel{sub@F:ia_second}{{(b)}{22}{Subfigure 3 3.5(b)\relax }{subfigure.3.5.2}{}}
+\newlabel{F:ia_third}{{3.5(c)}{22}{Subfigure 3 3.5(c)}{subfigure.3.5.3}{}}
+\newlabel{sub@F:ia_third}{{(c)}{22}{Subfigure 3 3.5(c)\relax }{subfigure.3.5.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces MSE for each setting. Results are averaged over 2000 experiments.\relax }}{22}{figure.caption.25}}
+\newlabel{F:iAds}{{3.5}{22}{MSE for each setting. Results are averaged over 2000 experiments.\relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Increasing number of impressions.}}}{22}{figure.caption.25}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Increasing number of ads.}}}{22}{figure.caption.25}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{22}{figure.caption.25}}
+\@writefile{toc}{\contentsline {subsubsection}{Sponsored Search Auctions}{22}{subsubsection*.26}}
 \citation{xu2013mab}
 \citation{van2010double}
 \citation{lee2012intelligent,lee2013bias}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Relative player 1 utility gain for different value of the bid defined as $\frac  {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }}{20}{figure.caption.24}}
-\newlabel{F:spSearch}{{3.2}{20}{Relative player 1 utility gain for different value of the bid defined as $\frac {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Sponsored Search Auctions}{20}{subsubsection*.25}}
-\@writefile{toc}{\contentsline {subsubsection}{Grid World}{21}{subsubsection*.26}}
-\@writefile{toc}{\contentsline {subsubsection}{Forex}{21}{subsubsection*.29}}
-\newlabel{F:bernoulli}{{3.3(a)}{22}{Subfigure 3 3.3(a)}{subfigure.3.3.1}{}}
-\newlabel{sub@F:bernoulli}{{(a)}{22}{Subfigure 3 3.3(a)\relax }{subfigure.3.3.1}{}}
-\newlabel{F:gaussian5}{{3.3(b)}{22}{Subfigure 3 3.3(b)}{subfigure.3.3.2}{}}
-\newlabel{sub@F:gaussian5}{{(b)}{22}{Subfigure 3 3.3(b)\relax }{subfigure.3.3.2}{}}
-\newlabel{F:gaussian1}{{3.3(c)}{22}{Subfigure 3 3.3(c)}{subfigure.3.3.3}{}}
-\newlabel{sub@F:gaussian1}{{(c)}{22}{Subfigure 3 3.3(c)\relax }{subfigure.3.3.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }}{22}{figure.caption.27}}
-\newlabel{F:grid}{{3.3}{22}{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }{figure.caption.27}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Bernoulli.}}}{22}{figure.caption.27}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{22}{figure.caption.27}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{22}{figure.caption.27}}
-\newlabel{F:forex_train}{{3.4(a)}{23}{Subfigure 3 3.4(a)}{subfigure.3.4.1}{}}
-\newlabel{sub@F:forex_train}{{(a)}{23}{Subfigure 3 3.4(a)\relax }{subfigure.3.4.1}{}}
-\newlabel{F:forex_test}{{3.4(b)}{23}{Subfigure 3 3.4(b)}{subfigure.3.4.2}{}}
-\newlabel{sub@F:forex_test}{{(b)}{23}{Subfigure 3 3.4(b)\relax }{subfigure.3.4.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Profit per year averaged over 100 experiments.\relax }}{23}{figure.caption.28}}
-\newlabel{F:forex}{{3.4}{23}{Profit per year averaged over 100 experiments.\relax }{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Training phase.}}}{23}{figure.caption.28}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Test phase.}}}{23}{figure.caption.28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Relative player 1 utility gain for different value of the bid defined as $\frac  {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }}{23}{figure.caption.27}}
+\newlabel{F:spSearch}{{3.6}{23}{Relative player 1 utility gain for different value of the bid defined as $\frac {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Grid World}{23}{subsubsection*.28}}
+\newlabel{F:bernoulli}{{3.7(a)}{24}{Subfigure 3 3.7(a)}{subfigure.3.7.1}{}}
+\newlabel{sub@F:bernoulli}{{(a)}{24}{Subfigure 3 3.7(a)\relax }{subfigure.3.7.1}{}}
+\newlabel{F:gaussian5}{{3.7(b)}{24}{Subfigure 3 3.7(b)}{subfigure.3.7.2}{}}
+\newlabel{sub@F:gaussian5}{{(b)}{24}{Subfigure 3 3.7(b)\relax }{subfigure.3.7.2}{}}
+\newlabel{F:gaussian1}{{3.7(c)}{24}{Subfigure 3 3.7(c)}{subfigure.3.7.3}{}}
+\newlabel{sub@F:gaussian1}{{(c)}{24}{Subfigure 3 3.7(c)\relax }{subfigure.3.7.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }}{24}{figure.caption.29}}
+\newlabel{F:grid}{{3.7}{24}{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }{figure.caption.29}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Bernoulli.}}}{24}{figure.caption.29}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{24}{figure.caption.29}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{24}{figure.caption.29}}
+\newlabel{F:forex_train}{{3.8(a)}{25}{Subfigure 3 3.8(a)}{subfigure.3.8.1}{}}
+\newlabel{sub@F:forex_train}{{(a)}{25}{Subfigure 3 3.8(a)\relax }{subfigure.3.8.1}{}}
+\newlabel{F:forex_test}{{3.8(b)}{25}{Subfigure 3 3.8(b)}{subfigure.3.8.2}{}}
+\newlabel{sub@F:forex_test}{{(b)}{25}{Subfigure 3 3.8(b)\relax }{subfigure.3.8.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Profit per year averaged over 100 experiments.\relax }}{25}{figure.caption.30}}
+\newlabel{F:forex}{{3.8}{25}{Profit per year averaged over 100 experiments.\relax }{figure.caption.30}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Training phase.}}}{25}{figure.caption.30}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Test phase.}}}{25}{figure.caption.30}}
+\@writefile{toc}{\contentsline {subsubsection}{Forex}{26}{subsubsection*.31}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{26}{subsection.3.5.2}}
+\@writefile{toc}{\contentsline {subsubsection}{Pricing Problem}{26}{subsubsection*.32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Mean bias obtained by ME, DE and $\text  {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }}{27}{figure.caption.33}}
+\newlabel{F:pricing_bias}{{3.9}{27}{Mean bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }{figure.caption.33}{}}
 \citation{doya2000reinforcement}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Continuous state spaces}{24}{subsection.3.4.2}}
-\@writefile{toc}{\contentsline {subsubsection}{Pricing Problem}{24}{subsubsection*.30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Mean bias obtained by ME, DE and $\text  {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }}{25}{figure.caption.31}}
-\newlabel{F:pricing_bias}{{3.5}{25}{Mean bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Swing-Up Pendulum}{25}{subsubsection*.33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Variance of the bias obtained by ME, DE and $\text  {WE}_{\infty }$ with different sample sizes and bins. \relax }}{26}{figure.caption.32}}
-\newlabel{F:pricing_variance}{{3.6}{26}{Variance of the bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins. \relax }{figure.caption.32}{}}
-\newlabel{F:pendulum_discrete}{{3.7(a)}{27}{Subfigure 3 3.7(a)}{subfigure.3.7.1}{}}
-\newlabel{sub@F:pendulum_discrete}{{(a)}{27}{Subfigure 3 3.7(a)\relax }{subfigure.3.7.1}{}}
-\newlabel{F:pendulum_continuous}{{3.7(b)}{27}{Subfigure 3 3.7(b)}{subfigure.3.7.2}{}}
-\newlabel{sub@F:pendulum_continuous}{{(b)}{27}{Subfigure 3 3.7(b)\relax }{subfigure.3.7.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Average reward averaged on 100 experiments.\relax }}{27}{figure.caption.34}}
-\newlabel{F:forex}{{3.7}{27}{Average reward averaged on 100 experiments.\relax }{figure.caption.34}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Discrete actions.}}}{27}{figure.caption.34}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Continuous actions.}}}{27}{figure.caption.34}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Exploration}{29}{chapter.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Variance of the bias obtained by ME, DE and $\text  {WE}_{\infty }$ with different sample sizes and bins. \relax }}{28}{figure.caption.34}}
+\newlabel{F:pricing_variance}{{3.10}{28}{Variance of the bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins. \relax }{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Swing-Up Pendulum}{28}{subsubsection*.35}}
+\newlabel{F:pendulum_discrete}{{3.11(a)}{29}{Subfigure 3 3.11(a)}{subfigure.3.11.1}{}}
+\newlabel{sub@F:pendulum_discrete}{{(a)}{29}{Subfigure 3 3.11(a)\relax }{subfigure.3.11.1}{}}
+\newlabel{F:pendulum_continuous}{{3.11(b)}{29}{Subfigure 3 3.11(b)}{subfigure.3.11.2}{}}
+\newlabel{sub@F:pendulum_continuous}{{(b)}{29}{Subfigure 3 3.11(b)\relax }{subfigure.3.11.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Average reward averaged on 100 experiments.\relax }}{29}{figure.caption.36}}
+\newlabel{F:forex}{{3.11}{29}{Average reward averaged on 100 experiments.\relax }{figure.caption.36}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Discrete actions.}}}{29}{figure.caption.36}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Continuous actions.}}}{29}{figure.caption.36}}
+\citation{watkins1989learning}
+\citation{smith2006optimizer,van2004rational}
+\citation{van2010double}
+\citation{van2013estimating}
+\citation{van2016deep}
+\citation{mnih2015human}
+\citation{deramo2016estimating}
+\citation{lee2013bias}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{31}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\citation{NIPS2011_4251}
+\citation{mohagheghi2007proportional,Tewari2007}
+\citation{schweighofer2003meta,Kobayashi2009,yoshida2013reinforcement}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Preliminaries}{32}{section.4.1}}
+\newlabel{eq:qopt}{{4.1}{32}{Preliminaries}{equation.4.1.1}{}}
+\newlabel{eq:qdec}{{4.2}{32}{Preliminaries}{equation.4.1.2}{}}
+\newlabel{eq:rqtilde}{{4.3}{33}{Preliminaries}{equation.4.1.3}{}}
+\newlabel{eq:qdecrqtilde}{{4.4}{33}{Preliminaries}{equation.4.1.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}The Proposed Method}{33}{section.4.2}}
+\citation{lai1985asymptotically}
+\citation{jaksch2010near,kakade2003sample,kearns2002near}
+\citation{thompson1933likelihood}
+\citation{chapelle2011empirical,granmo2010solving,may2011simulation,scott2010modern}
+\citation{chentanez2005intrinsically,schmidhuber1991possibility}
+\citation{bellemare2016unifying,tang2017exploration}
+\citation{pathak2017curiosity}
+\citation{bonarini2006self}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Exploration}{35}{chapter.5}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\citation{dearden1998bayesian}
+\citation{auer2007logarithmic}
+\citation{jaksch2010near}
+\citation{auer2002finite}
+\citation{strehl2006pac}
+\citation{kearns2002near}
+\citation{brafman2002r}
+\citation{dearden1999model,kolter2009near}
+\citation{strens2000bayesian}
+\citation{osband2013more}
+\citation{dearden1998bayesian}
+\citation{d2016estimating}
+\citation{osband2016generalization}
+\citation{osband2016deep}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Related work}{36}{section.5.1}}
+\citation{dearden1998bayesian}
+\citation{d2016estimating}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Thompson Sampling in value-based Reinforcement Learning}{37}{section.5.2}}
+\newlabel{S:tsrl}{{5.2}{37}{Thompson Sampling in value-based Reinforcement Learning}{section.5.2}{}}
+\newlabel{E:max_prob}{{5.1}{37}{Thompson Sampling in value-based Reinforcement Learning}{equation.5.2.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces Standard mean and variance update\relax }}{38}{algorithm.6}}
+\newlabel{A:var_1}{{6}{38}{Standard mean and variance update\relax }{algorithm.6}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces Mean and variance update using momentums\relax }}{38}{algorithm.7}}
+\newlabel{A:var_2}{{7}{38}{Mean and variance update using momentums\relax }{algorithm.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{38}{section.5.3}}
+\newlabel{S:uncertainty}{{5.3}{38}{Efficient uncertainty estimation}{section.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Online estimation}{38}{subsection.5.3.1}}
+\citation{hoeffding1963probability}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {8}{\ignorespaces SARSA with online variance update\relax }}{39}{algorithm.8}}
+\newlabel{A:sarsa_var}{{8}{39}{SARSA with online variance update\relax }{algorithm.8}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {9}{\ignorespaces SARSA with online variance update and Hoeffding upper bound\relax }}{39}{algorithm.9}}
+\newlabel{A:sarsa_hoeff}{{9}{39}{SARSA with online variance update and Hoeffding upper bound\relax }{algorithm.9}{}}
+\citation{tang2017exploration}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {10}{\ignorespaces SARSA with function approximation with variance update\relax }}{40}{algorithm.10}}
+\newlabel{A:SARSA-apprx}{{10}{40}{SARSA with function approximation with variance update\relax }{algorithm.10}{}}
+\newlabel{E:hoeff}{{5.4}{40}{Online estimation}{equation.5.3.4}{}}
+\citation{doi:10.1162/089976600300015204}
+\citation{osband2016deep}
+\citation{mnih2015human}
+\citation{osband2013more}
+\citation{van2016deep}
+\citation{hasselt2010double}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{41}{subsection.5.3.2}}
+\@writefile{toc}{\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{41}{paragraph*.37}}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrapped Q-Learning}{41}{paragraph*.38}}
+\citation{pmlr-v70-asadi17a}
+\citation{pmlr-v70-asadi17a}
+\citation{hasselt2010double}
+\citation{van2016deep}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {11}{\ignorespaces Bootstrapped DQN with Thompson Sampling\relax }}{42}{algorithm.11}}
+\newlabel{A:tsboot}{{11}{42}{Bootstrapped DQN with Thompson Sampling\relax }{algorithm.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Experiments}{42}{section.5.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Discrete state space}{42}{subsection.5.4.1}}
+\newlabel{F:taxi_online}{{5.1(a)}{43}{Subfigure 5 5.1(a)}{subfigure.5.1.1}{}}
+\newlabel{sub@F:taxi_online}{{(a)}{43}{Subfigure 5 5.1(a)\relax }{subfigure.5.1.1}{}}
+\newlabel{F:taxi_grid}{{5.1(b)}{43}{Subfigure 5 5.1(b)}{subfigure.5.1.2}{}}
+\newlabel{sub@F:taxi_grid}{{(b)}{43}{Subfigure 5 5.1(b)\relax }{subfigure.5.1.2}{}}
+\newlabel{F:taxi_boot}{{5.1(c)}{43}{Subfigure 5 5.1(c)}{subfigure.5.1.3}{}}
+\newlabel{sub@F:taxi_boot}{{(c)}{43}{Subfigure 5 5.1(c)\relax }{subfigure.5.1.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Results on the \textbf  {Taxi} problem. Figure~\ref  {F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref  {F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref  {F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.\relax }}{43}{figure.caption.39}}
+\newlabel{F:taxi}{{5.1}{43}{Results on the \textbf {Taxi} problem. Figure~\ref {F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref {F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref {F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.\relax }{figure.caption.39}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Online variance}}}{43}{figure.caption.39}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Taxi grid}}}{43}{figure.caption.39}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Bootstrapped variance}}}{43}{figure.caption.39}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Other results}{43}{section.5.5}}
+\newlabel{A:results}{{5.5}{43}{Other results}{section.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Continuous state space}{43}{subsection.5.5.1}}
+\citation{bellemare13arcade}
+\newlabel{F:mountain_car}{{5.2(a)}{44}{Subfigure 5 5.2(a)}{subfigure.5.2.1}{}}
+\newlabel{sub@F:mountain_car}{{(a)}{44}{Subfigure 5 5.2(a)\relax }{subfigure.5.2.1}{}}
+\newlabel{F:acrobot}{{5.2(b)}{44}{Subfigure 5 5.2(b)}{subfigure.5.2.2}{}}
+\newlabel{sub@F:acrobot}{{(b)}{44}{Subfigure 5 5.2(b)\relax }{subfigure.5.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Figure~\ref  {F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref  {F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.\relax }}{44}{figure.caption.40}}
+\newlabel{F:TS_cont}{{5.2}{44}{Figure~\ref {F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref {F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.\relax }{figure.caption.40}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Mountain Car}}}{44}{figure.caption.40}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Acrobot}}}{44}{figure.caption.40}}
+\newlabel{F:pong}{{5.3(a)}{44}{Subfigure 5 5.3(a)}{subfigure.5.3.1}{}}
+\newlabel{sub@F:pong}{{(a)}{44}{Subfigure 5 5.3(a)\relax }{subfigure.5.3.1}{}}
+\newlabel{F:breakout}{{5.3(b)}{44}{Subfigure 5 5.3(b)}{subfigure.5.3.2}{}}
+\newlabel{sub@F:breakout}{{(b)}{44}{Subfigure 5 5.3(b)\relax }{subfigure.5.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.\relax }}{44}{figure.caption.41}}
+\newlabel{F:atari}{{5.3}{44}{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.\relax }{figure.caption.41}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Pong}}}{44}{figure.caption.41}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Breakout}}}{44}{figure.caption.41}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Deep Reinforcement Learning}{44}{subsection.5.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Optimal parameter settings search during evaluation in Taxi.\relax }}{45}{figure.caption.42}}
+\newlabel{F:taxisearch_eval}{{5.4}{45}{Optimal parameter settings search during evaluation in Taxi.\relax }{figure.caption.42}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Optimal parameter settings search during training in Taxi.\relax }}{45}{figure.caption.43}}
+\newlabel{F:taxisearch_train}{{5.5}{45}{Optimal parameter settings search during training in Taxi.\relax }{figure.caption.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Optimal parameter settings search during training in Mountain Car.\relax }}{45}{figure.caption.44}}
+\newlabel{F:mountain_car_pars}{{5.6}{45}{Optimal parameter settings search during training in Mountain Car.\relax }{figure.caption.44}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Results of TS on Taxi with different upper bounds on variance.\relax }}{45}{figure.caption.45}}
+\newlabel{F:bounds}{{5.7}{45}{Results of TS on Taxi with different upper bounds on variance.\relax }{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.\relax }}{46}{figure.caption.46}}
+\newlabel{F:cs}{{5.8}{46}{Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.\relax }{figure.caption.46}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi ^2$ upper bound boost.\relax }}{46}{figure.caption.47}}
+\newlabel{F:chics}{{5.9}{46}{Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi ^2$ upper bound boost.\relax }{figure.caption.47}{}}
 \citation{mnih2015human}
 \citation{hasselt2015double}
 \citation{osband2017deep}
 \citation{mnih2015human}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Deep}{31}{chapter.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Deep}{47}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.0.1}Deep Reinforcement Learning}{31}{subsection.5.0.1}}
-\newlabel{S:WDQN}{{5.0.1}{31}{Deep Reinforcement Learning}{subsection.5.0.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{Weighted Deep Q-Network}{31}{paragraph*.35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.0.1}Deep Reinforcement Learning}{47}{subsection.6.0.1}}
+\newlabel{S:WDQN}{{6.0.1}{47}{Deep Reinforcement Learning}{subsection.6.0.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Weighted Deep Q-Network}{47}{paragraph*.48}}
 \citation{gym}
 \citation{osband2017deep}
 \citation{osband2017deep}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Average reward in continuous action MDP.\relax }}{32}{table.caption.38}}
-\newlabel{T:acrobot_pars}{{5.1}{32}{Average reward in continuous action MDP.\relax }{table.caption.38}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.0.2}Deep Reinforcement Learning Scenario}{32}{subsection.5.0.2}}
-\@writefile{toc}{\contentsline {subsubsection}{Acrobot}{32}{subsubsection*.36}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{33}{figure.caption.37}}
-\newlabel{F:acrobot}{{5.1}{33}{Average reward averaged on 10 experiments. \relax }{figure.caption.37}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Mushroom}{35}{chapter.6}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Average reward in continuous action MDP.\relax }}{48}{table.caption.51}}
+\newlabel{T:acrobot_pars}{{6.1}{48}{Average reward in continuous action MDP.\relax }{table.caption.51}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.0.2}Deep Reinforcement Learning Scenario}{48}{subsection.6.0.2}}
+\@writefile{toc}{\contentsline {subsubsection}{Acrobot}{48}{subsubsection*.49}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{49}{figure.caption.50}}
+\newlabel{F:acrobot}{{6.1}{49}{Average reward averaged on 10 experiments. \relax }{figure.caption.50}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Mushroom}{51}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{37}{chapter.7}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{53}{chapter.8}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibstyle{plain}
 \bibdata{thesis}
 \bibcite{agrawal2012analysis}{1}
-\bibcite{auer2002finite}{2}
-\bibcite{bellemare2015increasing}{3}
-\bibcite{bellman2013dynamic}{4}
-\bibcite{bertsekas2005dynamic}{5}
-\bibcite{bubeck2012regret}{6}
-\bibcite{deramo2017maximum}{7}
-\bibcite{deramo2016estimating}{8}
-\bibcite{grossman1972non}{9}
-\bibcite{hasselt2015double}{10}
-\bibcite{lai1985asymptotically}{11}
-\bibcite{lee2013bias}{12}
-\bibcite{mnih2015human}{13}
-\bibcite{osband2017deep}{14}
-\bibcite{rasmussen2005gaussian}{15}
-\bibcite{silver2016mastering}{16}
-\bibcite{silver2017chess}{17}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{39}{section*.39}}
-\bibcite{silver2017mastering}{18}
-\bibcite{smith2006optimizer}{19}
-\bibcite{sutton1998reinforcement}{20}
-\bibcite{thompson1933likelihood}{21}
-\bibcite{van2010double}{22}
-\bibcite{van2013estimating}{23}
-\bibcite{van2016deep}{24}
-\bibcite{vermorel2005multi}{25}
-\bibcite{wang2015dueling}{26}
-\bibcite{watkins1989learning}{27}
-\bibcite{xu2013mab}{28}
-\bibcite{ijcai2017-483}{29}
+\bibcite{pmlr-v70-asadi17a}{2}
+\bibcite{auer2002finite}{3}
+\bibcite{auer2007logarithmic}{4}
+\bibcite{bellemare13arcade}{5}
+\bibcite{bellemare2016unifying}{6}
+\bibcite{bellemare2015increasing}{7}
+\bibcite{bellman2013dynamic}{8}
+\bibcite{bertsekas2005dynamic}{9}
+\bibcite{bonarini2006self}{10}
+\bibcite{brafman2002r}{11}
+\bibcite{gym}{12}
+\bibcite{bubeck2012regret}{13}
+\bibcite{chapelle2011empirical}{14}
+\bibcite{chentanez2005intrinsically}{15}
+\bibcite{dearden1999model}{16}
+\bibcite{dearden1998bayesian}{17}
+\bibcite{deramo2017maximum}{18}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{55}{section*.52}}
+\bibcite{deramo2016estimating}{19}
+\bibcite{doi:10.1162/089976600300015204}{20}
+\bibcite{NIPS2011_4251}{21}
+\bibcite{granmo2010solving}{22}
+\bibcite{grossman1972non}{23}
+\bibcite{hasselt2015double}{24}
+\bibcite{hoeffding1963probability}{25}
+\bibcite{jaksch2010near}{26}
+\bibcite{kakade2003sample}{27}
+\bibcite{kearns2002near}{28}
+\bibcite{Kobayashi2009}{29}
+\bibcite{kolter2009near}{30}
+\bibcite{lai1985asymptotically}{31}
+\bibcite{lee2013bias}{32}
+\bibcite{may2011simulation}{33}
+\bibcite{mnih2015human}{34}
+\bibcite{mohagheghi2007proportional}{35}
+\bibcite{osband2017deep}{36}
+\bibcite{osband2013more}{37}
+\bibcite{osband2016generalization}{38}
+\bibcite{pathak2017curiosity}{39}
+\bibcite{rasmussen2005gaussian}{40}
+\bibcite{schmidhuber1991possibility}{41}
+\bibcite{schweighofer2003meta}{42}
+\bibcite{scott2010modern}{43}
+\bibcite{silver2016mastering}{44}
+\bibcite{silver2017chess}{45}
+\bibcite{silver2017mastering}{46}
+\bibcite{smith2006optimizer}{47}
+\bibcite{strehl2006pac}{48}
+\bibcite{strens2000bayesian}{49}
+\bibcite{sutton1998reinforcement}{50}
+\bibcite{tang2017exploration}{51}
+\bibcite{Tewari2007}{52}
+\bibcite{thompson1933likelihood}{53}
+\bibcite{van2004rational}{54}
+\bibcite{van2010double}{55}
+\bibcite{van2013estimating}{56}
+\bibcite{van2016deep}{57}
+\bibcite{vermorel2005multi}{58}
+\bibcite{wang2015dueling}{59}
+\bibcite{watkins1989learning}{60}
+\bibcite{xu2013mab}{61}
+\bibcite{yoshida2013reinforcement}{62}
+\bibcite{ijcai2017-483}{63}

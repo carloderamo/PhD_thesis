@@ -5,10 +5,36 @@ Shipra Agrawal and Navin Goyal.
 \newblock Analysis of thompson sampling for the multi-armed bandit problem.
 \newblock In {\em Conference on Learning Theory}, pages 39--1, 2012.
 
+\bibitem{pmlr-v70-asadi17a}
+Kavosh Asadi and Michael~L. Littman.
+\newblock An alternative softmax operator for reinforcement learning.
+\newblock In {\em International Conference on Machine Learning}, pages
+  243--252, 2017.
+
 \bibitem{auer2002finite}
 Peter Auer, Nicolo Cesa-Bianchi, and Paul Fischer.
 \newblock Finite-time analysis of the multiarmed bandit problem.
 \newblock {\em Machine learning}, 47(2-3):235--256, 2002.
+
+\bibitem{auer2007logarithmic}
+Peter Auer and Ronald Ortner.
+\newblock Logarithmic online regret bounds for undiscounted reinforcement
+  learning.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  49--56, 2007.
+
+\bibitem{bellemare13arcade}
+M.~G. {Bellemare}, Y.~{Naddaf}, J.~{Veness}, and M.~{Bowling}.
+\newblock The arcade learning environment: An evaluation platform for general
+  agents.
+\newblock {\em Journal of Artificial Intelligence Research}, 47, jun 2013.
+
+\bibitem{bellemare2016unifying}
+Marc Bellemare, Sriram Srinivasan, Georg Ostrovski, Tom Schaul, David Saxton,
+  and Remi Munos.
+\newblock Unifying count-based exploration and intrinsic motivation.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  1471--1479, 2016.
 
 \bibitem{bellemare2015increasing}
 Marc~G. Bellemare, Georg Ostrovski, Arthur Guez, Philip~S. Thomas, and
@@ -28,12 +54,53 @@ Dimitri~P Bertsekas, Dimitri~P Bertsekas, Dimitri~P Bertsekas, and Dimitri~P
 \newblock {\em Dynamic programming and optimal control}, volume~1.
 \newblock Athena scientific Belmont, MA, 2005.
 
+\bibitem{bonarini2006self}
+Andrea Bonarini, Alessandro Lazaric, Marcello Restelli, and Patrick Vitali.
+\newblock Self-development framework for reinforcement learning agents.
+\newblock In {\em International Conference on Development and Learning}, volume
+  178, pages 355--362, 2006.
+
+\bibitem{brafman2002r}
+Ronen~I Brafman and Moshe Tennenholtz.
+\newblock R-max-a general polynomial time algorithm for near-optimal
+  reinforcement learning.
+\newblock {\em Journal of Machine Learning Research}, 3(Oct):213--231, 2002.
+
+\bibitem{gym}
+Greg Brockman, Vicki Cheung, Ludwig Pettersson, Jonas Schneider, John Schulman,
+  Jie Tang, and Wojciech Zaremba.
+\newblock Openai gym, 2016.
+
 \bibitem{bubeck2012regret}
 S{\'e}bastien Bubeck, Nicolo Cesa-Bianchi, et~al.
 \newblock Regret analysis of stochastic and nonstochastic multi-armed bandit
   problems.
 \newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
   5(1):1--122, 2012.
+
+\bibitem{chapelle2011empirical}
+Olivier Chapelle and Lihong Li.
+\newblock An empirical evaluation of thompson sampling.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  2249--2257, 2011.
+
+\bibitem{chentanez2005intrinsically}
+Nuttapong Chentanez, Andrew~G Barto, and Satinder~P Singh.
+\newblock Intrinsically motivated reinforcement learning.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  1281--1288, 2005.
+
+\bibitem{dearden1999model}
+Richard Dearden, Nir Friedman, and David Andre.
+\newblock Model based bayesian exploration.
+\newblock In {\em Proceedings of the Fifteenth conference on Uncertainty in
+  artificial intelligence}, pages 150--159. Morgan Kaufmann Publishers Inc.,
+  1999.
+
+\bibitem{dearden1998bayesian}
+Richard Dearden, Nir Friedman, and Stuart Russell.
+\newblock Bayesian q-learning.
+\newblock In {\em AAAI}, pages 761--768, 1998.
 
 \bibitem{deramo2017maximum}
 Carlo D'Eramo, Alessandro Nuara, Matteo Pirotta, and Marcello Restelli.
@@ -47,6 +114,25 @@ Carlo D'Eramo, Marcello Restelli, and Alessandro Nuara.
 \newblock In {\em {ICML}}, volume~48 of {\em {JMLR} Workshop and Conference
   Proceedings}, pages 1032--1040. JMLR.org, 2016.
 
+\bibitem{doi:10.1162/089976600300015204}
+J\"{u}rgen Franke and Michael~H. Neumann.
+\newblock Bootstrapping neural networks.
+\newblock {\em Neural Computation}, 12(8), 2000.
+
+\bibitem{NIPS2011_4251}
+Mohammad Ghavamzadeh, Hilbert~J. Kappen, Mohammad~G. Azar, and R\'{e}mi Munos.
+\newblock Speedy q-learning.
+\newblock In J.~Shawe-Taylor, R.~S. Zemel, P.~L. Bartlett, F.~Pereira, and
+  K.~Q. Weinberger, editors, {\em Proc. NIPS}, pages 2411--2419. Curran
+  Associates, Inc., 2011.
+
+\bibitem{granmo2010solving}
+Ole-Christoffer Granmo.
+\newblock Solving two-armed bernoulli bandit problems using a bayesian learning
+  automaton.
+\newblock {\em International Journal of Intelligent Computing and Cybernetics},
+  3(2):207--234, 2010.
+
 \bibitem{grossman1972non}
 Michael Grossman and Robert Katz.
 \newblock {\em Non-Newtonian Calculus: A Self-contained, Elementary Exposition
@@ -57,6 +143,39 @@ Michael Grossman and Robert Katz.
 Hasselt Hado~van, Guez Arthur, and Silver David.
 \newblock Deep reinforcement learning with double q-learning.
 \newblock {\em CoRR}, abs/1509.06461, 2015.
+
+\bibitem{hoeffding1963probability}
+Wassily Hoeffding.
+\newblock Probability inequalities for sums of bounded random variables.
+\newblock {\em Journal of the American statistical association},
+  58(301):13--30, 1963.
+
+\bibitem{jaksch2010near}
+Thomas Jaksch, Ronald Ortner, and Peter Auer.
+\newblock Near-optimal regret bounds for reinforcement learning.
+\newblock {\em Journal of Machine Learning Research}, 11(Apr):1563--1600, 2010.
+
+\bibitem{kakade2003sample}
+Sham~Machandranath Kakade et~al.
+\newblock {\em On the sample complexity of reinforcement learning}.
+\newblock PhD thesis, University of London London, England, 2003.
+
+\bibitem{kearns2002near}
+Michael Kearns and Satinder Singh.
+\newblock Near-optimal reinforcement learning in polynomial time.
+\newblock {\em Machine learning}, 49(2-3):209--232, 2002.
+
+\bibitem{Kobayashi2009}
+Kunikazu Kobayashi, Hiroyuki Mizoue, Takashi Kuremoto, and Masanao Obayashi.
+\newblock {\em A Meta-learning Method Based on Temporal Difference Error},
+  pages 530--537.
+\newblock Springer Berlin Heidelberg, 2009.
+
+\bibitem{kolter2009near}
+J~Zico Kolter and Andrew~Y Ng.
+\newblock Near-bayesian exploration in polynomial time.
+\newblock In {\em International Conference on Machine Learning}, pages
+  513--520. ACM, 2009.
 
 \bibitem{lai1985asymptotically}
 Tze~Leung Lai and Herbert Robbins.
@@ -69,12 +188,27 @@ Daewoo Lee, Boris Defourny, and Warren~B Powell.
 \newblock In {\em Adaptive Dynamic Programming And Reinforcement Learning
   (ADPRL), 2013 IEEE Symposium on}, pages 93--99. IEEE, 2013.
 
+\bibitem{may2011simulation}
+Benedict~C May and David~S Leslie.
+\newblock Simulation studies in optimistic bayesian sampling in
+  contextual-bandit problems.
+\newblock {\em Statistics Group, Department of Mathematics, University of
+  Bristol}, 11:02, 2011.
+
 \bibitem{mnih2015human}
 Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
   Marc~G Bellemare, Alex Graves, Martin Riedmiller, Andreas~K Fidjeland, Georg
   Ostrovski, et~al.
 \newblock Human-level control through deep reinforcement learning.
 \newblock {\em Nature}, 518(7540):529, 2015.
+
+\bibitem{mohagheghi2007proportional}
+Salman Mohagheghi, Yamille del Valle, Ganesh~Kumar Venayagamoorthy, and
+  Ronald~G Harley.
+\newblock A proportional-integrator type adaptive critic design-based
+  neurocontroller for a static compensator in a multimachine power system.
+\newblock {\em IEEE Transactions on Industrial Electronics}, 54(1):86--96,
+  2007.
 
 \bibitem{osband2017deep}
 Ian Osband, Charles Blundell, Alexander Pritzel, and Benjamin Van~Roy.
@@ -83,11 +217,47 @@ Ian Osband, Charles Blundell, Alexander Pritzel, and Benjamin Van~Roy.
   editors, {\em Advances in Neural Information Processing Systems 29}, pages
   4026--4034. Curran Associates, Inc., 2016.
 
+\bibitem{osband2013more}
+Ian Osband, Daniel Russo, and Benjamin Van~Roy.
+\newblock (more) efficient reinforcement learning via posterior sampling.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  3003--3011, 2013.
+
+\bibitem{osband2016generalization}
+Ian Osband, Benjamin Van~Roy, and Zheng Wen.
+\newblock Generalization and exploration via randomized value functions.
+\newblock In {\em International Conference on Machine Learning}, pages
+  2377--2386, 2016.
+
+\bibitem{pathak2017curiosity}
+Deepak Pathak, Pulkit Agrawal, Alexei~A Efros, and Trevor Darrell.
+\newblock Curiosity-driven exploration by self-supervised prediction.
+\newblock In {\em International Conference on Machine Learning}, volume 2017,
+  2017.
+
 \bibitem{rasmussen2005gaussian}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.
 \newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
   and Machine Learning)}.
 \newblock The MIT Press, 2005.
+
+\bibitem{schmidhuber1991possibility}
+J{\"u}rgen Schmidhuber.
+\newblock A possibility for implementing curiosity and boredom in
+  model-building neural controllers.
+\newblock In {\em International Conference on Simulation of Adaptive Behavior:
+  From animals to animats}, pages 222--227, 1991.
+
+\bibitem{schweighofer2003meta}
+Nicolas Schweighofer and Kenji Doya.
+\newblock Meta-learning in reinforcement learning.
+\newblock {\em Neural Networks}, 16(1):5--9, 2003.
+
+\bibitem{scott2010modern}
+Steven~L Scott.
+\newblock A modern bayesian look at the multi-armed bandit.
+\newblock {\em Applied Stochastic Models in Business and Industry},
+  26(6):639--658, 2010.
 
 \bibitem{silver2016mastering}
 David Silver, Aja Huang, Chris~J Maddison, Arthur Guez, Laurent Sifre, George
@@ -117,16 +287,47 @@ James~E Smith and Robert~L Winkler.
   decision analysis.
 \newblock {\em Management Science}, 52(3):311--322, 2006.
 
+\bibitem{strehl2006pac}
+Alexander~L Strehl, Lihong Li, Eric Wiewiora, John Langford, and Michael~L
+  Littman.
+\newblock Pac model-free reinforcement learning.
+\newblock In {\em International Conference on Machine Learning}, pages
+  881--888. ACM, 2006.
+
+\bibitem{strens2000bayesian}
+Malcolm Strens.
+\newblock A bayesian framework for reinforcement learning.
+\newblock In {\em International Conference on Machine Learning}, pages
+  943--950, 2000.
+
 \bibitem{sutton1998reinforcement}
 Richard~S Sutton, Andrew~G Barto, et~al.
 \newblock {\em Reinforcement learning: An introduction}.
 \newblock MIT press, 1998.
+
+\bibitem{tang2017exploration}
+Haoran Tang, Rein Houthooft, Davis Foote, Adam Stooke, OpenAI~Xi Chen, Yan
+  Duan, John Schulman, Filip DeTurck, and Pieter Abbeel.
+\newblock \# exploration: A study of count-based exploration for deep
+  reinforcement learning.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2017.
+
+\bibitem{Tewari2007}
+Ambuj Tewari and Peter~L. Bartlett.
+\newblock {\em Bounded Parameter Markov Decision Processes with Average Reward
+  Criterion}, pages 263--277.
+\newblock 2007.
 
 \bibitem{thompson1933likelihood}
 William~R Thompson.
 \newblock On the likelihood that one unknown probability exceeds another in
   view of the evidence of two samples.
 \newblock {\em Biometrika}, 25(3/4):285--294, 1933.
+
+\bibitem{van2004rational}
+Eric Van~den Steen.
+\newblock Rational overoptimism (and other biases).
+\newblock {\em American Economic Review}, pages 1141--1151, 2004.
 
 \bibitem{van2010double}
 Hado Van~Hasselt.
@@ -169,6 +370,11 @@ Min Xu, Tao Qin, and Tie yan Liu.
 \newblock In Burges C.j.c., Bottou L., Welling M., Ghahramani Z., and
   Weinberger K.q., editors, {\em Advances in Neural Information Processing
   Systems 26}, pages 2400--2408. 2013.
+
+\bibitem{yoshida2013reinforcement}
+Naoto Yoshida, Eiji Uchibe, and Kenji Doya.
+\newblock Reinforcement learning with state-dependent discount factor.
+\newblock In {\em Proc. ICDL}, pages 1--6. IEEE, 2013.
 
 \bibitem{ijcai2017-483}
 Zhang Zongzhang, Pan Zhiyuan, and Kochenderfer Mykel~J.

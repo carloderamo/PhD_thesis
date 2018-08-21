@@ -7,11 +7,11 @@ While sometimes only the order of preference of these alternatives matters, many
 For instance, in \gls{rl} the optimal policy can be found by taking, in each state, the action that attains the maximum expected cumulative reward. The optimal value of an action in a state, on its turn, depends on the \glspl{mev} of the actions available in the reached states.
 Since errors propagate through all the state-action pairs, a bad estimator for the \gls{mev} negatively affects the speed of learning~\cite{van2010double}.
 
-Generally, we use this estimation when we need to know not only which is the variable with the \gls{mev} from a set of variables, but we want to have also a good estimation of such expected value. The most used approach to this estimation problem is the \gls{me} which simply takes the maximum estimated utility. As proved in~\cite{smith2006optimizer}, this estimate is positively biased and, if used in iterative algorithms, can increase the approximation error step-by step~\cite{van2010double}. More effective estimators have been proposed in the recent years. The \gls{de}~\cite{van2013estimating} approximates the maximum by splitting the sample set into two disjoint sample sets. One of this set is used to pick the element with the maximum approximate value and its value is picked from the other set. This has to be done the opposite way switching the role of the two sets. Eventually, the average (or a convex combination) of the two values is considered. This approach has been proven to have negative bias~\cite{van2013estimating} which, in some applications, allows to overcome the problem of \gls{me}.
+The most used approach to this estimation problem is the \gls{me} which simply takes the maximum estimated utility. As proved in~\cite{smith2006optimizer}, this estimate is positively biased and, if used in iterative algorithms, can increase the approximation error step-by step~\cite{van2010double}. More effective estimators have been proposed in the recent years. The \gls{de}~\cite{van2013estimating} approximates the maximum by splitting the sample set into two disjoint sample sets. One of this set is used to pick the element with the maximum approximate value and its value is picked from the other set. This has to be done the opposite way switching the role of the two sets. Eventually, the average (or a convex combination) of the two values is considered. This approach has been proven to have negative bias~\cite{van2013estimating} which, in some applications, allows to overcome the problem of \gls{me}.
 
-During my research, I analyzed this problem and proposed the \gls{we}~\cite{deramo2016estimating} which approximates the maximum value by a sum of different values weighted by their probability of being the maximum. \gls{we} can have both negative and positive bias, but its bias always stays in the range between the \gls{me} and \gls{de} biases.
+During my years of Ph.D. research, we analyzed this problem and proposed the \gls{we}~\cite{deramo2016estimating} which approximates the maximum value by a sum of different values weighted by their probability of being the maximum. \gls{we} can have both negative and positive bias, but its bias always stays in the range between the \gls{me} and \gls{de} biases.
 
-All the mentioned approaches are limited to finite random variables, thus, in a subsequent work, I extended the study to problems with infinite random variables and proposed an extension of \gls{we}~\cite{deramo2017maximum} to address them. By exploiting the \gls{clt} and the spatial correlation among variables, the probability distribution of each random variable is approximated as a normal distribution whose means and variances are estimated by means of \glspl{gp}~\cite{rasmussen2005gaussian}.
+All the mentioned approaches are limited to a finite set of random variables, thus, in a subsequent work, we extended the study to problems with a set of infinite random variables and proposed an extension of \gls{we}~\cite{deramo2017maximum} to address them.
 
 \section{Problem definition}
 Given a finite set of $M \geq 2$ independent random variables $X = \lbrace X_{1}, ..., X_{M} \rbrace$, for each variable $X_i$ we denote with $f_i : \mathbb{R} \rightarrow \mathbb{R}$ its \gls{pdf}, with $F_i : \mathbb{R} \rightarrow \mathbb{R}$ its \gls{cdf}, with $\mu_i$ its mean, and with $\sigma^2_i$ its variance.
@@ -53,7 +53,7 @@ Differently from \gls{me} and \gls{de} that output the sample average of the var
 \end{equation}
 Ideally, each weight $w_i^S$ should be the probability of $\hat\mu_i(S)$ being larger than all other samples means:  
 $$w_i^S = P\left(\hat\mu_i(S) = \max_j \hat\mu_j(S)\right).$$
-If we knew the \glspl{pdf} $\hat{f}_i^S$ for each $\hat\mu_i(S)$ we could compute the \gls{dawe}:
+If we knew the \glspl{pdf} $\hat{f}_i^S$ for each $\hat\mu_i(S)$ we could compute the \gls{dwe}:
 \begin{equation}\label{E:OptimalWE}
 \est{DWE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \hat{f}_i^S(x) \prod_{j\neq i}\hat{F}_j^S(x)~\mathrm{d}x.
 \end{equation}
@@ -135,114 +135,97 @@ The variance of the \gls{gp} target $q_*$ is composed by the variance of the mea
 As a result, by only considering the mean contribute, we approximate the distribution of the sample mean by  $\tilde{f}_{\hat{\mu}_z}^S = \mathcal{N}\left(\hat{\mu}_z, \hat{\sigma}^2_{\hat{\mu}_z} \right)$ as defined in equations~\ref{E:gpmean}.
 
 \section{Analysis of Weighted Estimator}
-In this section, we theoretically analyze the estimation error of $\est{\WE}(S)$ in terms of bias and variance, comparing it with the results available for \ME~and \CV.
-Although \OWE~cannot be used in practice, we include it in the following analysis since it provides an upper limit to the accuracy of \WE.
+In this section, we theoretically analyze the estimation error of $\est{WE}(S)$ in terms of bias and variance, comparing it with the results available for \gls{me} and \gls{de}.
+Although \gls{dwe} cannot be used in practice, we include it in the following analysis since it provides an upper limit to the accuracy of \gls{we}.
 
 \subsection{Bias}
 
-\begin{figure*}[t]
-    \begin{minipage}{0.45\textwidth}
-    \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/bias.tikz} 
-    \caption{Comparison of the bias of the different estimators.}\label{F:bias}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.54\textwidth}    
-    \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/absolute_bias.tikz} 
-    \caption{Comparison of the absolute bias of the different estimators.}\label{F:absolute_bias}
-    \end{minipage}
-\end{figure*}
+\begin{figure}
+\centering
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\includegraphics[scale=0.7]{./img/bias.pdf}
+    \caption{Comparison of the bias of the different estimators varying the difference of the means}\label{F:bias}
+	\end{minipage}
+	  \hfill
+	\begin{minipage}{0.45\textwidth}
+	\centering	
+	\includegraphics[scale=0.7]{./img/absolute_bias.pdf}
+	\caption{Comparison of the absolute bias of the different estimators varying the difference of the means.}\label{F:absolute_bias}
+	\end{minipage}
+\end{figure}
 
-We start with summarizing the main results about the bias of \ME~and \CV~reported in~\cite{van2013estimating}.
-For what concerns the direction of the bias, \ME~is positively biased, while \CV~is negatively biased.
+We start with summarizing the main results about the bias of \gls{me} and \gls{de} reported in~\cite{van2013estimating}.
+For what concerns the direction of the bias, \gls{me} is positively biased, while \gls{de} is negatively biased.
 If we look at the absolute bias, there is no clear winner. 
-For instance, when all the random variables are identically distributed, \CV~is unbiased, while the same setting represents a worst case for \ME~.
-On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \ME~can be significantly smaller than the one of \CV~(see Section~\ref{S:Experiments}).
-The bias of \ME~is bounded by:
-$$\mathrm{Bias}\left(\est{\ME}\right) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
-For the bias of \CV, \citet{van2013estimating} conjectures the following bound (which is proved for two variables):
-$$\mathrm{Bias}\left(\est{\CV}\right) \geq -\frac{1}{2}\left(\sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^A_i|}} + \sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^B_i|}}\right). $$
+For instance, when all the random variables are identically distributed, \gls{de} is unbiased, while the same setting represents a worst case for \gls{me}.
+On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \gls{me} can be significantly smaller than the one of \gls{de}.
+The bias of \gls{me} is bounded by:
+$$\mathrm{Bias}\left(\est{ME}\right) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
+For the bias of \gls{de}, \cite{van2013estimating} conjectures the following bound (which is proved for two variables):
+$$\mathrm{Bias}\left(\est{DE}\right) \geq -\frac{1}{2}\left(\sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^A_i|}} + \sqrt{\sum_{i=1}^M \frac{\sigma_i^2}{|S^B_i|}}\right). $$
 
-In the next theorem we provide a relationship between the bias of \WE~and the one of \ME.
+In the next theorem we provide a relationship between the bias of \gls{we} and the one of \gls{me}.
 \begin{theorem}\label{T:BiasWEME}
  For any given set $X$ of $M$ random variables:
- $$\mathrm{Bias}(\est{\WE}) \leq \mathrm{Bias}(\est{\ME}) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
+ $$\mathrm{Bias}(\est{WE}) \leq \mathrm{Bias}(\est{ME}) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
 \end{theorem}
-As we will see in Section~\ref{S:Experiments}, this does not mean that the absolute bias of \WE~is necessarily smaller than the one of \ME, since (as we will see later) the bias of \WE~can be also negative.
-In order to better characterize the bias of \WE, we put it in relation with the bias of \CV.
-% \begin{lemma}\label{L:BiasOWECV}
-%  For any given set $X$ of $M$ random variables:
-%  $$0 \leq \mathrm{Bias}(\est{\OWE}) \leq \mathrm{Bias}(\est{\CV}).$$
-% \end{lemma}
-% \begin{proof}
-%  DIMOSTRARE CHE IL BIAS DI $\OWE$ E' NEGATIVO (SIMILE ALLA DIMOSTRAZIONE DI \CV)
-%  DIMOSTRARE CHE IL BIAS DI $\OWE$ E' INFERIORE A QUELLO DI \CV (MENO INCERTEZZA SULLE DISTRIBUZIONI)
-% \end{proof}
-% Leveraging on the above lemma, it is easy to put in relation the bias of \WE~to the one of \CV.
+This does not mean that the absolute bias of \gls{we} is necessarily smaller than the one of \gls{me}, since (as we will see later) the bias of \gls{we} can be also negative.
+In order to better characterize the bias of \gls{we}, we put it in relation with the bias of \gls{de}.
 \begin{theorem}\label{T:BiasWECV}
  For any given set $X$ of $M$ random variables:
-  $$\mathrm{Bias}(\est{\WE}) \geq \mathrm{Bias}(\est{\CV}).$$
+  $$\mathrm{Bias}(\est{WE}) \geq \mathrm{Bias}(\est{DE}).$$
 \end{theorem}
 
-\textbf{Example} In Figures~\ref{F:bias} and~\ref{F:absolute_bias} we visualize the bias of the different \MEV~estimators in a setting with two normally distributed random variables ($X_1\sim\mathcal{N}(\mu_1,\sigma_1^2)$ and $X_2\sim\mathcal{N}(\mu_2,\sigma_2^2)$) as a function of the difference of their expected values. Both variables have variance equal to 10 ($\sigma_1^2=\sigma_2^2=10$) and we assume to have 100 samples for each variable ($|S_1|=|S_2|=100$).
-Figure~\ref{F:bias} confirms the previous theoretical analysis: the bias of \ME~is always positive, while the biases of \OWE~and \CV~are always negative, with the latter always worse than the former.
-The bias of \WE~can be positive or negative according to the situation, but it always falls in the range identified by the biases of \ME~and \CV. 
-% (DAGLI ESPERIMENTI WE SEMBRA ANDARE SOTTO OWE, CONTRADICENDO IL TEOREMA!!!)
+\textbf{Example} In Figures~\ref{F:bias} and~\ref{F:absolute_bias} we visualize the bias of the different \gls{mev} estimators in a setting with two normally distributed random variables ($X_1\sim\mathcal{N}(\mu_1,\sigma_1^2)$ and $X_2\sim\mathcal{N}(\mu_2,\sigma_2^2)$) as a function of the difference of their expected values. Both variables have variance equal to 10 ($\sigma_1^2=\sigma_2^2=10$) and we assume to have 100 samples for each variable ($|S_1|=|S_2|=100$).
+Figure~\ref{F:bias} confirms the previous theoretical analysis: the bias of \gls{me} is always positive, while the biases of \gls{dwe} and \gls{de} are always negative, with the latter always worse than the former.
+The bias of \gls{we} can be positive or negative according to the situation, but it always falls in the range identified by the biases of \gls{me} and \gls{de}.
 Looking at the absolute biases shown in Figure~\ref{F:absolute_bias}, we can notice that there is not a clear winner.
-As previously mentioned, when the variables have the same mean, both \CV~and \OWE~are unbiased, while it represents a worst case for the bias of \ME~and \WE. It follows that, when the difference of the two means is small (less than 0.5 in the example), \CV~suffers less absolute bias than \ME~and \WE. For moderate differences of the means (between 0.5 and 1.8 in the example), \WE~has the minimum absolute bias, while \ME~is preferable for larger differences.
-Such results can be generalized as follows: \CV~suffers a small bias when there are several variables that have expected values close (w.r.t.~their variances) to the maximum one, while \ME~provides the best estimate when there is one variable whose expected value is significantly larger (w.r.t.~the variances) than all the expected values of all the other variables. In all the other cases, \WE~is less biased.
+As previously mentioned, when the variables have the same mean, both \gls{de} and \gls{dwe} are unbiased, while it represents a worst case for the bias of \gls{me} and \gls{we}. It follows that, when the difference of the two means is small (less than 0.5 in the example), \gls{de} suffers less absolute bias than \gls{me} and \gls{we}. For moderate differences of the means (between 0.5 and 1.8 in the example), \gls{we} has the minimum absolute bias, while \gls{me} is preferable for larger differences.
+Such results can be generalized as follows: \gls{de} suffers a small bias when there are several variables that have expected values close (w.r.t.~their variances) to the maximum one, while \gls{me} provides the best estimate when there is one variable whose expected value is significantly larger (w.r.t.~the variances) than all the expected values of all the other variables. In all the other cases, \gls{we} is less biased.
 
 \subsection{Variance}
-
-
-\begin{figure*}
-    \begin{minipage}{0.5\textwidth}
-    \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/variance.tikz} 
-    \caption{Comparison of the variance of the different estimators.}\label{F:variance}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.45\textwidth}
-     \centering 
-    \setlength\figureheight{4cm}
-    \setlength\figurewidth{6cm}
-    \input{imgs/mse.tikz} 
-    \caption{Comparison of the MSE of the different estimators.}\label{F:mse}
-    \end{minipage}
-\end{figure*}
+\begin{figure}
+\centering
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\includegraphics[scale=0.7]{./img/variance.pdf}
+    \caption{Comparison of the variance of the different estimators varying the difference of the means.}\label{F:variance}
+	\end{minipage}
+	  \hfill
+	\begin{minipage}{0.45\textwidth}
+	\centering	
+	\includegraphics[scale=0.7]{./img/mse.pdf}
+	\caption{Comparison of the MSE of the different estimators varying the difference of the means.}\label{F:mse}
+	\end{minipage}
+	\label{F:Variance_mse}
+\end{figure}
 
 We cannot evaluate the goodness of an estimator by analyzing only its bias.
-In fact, since the MSE of an estimator is the sum of its squared bias and its variance, we need to take into consideration also the latter.
+In fact, since the \gls{mse} of an estimator is the sum of its squared bias and its variance, we need to take into consideration also the latter.
 
-\citet{van2013estimating} proved that both the variance of \ME~and the one of \CV~can be upper bounded with the sum of the variances of the sample means:
-$ \mathrm{Var}\left(\est{\ME}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$, $\mathrm{Var}\left(\est{\CV}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$.
-The next theorem shows that the same upper bound holds also for the variance of \WE.
+\cite{van2013estimating} proved that both the variance of \gls{me} and the one of \gls{de} can be upper bounded with the sum of the variances of the sample means:
+$ \mathrm{Var}\left(\est{ME}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$, $\mathrm{Var}\left(\est{DE}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}$.
+The next theorem shows that the same upper bound holds also for the variance of \gls{we}.
 \begin{theorem}\label{T:VarianceWE}
- The variance of \WE~is upper bounded by
- $$\mathrm{Var}\left(\est{\WE}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}.$$
+ The variance of \gls{we} is upper bounded by
+ $$\mathrm{Var}\left(\est{WE}\right) \leq \sum_{i=1}^M \frac{\sigma^2_i}{|S_i|}.$$
 \end{theorem}
 The bound in Theorem~\ref{T:VarianceWE} is overly pessimistic; in fact, even if each weight $w_i^S$ is correlated to the other weights and to the sample mean $\hat\mu_i(S)$, their sum is equal to one.
-For sake of comparison, we upper bound the variance of \OWE.
+For sake of comparison, we upper bound the variance of \gls{dwe}.
 \begin{theorem}\label{T:VarianceOWE}
- The variance of \OWE~is upper bounded by
- $$\mathrm{Var}\left(\est{\OWE}\right) \leq \max_{i\in{1,\dots,M}} \frac{\sigma^2_i}{|S_i|}.$$
+ The variance of \gls{dwe} is upper bounded by
+ $$\mathrm{Var}\left(\est{DWE}\right) \leq \max_{i\in{1,\dots,M}} \frac{\sigma^2_i}{|S_i|}.$$
 \end{theorem}
 
 \textbf{Example} As done for the bias, in Figure~\ref{F:variance} we show the variance of the different estimators under the same settings described above.
 As the difference of the means of the two variables grows, the variance of all the estimators converges to the variance of the sample mean of the variable with the maximum expected value.
-\CV~is the estimator with the largest variance since its sample means are computed using half the number of samples w.r.t.~the other estimators.
-\WE~exhibits a variance slightly larger than the one of \ME, while, as expected, the variance of \OWE~is always the smallest.
+\gls{de} is the estimator with the largest variance since its sample means are computed using half the number of samples w.r.t.~the other estimators.
+\gls{we} exhibits a variance slightly larger than the one of \gls{me}, while, as expected, the variance of \gls{dwe} is always the smallest.
 
-Finally, in Figure~\ref{F:mse} we show the MSE (variance + bias$^2$) of the different estimators.
-When the difference between the two means is less than one, \WE~suffers from a lower MSE than the other two estimators.
-On the other hand, \ME~is preferable when there is a variable with an expected value that is significantly larger than the other ones.
+Finally, in Figure~\ref{F:mse} we show the \gls{mse} (variance + bias$^2$) of the different estimators.
+When the difference between the two means is less than one, \gls{we} suffers from a lower \gls{mse} than the other two estimators.
+On the other hand, \gls{me} is preferable when there is a variable with an expected value that is significantly larger than the other ones.
 
 \section{Maximum Expected Value estimation in Reinforcement Learning}
 Among value-based methods, we consider online and offline algorithms that approximate the optimal $Q$-values without the need of a model of the environment. We consider mostly \glspl{mdp} with discrete action spaces, except for the batch algorithm based on \gls{we} that can be extended also to \glspl{mdp} with continuous action spaces.
@@ -370,14 +353,6 @@ The same happens in Figure~\ref{F:ia_third} when all the ads share the same clic
 However, it starts to have large variance as soon as the range of probabilities increases (Figure \ref{F:variance}). 
 The \gls{mse} of \gls{we} is the lowest \gls{mse}, but it gets similar to the \gls{mse} of \gls{me} as the range increases.
 
-\begin{figure}[t]
-    \begin{minipage}{\columnwidth}
-    \centering 
-    \includegraphics[scale=0.9]{./img/sponsoredSearch.pdf}
-    \caption{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
-    \end{minipage}
-\end{figure}
-
 \subsubsection{Sponsored Search Auctions}
 We consider this \gls{mab} problem as described in~\cite{xu2013mab}. In this problem a search engine runs an auction to select the best ad to show from a pool of candidates with the goal of maximizing over a value that depends on the bid of each advertiser and its click probability. 
 When an ad is clicked, the advertiser is charged from the search engine of a fee that depends on the bids $b$ of the advertisers and the \glspl{ctr} $\rho$ of the ads. 
@@ -385,6 +360,14 @@ When an ad is clicked, the advertiser is charged from the search engine of a fee
 On the other hand, the advertisers have to decide the value of their bid $b_i$ according to the true values $v_i$ of a click. A desirable condition in auctions, called \textit{incentive compatibility}, requires that the advertisers maximize their utility by truthfully bidding $b_i = v_i$. Incentive compatibility may not occur when the estimate of the click probabilities are not accurate. We want to evaluate how the estimators favor the incentive compatibility.
 We measure the utility gain of advertiser $1$, whose true per click value is $v_1 = 1$, for different bid $b_1$ values and competing with four other advertisers whose bids are $b_{-1} = \lbrace 0.9, 1, 2, 1 \rbrace$. The \glspl{ctr} are: $\rho = \lbrace 0.15, 0.11, 0.1, 0.05, 0.01 \rbrace$. 
 \glspl{ctr} are estimated from data collected using the UCB1 algorithm~\cite{auer2002finite} in a learning phase consisting of $10000$ rounds of exploration (i.e. impressions), as done in~\cite{xu2013mab}.
+
+\begin{figure}[t]
+    \begin{minipage}{\columnwidth}
+    \centering 
+    \includegraphics[scale=0.9]{./img/sponsoredSearch.pdf}
+    \caption{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
+    \end{minipage}
+\end{figure}
 
 Figure \ref{F:spSearch} shows the utility gain of advertiser $1$ when using \gls{me}, \gls{de} and \gls{we}.\footnote{The debiasing algorithm proposed in~\cite{xu2013mab} is a cross validation approach, but differs from the estimators considered in this paper. It averages the values used for selection and the values used for estimation, thus being a hybrid of \gls{de} and \gls{me}.}
 The true bid price is highlighted with a black vertical bar. \gls{me} results to be only one not able to achieve incentive compatibility, since the utility has positive values before the true bid price. On the contrary with \gls{de} and \gls{we} the advertiser has no incentive to underbid, but there is an incentive to overbid using \gls{de}. Therefore \gls{we} is the only estimator which succeeds to achieve incentive compatibility.

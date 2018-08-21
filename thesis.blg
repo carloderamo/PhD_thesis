@@ -6,48 +6,51 @@ Database file #1: thesis.bib
 Warning--I didn't find a database entry for "Ernst2005tree"
 Warning--I didn't find a database entry for "lee2012intelligent"
 Warning--I didn't find a database entry for "doya2000reinforcement"
-Warning--I didn't find a database entry for "gym"
+Warning--I didn't find a database entry for "d2016estimating"
+Warning--I didn't find a database entry for "osband2016deep"
+Warning--I didn't find a database entry for "hasselt2010double"
 Warning--can't use both volume and number fields in bertsekas2005dynamic
+Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
-You've used 29 entries,
+You've used 63 entries,
             2118 wiz_defined-function locations,
-            674 strings with 9778 characters,
-and the built_in function-call counts, 11604 in all, are:
-= -- 1105
-> -- 671
-< -- 13
-+ -- 262
-- -- 232
-* -- 835
-:= -- 1910
-add.period$ -- 94
-call.type$ -- 29
-change.case$ -- 186
+            856 strings with 15440 characters,
+and the built_in function-call counts, 25809 in all, are:
+= -- 2539
+> -- 1284
+< -- 34
++ -- 509
+- -- 437
+* -- 1764
+:= -- 4058
+add.period$ -- 200
+call.type$ -- 63
+change.case$ -- 384
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 444
-empty$ -- 830
-format.name$ -- 232
-if$ -- 2442
+cite$ -- 66
+duplicate$ -- 1048
+empty$ -- 1965
+format.name$ -- 437
+if$ -- 5569
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 33
-newline$ -- 148
-num.names$ -- 62
-pop$ -- 223
+int.to.str$ -- 63
+missing$ -- 67
+newline$ -- 317
+num.names$ -- 132
+pop$ -- 471
 preamble$ -- 1
-purify$ -- 163
+purify$ -- 330
 quote$ -- 0
-skip$ -- 328
+skip$ -- 826
 stack$ -- 0
-substring$ -- 594
-swap$ -- 133
-text.length$ -- 13
+substring$ -- 1600
+swap$ -- 365
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 106
-warning$ -- 2
-while$ -- 101
-width$ -- 31
-write$ -- 321
-(There were 6 warnings)
+type$ -- 238
+warning$ -- 3
+while$ -- 244
+width$ -- 65
+write$ -- 696
+(There were 9 warnings)

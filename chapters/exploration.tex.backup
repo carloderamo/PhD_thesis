@@ -173,7 +173,7 @@ The \textbf{Taxi} problem consists of a discrete \gls{mdp}, similar to a grid wo
 \begin{minipage}{\textwidth}
 \begin{center}
   \subfigure[Mountain Car\label{F:mountain_car}]{\includegraphics[scale=.3]{img/mc_comp.pdf}}
-  \subfigure[Acrobot\label{F:acrobot}]{\includegraphics[scale=.3]{img/acrobot_ts.pdf}}
+  \subfigure[Acrobot\label{F:acrobot}]{\includegraphics[scale=.3]{img/acrobot.pdf}}
 \end{center}
 \end{minipage}
 \caption{Figure~\ref{F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref{F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.}\label{F:TS_cont}
@@ -195,7 +195,7 @@ We conduct further studies on the performance of the different algorithms descri
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.3]{img/taxisearch_eval.pdf}
+  \includegraphics[scale=.3]{img/q_learning/taxi/taxisearch_eval.pdf}
 \end{center}
 \end{minipage}
 \caption{Optimal parameter settings search during evaluation in Taxi.}\label{F:taxisearch_eval}
@@ -203,7 +203,7 @@ We conduct further studies on the performance of the different algorithms descri
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.3]{img/taxisearch_train.pdf}
+  \includegraphics[scale=.3]{img/q_learning/taxi/taxisearch_train.pdf}
 \end{center}
 \end{minipage}
 \caption{Optimal parameter settings search during training in Taxi.}\label{F:taxisearch_train}
@@ -211,7 +211,7 @@ We conduct further studies on the performance of the different algorithms descri
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.3]{img/mcopt.pdf}
+  \includegraphics[scale=.3]{img/q_learning/mountain_car/mcopt.pdf}
 \end{center}
 \end{minipage}
 \caption{Optimal parameter settings search during training in Mountain Car.}\label{F:mountain_car_pars}
@@ -220,7 +220,7 @@ We conduct further studies on the performance of the different algorithms descri
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.05]{img/bounds.pdf}
+  \includegraphics[scale=.05]{img/q_learning/taxi/bounds.pdf}
 \end{center}
 \end{minipage}
 \caption{Results of TS on Taxi with different upper bounds on variance.}\label{F:bounds}
@@ -228,7 +228,7 @@ We conduct further studies on the performance of the different algorithms descri
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.05]{img/cs.pdf}
+  \includegraphics[scale=.05]{img/q_learning/taxi/cs.pdf}
 \end{center}
 \end{minipage}
 \caption{Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.}\label{F:cs}
@@ -236,7 +236,7 @@ We conduct further studies on the performance of the different algorithms descri
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \includegraphics[scale=.05]{img/chics.pdf}
+  \includegraphics[scale=.05]{img/q_learning/taxi/chics.pdf}
 \end{center}
 \end{minipage}
 \caption{Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi^2$ upper bound boost.}\label{F:chics}

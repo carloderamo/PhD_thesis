@@ -8,25 +8,46 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Reinforcement Learning problem scheme}}{5}{figure.caption.11}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Markov Decision Process}}{7}{figure.caption.12}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces MSE for each setting. Results are averaged over 2000 experiments.\relax }}{19}{figure.caption.23}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Increasing number of impressions.}}}{19}{figure.caption.23}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Increasing number of ads.}}}{19}{figure.caption.23}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{19}{figure.caption.23}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Relative player 1 utility gain for different value of the bid defined as $\frac {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }}{20}{figure.caption.24}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }}{22}{figure.caption.27}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Bernoulli.}}}{22}{figure.caption.27}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{22}{figure.caption.27}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{22}{figure.caption.27}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Profit per year averaged over 100 experiments.\relax }}{23}{figure.caption.28}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Training phase.}}}{23}{figure.caption.28}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Test phase.}}}{23}{figure.caption.28}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Mean bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }}{25}{figure.caption.31}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Variance of the bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins. \relax }}{26}{figure.caption.32}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Average reward averaged on 100 experiments.\relax }}{27}{figure.caption.34}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Discrete actions.}}}{27}{figure.caption.34}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Continuous actions.}}}{27}{figure.caption.34}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Comparison of the bias of the different estimators varying the difference of the means\relax }}{16}{figure.caption.20}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Comparison of the absolute bias of the different estimators varying the difference of the means.\relax }}{16}{figure.caption.20}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison of the variance of the different estimators varying the difference of the means.\relax }}{18}{figure.caption.21}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Comparison of the MSE of the different estimators varying the difference of the means.\relax }}{18}{figure.caption.21}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces MSE for each setting. Results are averaged over 2000 experiments.\relax }}{22}{figure.caption.25}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Increasing number of impressions.}}}{22}{figure.caption.25}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Increasing number of ads.}}}{22}{figure.caption.25}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{22}{figure.caption.25}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Relative player 1 utility gain for different value of the bid defined as $\frac {utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.\relax }}{23}{figure.caption.27}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.\relax }}{24}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Bernoulli.}}}{24}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{24}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{24}{figure.caption.29}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Profit per year averaged over 100 experiments.\relax }}{25}{figure.caption.30}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Training phase.}}}{25}{figure.caption.30}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Test phase.}}}{25}{figure.caption.30}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Mean bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins (only for ME and DE). \relax }}{27}{figure.caption.33}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Variance of the bias obtained by ME, DE and $\text {WE}_{\infty }$ with different sample sizes and bins. \relax }}{28}{figure.caption.34}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Average reward averaged on 100 experiments.\relax }}{29}{figure.caption.36}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Discrete actions.}}}{29}{figure.caption.36}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Continuous actions.}}}{29}{figure.caption.36}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{33}{figure.caption.37}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Results on the \textbf {Taxi} problem. Figure~\ref {F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref {F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref {F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.\relax }}{43}{figure.caption.39}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Online variance}}}{43}{figure.caption.39}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Taxi grid}}}{43}{figure.caption.39}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Bootstrapped variance}}}{43}{figure.caption.39}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Figure~\ref {F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref {F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.\relax }}{44}{figure.caption.40}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mountain Car}}}{44}{figure.caption.40}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Acrobot}}}{44}{figure.caption.40}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.\relax }}{44}{figure.caption.41}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pong}}}{44}{figure.caption.41}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Breakout}}}{44}{figure.caption.41}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Optimal parameter settings search during evaluation in Taxi.\relax }}{45}{figure.caption.42}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Optimal parameter settings search during training in Taxi.\relax }}{45}{figure.caption.43}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Optimal parameter settings search during training in Mountain Car.\relax }}{45}{figure.caption.44}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Results of TS on Taxi with different upper bounds on variance.\relax }}{45}{figure.caption.45}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.\relax }}{46}{figure.caption.46}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi ^2$ upper bound boost.\relax }}{46}{figure.caption.47}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{49}{figure.caption.50}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
