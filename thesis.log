@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  27 AUG 2018 15:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  27 AUG 2018 15:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1876,19 +1876,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX Warning: Citation `d2016estimating' on page 37 undefined on input line 14
 9.
 
-[37] <./img/allAlgs1.pdf, id=1389, 189.2671pt x 257.84529pt>
+[37] <./img/allAlgs1.pdf, id=1389, 169.25032pt x 286.1832pt>
 File: ./img/allAlgs1.pdf Graphic file (type pdf)
 
 <use ./img/allAlgs1.pdf>
 Package pdftex.def Info: ./img/allAlgs1.pdf used on input line 160.
-(pdftex.def)             Requested size: 132.48605pt x 180.49046pt.
+(pdftex.def)             Requested size: 118.4744pt x 200.32686pt.
 
-<./img/allAlgs08.pdf, id=1390, 179.21454pt x 257.84732pt>
+<./img/allAlgs08.pdf, id=1390, 161.39798pt x 286.17715pt>
 File: ./img/allAlgs08.pdf Graphic file (type pdf)
 
 <use ./img/allAlgs08.pdf>
 Package pdftex.def Info: ./img/allAlgs08.pdf used on input line 161.
-(pdftex.def)             Requested size: 125.44931pt x 180.49188pt.
+(pdftex.def)             Requested size: 112.9778pt x 200.32263pt.
  <./img/QDecs1.pdf, id=1391, 189.2671pt x 257.8433pt>
 File: ./img/QDecs1.pdf Graphic file (type pdf)
 
@@ -1928,17 +1928,17 @@ File: ./img/v1-51.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./img/v1-51.pdf used on input line 190.
 (pdftex.def)             Requested size: 116.63142pt x 92.48799pt.
 
-<./img/v5-1.pdf, id=1399, 189.2671pt x 134.70827pt>
+<./img/v5-1.pdf, id=1399, 169.25032pt x 286.18417pt>
 File: ./img/v5-1.pdf Graphic file (type pdf)
  <use ./img/v5-1.pdf>
 Package pdftex.def Info: ./img/v5-1.pdf used on input line 191.
-(pdftex.def)             Requested size: 132.48605pt x 94.29514pt.
+(pdftex.def)             Requested size: 118.4744pt x 200.32755pt.
 
-<./img/v5-51.pdf, id=1400, 172.49243pt x 134.70726pt>
+<./img/v5-51.pdf, id=1400, 154.67587pt x 286.17816pt>
 File: ./img/v5-51.pdf Graphic file (type pdf)
  <use ./img/v5-51.pdf>
 Package pdftex.def Info: ./img/v5-51.pdf used on input line 192.
-(pdftex.def)             Requested size: 120.74387pt x 94.29442pt.
+(pdftex.def)             Requested size: 108.27237pt x 200.32333pt.
 
 <./img/lrs1-1.pdf, id=1405, 189.2671pt x 134.70627pt>
 File: ./img/lrs1-1.pdf Graphic file (type pdf)
@@ -1969,338 +1969,4 @@ Package pdftex.def Info: ./img/lrs5-51.pdf used on input line 203.
 File: ./img/max_a-1.pdf Graphic file (type pdf)
 
 <use ./img/max_a-1.pdf>
-Package pdftex.def Info: ./img/max_a-1.pdf used on input line 211.
-(pdftex.def)             Requested size: 239.7797pt x 96.26738pt.
-
-<./img/max_a-51.pdf, id=1414, 304.16235pt x 137.52579pt>
-File: ./img/max_a-51.pdf Graphic file (type pdf)
-
-<use ./img/max_a-51.pdf>
-Package pdftex.def Info: ./img/max_a-51.pdf used on input line 212.
-(pdftex.def)             Requested size: 212.91219pt x 96.26738pt.
-
-
-LaTeX Warning: Citation `Peters2010RelativeEP' on page 38 undefined on input li
-ne 291.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 22.89502pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[38 <./img/allAlgs1.pdf> <./img/allAlgs08.pdf>] [39 <./img/QDecs1.pdf> <./img/Q
-Decs08.pdf>] <./img/grid_hole.pdf, id=1478, 343.42503pt x 311.92535pt>
-File: ./img/grid_hole.pdf Graphic file (type pdf)
-
-<use ./img/grid_hole.pdf>
-Package pdftex.def Info: ./img/grid_hole.pdf used on input line 302.
-(pdftex.def)             Requested size: 240.39587pt x 218.34625pt.
-
-<./img/gridhole.pdf, id=1479, 165.08221pt x 165.08102pt>
-File: ./img/gridhole.pdf Graphic file (type pdf)
-
-<use ./img/gridhole.pdf>
-Package pdftex.def Info: ./img/gridhole.pdf used on input line 310.
-(pdftex.def)             Requested size: 90.79549pt x 90.79483pt.
- <./img/sarsa1.pdf, id=1482, 189.2671pt x 290.10081pt>
-File: ./img/sarsa1.pdf Graphic file (type pdf)
-
-<use ./img/sarsa1.pdf>
-Package pdftex.def Info: ./img/sarsa1.pdf used on input line 321.
-(pdftex.def)             Requested size: 132.48605pt x 203.06917pt.
- <./img/sarsa08.pdf, id=1483, 179.21454pt x 290.08273pt>
-File: ./img/sarsa08.pdf Graphic file (type pdf)
-
-<use ./img/sarsa08.pdf>
-Package pdftex.def Info: ./img/sarsa08.pdf used on input line 322.
-(pdftex.def)             Requested size: 125.44931pt x 203.05652pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 22.89502pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[40 <./img/QDecHasselt.pdf> <./img/QDecWinHasselt.pdf>] [41 <./img/v1-1.pdf> <.
-/img/v1-51.pdf> <./img/v5-1.pdf> <./img/v5-51.pdf>])
-(./chapters/exploration.tex
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 22.89502pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[42 <./img/lrs1-1.pdf> <./img/lrs1-51.pdf> <./img/lrs5-1.pdf> <./img/lrs5-51.pd
-f>] [43 <./img/max_a-1.pdf> <./img/max_a-51.pdf>]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 22.89502pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[44 <./img/grid_hole.pdf> <./img/gridhole.pdf>] [45 <./img/sarsa1.pdf> <./img/s
-arsa08.pdf>] [46
-
-]
-Chapter 5.
-[47]
-
-LaTeX Warning: Citation `d2016estimating' on page 48 undefined on input line 14
-.
-
-
-LaTeX Warning: Citation `osband2016deep' on page 48 undefined on input line 15.
-
-
-[48]
-
-LaTeX Warning: Citation `d2016estimating' on page 49 undefined on input line 27
-.
-
-[49] [50] [51] [52]
-
-LaTeX Warning: Citation `osband2016deep' on page 53 undefined on input line 131
-.
-
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 133.
-
-LaTeX Warning: Reference `S:tsboot' on page 53 undefined on input line 133.
-
-
-LaTeX Warning: Citation `hasselt2010double' on page 53 undefined on input line 
-151.
-
-[53] <img/comp.pdf, id=1859, 5130.897pt x 4210.90376pt>
-File: img/comp.pdf Graphic file (type pdf)
- <use img/comp.pdf>
-Package pdftex.def Info: img/comp.pdf used on input line 157.
-(pdftex.def)             Requested size: 230.8804pt x 189.4825pt.
-
-<img/taxi.png, id=1860, 331.2375pt x 284.56313pt>
-File: img/taxi.png Graphic file (type png)
- <use img/taxi.png>
-Package pdftex.def Info: img/taxi.png used on input line 162.
-(pdftex.def)             Requested size: 82.80916pt x 71.1406pt.
-
-<img/taxi_boot.pdf, id=1861, 526.16264pt x 395.3642pt>
-File: img/taxi_boot.pdf Graphic file (type pdf)
- <use img/taxi_boot.pdf>
-Package pdftex.def Info: img/taxi_boot.pdf used on input line 163.
-(pdftex.def)             Requested size: 131.54033pt x 98.8408pt.
-LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 166.
-
-
-LaTeX Warning: Reference `A:details' on page 54 undefined on input line 168.
-
-
-LaTeX Warning: Citation `hasselt2010double' on page 54 undefined on input line 
-170.
-
-
-LaTeX Warning: Reference `S:tsboot' on page 54 undefined on input line 170.
-
-<img/mc_comp.pdf, id=1872, 790.79192pt x 395.48062pt>
-File: img/mc_comp.pdf Graphic file (type pdf)
- <use img/mc_comp.pdf>
-Package pdftex.def Info: img/mc_comp.pdf used on input line 175.
-(pdftex.def)             Requested size: 237.2394pt x 118.6451pt.
-
-<img/acrobot_ts.pdf, id=1873, 440.24004pt x 375.12485pt>
-File: img/acrobot_ts.pdf Graphic file (type pdf)
-
-<use img/acrobot_ts.pdf>
-Package pdftex.def Info: img/acrobot_ts.pdf used on input line 176.
-(pdftex.def)             Requested size: 132.07303pt x 112.53831pt.
- <img/pong.pdf, id=1876, 370.84798pt x 340.54703pt>
-File: img/pong.pdf Graphic file (type pdf)
-
-<use img/pong.pdf>
-Package pdftex.def Info: img/pong.pdf used on input line 184.
-(pdftex.def)             Requested size: 111.25525pt x 102.16489pt.
- <img/breakout.pdf, id=1877, 366.78593pt x 340.54703pt>
-File: img/breakout.pdf Graphic file (type pdf)
-
-<use img/breakout.pdf>
-Package pdftex.def Info: img/breakout.pdf used on input line 186.
-(pdftex.def)             Requested size: 110.03662pt x 102.16489pt.
- [54]
-<img/taxisearch_eval.pdf, id=1896, 1232.88313pt x 364.86pt>
-File: img/taxisearch_eval.pdf Graphic file (type pdf)
-
-<use img/taxisearch_eval.pdf>
-Package pdftex.def Info: img/taxisearch_eval.pdf used on input line 198.
-(pdftex.def)             Requested size: 369.8678pt x 109.45883pt.
-
-<img/taxisearch_train.pdf, id=1897, 1232.88313pt x 364.86pt>
-File: img/taxisearch_train.pdf Graphic file (type pdf)
-
-<use img/taxisearch_train.pdf>
-Package pdftex.def Info: img/taxisearch_train.pdf used on input line 206.
-(pdftex.def)             Requested size: 369.8678pt x 109.45883pt.
-
-<img/mcopt.pdf, id=1898, 1244.36353pt x 364.86pt>
-File: img/mcopt.pdf Graphic file (type pdf)
- <use img/mcopt.pdf>
-Package pdftex.def Info: img/mcopt.pdf used on input line 214.
-(pdftex.def)             Requested size: 373.31194pt x 109.45883pt.
-
-<img/bounds.pdf, id=1899, 7371.26701pt x 2401.13933pt>
-File: img/bounds.pdf Graphic file (type pdf)
- <use img/bounds.pdf>
-Package pdftex.def Info: img/bounds.pdf used on input line 223.
-(pdftex.def)             Requested size: 368.58495pt x 120.064pt.
-
-<img/cs.pdf, id=1900, 7371.26701pt x 2401.13933pt>
-File: img/cs.pdf Graphic file (type pdf)
- <use img/cs.pdf>
-Package pdftex.def Info: img/cs.pdf used on input line 231.
-(pdftex.def)             Requested size: 368.58495pt x 120.064pt.
-
-<img/chics.pdf, id=1901, 7371.26701pt x 2401.13933pt>
-File: img/chics.pdf Graphic file (type pdf)
- <use img/chics.pdf>
-Package pdftex.def Info: img/chics.pdf used on input line 239.
-(pdftex.def)             Requested size: 368.58495pt x 120.064pt.
-
-[55 <./img/comp.pdf> <./img/taxi.png> <./img/taxi_boot.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/taxi_boot.pdf): PDF inclusion: mu
-ltiple pdfs with page group included in a single page
->]) (./chapters/deep.tex [56 <./img/mc_comp.pdf> <./img/acrobot_ts.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/acrobot_ts.pdf): PDF inclusion: m
-ultiple pdfs with page group included in a single page
-> <./img/pong.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/pong.pdf): PDF inclusion: multipl
-e pdfs with page group included in a single page
-> <./img/breakout.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/breakout.pdf): PDF inclusion: mul
-tiple pdfs with page group included in a single page
->] [57 <./img/taxisearch_eval.pdf> <./img/taxisearch_train.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/taxisearch_train.pdf): PDF inclus
-ion: multiple pdfs with page group included in a single page
-> <./img/mcopt.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/mcopt.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
-> <./img/bounds.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/bounds.pdf): PDF inclusion: multi
-ple pdfs with page group included in a single page
->] [58 <./img/cs.pdf> <./img/chics.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./img/chics.pdf): PDF inclusion: multip
-le pdfs with page group included in a single page
->]
-Chapter 6.
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 3.
-
-[59
-
-] <./img/acrobot.pdf, id=2393, 722.7pt x 450.2421pt>
-File: ./img/acrobot.pdf Graphic file (type pdf)
-
-<use ./img/acrobot.pdf>
-Package pdftex.def Info: ./img/acrobot.pdf used on input line 26.
-(pdftex.def)             Requested size: 433.62334pt x 270.14732pt.
-
-Overfull \hbox (18.2129pt too wide) in paragraph at lines 26--28
- [][] 
- []
-
-[60]) (./chapters/mushroom.tex [61 <./img/acrobot.pdf>] [62
-
-]
-Chapter 7.
-) (./chapters/conclusion.tex [63] [64
-
-]
-Chapter 8.
-) [65] [66
-
-] (./thesis.bbl
-LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 78.
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 78.
- [67
-
-] [68]) [69]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 174.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 174.
- (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 174.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 174.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 3C9B350A46FBB57E2BA40D0417D7394C;4040.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
-Here is how much of TeX's memory you used:
- 38726 strings out of 493029
- 816144 string characters out of 6136234
- 1047416 words of memory out of 5000000
- 40871 multiletter control sequences out of 15000+600000
- 108391 words of font info for 143 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 55i,14n,77p,2089b,897s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic
-/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (87 pages, 1893190 bytes).
-PDF statistics:
- 2711 PDF objects out of 2984 (max. 8388607)
- 2018 compressed objects within 21 object streams
- 487 named destinations out of 1000 (max. 500000)
- 762 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+Package pdfte
