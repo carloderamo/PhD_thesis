@@ -3,9 +3,9 @@
 \contentsline {algorithm}{\numberline {3}{\ignorespaces Weighted Q-learning\relax }}{19}{algorithm.3}
 \contentsline {algorithm}{\numberline {4}{\ignorespaces Weighted FQI (finite actions)\relax }}{21}{algorithm.4}
 \contentsline {algorithm}{\numberline {5}{\ignorespaces Weighted FQI$_{\infty }$ (continuous actions)\relax }}{21}{algorithm.5}
-\contentsline {algorithm}{\numberline {6}{\ignorespaces Standard mean and variance update\relax }}{38}{algorithm.6}
-\contentsline {algorithm}{\numberline {7}{\ignorespaces Mean and variance update using momentums\relax }}{38}{algorithm.7}
-\contentsline {algorithm}{\numberline {8}{\ignorespaces SARSA with online variance update\relax }}{39}{algorithm.8}
-\contentsline {algorithm}{\numberline {9}{\ignorespaces SARSA with online variance update and Hoeffding upper bound\relax }}{39}{algorithm.9}
-\contentsline {algorithm}{\numberline {10}{\ignorespaces SARSA with function approximation with variance update\relax }}{40}{algorithm.10}
-\contentsline {algorithm}{\numberline {11}{\ignorespaces Bootstrapped DQN with Thompson Sampling\relax }}{42}{algorithm.11}
+\contentsline {algorithm}{\numberline {6}{\ignorespaces Standard mean and variance update\relax }}{50}{algorithm.6}
+\contentsline {algorithm}{\numberline {7}{\ignorespaces Mean and variance update using momentums\relax }}{50}{algorithm.7}
+\contentsline {algorithm}{\numberline {8}{\ignorespaces SARSA with online variance update\relax }}{51}{algorithm.8}
+\contentsline {algorithm}{\numberline {9}{\ignorespaces SARSA with online variance update and Hoeffding upper bound\relax }}{51}{algorithm.9}
+\contentsline {algorithm}{\numberline {10}{\ignorespaces SARSA with function approximation with variance update\relax }}{52}{algorithm.10}
+\contentsline {algorithm}{\numberline {11}{\ignorespaces Bootstrapped DQN with Thompson Sampling\relax }}{54}{algorithm.11}

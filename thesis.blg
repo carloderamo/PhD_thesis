@@ -6,7 +6,13 @@ Database file #1: thesis.bib
 Warning--I didn't find a database entry for "Ernst2005tree"
 Warning--I didn't find a database entry for "lee2012intelligent"
 Warning--I didn't find a database entry for "doya2000reinforcement"
+Warning--I didn't find a database entry for "crites1996improving"
+Warning--I didn't find a database entry for "bao2008infinite"
+Warning--I didn't find a database entry for "franccois2015discount"
+Warning--I didn't find a database entry for "EvenDar2001"
+Warning--I didn't find a database entry for "watkins1992q"
 Warning--I didn't find a database entry for "d2016estimating"
+Warning--I didn't find a database entry for "Peters2010RelativeEP"
 Warning--I didn't find a database entry for "osband2016deep"
 Warning--I didn't find a database entry for "hasselt2010double"
 Warning--can't use both volume and number fields in bertsekas2005dynamic
@@ -14,7 +20,7 @@ Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
 You've used 63 entries,
             2118 wiz_defined-function locations,
-            856 strings with 15440 characters,
+            864 strings with 15569 characters,
 and the built_in function-call counts, 25809 in all, are:
 = -- 2539
 > -- 1284
@@ -53,4 +59,4 @@ warning$ -- 3
 while$ -- 244
 width$ -- 65
 write$ -- 696
-(There were 9 warnings)
+(There were 15 warnings)
