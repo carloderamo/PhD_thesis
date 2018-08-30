@@ -302,14 +302,14 @@ In this problem, where the only source of stochasticity is in the transition fun
 \centering
   \includegraphics[scale=.7]{./img/grid_hole.pdf}
 \end{minipage}
-  \caption{Mean reward per step (top) and maximum action-value estimate in the Grid World with Holes problem in the initial state (bottom) of all the other algorithms and of the best setting of RQ-Learning for this experiment. Results are averaged over $10000$ experiments.}
+  \caption[Grid world with holes algorithms comparison - 1]{Mean reward per step (top) and maximum action-value estimate in the Grid World with Holes problem in the initial state (bottom) of all the other algorithms and of the best setting of RQ-Learning for this experiment. Results are averaged over $10000$ experiments.}
   \label{F:hole}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[scale=.55]{./img/gridhole.pdf}
-\caption{Structure of the Grid World with Holes problem.}
+\caption[Structure of the Grid World with Holes problem.]{Structure of the Grid World with Holes problem.}
   \label{F:grid_hole_map}
 \end{figure}
 This environment consists in a $5 \times 5$ grid with the initial position in the lower-left cell, there are $4$ actions and the transition model is deterministic, the goal position in the upper-right cell and four holes in the middle row in such a way that only the cell in the middle is walkable (Figure \ref{F:grid_hole_map}). The agent receives a reward of $0$ in all non-hole cells, a reward of $10$ when it reaches the goal state and a reward of $-10$ when it reaches a cell with a hole. The episode ends when the agent reaches a cell with a hole or the goal state. The discount factor is $\gamma = 0.9$. RQ-Learning uses $\eta = 1$.
@@ -322,7 +322,7 @@ We consider this simple problem to highlight the limitations of pessimistic acti
   \subfigure{\includegraphics[scale=.7]{./img/sarsa1.pdf}}
   \subfigure{\includegraphics[scale=.7]{./img/sarsa08.pdf}}
 \end{minipage}
-  \caption{Mean reward per step (top) and maximum action-value estimate in the Noisy Grid World problem in the initial state (bottom) of SARSA and of the on-policy windowed version of RQ-Learning for this experiment. Results are averaged over $1000$ experiments.}
+  \caption[Grid world with holes algorithms comparison - 2]{Mean reward per step (top) and maximum action-value estimate in the Noisy Grid World problem in the initial state (bottom) of SARSA and of the on-policy windowed version of RQ-Learning for this experiment. Results are averaged over $1000$ experiments.}
   \label{F:sarsa}
 \end{figure}
 

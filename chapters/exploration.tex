@@ -162,7 +162,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \subfigure[Bootstrapped variance\label{F:taxi_boot}]{\includegraphics[scale=.25]{img/taxi_boot.pdf}}
 \end{center}
 \end{minipage}
-\caption{Results on the \textbf{Taxi} problem. Figure~\ref{F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref{F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref{F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.}\label{F:taxi}
+\caption[Taxi problem results]{Results on the \textbf{Taxi} problem. Figure~\ref{F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref{F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref{F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.}\label{F:taxi}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -171,7 +171,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \subfigure[Acrobot\label{F:acrobot}]{\includegraphics[scale=.3]{img/acrobot_ts.pdf}}
 \end{center}
 \end{minipage}
-\caption{Figure~\ref{F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref{F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.}\label{F:TS_cont}
+\caption[Mountain car and acrobot problems results]{Figure~\ref{F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref{F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.}\label{F:TS_cont}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -179,7 +179,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \includegraphics[scale=.05]{img/bounds.pdf}
 \end{center}
 \end{minipage}
-\caption{Results of TS on Taxi with different upper bounds on variance.}\label{F:bounds}
+\caption[Taxi with different upper bounds results - 1]{Results of TS on Taxi with different upper bounds on variance.}\label{F:bounds}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -187,7 +187,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \includegraphics[scale=.05]{img/cs.pdf}
 \end{center}
 \end{minipage}
-\caption{Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.}\label{F:cs}
+\caption[Taxi with different upper bounds results - 2]{Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.}\label{F:cs}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -195,7 +195,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \includegraphics[scale=.05]{img/chics.pdf}
 \end{center}
 \end{minipage}
-\caption{Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi^2$ upper bound boost.}\label{F:chics}
+\caption[Taxi with different upper bounds results - 3]{Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi^2$ upper bound boost.}\label{F:chics}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -205,7 +205,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \subfigure[Breakout\label{F:breakout}]{\includegraphics[scale=.3]{img/breakout.pdf}}
 \end{center}
 \end{minipage}
-\caption{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.}\label{F:atari}
+\caption[Pong and Breakout problems results]{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.}\label{F:atari}
 \end{figure}
 
 \section{Experiments}
