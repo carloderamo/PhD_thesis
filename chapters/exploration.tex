@@ -130,7 +130,7 @@ The previous techniques cannot be applied in \glspl{mdp} with \textbf{continuous
 \subsection{Bootstrapping}
 We propose \textit{bootstrapping} to compute the variance in \glspl{mdp} with high-dimensional continuous state space where the previous method, based on the discretization of the state space, would be inefficient. Bootstrapping consists in training different regressors of the target function with datasets obtained through sampling with replacement from the original dataset~\cite{doi:10.1162/089976600300015204}. The approximation of the variance of the estimate can be directly computed as the variance of the target function estimates provided by each regressor. To implement our idea, we consider the \gls{bdqn} algorithm~\cite{osband2016deep}, a variant of the famous \gls{dqn} algorithm~\cite{mnih2015human}, able to reach remarkable results in \gls{drl} problems. The main contribution of \gls{bdqn} is the introduction of a policy based on bootstrapping and inspired by posterior sampling~\cite{osband2013more} that, at the beginning of each episode, randomly samples one of the regressor in the ensemble and follows the greedy policy derived by it.
 
-\paragraph{Thompson Sampling via Bootstrapping} We propose to use the framework provided by \gls{bdqn} and replace its exploration policy with \gls{ts}.\footnote{In their article, the authors of \gls{bdqn} discuss a variant of the proposed policy which they call Thompson \gls{dqn}. This simply modifies \gls{bdqn} sampling a head at each step instead of at the beginning of each episode. However we think this does not correspond to an appropriate application of \gls{ts} in this setting since the action values are not sampled from the distribution provided by the bootstrapped network.} Since the bootstrapped network provides a distribution over action value functions, we claim that \gls{ts} can be applied in this setting by picking, at each step and for each action, the action value from a randomly chosen head; then, executing the action whose action value is the highest among the sampled ones.\footnote{Details in appendix~\ref{S:tsboot}.}
+\paragraph{Thompson Sampling via Bootstrapping} We propose to use the framework provided by \gls{bdqn} and replace its exploration policy with \gls{ts}.\footnote{In their article, the authors of \gls{bdqn} discuss a variant of the proposed policy which they call Thompson \gls{dqn}. This simply modifies \gls{bdqn} sampling a head at each step instead of at the beginning of each episode. However we think this does not correspond to an appropriate application of \gls{ts} in this setting since the action values are not sampled from the distribution provided by the bootstrapped network.} Since the bootstrapped network provides a distribution over action value functions, we claim that \gls{ts} can be applied in this setting by picking, at each step and for each action, the action value from a randomly chosen head; then, executing the action whose action value is the highest among the sampled ones.
 \gls{bdqn} consists in using an ensemble of $K \in \mathbb{N_+}$ action value function approximators. This ensemble can be created both using multiple neural networks, or splitting the output of only one neural network in multiple heads, each of which representing the $\tilde{Q}_k $ estimate of the real action value function $Q$. Bootstrapping is performed diversifying the heads with the random initializations of their weights and assigning a randomly generated binary mask $m_1, \dots, m_K \in [0,1]$ to each sample to indicate which head should be trained with it. Moreover, the update of \gls{ddqn}~\cite{van2016deep} is used in place of the standard \gls{dqn} update to avoid the overestimation issue. Finally, the exploration policy consists in sampling a head at the beginning of each episode and following the greedy policy induced by it. On the other hand, evaluation is performed by ensemble voting.
 
 The application of \gls{ts} in \gls{bdqn} simply consists in changing its exploration policy. Algorithm~\ref{A:tsboot} shows the pseudocode of \gls{ts} via bootstrapping.
@@ -148,9 +148,8 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
 \end{algorithmic}
 \end{algorithm}
 
-\paragraph{Bootstrapped Q-Learning} We slightly modify \gls{bdqn} to adapt it for discrete \glspl{mdp}. We use a tabular approximation of the action value functions instead of using a deep neural network and update the action value functions using the Double Q-Learning update rule~\cite{hasselt2010double}. To perform bootstrapping, the action value functions are initialized randomly and masking is used as in \gls{bdqn}.
+\paragraph{Bootstrapped Q-Learning} We slightly modify \gls{bdqn} to adapt it for discrete \glspl{mdp}. We use a tabular approximation of the action value functions instead of using a deep neural network and update the action value functions using the Double Q-Learning update rule~\ref{S:DoubleQ-Learning}. To perform bootstrapping, the action value functions are initialized randomly and masking is used as in \gls{bdqn}.
 
-\section{Experiments}
 \begin{figure}[t]
 \begin{minipage}{.66\textwidth}
 \begin{center}
@@ -165,10 +164,6 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
 \end{minipage}
 \caption{Results on the \textbf{Taxi} problem. Figure~\ref{F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref{F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref{F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.}\label{F:taxi}
 \end{figure}
-Our focus on the empirical evaluation of \gls{ts} over other exploration strategies is twofold since we want to show how \gls{ts} can improve and/or stabilize learning in \glspl{mdp} where exploration is a key issue, but we want also to evince how it can robustly deal with generic \glspl{mdp}. Details of the problems and the description of the experimental settings can be found in Appendix~\ref{A:details}.
-\subsection{Discrete state space}
-The \textbf{Taxi} problem consists of a discrete \gls{mdp}, similar to a grid world, where the agent has to collect passengers before going to the goal position~\cite{pmlr-v70-asadi17a} (Figure~\ref{F:taxi_grid}). The need for exploration is intuitively critical in this problem considering the unknown location of the passengers and the sparse reward function. In particular, the balancing between exploitation-exploration is essential to avoid both suboptimal exploitive policies and slow exploratory policies. We use this problem as a small, but significant, experiment to evaluate both the online variance estimation and the bootstrapped method. For the online case, we compare the performance of $\chi^2$ upper bound with boost (results of the other bounds are in Appendix~\ref{A:results}) against the classic exploration strategies $\varepsilon$-greedy and Boltzmann, together with a recently proposed variant of the Boltzmann called mellowmax~\cite{pmlr-v70-asadi17a}. For the bootstrapped case, we consider tabular approximation and Double Q-Learning~\cite{hasselt2010double} as the learning algorithm, opposed to \gls{bdqn}  which instead uses a deep neural network and Deep Double Q-Learning~\cite{van2016deep}; thus, we refer to this approach as \textit{Bootstrapped Q-Learning} (details in Appendix~\ref{S:tsboot}). Figure~\ref{F:taxi_online} shows that \gls{ts} reaches better results in less time w.r.t. the other strategies. In particular, it shows how $\varepsilon$-greedy is completely ineffective in this problem, while Boltzmann and mellowmax are able to learn good policies, but still more slowly than \gls{ts}. Thus, we can conclude that here \gls{ts} shows the best balancing between exploration and exploitation. Figure~\ref{F:taxi_boot} shows similar results where surprisingly Bootstrapped Q-Learning is not able to move properly in the grid getting stuck against walls very often, while \gls{ts} manages to move in the grid by learning a good policy even if not good as in the online variance case.
-
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
@@ -178,45 +173,6 @@ The \textbf{Taxi} problem consists of a discrete \gls{mdp}, similar to a grid wo
 \end{minipage}
 \caption{Figure~\ref{F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref{F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.}\label{F:TS_cont}
 \end{figure}
-\begin{figure}[t]
-\begin{minipage}{\textwidth}
-\begin{center}
-  \subfigure[Pong\label{F:pong}]{\includegraphics[scale=.3]{img/pong.pdf}}
-  \hspace{1cm}
-  \subfigure[Breakout\label{F:breakout}]{\includegraphics[scale=.3]{img/breakout.pdf}}
-\end{center}
-\end{minipage}
-\caption{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.}\label{F:atari}
-\end{figure}
-
-\section{Other results}\label{A:results}
-We conduct further studies on the performance of the different algorithms described in Section~\ref{S:uncertainty} on the Taxi problem. Firstly, Figure~\ref{F:bounds} shows how the upper bounds to the variance can help learning and also how $\chi^2$ upper bound with boost learns the optimal policy faster. In Figure~\ref{F:cs} is shown how the standard Hoeffding bound is able to learn the optimal policy but, as discussed in Section~\ref{S:uncertainty}, it delays too much the exploitation phase. It is also highlighted how parameter $c$ can be useful to speedup the learning, provided that it is set to a sufficiently high value in order to avoid suboptimal performance. Eventually, in Figure~\ref{F:chics} we show the improvement given by the $\chi^2$ upper bound to the Hoeffding bound with $c = 2$.
-
-\begin{figure}[t]
-\begin{minipage}{\textwidth}
-\begin{center}
-  \includegraphics[scale=.3]{img/taxisearch_eval.pdf}
-\end{center}
-\end{minipage}
-\caption{Optimal parameter settings search during evaluation in Taxi.}\label{F:taxisearch_eval}
-\end{figure}
-\begin{figure}[t]
-\begin{minipage}{\textwidth}
-\begin{center}
-  \includegraphics[scale=.3]{img/taxisearch_train.pdf}
-\end{center}
-\end{minipage}
-\caption{Optimal parameter settings search during training in Taxi.}\label{F:taxisearch_train}
-\end{figure}
-\begin{figure}[t]
-\begin{minipage}{\textwidth}
-\begin{center}
-  \includegraphics[scale=.3]{img/mcopt.pdf}
-\end{center}
-\end{minipage}
-\caption{Optimal parameter settings search during training in Mountain Car.}\label{F:mountain_car_pars}
-\end{figure}
-
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
@@ -241,6 +197,24 @@ We conduct further studies on the performance of the different algorithms descri
 \end{minipage}
 \caption{Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi^2$ upper bound boost.}\label{F:chics}
 \end{figure}
+\begin{figure}[t]
+\begin{minipage}{\textwidth}
+\begin{center}
+  \subfigure[Pong\label{F:pong}]{\includegraphics[scale=.3]{img/pong.pdf}}
+  \hspace{1cm}
+  \subfigure[Breakout\label{F:breakout}]{\includegraphics[scale=.3]{img/breakout.pdf}}
+\end{center}
+\end{minipage}
+\caption{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.}\label{F:atari}
+\end{figure}
+
+\section{Experiments}
+Our focus on the empirical evaluation of \gls{ts} over other exploration strategies is twofold since we want to show how \gls{ts} can improve and/or stabilize learning in \glspl{mdp} where exploration is a key issue, but we want also to evince how it can robustly deal with generic \glspl{mdp}.
+\subsection{Discrete state space}
+The \textbf{Taxi} problem consists of a discrete \gls{mdp}, similar to a grid world, where the agent has to collect passengers before going to the goal position~\cite{pmlr-v70-asadi17a} (Figure~\ref{F:taxi_grid}). The need for exploration is intuitively critical in this problem considering the unknown location of the passengers and the sparse reward function. In particular, the balancing between exploitation-exploration is essential to avoid both suboptimal exploitive policies and slow exploratory policies. We use this problem as a small, but significant, experiment to evaluate both the online variance estimation and the bootstrapped method. For the online case, we compare the performance of $\chi^2$ upper bound with boost against the classic exploration strategies $\varepsilon$-greedy and Boltzmann, together with a recently proposed variant of the Boltzmann called mellowmax~\cite{pmlr-v70-asadi17a}. For the bootstrapped case, we consider tabular approximation and Double Q-Learning~\ref{S:DoubleQ-Learning} as the learning algorithm, opposed to \gls{bdqn}  which instead uses a deep neural network and Deep Double Q-Learning~\cite{van2016deep}; thus, we refer to this approach as \textit{Bootstrapped Q-Learning}. Figure~\ref{F:taxi_online} shows that \gls{ts} reaches better results in less time w.r.t. the other strategies. In particular, it shows how $\varepsilon$-greedy is completely ineffective in this problem, while Boltzmann and mellowmax are able to learn good policies, but still more slowly than \gls{ts}. Thus, we can conclude that here \gls{ts} shows the best balancing between exploration and exploitation. Figure~\ref{F:taxi_boot} shows similar results where surprisingly Bootstrapped Q-Learning is not able to move properly in the grid getting stuck against walls very often, while \gls{ts} manages to move in the grid by learning a good policy even if not good as in the online variance case.
+
+\section{Other results}\label{A:results}
+We conduct further studies on the performance of the different algorithms described in Section~\ref{S:uncertainty} on the Taxi problem. Firstly, Figure~\ref{F:bounds} shows how the upper bounds to the variance can help learning and also how $\chi^2$ upper bound with boost learns the optimal policy faster. In Figure~\ref{F:cs} is shown how the standard Hoeffding bound is able to learn the optimal policy but, as discussed in Section~\ref{S:uncertainty}, it delays too much the exploitation phase. It is also highlighted how parameter $c$ can be useful to speedup the learning, provided that it is set to a sufficiently high value in order to avoid suboptimal performance. Eventually, in Figure~\ref{F:chics} we show the improvement given by the $\chi^2$ upper bound to the Hoeffding bound with $c = 2$.
 
 \subsection{Continuous state space}
 We test the online variance estimation extension to continuous state spaces and bootstrapping on the well-known \textbf{Mountain Car} and \textbf{Acrobot} problems. The need for exploration is given by the sparse reward function, even if exploration is not highly critical as in the Taxi problem. Nevertheless, we want to consider these problems to show how \gls{ts} is robust w.r.t. generic \gls{rl} problems. Since Mountain Car has a small continuous state space, we test our online variance estimation with SARSA (Algorithm~\ref{A:SARSA-apprx}) for the continuous case in this problem, while we consider the more complex Acrobot for bootstrapping. Figure~\ref{F:TS_cont} shows how \gls{ts} reaches better performance than the others and how exploration with \gls{ts} can help to speed up the convergence of the algorithm. In particular, Figure~\ref{F:mountain_car} highlights the effectiveness of exploration driven by \gls{ts} during the training phase.

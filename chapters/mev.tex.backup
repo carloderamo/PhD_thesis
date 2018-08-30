@@ -9,9 +9,9 @@ Since errors propagate through all the state-action pairs, a bad estimator for t
 
 The most used approach to this estimation problem is the \gls{me} which simply takes the maximum estimated utility. As proved in~\cite{smith2006optimizer}, this estimate is positively biased and, if used in iterative algorithms, can increase the approximation error step-by step~\cite{van2010double}. More effective estimators have been proposed in the recent years. The \gls{de}~\cite{van2013estimating} approximates the maximum by splitting the sample set into two disjoint sample sets. One of this set is used to pick the element with the maximum approximate value and its value is picked from the other set. This has to be done the opposite way switching the role of the two sets. Eventually, the average (or a convex combination) of the two values is considered. This approach has been proven to have negative bias~\cite{van2013estimating} which, in some applications, allows to overcome the problem of \gls{me}.
 
-During my research, I analyzed this problem and proposed the \gls{we}~\cite{deramo2016estimating} which approximates the maximum value by a sum of different values weighted by their probability of being the maximum. \gls{we} can have both negative and positive bias, but its bias always stays in the range between the \gls{me} and \gls{de} biases.
+During my years of Ph.D. research, we analyzed this problem and proposed the \gls{we}~\cite{deramo2016estimating} which approximates the maximum value by a sum of different values weighted by their probability of being the maximum. \gls{we} can have both negative and positive bias, but its bias always stays in the range between the \gls{me} and \gls{de} biases.
 
-All the mentioned approaches are limited to a finite set of random variables, thus, in a subsequent work, I extended the study to problems with a set of infinite random variables and proposed an extension of \gls{we}~\cite{deramo2017maximum} to address them.
+All the mentioned approaches are limited to a finite set of random variables, thus, in a subsequent work, we extended the study to problems with a set of infinite random variables and proposed an extension of \gls{we}~\cite{deramo2017maximum} to address them.
 
 \section{Problem definition}
 Given a finite set of $M \geq 2$ independent random variables $X = \lbrace X_{1}, ..., X_{M} \rbrace$, for each variable $X_i$ we denote with $f_i : \mathbb{R} \rightarrow \mathbb{R}$ its \gls{pdf}, with $F_i : \mathbb{R} \rightarrow \mathbb{R}$ its \gls{cdf}, with $\mu_i$ its mean, and with $\sigma^2_i$ its variance.
@@ -47,17 +47,17 @@ when using an estimator $a^*$ (the same holds by swapping A and B).
 This formula can be seen as a weighted sum of the expected values of the random variables where the weights are the probabilities of each variable to be the maximum. Since these probabilities sum to one, the approximation given by \gls{de} results in a value that is lower than or equal to the maximal expected value. Even if the underestimation does not guarantee better estimation than the \gls{me}, it can be helpful to avoid an incremental approximation error in some learning problems. For instance, Double $Q$-Learning~\cite{van2010double} is a variation of $Q$-Learning that exploits this technique to avoid the previously described issues due to overestimation. Double $Q$-Learning has been tested in some very noisy environments and succeeded to find better policies than $Q$-Learning. Another remarkable application of \gls{de} is presented in~\cite{xu2013mab} where it achieves better results than \gls{me} in a sponsored search auction problem.
 
 \section{Weighted Estimator}
-Differently from \gls{me} and \gls{de} that output the sample average of the variable that is estimated to be the one with the largest mean, I propose the \gls{we} which estimates the \gls{mev} $\mu_*(X)$ computing a weighted mean of all the sample averages:
+Differently from \gls{me} and \gls{de} that output the sample average of the variable that is estimated to be the one with the largest mean, the proposed \gls{we} estimates the \gls{mev} $\mu_*(X)$ computing a weighted mean of all the sample averages:
 \begin{equation}\label{E:WE}
 \est{WE}(S) = \sum_{i=1}^M \hat\mu_i(S) w_i^S.
 \end{equation}
 Ideally, each weight $w_i^S$ should be the probability of $\hat\mu_i(S)$ being larger than all other samples means:  
 $$w_i^S = P\left(\hat\mu_i(S) = \max_j \hat\mu_j(S)\right).$$
-If the \glspl{pdf} $\hat{f}_i^S$ is known, for each $\hat\mu_i(S)$ the \gls{dwe} can be computed:
+If we knew the \glspl{pdf} $\hat{f}_i^S$ for each $\hat\mu_i(S)$ we could compute the \gls{dwe}:
 \begin{equation}\label{E:OptimalWE}
 \est{DWE}(S) = \sum_{i=1}^M \hat\mu_i(S)\int_{-\infty}^{+\infty} \hat{f}_i^S(x) \prod_{j\neq i}\hat{F}_j^S(x)~\mathrm{d}x.
 \end{equation}
-The sample mean $\hat\mu_i(S)$ is a random variable whose expected value is $\mu_i$ and whose variance is $\frac{\sigma^2_i}{|S_i|}$.
+We know that the sample mean $\hat\mu_i(S)$ is a random variable whose expected value is $\mu_i$ and whose variance is $\frac{\sigma^2_i}{|S_i|}$.
 Unfortunately, its \gls{pdf} $\hat f_i^S$ depends on the \gls{pdf} $f_i$ of variable $X_i$ that is assumed to be unknown.
 In particular, if $X_i$ is normally distributed, then, independently of the sample size, the sampling distribution of its sample mean is normal too: $\hat\mu_i(S)\sim\mathcal{N}\left(\mu_i,\frac{\sigma_i^2}{|S_i|}\right)$.
 On the other hand, by the \gls{clt}, the sampling distribution $\hat f_i^S$ of the sample mean $\hat\mu_i(S)$ approaches the normal distribution as the number of samples $|S_i|$ increases, independently of the distribution of $X_i$.
@@ -159,7 +159,7 @@ We start with summarizing the main results about the bias of \gls{me} and \gls{d
 For what concerns the direction of the bias, \gls{me} is positively biased, while \gls{de} is negatively biased.
 If we look at the absolute bias, there is no clear winner. 
 For instance, when all the random variables are identically distributed, \gls{de} is unbiased, while the same setting represents a worst case for \gls{me}.
-On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \gls{me} can be significantly smaller than the one of \gls{de} (see Section~\ref{S:Experiments}).
+On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \gls{me} can be significantly smaller than the one of \gls{de}.
 The bias of \gls{me} is bounded by:
 $$\mathrm{Bias}\left(\est{ME}\right) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
 For the bias of \gls{de}, \cite{van2013estimating} conjectures the following bound (which is proved for two variables):
@@ -170,7 +170,7 @@ In the next theorem we provide a relationship between the bias of \gls{we} and t
  For any given set $X$ of $M$ random variables:
  $$\mathrm{Bias}(\est{WE}) \leq \mathrm{Bias}(\est{ME}) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
 \end{theorem}
-As we will see in Section~\ref{S:Experiments}, this does not mean that the absolute bias of \gls{we} is necessarily smaller than the one of \gls{me}, since (as we will see later) the bias of \gls{we} can be also negative.
+This does not mean that the absolute bias of \gls{we} is necessarily smaller than the one of \gls{me}, since (as we will see later) the bias of \gls{we} can be also negative.
 In order to better characterize the bias of \gls{we}, we put it in relation with the bias of \gls{de}.
 \begin{theorem}\label{T:BiasWECV}
  For any given set $X$ of $M$ random variables:

@@ -23,6 +23,12 @@ Peter Auer and Ronald Ortner.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   49--56, 2007.
 
+\bibitem{bao2008infinite}
+Bing-Kun Bao, Bao-Qun Yin, and Hong-Sheng Xi.
+\newblock Infinite-horizon policy-gradient estimation with variable discount
+  factor for markov decision process.
+\newblock In {\em Proc. ICICIC}, pages 584--584. IEEE, 2008.
+
 \bibitem{bellemare13arcade}
 M.~G. {Bellemare}, Y.~{Naddaf}, J.~{Veness}, and M.~{Bowling}.
 \newblock The arcade learning environment: An evaluation platform for general
@@ -90,6 +96,11 @@ Nuttapong Chentanez, Andrew~G Barto, and Satinder~P Singh.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   1281--1288, 2005.
 
+\bibitem{crites1996improving}
+Robert~H Crites and Andrew~G Barto.
+\newblock Improving elevator performance using reinforcement learning.
+\newblock In {\em Proc. NIPS}, pages 1017--1023, 1996.
+
 \bibitem{dearden1999model}
 Richard Dearden, Nir Friedman, and David Andre.
 \newblock Model based bayesian exploration.
@@ -113,6 +124,22 @@ Carlo D'Eramo, Marcello Restelli, and Alessandro Nuara.
 \newblock Estimating maximum expected value through gaussian approximation.
 \newblock In {\em {ICML}}, volume~48 of {\em {JMLR} Workshop and Conference
   Proceedings}, pages 1032--1040. JMLR.org, 2016.
+
+\bibitem{ernst2005tree}
+Damien Ernst, Pierre Geurts, and Louis Wehenkel.
+\newblock Tree-based batch mode reinforcement learning.
+\newblock {\em Journal of Machine Learning Research}, 6(Apr):503--556, 2005.
+
+\bibitem{EvenDar2001}
+Eyal Even-Dar and Yishay Mansour.
+\newblock {\em Learning Rates for Q-Learning}, pages 589--604.
+\newblock Springer Berlin Heidelberg, 2001.
+
+\bibitem{franccois2015discount}
+Vincent Fran{\c{c}}ois-Lavet, Raphael Fonteneau, and Damien Ernst.
+\newblock How to discount deep reinforcement learning: Towards new dynamic
+  strategies.
+\newblock {\em arXiv preprint arXiv:1512.02011}, 2015.
 
 \bibitem{doi:10.1162/089976600300015204}
 J\"{u}rgen Franke and Michael~H. Neumann.
@@ -234,6 +261,11 @@ Deepak Pathak, Pulkit Agrawal, Alexei~A Efros, and Trevor Darrell.
 \newblock Curiosity-driven exploration by self-supervised prediction.
 \newblock In {\em International Conference on Machine Learning}, volume 2017,
   2017.
+
+\bibitem{Peters2010RelativeEP}
+Jan Peters, Katharina Mulling, and Yasemin Altun.
+\newblock Relative entropy policy search.
+\newblock In {\em Proc. AAAI}, 2010.
 
 \bibitem{rasmussen2005gaussian}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.

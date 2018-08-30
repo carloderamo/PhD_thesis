@@ -70,8 +70,7 @@ so that \gls{we} is computed as:
 
 It is worth noting that \gls{we} is consistent with $\mu_*(X)$. In fact, as the number of samples grows to infinity, each sample mean $\hat\mu_i$ converges to the related population mean $\mu_i$, and the variance of the normal distribution $\tilde f_i$ tends to zero, so that the weights of the variables with expected value less than $\mu_*(X)$ go to zero, so that $\est{WE} \rightarrow \mu_*(X)$.
 
-\subsection{Generalization to Infinite Random Variables}
-\label{S: infinite}
+\subsection{Generalization to Infinite Random Variables}\label{S:infinite}
 As far as we know, previous literature has focused only on the finite case and no approaches that natively handle continuous sets of random variables (e.g. without discretization) are available.
 Let us consider a continuous space of random variables $\mathcal{Z}$ equipped with some metric (e.g. a Polish space) and assume that variables in $\mathcal{Z}$ have some spatial correlation.
 Here, we consider $\mathcal{Z}$ to be a closed interval in $\mathbb{R}$ and that each variable $z \in \mathcal{Z}$ has unknown mean $\mu_z$ and variance $\sigma^2_z$.
@@ -145,13 +144,13 @@ Although \gls{dwe} cannot be used in practice, we include it in the following an
 	\begin{minipage}{0.45\textwidth}
 	\centering
 	\includegraphics[scale=0.7]{./img/bias.pdf}
-    \caption{Comparison of the bias of the different estimators varying the difference of the means}\label{F:bias}
+    \caption[Bias analysis in WE]{Comparison of the bias of the different estimators varying the difference of the means}\label{F:bias}
 	\end{minipage}
 	  \hfill
 	\begin{minipage}{0.45\textwidth}
 	\centering	
 	\includegraphics[scale=0.7]{./img/absolute_bias.pdf}
-	\caption{Comparison of the absolute bias of the different estimators varying the difference of the means.}\label{F:absolute_bias}
+	\caption[Absolute bias analysis in WE]{Comparison of the absolute bias of the different estimators varying the difference of the means.}\label{F:absolute_bias}
 	\end{minipage}
 \end{figure}
 
@@ -190,13 +189,13 @@ Such results can be generalized as follows: \gls{de} suffers a small bias when t
 	\begin{minipage}{0.45\textwidth}
 	\centering
 	\includegraphics[scale=0.7]{./img/variance.pdf}
-    \caption{Comparison of the variance of the different estimators varying the difference of the means.}\label{F:variance}
+    \caption[Variance analysis in WE]{Comparison of the variance of the different estimators varying the difference of the means.}\label{F:variance}
 	\end{minipage}
 	  \hfill
 	\begin{minipage}{0.45\textwidth}
 	\centering	
 	\includegraphics[scale=0.7]{./img/mse.pdf}
-	\caption{Comparison of the MSE of the different estimators varying the difference of the means.}\label{F:mse}
+	\caption[MSE analysis in WE]{Comparison of the MSE of the different estimators varying the difference of the means.}\label{F:mse}
 	\end{minipage}
 	\label{F:Variance_mse}
 \end{figure}
@@ -231,12 +230,7 @@ On the other hand, \gls{me} is preferable when there is a variable with an expec
 Among value-based methods, we consider online and offline algorithms that approximate the optimal $Q$-values without the need of a model of the environment. We consider mostly \glspl{mdp} with discrete action spaces, except for the batch algorithm based on \gls{we} that can be extended also to \glspl{mdp} with continuous action spaces.
 
 \subsection{Online}
-A famous online algorithm is $Q$-learning~\cite{watkins1989learning}, an off-policy algorithm that updates the action value function $Q$ at each step using the following formula:
-\begin{equation}\label{eq:Q-formula}
- Q_{t+1}(s_t,a_t) \leftarrow Q_t(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q_t(s_{t+1},a) - Q_t(s_t,a_t)\right),
-\end{equation}
-where $\alpha_t(s_t,a_t)$ is a learning rate, $\gamma$ is a discount factor and $r_t$ is the immediate reward obtained by taking action $a_t$ in state $s_t$.
-It is demonstrated that since $Q$-learning is a stochastic approximation algorithm, under the assumption that each state-action pair is visited infinitely often and the step sequence satisfies certain conditions, $Q_k$ converges to $Q^{*}$~\cite{watkins1989learning}. However, under particular conditions, such as a wrong tuning of parameters and noisy environments, the $Q$-function could converge to $Q^{*}$ too much slowly. One of the main reasons is that the $Q$-learning uses the \gls{me} to estimate the current maximum $Q$-value of the next state $s_{t+1}$. Since this estimator is positively biased, and since the error is propagated at each step, the $Q$-function can be wrongly estimated and the algorithm could fail.
+It is demonstrated that since $Q$-learning~\ref{S:Q-Learning} is a stochastic approximation algorithm, under the assumption that each state-action pair is visited infinitely often and the step sequence satisfies certain conditions, $Q_k$ converges to $Q^{*}$~\cite{watkins1989learning}. However, under particular conditions, such as a wrong tuning of parameters and noisy environments, the $Q$-function could converge to $Q^{*}$ too much slowly. One of the main reasons is that the $Q$-learning uses the \gls{me} to estimate the current maximum $Q$-value of the next state $s_{t+1}$. Since this estimator is positively biased, and since the error is propagated at each step, the $Q$-function can be wrongly estimated and the algorithm could fail.
 In the last years, different approaches have been proposed trying to overcome this issue~\cite{lee2013bias,bellemare2015increasing,ijcai2017-483}. In particular, the most successful one is the Double $Q$-Learning algorithm~\cite{van2010double} which replaces the \gls{me} used in $Q$-Learning with \gls{de}. The underestimation of the $Q$-function performed by Double $Q$-Learning allows to learn a good policy in very noisy environments where $Q$-Learning fails.
 
 \begin{algorithm}[t]
@@ -258,7 +252,7 @@ In the last years, different approaches have been proposed trying to overcome th
 \end{algorithm}
 
 \subsubsection{Weighted Q-Learning}
-Recently, the replacement of \gls{me} with \gls{we} has been proposed in the \textit{Weighted $Q$-Learning} algorithm~\cite{deramo2016estimating}. Weighted $Q$-Learning maintains an estimate of the mean value of the $Q$-function and its variance in order to compute the weights of \gls{we} (Algorithm \ref{A:WQ-Learning}).
+We propose to replace \gls{me} with \gls{we} in the \textit{Weighted $Q$-Learning} algorithm~\cite{deramo2016estimating}. Weighted $Q$-Learning maintains an estimate of the mean value of the $Q$-function and its variance in order to compute the weights of \gls{we} (Algorithm \ref{A:WQ-Learning}).
 While the mean value corresponds to the current estimate of the $Q$-function, the variance is not straightforward to be computed. Indeed, it is not simply the variance of the $Q$-function approximator, but it is the variance of the process consisting of an update formula with a variable learning rate. Considering this, it can be showed that the variance can be computed incrementally at each step $t$ with:
 $$\sigma^2_t(s,a) \leftarrow n_t(s,a) \dfrac{(Q_{2_t}(s,a) - Q_t(s,a)^2)}{n_t(s,a) - 1} \omega_t(s,a),$$
 where $Q_t(s,a)$ is the current $Q$-value of action $a$ in state $s$, $n_t(s,a)$ is the current number of updates of $Q(s,a)$ and
@@ -267,13 +261,7 @@ $$\omega_t(s,a) \leftarrow (1 - \alpha_t(s,a))^2 \omega_{t-1}(s,a) + \alpha_t(s,
 where $W_t(s')$ is the current value of \gls{we} in state $s'$.
 
 \subsection{Batch}
-A well known batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{Ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems.
-Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
-\begin{equation}
- \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} Q_{t-1}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
-\end{equation}
-The \gls{fqi} update, similarly to the $Q$-Learning update (see equation~\ref{E:qlearningrule}), requires the computation of \gls{me} which causes the same overestimation problem of $Q$-Learning. Intuitively, the replacement of \gls{me} with \gls{de} or \gls{we} can help to solve this issue also in \gls{fqi}. The \gls{fqi} variant which replaces \gls{me} with \gls{de} is called \gls{dfqi}, and the variant which uses \gls{we} is called \gls{wfqi}~\cite{deramo2017maximum}.
-\paragraph{Weighted Fitted Q-Iteration} \gls{wfqi} uses \gls{gp} regression in order to compute the mean $Q$-value and its variance in continuous state spaces (Algorithm \ref{A:WFQI}). The interesting aspect of \gls{wfqi} is that it can handle infinite action spaces too, as explained in Section \ref{S: infinite} and showed in Algorithm \ref{A:continuousWFQI}. At the best of our knowledge, this makes it the only value-based algorithm able to deal with infinite action spaces.
+The \gls{fqi} update~\ref{S:FQI}, similarly to the $Q$-Learning update, requires the computation of \gls{me} which causes the same overestimation problem of $Q$-Learning. Intuitively, the replacement of \gls{me} with \gls{de} or \gls{we} can help to solve this issue also in \gls{fqi}.
 
 \begin{algorithm}[t]
 \caption{Weighted FQI (finite actions)}
@@ -317,6 +305,9 @@ The \gls{fqi} update, similarly to the $Q$-Learning update (see equation~\ref{E:
 \end{small}
 \end{algorithm}
 
+\subsubsection{Weighted Fitted Q-Iteration}
+The \gls{fqi} variant which replaces \gls{me} with \gls{de} is called \gls{dfqi}, and the variant which we propose using \gls{we} is called \gls{wfqi}~\cite{deramo2017maximum}. \gls{wfqi} uses \gls{gp} regression in order to compute the mean $Q$-value and its variance in continuous state spaces (Algorithm \ref{A:WFQI}). The interesting aspect of \gls{wfqi} is that it can handle infinite action spaces too, as explained in Section \ref{S:infinite} and showed in Algorithm \ref{A:continuousWFQI}. At the best of our knowledge, this makes it the only value-based algorithm able to deal with infinite action spaces.
+
 \section{Empirical results}
 We evaluate the performance of \gls{me}, \gls{de} and \gls{we} in \gls{mab} and \gls{rl} problems. We start from considering discrete state and action spaces, then we move to continuous ones and, eventually, to deep \gls{rl} problems.
 
@@ -341,7 +332,7 @@ In the last setting, we modify the interval of the mean \gls{ctr} by changing th
     \subfigure[Increasing number of impressions.\label{F:ia_first}]{\includegraphics[scale=.425]{./img/internetAds-impressions.pdf}}
     \subfigure[Increasing number of ads.\label{F:ia_second}]{\includegraphics[scale=.425]{./img/internetAds-actions.pdf}}
     \subfigure[Increasing value of maximum CTR.\label{F:ia_third}]{\includegraphics[scale=.425]{./img/internetAds-probs.pdf}}
-    \caption{MSE for each setting. Results are averaged over 2000 experiments.}\label{F:iAds}
+    \caption[Internet ads results]{MSE for each setting. Results are averaged over 2000 experiments.}\label{F:iAds}
     \end{minipage}
 \end{figure*}
 
@@ -365,7 +356,7 @@ We measure the utility gain of advertiser $1$, whose true per click value is $v_
     \begin{minipage}{\columnwidth}
     \centering 
     \includegraphics[scale=0.9]{./img/sponsoredSearch.pdf}
-    \caption{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
+    \caption[Sponsored search auctions results]{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
     \end{minipage}
 \end{figure}
 
@@ -389,7 +380,7 @@ In Figure \ref{F:grid}, the top plots show the average reward per step obtained 
     \subfigure[$\mathcal{N}(-1, 5)$.\label{F:gaussian5}]{\includegraphics{./img/gridexp08-g.pdf}}
     \hspace{-.5cm}
     \subfigure[$\mathcal{N}(-1, 1)$.\label{F:gaussian1}]{\includegraphics{./img/gridexp08-g-sigma1.pdf}}
-    \caption{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.}\label{F:grid}
+    \caption[Grid world results]{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.}\label{F:grid}
   \end{minipage}
 \end{figure*}
 Figures~\ref{F:bernoulli} and~\ref{F:gaussian5} show that, regardless of the bad approximation of the $Q$-function, the underestimation of Double $Q$-Learning allows to learn the best policy faster than other algorithm in these noisy settings.
@@ -399,10 +390,10 @@ Weighted $Q$-Learning shows much less bias than the other estimators in all sett
 \begin{figure*}
 \begin{minipage}{\textwidth}
 \centering
-\subfigure[Training phase.\label{F:forex_train}]{\includegraphics[scale=0.7]{./img/forexTrain.pdf}}
-\subfigure[Test phase.\label{F:forex_test}]{\includegraphics[scale=0.7]{./img/forexTest.pdf}}
+\subfigure[Training phase.\label{F:forex_train}]{\includegraphics[scale=0.6]{./img/forexTrain.pdf}}
+\subfigure[Test phase.\label{F:forex_test}]{\includegraphics[scale=0.6]{./img/forexTest.pdf}}
 \end{minipage}
-\caption{Profit per year averaged over 100 experiments.}\label{F:forex}
+\caption[Forex results]{Profit per year averaged over 100 experiments.}\label{F:forex}
 \end{figure*}
 
 \subsubsection{Forex}
@@ -445,7 +436,7 @@ This means that, if you want to be accurate, you cannot increase the number of b
   \includegraphics[width=\textwidth]{./img/MM_123_new_noabs.pdf}\\
   \includegraphics[width=\textwidth]{./img/MM_45_new_noabs.pdf}
  \end{minipage}
-  \caption{Mean bias obtained by ME, DE and $\text{WE}_{\infty}$ with different sample sizes  and bins (only for ME and DE).
+  \caption[Bias in pricing problem]{Mean bias obtained by ME, DE and $\text{WE}_{\infty}$ with different sample sizes  and bins (only for ME and DE).
   }
   \label{F:pricing_bias}
 \end{figure*}
@@ -455,7 +446,7 @@ This means that, if you want to be accurate, you cannot increase the number of b
   \includegraphics[width=\textwidth]{./img/MM_123_new_var.pdf}\\
   \includegraphics[width=\textwidth]{./img/MM_45_new_var.pdf}
  \end{minipage}
-  \caption{Variance of the bias obtained by ME, DE and $\text{WE}_{\infty}$ with different sample sizes and bins.
+  \caption[Variance in pricing problem]{Variance of the bias obtained by ME, DE and $\text{WE}_{\infty}$ with different sample sizes and bins.
   }
   \label{F:pricing_variance}
 \end{figure*}
@@ -476,11 +467,11 @@ An episode starts with $x_0 = (\theta_0, 0)$ where $\theta_0 \sim \mathcal{U}(-\
 \begin{figure*}
 \begin{minipage}{\textwidth}
 \centering
-\subfigure[Discrete actions.\label{F:pendulum_discrete}]{\includegraphics[scale=0.385]{./img/pendulumDiscrete.pdf}}
+\subfigure[Discrete actions.\label{F:pendulum_discrete}]{\includegraphics[scale=0.35]{./img/pendulumDiscrete.pdf}}
 \hspace{-1.025cm}
-\subfigure[Continuous actions.\label{F:pendulum_continuous}]{\includegraphics[scale=0.385]{./img/pendulumContinuous.pdf}}
+\subfigure[Continuous actions.\label{F:pendulum_continuous}]{\includegraphics[scale=0.35]{./img/pendulumContinuous.pdf}}
 \end{minipage}
-\caption{Average reward averaged on 100 experiments.}\label{F:forex}
+\caption[Swing-up pendulum results]{Average reward averaged on 100 experiments.}\label{F:forex}
 \end{figure*}
 The reward depends on the height of the pendulum: $r(x) = \cos(\theta)$.
 The problem is discounted with $\gamma = 0.9$.

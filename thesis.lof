@@ -1,0 +1,76 @@
+\select@language {greek}
+\select@language {english}
+\select@language {english}
+\select@language {english}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Reinforcement Learning problem scheme}}{2}{figure.caption.10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Reinforcement Learning problem scheme}}{5}{figure.caption.11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Markov Decision Process}}{7}{figure.caption.12}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Bias analysis in WE}}{16}{figure.caption.24}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Absolute bias analysis in WE}}{16}{figure.caption.24}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Variance analysis in WE}}{18}{figure.caption.25}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces MSE analysis in WE}}{18}{figure.caption.25}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Internet ads results}}{21}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Increasing number of impressions.}}}{21}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Increasing number of ads.}}}{21}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{21}{figure.caption.29}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Sponsored search auctions results}}{23}{figure.caption.31}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Grid world results}}{24}{figure.caption.33}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Bernoulli.}}}{24}{figure.caption.33}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{24}{figure.caption.33}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{24}{figure.caption.33}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Forex results}}{25}{figure.caption.34}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Training phase.}}}{25}{figure.caption.34}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Test phase.}}}{25}{figure.caption.34}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Bias in pricing problem}}{26}{figure.caption.37}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Variance in pricing problem}}{27}{figure.caption.38}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Swing-up pendulum results}}{28}{figure.caption.40}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Discrete actions.}}}{28}{figure.caption.40}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Continuous actions.}}}{28}{figure.caption.40}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Noisy grid world algorithms comparison}}{35}{figure.caption.41}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{35}{figure.caption.41}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.8}}$}}}{35}{figure.caption.41}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Noisy grid world RQ-Learning variants comparison - 1}}{36}{figure.caption.42}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{36}{figure.caption.42}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.8}}$}}}{36}{figure.caption.42}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Noisy grid world RQ-Learning variants comparison - 2}}{37}{figure.caption.43}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RQ-Learning}}}{37}{figure.caption.43}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Windowed RQ-Learning}}}{37}{figure.caption.43}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Structure of the double-chain problem.\relax }}{37}{figure.caption.44}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Double chain problem results}}{38}{figure.caption.45}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{38}{figure.caption.45}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{38}{figure.caption.45}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{38}{figure.caption.45}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{38}{figure.caption.45}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Learning rate adaptation in double chain problem}}{38}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{38}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{38}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{38}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{38}{figure.caption.46}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Policy in double chain problem}}{39}{figure.caption.47}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{39}{figure.caption.47}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{39}{figure.caption.47}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Mean reward per step (top) and maximum action-value estimate in the Grid World with Holes problem in the initial state (bottom) of all the other algorithms and of the best setting of RQ-Learning for this experiment. Results are averaged over $10000$ experiments.\relax }}{39}{figure.caption.48}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Structure of the Grid World with Holes problem.\relax }}{40}{figure.caption.49}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Mean reward per step (top) and maximum action-value estimate in the Noisy Grid World problem in the initial state (bottom) of SARSA and of the on-policy windowed version of RQ-Learning for this experiment. Results are averaged over $1000$ experiments.\relax }}{40}{figure.caption.50}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Results on the \textbf {Taxi} problem. Figure~\ref {F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref {F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref {F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.\relax }}{51}{figure.caption.53}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Online variance}}}{51}{figure.caption.53}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Taxi grid}}}{51}{figure.caption.53}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Bootstrapped variance}}}{51}{figure.caption.53}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Figure~\ref {F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref {F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.\relax }}{52}{figure.caption.54}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mountain Car}}}{52}{figure.caption.54}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Acrobot}}}{52}{figure.caption.54}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Results of TS on Taxi with different upper bounds on variance.\relax }}{52}{figure.caption.55}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Results of TS on Taxi using Hoeffding upper bound with different values of the $c$ parameter.\relax }}{53}{figure.caption.56}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Results of TS on Taxi using Hoeffding upper bound with $c=2$ without and with $\chi ^2$ upper bound boost.\relax }}{53}{figure.caption.57}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.\relax }}{53}{figure.caption.58}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pong}}}{53}{figure.caption.58}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Breakout}}}{53}{figure.caption.58}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{57}{figure.caption.61}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
