@@ -1,11 +1,11 @@
 \contentsline {algorithm}{\numberline {1}{\ignorespaces Iterative Policy Evaluation\relax }}{9}{algorithm.1}
 \contentsline {algorithm}{\numberline {2}{\ignorespaces Value Iteration\relax }}{9}{algorithm.2}
-\contentsline {algorithm}{\numberline {3}{\ignorespaces Weighted Q-learning\relax }}{19}{algorithm.3}
-\contentsline {algorithm}{\numberline {4}{\ignorespaces Weighted FQI (finite actions)\relax }}{20}{algorithm.4}
-\contentsline {algorithm}{\numberline {5}{\ignorespaces Weighted FQI$_{\infty }$ (continuous actions)\relax }}{20}{algorithm.5}
-\contentsline {algorithm}{\numberline {6}{\ignorespaces Standard mean and variance update\relax }}{46}{algorithm.6}
-\contentsline {algorithm}{\numberline {7}{\ignorespaces Mean and variance update using momentums\relax }}{46}{algorithm.7}
-\contentsline {algorithm}{\numberline {8}{\ignorespaces SARSA with online variance update\relax }}{47}{algorithm.8}
-\contentsline {algorithm}{\numberline {9}{\ignorespaces SARSA with online variance update and Hoeffding upper bound\relax }}{47}{algorithm.9}
-\contentsline {algorithm}{\numberline {10}{\ignorespaces SARSA with function approximation with variance update\relax }}{48}{algorithm.10}
-\contentsline {algorithm}{\numberline {11}{\ignorespaces Bootstrapped DQN with Thompson Sampling\relax }}{50}{algorithm.11}
+\contentsline {algorithm}{\numberline {3}{\ignorespaces Weighted Q-learning\relax }}{21}{algorithm.3}
+\contentsline {algorithm}{\numberline {4}{\ignorespaces Weighted FQI (finite actions)\relax }}{22}{algorithm.4}
+\contentsline {algorithm}{\numberline {5}{\ignorespaces Weighted FQI$_{\infty }$ (continuous actions)\relax }}{22}{algorithm.5}
+\contentsline {algorithm}{\numberline {6}{\ignorespaces Standard mean and variance update\relax }}{48}{algorithm.6}
+\contentsline {algorithm}{\numberline {7}{\ignorespaces Mean and variance update using momentums\relax }}{48}{algorithm.7}
+\contentsline {algorithm}{\numberline {8}{\ignorespaces SARSA with online variance update\relax }}{49}{algorithm.8}
+\contentsline {algorithm}{\numberline {9}{\ignorespaces SARSA with online variance update and Hoeffding upper bound\relax }}{49}{algorithm.9}
+\contentsline {algorithm}{\numberline {10}{\ignorespaces SARSA with function approximation with variance update\relax }}{50}{algorithm.10}
+\contentsline {algorithm}{\numberline {11}{\ignorespaces Bootstrapped DQN with Thompson Sampling\relax }}{52}{algorithm.11}

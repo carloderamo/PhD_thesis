@@ -1,5 +1,5 @@
 \chapter{Preliminaries}
-\gls{rl} is intuitively describable as the process of learning from interaction with the environment, but this hasty explanation is only a very high level description of it; indeed, a more formal way to model the problem is required to properly analyze it. This chapter provides a description of the mathematical framework required to model \gls{rl}. It also explains a selection of algorithms that are related to the work done in this thesis in order to provide enough knowledge about the literature I dealt with during my years of Ph.D. research.
+\gls{rl} is intuitively describable as the process of learning from interaction with the environment. This hasty explanation offers a very high level definition of it, then a more formal way to model the problem is required to properly analyze it. This chapter provides a description of the mathematical framework required to model \gls{rl}. It also explains a selection of algorithms that are related to the work done in this thesis in order to provide enough knowledge about the literature I dealt with during my years of Ph.D. research.
 
 \section{Agent and environment}
 \begin{figure}[b]
@@ -10,7 +10,7 @@
 \end{minipage}
 \caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:mdp1}
 \end{figure}
-The interaction of an agent inside an environment can be seen as the execution of actions to move itself and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $S_t$ of the environment, executes an action $A_t$ and observes the new representation of the environment $S_{t+1}$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspect of the sensory data acquired from the environment the agent are used. Together with $S_{t+1}$, the agent also sees a return $R_t$ which is not given by the environment, but is a measure considered by the agent to evaluate the convenience of the consequences of the actions it executes. The total number of time steps is called \textit{horizon} $H$ and determines a first taxonomy of problems:
+The interaction of an agent inside an environment can be seen as the execution of actions to move itself and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $S_t$ of the environment, executes an action $A_t$ and observes the new representation of the environment $S_{t+1}$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. Together with $S_{t+1}$, the agent also sees a return $R_t$ which is not given by the environment, but is a measure considered by the agent to evaluate the convenience of the consequences of the actions it executes. The total number of time steps is called \textit{horizon} $H$ and determines a first taxonomy of problems:
 \begin{itemize}
  \item finite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, H)$;
  \item infinite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, \infty)$.
@@ -41,7 +41,7 @@ The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$
   \includegraphics[scale=.6]{img/mdp2.png}
 \end{center}
 \end{minipage}
-\caption[Markov Decision Process]{...}\label{F:mdp2}
+\caption[Markov Decision Process]{An example of a MDP graph representing states $S_i$, actions $a_i$, transition probabilities (numbers over each edge) and rewards (pink arrows).}\label{F:mdp2}
 \end{figure}
 The mathematical framework to study the interaction of the agent with the environment is provided by the theory behind \glspl{mdp}. A \gls{mdp} is defined as a $6$-tuple where $<\mathcal{S}, \mathcal{A}, \mathcal{R}, \mathcal{T}, \gamma, \mu>$:
 \begin{itemize}
@@ -153,6 +153,11 @@ for all $s \in \mathcal{S}$. Desirably, Value Iteration maintains the properties
 As stated at the beginning of the section, the previous methods can be applied only when the full model of the \gls{mdp} is known. However, in most of real cases the full model is not available and the agent must move in the environment in order to understand it.
 
 \subsection{Reinforcement Learning}
+The purpose of \gls{rl} is to address the problem of solving a \gls{mdp} in the cases where \gls{dp} is not helpful, i.e. when the transition function $\mathcal{T}$ and reward function $\mathcal{R}$ are not known. To achieve this, the agent should acquire the necessary knowledge from transition samples obtained moving in the environment. There are two main ways of using the transition samples resulting in two classes of \gls{rl} algorithms:
+\begin{itemize}
+ \item \textbf{model-based:} the samples are used to learn a model of the environment which is subsequently used to learn the policy;
+ \item \textbf{model-free:} the samples are used to directly compute the policy, for instance by means of value-function approximation.
+\end{itemize}
 
 
 \subsubsection{Online}
