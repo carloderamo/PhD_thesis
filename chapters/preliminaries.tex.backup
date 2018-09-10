@@ -228,13 +228,8 @@ The corresponding off-policy \gls{td} algorithm for control w.r.t. SARSA is Q-Le
 \begin{equation}\label{eq:Q-formula}
  Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)\right).
 \end{equation}
-\paragraph{Double Q-Learning}\label{S:DoubleQ-Learning}
-\begin{equation}\label{eq:Q-formula}
- Q_{t+1}(s_t,a_t) \leftarrow Q_t(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q_t(s_{t+1},a) - Q_t(s_t,a_t)\right),
-\end{equation}
-where $\alpha_t(s_t,a_t)$ is a learning rate, $\gamma$ is a discount factor and $r_t$ is the immediate reward obtained by taking action $a_t$ in state $s_t$.
-\paragraph{Bias-Corrected Q-Learning}
-\paragraph{Speedy Q-Learning}
+
+Both SARSA and Q-Learning are widely used in the literature and many variants of them have been proposed during the years. 
 
 \subsubsection{Batch}
 

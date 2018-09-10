@@ -229,13 +229,10 @@ The corresponding off-policy \gls{td} algorithm for control w.r.t. SARSA is Q-Le
  Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)\right).
 \end{equation}
 
-Both SARSA and Q-Learning are widely used in the \gls{rl} literature. Moreover, many variants of them have been proposed during the years 
-
-\subsubsection{Batch}
+According to the difference between on-policy and off-policy methods, SARSA and Q-Learning are two algorithms that may behave very differently in some problems where the agent can reach some catastrophic states. For instance, if the desired goal state is close to other undesirable catastrophic states, SARSA will learn a policy which let the agent stay far to undesired state and reach the goal safely but slowly; while Q-Learning will learn a policy moving close to undesired states, but reaching the goal faster than SARSA. Thus, SARSA is more suitable for real applications, e.g. robotics, where the cost of reaching catastrophic situations is very high and is better to be conservative in order not to damage the physical system; on the contrary, Q-Learning is more suitable when the cost of reaching bad states is not high, e.g. simulations.
 
 \paragraph{Fitted Q-Iteration}\label{S:FQI}
-A well known batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems.
-Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
+A well known \gls{td} batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems. Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
 \begin{equation}
  \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} Q_{t-1}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
 \end{equation}
