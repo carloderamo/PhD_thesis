@@ -53,7 +53,7 @@ The mathematical framework to study the interaction of the agent with the enviro
  \item $\mu$ is the probability of each state to be the initial one: $\mu(s) = P(s_0 = s)$.
 \end{itemize}
 A \gls{mdp} is called \textit{finite}, or \textit{discrete}, if the set of states $\mathcal{S}$ and set of actions $\mathcal{A}$ are finite; it is called \textit{infinite}, or \textit{continuous}, when the set of states $\mathcal{S}$ is infinite and/or the set of actions $\mathcal{A}$ is infinite.
-Two important properties of the \glspl{mdp}:
+Two important properties of \glspl{mdp} are:
 \begin{itemize}
  \item \textbf{stationarity:} the transition function $\mathcal{T}$ does not change over time;
  \item \textbf{Markovian assumption:} the transition and reward function depend only on the current time step and not on the previous ones.
@@ -158,7 +158,44 @@ The purpose of \gls{rl} is to address the problem of solving a \gls{mdp} in the 
  \item \textbf{model-based:} the samples are used to learn a model of the environment which is subsequently used to learn the policy;
  \item \textbf{model-free:} the samples are used to directly compute the policy, for instance by means of value-function approximation.
 \end{itemize}
+In both classes of methods, the \gls{rl} problem can be addressed in two ways:
+\begin{itemize}
+ \item \textbf{value-based:} the algorithm computes an estimate of the action-value function;
+ \item \textbf{policy-based:} the algorithm computes an estimate of the policy;
+\end{itemize}
+This taxonomy splits the \gls{rl} literature in two sharply different fields where value-based is mostly used for discrete \glspl{mdp} whilst policy-based is mostly used in continuous \glspl{mdp}, in particular in robotics.
 
+In all these classes of problems the policy followed to collect samples plays a crucial role since the performance of the learning algorithm heavily depends on the balancing between exploratory actions and exploitative actions, a fundamental issue of \gls{rl} known as \textit{exploration-exploitation dilemma}. The work done in this thesis is mainly focused on model-free value-based \gls{rl} in \gls{mdp} with a finite number of actions, thus all the following analysis is only inherent to it.
+
+\paragraph{Exploratory policies}
+In a hypothetical setting in which the agent is provided the knowledge of the optimal policy, there is no need to explore new actions and it can simply follow the optimal policy to solve the \gls{mdp} even without learning anything. Besides this very unlikely case, there are numerous situations where the agent does not know the environment it is moving in and the effect of its actions on the environment, then it needs to explore the environment to acquire the knowledge it needs to learn an optimal policy. The most trivial exploratory policy is called $\varepsilon$-greedy and is computed as
+\begin{equation}\label{E:eps}
+\pi(a|s)=
+    \begin{cases}
+    \dfrac{\varepsilon}{|\mathcal{A}|} + 1 - \varepsilon & \text{if } a = \arg\max_{a \in \mathcal{A}}Q(s,a)\\
+    \dfrac{\varepsilon}{|\mathcal{A}|} & \text{otherwise}
+    \end{cases}
+\end{equation}
+Equation~\ref{E:eps} results in choosing, at each step, between a greedy or a random action according to the value of $\varepsilon$: the policy is completely random when $\varepsilon = 1$ and is completely greedy when $\varepsilon = 0$.
+Despite its simplicity, this policy is used in numerous works in literature allowing to reach good results with minimum computational demand, but at the cost of a bad sample-efficiency.
+
+One of the drawbacks of $\varepsilon$-greedy is that it makes no use of the information available to the agent. The \textit{Boltzmann} policy, also known as \textit{Softmax} policy, makes use of the current estimate of the action-value functions computing the probabilities for each action $a_i$ to be sampled as
+\begin{equation}\label{E:boltz}
+ \pi(a | s) = \dfrac{e^{\nicefrac{Q(s,a)}{\tau}}}{\sum_{a' \in \mathcal{A}}e^{\nicefrac{Q(s,a')}{\tau}}}
+\end{equation}
+where $\tau$ is called \textit{temperature} and controls the exploration ratio such as if $\tau \rightarrow 0$ the policy is greedy and if $\tau \rightarrow \infty$ the policy is random. This is an attempt to use knowledge acquired by the agent in order to drive exploration in a smarter way than $\varepsilon$-greedy. A more recent strategy based on Boltzmann policy exploits the mellowmax operator \textit{mm} to compute the Maximum Entropy Mellowmax policy~\cite{asadi2016alternative}
+\begin{equation}
+ \pi(a | s) = \dfrac{e^{\nicefrac{Q(s,a)}{\tau}}}{\sum_{a' \in \mathcal{A}}e^{\nicefrac{Q(s,a')}{\tau}}}
+\end{equation}
+where $\beta$ is a value for which
+\begin{equation}
+ \sum_{a \in \mathcal{A}} e^{\beta(Q(s,a) - mm_\omega Q(s))}(Q(s,a)-mm_\omega Q(s))=0.
+\end{equation}
+and
+\begin{equation}\label{E:mm}
+ mm_\omega Q(s) = \dfrac{\log(\dfrac{\sum_{i=1}^{|\mathcal{A}|}e^{\omega Q(s,a_i)}}{|\mathcal{A}|})}{\omega}.
+\end{equation}
+The \textit{mm} operator~\ref{E:mm} is a softmax operator with the desirable properties of the Boltzmann operator~\ref{E:boltz}, e.g. differentiability, but differently from the Boltzmann it is also a contractive operator, thus being an interesting operator for computing the target of the Bellman equation. 
 
 \subsubsection{Online}
 

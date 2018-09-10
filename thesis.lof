@@ -8,69 +8,69 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Reinforcement Learning problem scheme}}{5}{figure.caption.10}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Markov Decision Process}}{7}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Bias analysis in WE}}{18}{figure.caption.23}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Absolute bias analysis in WE}}{18}{figure.caption.23}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Variance analysis in WE}}{20}{figure.caption.24}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces MSE analysis in WE}}{20}{figure.caption.24}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Internet ads results}}{23}{figure.caption.28}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Increasing number of impressions.}}}{23}{figure.caption.28}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Increasing number of ads.}}}{23}{figure.caption.28}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{23}{figure.caption.28}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Sponsored search auctions results}}{25}{figure.caption.30}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Grid world results}}{26}{figure.caption.32}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Bernoulli.}}}{26}{figure.caption.32}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{26}{figure.caption.32}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{26}{figure.caption.32}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Forex results}}{27}{figure.caption.33}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Training phase.}}}{27}{figure.caption.33}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Test phase.}}}{27}{figure.caption.33}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Bias in pricing problem}}{28}{figure.caption.36}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Variance in pricing problem}}{29}{figure.caption.37}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Swing-up pendulum results}}{30}{figure.caption.39}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Discrete actions.}}}{30}{figure.caption.39}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Continuous actions.}}}{30}{figure.caption.39}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Bias analysis in WE}}{18}{figure.caption.24}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Absolute bias analysis in WE}}{18}{figure.caption.24}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Variance analysis in WE}}{20}{figure.caption.25}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces MSE analysis in WE}}{20}{figure.caption.25}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Internet ads results}}{23}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Increasing number of impressions.}}}{23}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Increasing number of ads.}}}{23}{figure.caption.29}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Increasing value of maximum CTR.}}}{23}{figure.caption.29}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Sponsored search auctions results}}{25}{figure.caption.31}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Grid world results}}{26}{figure.caption.33}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Bernoulli.}}}{26}{figure.caption.33}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\mathcal {N}(-1, 5)$.}}}{26}{figure.caption.33}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\mathcal {N}(-1, 1)$.}}}{26}{figure.caption.33}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Forex results}}{27}{figure.caption.34}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Training phase.}}}{27}{figure.caption.34}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Test phase.}}}{27}{figure.caption.34}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Bias in pricing problem}}{28}{figure.caption.37}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Variance in pricing problem}}{29}{figure.caption.38}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Swing-up pendulum results}}{30}{figure.caption.40}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Discrete actions.}}}{30}{figure.caption.40}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Continuous actions.}}}{30}{figure.caption.40}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Noisy grid world algorithms comparison}}{37}{figure.caption.40}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{37}{figure.caption.40}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.8}}$}}}{37}{figure.caption.40}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Noisy grid world RQ-Learning variants comparison - 1}}{38}{figure.caption.41}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{38}{figure.caption.41}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.8}}$}}}{38}{figure.caption.41}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Noisy grid world RQ-Learning variants comparison - 2}}{39}{figure.caption.42}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RQ-Learning}}}{39}{figure.caption.42}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Windowed RQ-Learning}}}{39}{figure.caption.42}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Structure of the double-chain problem.\relax }}{39}{figure.caption.43}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Double chain problem results}}{40}{figure.caption.44}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{40}{figure.caption.44}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{40}{figure.caption.44}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{40}{figure.caption.44}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{40}{figure.caption.44}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Learning rate adaptation in double chain problem}}{40}{figure.caption.45}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Noisy grid world algorithms comparison}}{37}{figure.caption.41}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{37}{figure.caption.41}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.8}}$}}}{37}{figure.caption.41}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Noisy grid world RQ-Learning variants comparison - 1}}{38}{figure.caption.42}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{38}{figure.caption.42}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.8}}$}}}{38}{figure.caption.42}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Noisy grid world RQ-Learning variants comparison - 2}}{39}{figure.caption.43}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RQ-Learning}}}{39}{figure.caption.43}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Windowed RQ-Learning}}}{39}{figure.caption.43}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Structure of the double-chain problem.\relax }}{39}{figure.caption.44}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Double chain problem results}}{40}{figure.caption.45}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{40}{figure.caption.45}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{40}{figure.caption.45}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{40}{figure.caption.45}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{40}{figure.caption.45}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Policy in double chain problem}}{41}{figure.caption.46}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{41}{figure.caption.46}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{41}{figure.caption.46}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Grid world with holes algorithms comparison - 1}}{41}{figure.caption.47}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Structure of the Grid World with Holes problem.}}{42}{figure.caption.48}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Grid world with holes algorithms comparison - 2}}{42}{figure.caption.49}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Learning rate adaptation in double chain problem}}{40}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{40}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{40}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{40}{figure.caption.46}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{40}{figure.caption.46}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Policy in double chain problem}}{41}{figure.caption.47}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)}$}}}{41}{figure.caption.47}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\alpha = \genfrac {}{}{}0{1}{n(s,a)^{0.51}}$}}}{41}{figure.caption.47}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Grid world with holes algorithms comparison - 1}}{41}{figure.caption.48}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Structure of the Grid World with Holes problem.}}{42}{figure.caption.49}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Grid world with holes algorithms comparison - 2}}{42}{figure.caption.50}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Taxi problem results}}{53}{figure.caption.52}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Online variance}}}{53}{figure.caption.52}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Taxi grid}}}{53}{figure.caption.52}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Bootstrapped variance}}}{53}{figure.caption.52}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Mountain car and acrobot problems results}}{54}{figure.caption.53}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mountain Car}}}{54}{figure.caption.53}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Acrobot}}}{54}{figure.caption.53}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Taxi with different upper bounds results - 1}}{54}{figure.caption.54}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Taxi with different upper bounds results - 2}}{55}{figure.caption.55}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Taxi with different upper bounds results - 3}}{55}{figure.caption.56}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Pong and Breakout problems results}}{55}{figure.caption.57}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pong}}}{55}{figure.caption.57}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Breakout}}}{55}{figure.caption.57}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Taxi problem results}}{53}{figure.caption.53}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Online variance}}}{53}{figure.caption.53}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Taxi grid}}}{53}{figure.caption.53}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Bootstrapped variance}}}{53}{figure.caption.53}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Mountain car and acrobot problems results}}{54}{figure.caption.54}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mountain Car}}}{54}{figure.caption.54}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Acrobot}}}{54}{figure.caption.54}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Taxi with different upper bounds results - 1}}{54}{figure.caption.55}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Taxi with different upper bounds results - 2}}{55}{figure.caption.56}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Taxi with different upper bounds results - 3}}{55}{figure.caption.57}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Pong and Breakout problems results}}{55}{figure.caption.58}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pong}}}{55}{figure.caption.58}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Breakout}}}{55}{figure.caption.58}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{59}{figure.caption.60}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Average reward averaged on 10 experiments. \relax }}{59}{figure.caption.61}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

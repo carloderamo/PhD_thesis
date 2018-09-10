@@ -5,6 +5,11 @@ Shipra Agrawal and Navin Goyal.
 \newblock Analysis of thompson sampling for the multi-armed bandit problem.
 \newblock In {\em Conference on Learning Theory}, pages 39--1, 2012.
 
+\bibitem{asadi2016alternative}
+Kavosh Asadi and Michael~L Littman.
+\newblock An alternative softmax operator for reinforcement learning.
+\newblock {\em arXiv preprint arXiv:1612.05628}, 2016.
+
 \bibitem{pmlr-v70-asadi17a}
 Kavosh Asadi and Michael~L. Littman.
 \newblock An alternative softmax operator for reinforcement learning.
