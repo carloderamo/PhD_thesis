@@ -161,7 +161,7 @@ The purpose of \gls{rl} is to address the problem of solving a \gls{mdp} in the 
 In both classes of methods, the \gls{rl} problem can be addressed in two ways:
 \begin{itemize}
  \item \textbf{value-based:} the algorithm computes an estimate of the action-value function;
- \item \textbf{policy-based:} the algorithm computes an estimate of the policy;
+ \item \textbf{policy-based:} the algorithm computes an estimate of the policy.
 \end{itemize}
 This taxonomy splits the \gls{rl} literature in two sharply different fields where value-based is mostly used for discrete \glspl{mdp} whilst policy-based is mostly used in continuous \glspl{mdp}, in particular in robotics.
 
@@ -180,32 +180,61 @@ Equation~\ref{E:eps} results in choosing, at each step, between a greedy or a ra
 Despite its simplicity, this policy is used in numerous works in literature allowing to reach good results with minimum computational demand, but at the cost of a bad sample-efficiency.
 
 One of the drawbacks of $\varepsilon$-greedy is that it makes no use of the information available to the agent. The \textit{Boltzmann} policy, also known as \textit{Softmax} policy, makes use of the current estimate of the action-value functions computing the probabilities for each action $a_i$ to be sampled as
-\begin{equation}
+\begin{equation}\label{E:boltz}
  \pi(a | s) = \dfrac{e^{\nicefrac{Q(s,a)}{\tau}}}{\sum_{a' \in \mathcal{A}}e^{\nicefrac{Q(s,a')}{\tau}}}
 \end{equation}
 where $\tau$ is called \textit{temperature} and controls the exploration ratio such as if $\tau \rightarrow 0$ the policy is greedy and if $\tau \rightarrow \infty$ the policy is random. This is an attempt to use knowledge acquired by the agent in order to drive exploration in a smarter way than $\varepsilon$-greedy. A more recent strategy based on Boltzmann policy exploits the mellowmax operator \textit{mm} to compute the Maximum Entropy Mellowmax policy~\cite{asadi2016alternative}
 \begin{equation}
+ \pi(a | s) = \dfrac{e^{\nicefrac{Q(s,a)}{\tau}}}{\sum_{a' \in \mathcal{A}}e^{\nicefrac{Q(s,a')}{\tau}}}
+\end{equation}
+where $\beta$ is a value for which
+\begin{equation}
  \sum_{a \in \mathcal{A}} e^{\beta(Q(s,a) - mm_\omega Q(s))}(Q(s,a)-mm_\omega Q(s))=0.
 \end{equation}
-where
-\begin{equation}
+and
+\begin{equation}\label{E:mm}
  mm_\omega Q(s) = \dfrac{\log(\dfrac{\sum_{i=1}^{|\mathcal{A}|}e^{\omega Q(s,a_i)}}{|\mathcal{A}|})}{\omega}.
 \end{equation}
+The \textit{mm} operator~\ref{E:mm} is a softmax operator with the desirable properties of the Boltzmann operator~\ref{E:boltz}, e.g. differentiability, but differently from the Boltzmann it is also a contractive operator, thus being an interesting operator for computing the target of the Bellman equation. 
 
-
-\subsubsection{Online}
-
-\paragraph{SARSA}
-\paragraph{Q-Learning}\label{S:Q-Learning}
-\begin{equation}\label{eq:Q-formula}
- Q_{t+1}(s_t,a_t) \leftarrow Q_t(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q_t(s_{t+1},a) - Q_t(s_t,a_t)\right),
+\subsubsection{Temporal Difference Learning}
+Given a policy, \gls{rl} is able to evaluate it from raw experience differently from \gls{dp} which needs to know the complete model of the \gls{mdp}. A well-known class of methods to do this is called \gls{mc}~\cite{robert2013monte} and consists in collecting samples for an entire episode and then updating the considered value functions using the discounted cumulative reward obtained during the run:
+\begin{equation}\label{E:mc}
+ V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]
 \end{equation}
-where $\alpha_t(s_t,a_t)$ is a learning rate, $\gamma$ is a discount factor and $r_t$ is the immediate reward obtained by taking action $a_t$ in state $s_t$.
+where $G_t$ is the cumulative reward obtained from state $S_t$ till the end of the episode and $\alpha$ is the learning rate.
+The drawback of these techniques is that they need the episode to be finished before updating the value-function estimates slowing down the learning time.
+
+To keep the desirable property of \gls{mc} of being able to estimate value-functions from raw experience without losing the good property of \gls{dp} of being able to update the same estimates after each step (i.e. \textit{bootstrapping}), \gls{td} methods have been studied in the past literature and are still one of the most used methods in \gls{rl}. The simplest \gls{td} method is known as \gls{td}(0) and updates the value-function after each step with
+\begin{equation}
+ V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)].
+\end{equation}
+The success of \gls{td} over \gls{dp} and \gls{mc} is motivated by this simple update formula since the algorithm is able to take the advantages of both techniques with guarantees of convergence to the optimal value-function.
+
+\gls{td} methods can be used for control if, instead of computing the state-value function, the action-value function is computed. This class of methods is split in two subclasses according to which policy is followed to compute the target of the \gls{td} update:
+\begin{itemize}
+ \item \textbf{on-policy:} following the policy which the agent is learning;
+ \item \textbf{off-policy:} following another policy.
+\end{itemize}
+
+\paragraph{SARSA}\label{S:SARSA}
+The SARSA algorithm is a well-known on-policy TD method for control. Being an on-policy control method, given a policy $\pi$ its purpose is to estimate the action-value function $q_\pi(s,a)$ for each $(s,a)$ tuple via the update formula:
+\begin{equation}
+ Q(S_t, A_t) \leftarrow Q(S_t,A_t) + \alpha [R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t,A_t)]
+\end{equation}
+where $A_{t+1} = \pi(S_{t+1})$. Being a \gls{td}(0) variant for control, the same convergence properties of \gls{td}(0) applies for SARSA.
+\paragraph{Q-Learning}\label{S:Q-Learning}
+The corresponding off-policy \gls{td} algorithm for control w.r.t. SARSA is Q-Learning~\cite{watkins1989learning}. Contrarily to SARSA, Q-Learning directly approximates the optimal action-value functions using a different policy to compute the target of the \gls{td} update. In particular, Q-Learning uses the greedy policy to compute the target, resulting in the update formula
+\begin{equation}\label{eq:Q-formula}
+ Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)\right).
+\end{equation}
 \paragraph{Double Q-Learning}\label{S:DoubleQ-Learning}
 \begin{equation}\label{eq:Q-formula}
  Q_{t+1}(s_t,a_t) \leftarrow Q_t(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q_t(s_{t+1},a) - Q_t(s_t,a_t)\right),
 \end{equation}
 where $\alpha_t(s_t,a_t)$ is a learning rate, $\gamma$ is a discount factor and $r_t$ is the immediate reward obtained by taking action $a_t$ in state $s_t$.
+\paragraph{Bias-Corrected Q-Learning}
+\paragraph{Speedy Q-Learning}
 
 \subsubsection{Batch}
 

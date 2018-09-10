@@ -278,6 +278,11 @@ Carl~Edward Rasmussen and Christopher K.~I. Williams.
   and Machine Learning)}.
 \newblock The MIT Press, 2005.
 
+\bibitem{robert2013monte}
+Christian Robert and George Casella.
+\newblock {\em Monte Carlo statistical methods}.
+\newblock Springer Science \& Business Media, 2013.
+
 \bibitem{schmidhuber1991possibility}
 J{\"u}rgen Schmidhuber.
 \newblock A possibility for implementing curiosity and boredom in
