@@ -47,6 +47,12 @@ Marc Bellemare, Sriram Srinivasan, Georg Ostrovski, Tom Schaul, David Saxton,
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   1471--1479, 2016.
 
+\bibitem{bellemare2013arcade}
+Marc~G Bellemare, Yavar Naddaf, Joel Veness, and Michael Bowling.
+\newblock The arcade learning environment: An evaluation platform for general
+  agents.
+\newblock {\em Journal of Artificial Intelligence Research}, 47:253--279, 2013.
+
 \bibitem{bellemare2015increasing}
 Marc~G. Bellemare, Georg Ostrovski, Arthur Guez, Philip~S. Thomas, and
   R{\'{e}}mi Munos.

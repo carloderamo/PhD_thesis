@@ -167,7 +167,7 @@ This taxonomy splits the \gls{rl} literature in two sharply different fields whe
 
 In all these classes of problems the policy followed to collect samples plays a crucial role since the performance of the learning algorithm heavily depends on the balancing between exploratory actions and exploitative actions, a fundamental issue of \gls{rl} known as \textit{exploration-exploitation dilemma}. The work done in this thesis is mainly focused on model-free value-based \gls{rl} in \gls{mdp} with a finite number of actions, thus all the following analysis is only inherent to it.
 
-\paragraph{Exploratory policies}
+\paragraph{Exploration policies}
 In a hypothetical setting in which the agent is provided the knowledge of the optimal policy, there is no need to explore new actions and it can simply follow the optimal policy to solve the \gls{mdp} even without learning anything. Besides this very unlikely case, there are numerous situations where the agent does not know the environment it is moving in and the effect of its actions on the environment, then it needs to explore the environment to acquire the knowledge it needs to learn an optimal policy. The most trivial exploratory policy is called $\varepsilon$-greedy and is computed as
 \begin{equation}\label{E:eps}
 \pi(a|s)=
@@ -229,15 +229,36 @@ The corresponding off-policy \gls{td} algorithm for control w.r.t. SARSA is Q-Le
  Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)\right).
 \end{equation}
 
-Both SARSA and Q-Learning are widely used in the literature and many variants of them have been proposed during the years. 
-
-\subsubsection{Batch}
+According to the difference between on-policy and off-policy methods, SARSA and Q-Learning are two algorithms that may behave very differently in some problems where the agent can reach some catastrophic states. For instance, if the desired goal state is close to other undesirable catastrophic states, SARSA will learn a policy which let the agent stay far to undesired state and reach the goal safely but slowly; while Q-Learning will learn a policy moving close to undesired states, but reaching the goal faster than SARSA. Thus, SARSA is more suitable for real applications, e.g. robotics, where the cost of reaching catastrophic situations is very high and is better to be conservative in order not to damage the physical system; on the contrary, Q-Learning is more suitable when the cost of reaching bad states is not high, e.g. simulations.
 
 \paragraph{Fitted Q-Iteration}\label{S:FQI}
-A well known batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems.
-Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
+A well known \gls{td} batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems. Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
 \begin{equation}
  \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} Q_{t-1}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
 \end{equation}
 
+\subsubsection{Approximated Temporal Difference Learning}
+
 \subsubsection{Deep Reinforcement Learning}
+The groundbreaking works that revived the research on \gls{rl} in recent years are certainly the ones belonging to the \gls{drl} field which consists to the use of \gls{dl} methodologies to address the \gls{rl} problem in complex high-dimensional \glspl{mdp}. Indeed, the very large state and action spaces together with the high number of features represent an obstacle to the learning with shallow \gls{rl} techniques making them computationally impractical. The recent coming of powerful computational resources, in particular the use of \glspl{gpu} for training deep neural networks in \gls{dl}, allowed to overcome this issue favoring the use of powerful deep function approximators in \gls{rl}.
+
+\paragraph{Deep Q-Network}\label{S:dqn}
+\begin{figure}[t]
+\begin{minipage}{\textwidth}
+\begin{center}
+  \includegraphics[scale=.15]{img/dqn.png}
+\end{center}
+\end{minipage}
+\caption[DQN network scheme]{Synthetic scheme of a deep neural network which takes the input of the screen of a videogame and output the action to perform in that state.}
+\end{figure}
+The pioneering work which showed the potential of \gls{drl} and started the research about it is the \gls{dqn} algorithm~\cite{mnih2015human}. It consists in the use of a deep neural network and the storing of a replay memory of past transitions $<s_t, a_t, r_t, s'_t>$ to approximate the action-value function $\hat{Q}$ of the problem computing the target
+\begin{equation}\label{E:dqn_update}
+y_i=
+    \begin{cases}
+    r_i & \text{if episode terminates at episode }i+1\\
+    r_i + \gamma \max_{a'} \hat{Q}(s'_i, a') & \text{otherwise}
+    \end{cases}
+\end{equation}
+and learning it in a supervised way.
+
+The algorithm shows outstanding performance on the previously almost intractable problems of Atari games~\cite{bellemare2013arcade}, a set of more than $50$ old but challenging videogames, where \gls{dqn} achieves state-of-the-art results even beating a human expert in some of them. The most remarkable quality of \gls{dqn} is its relatively simple implementation consisting of using raw pixel frame as input of a convolutional network and applying a simple gradient descent step to update the network. Indeed, the complexity behind the solving of these problems, that made them intractable in the past, resides in particular on the complexity of the input, 
