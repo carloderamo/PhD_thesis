@@ -547,14 +547,6 @@ url = {http://papers.nips.cc/paper/6501-deep-exploration-via-bootstrapped-dqn.pd
   publisher={Wiley Online Library}
 }
 
-@inproceedings{even2002convergence,
-  title={Convergence of optimistic and incremental Q-learning},
-  author={Even-Dar, Eyal and Mansour, Yishay},
-  booktitle={Advances in neural information processing systems},
-  pages={1499--1506},
-  year={2002}
-}
-
 @article{may2011simulation,
   title={Simulation studies in optimistic Bayesian sampling in contextual-bandit problems},
   author={May, Benedict C and Leslie, David S},
@@ -573,17 +565,6 @@ url = {http://papers.nips.cc/paper/6501-deep-exploration-via-bootstrapped-dqn.pd
   year={2017}
 }
 
-@article{meuleau1999exploration,
-  title={Exploration of multi-state environments: Local measures and back-propagation of uncertainty},
-  author={Meuleau, Nicolas and Bourgine, Paul},
-  journal={Machine Learning},
-  volume={35},
-  number={2},
-  pages={117--154},
-  year={1999},
-  publisher={Springer}
-}
-
 @inproceedings{bonarini2006self,
   title={Self-development framework for reinforcement learning agents},
   author={Bonarini, Andrea and Lazaric, Alessandro and Restelli, Marcello and Vitali, Patrick},
@@ -591,15 +572,6 @@ url = {http://papers.nips.cc/paper/6501-deep-exploration-via-bootstrapped-dqn.pd
   volume={178},
   pages={355--362},
   year={2006}
-}
-
-@article{opitz1999popular,
-  title={Popular ensemble methods: An empirical study},
-  author={Opitz, David and Maclin, Richard},
-  journal={Journal of artificial intelligence research},
-  volume={11},
-  pages={169--198},
-  year={1999}
 }
 
 @article{brafman2002r,
@@ -679,13 +651,6 @@ url = {http://papers.nips.cc/paper/6501-deep-exploration-via-bootstrapped-dqn.pd
   year = "2013",
   month = "jun",
   volume = "47"
-}
-
-@article{ostrovski2017count,
-  title={Count-based exploration with neural density models},
-  author={Ostrovski, Georg and Bellemare, Marc G and Oord, Aaron van den and Munos, R{\'e}mi},
-  journal={arXiv preprint arXiv:1703.01310},
-  year={2017}
 }
 
 @article{doi:10.1162/089976600300015204,

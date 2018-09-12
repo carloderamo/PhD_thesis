@@ -6,50 +6,52 @@ Database file #1: thesis.bib
 Warning--I didn't find a database entry for "lee2012intelligent"
 Warning--I didn't find a database entry for "doya2000reinforcement"
 Warning--I didn't find a database entry for "d2016estimating"
-Warning--I didn't find a database entry for "osband2016deep"
+Warning--I didn't find a database entry for "schmidhuber2008driven"
+Warning--I didn't find a database entry for "white2010interval"
+Warning--empty year in azizzadenesheli2517efficient
 Warning--can't use both volume and number fields in bertsekas2005dynamic
 Warning--can't use both author and editor fields in EvenDar2001
 Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
-You've used 74 entries,
+You've used 82 entries,
             2118 wiz_defined-function locations,
-            906 strings with 16940 characters,
-and the built_in function-call counts, 29827 in all, are:
-= -- 2945
-> -- 1456
-< -- 38
-+ -- 578
-- -- 493
-* -- 2017
-:= -- 4688
-add.period$ -- 235
-call.type$ -- 74
-change.case$ -- 443
+            945 strings with 18193 characters,
+and the built_in function-call counts, 33139 in all, are:
+= -- 3286
+> -- 1595
+< -- 42
++ -- 632
+- -- 539
+* -- 2236
+:= -- 5191
+add.period$ -- 261
+call.type$ -- 82
+change.case$ -- 490
 chr.to.int$ -- 0
-cite$ -- 78
-duplicate$ -- 1220
-empty$ -- 2290
-format.name$ -- 493
-if$ -- 6443
+cite$ -- 87
+duplicate$ -- 1360
+empty$ -- 2553
+format.name$ -- 539
+if$ -- 7172
 int.to.chr$ -- 0
-int.to.str$ -- 74
-missing$ -- 80
-newline$ -- 372
-num.names$ -- 154
-pop$ -- 547
+int.to.str$ -- 82
+missing$ -- 88
+newline$ -- 412
+num.names$ -- 170
+pop$ -- 602
 preamble$ -- 1
-purify$ -- 380
+purify$ -- 419
 quote$ -- 0
-skip$ -- 955
+skip$ -- 1067
 stack$ -- 0
-substring$ -- 1859
-swap$ -- 419
-text.length$ -- 38
+substring$ -- 2102
+swap$ -- 470
+text.length$ -- 42
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 278
-warning$ -- 4
-while$ -- 284
-width$ -- 76
-write$ -- 815
-(There were 8 warnings)
+type$ -- 310
+warning$ -- 5
+while$ -- 317
+width$ -- 84
+write$ -- 903
+(There were 10 warnings)

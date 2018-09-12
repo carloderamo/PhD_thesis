@@ -28,6 +28,11 @@ Peter Auer and Ronald Ortner.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   49--56, 2007.
 
+\bibitem{azizzadenesheli2517efficient}
+Kamyar Azizzadenesheli, Emma Brunskill, and Animashree Anandkumar.
+\newblock Efficient exploration through bayesian deep q-networks.
+\newblock {\em Asteroids}, 2517(1516):108.
+
 \bibitem{bao2008infinite}
 Bing-Kun Bao, Bao-Qun Yin, and Hong-Sheng Xi.
 \newblock Infinite-horizon policy-gradient estimation with variable discount
@@ -136,6 +141,12 @@ Carlo D'Eramo, Marcello Restelli, and Alessandro Nuara.
 \newblock In {\em {ICML}}, volume~48 of {\em {JMLR} Workshop and Conference
   Proceedings}, pages 1032--1040. JMLR.org, 2016.
 
+\bibitem{engel2005reinforcement}
+Yaakov Engel, Shie Mannor, and Ron Meir.
+\newblock Reinforcement learning with gaussian processes.
+\newblock In {\em Proceedings of the 22nd international conference on Machine
+  learning}, pages 201--208. ACM, 2005.
+
 \bibitem{ernst2005tree}
 Damien Ernst, Pierre Geurts, and Louis Wehenkel.
 \newblock Tree-based batch mode reinforcement learning.
@@ -145,6 +156,12 @@ Damien Ernst, Pierre Geurts, and Louis Wehenkel.
 Eyal Even-Dar and Yishay Mansour.
 \newblock {\em Learning Rates for Q-Learning}, pages 589--604.
 \newblock Springer Berlin Heidelberg, 2001.
+
+\bibitem{even2002convergence}
+Eyal Even-Dar and Yishay Mansour.
+\newblock Convergence of optimistic and incremental q-learning.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1499--1506, 2002.
 
 \bibitem{franccois2015discount}
 Vincent Fran{\c{c}}ois-Lavet, Raphael Fonteneau, and Damien Ernst.
@@ -238,6 +255,12 @@ Benedict~C May and David~S Leslie.
 \newblock {\em Statistics Group, Department of Mathematics, University of
   Bristol}, 11:02, 2011.
 
+\bibitem{meuleau1999exploration}
+Nicolas Meuleau and Paul Bourgine.
+\newblock Exploration of multi-state environments: Local measures and
+  back-propagation of uncertainty.
+\newblock {\em Machine Learning}, 35(2):117--154, 1999.
+
 \bibitem{mnih2015human}
 Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
   Marc~G Bellemare, Alex Graves, Martin Riedmiller, Andreas~K Fidjeland, Georg
@@ -252,6 +275,11 @@ Salman Mohagheghi, Yamille del Valle, Ganesh~Kumar Venayagamoorthy, and
   neurocontroller for a static compensator in a multimachine power system.
 \newblock {\em IEEE Transactions on Industrial Electronics}, 54(1):86--96,
   2007.
+
+\bibitem{opitz1999popular}
+David Opitz and Richard Maclin.
+\newblock Popular ensemble methods: An empirical study.
+\newblock {\em Journal of artificial intelligence research}, 11:169--198, 1999.
 
 \bibitem{osband2017deep}
 Ian Osband, Charles Blundell, Alexander Pritzel, and Benjamin Van~Roy.
@@ -271,6 +299,11 @@ Ian Osband, Benjamin Van~Roy, and Zheng Wen.
 \newblock Generalization and exploration via randomized value functions.
 \newblock In {\em International Conference on Machine Learning}, pages
   2377--2386, 2016.
+
+\bibitem{ostrovski2017count}
+Georg Ostrovski, Marc~G Bellemare, Aaron van~den Oord, and R{\'e}mi Munos.
+\newblock Count-based exploration with neural density models.
+\newblock {\em arXiv preprint arXiv:1703.01310}, 2017.
 
 \bibitem{pathak2017curiosity}
 Deepak Pathak, Pulkit Agrawal, Alexei~A Efros, and Trevor Darrell.
@@ -339,6 +372,12 @@ David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja
   et~al.
 \newblock Mastering the game of go without human knowledge.
 \newblock {\em Nature}, 550(7676):354, 2017.
+
+\bibitem{singh2004intrinsically}
+Satinder~P Singh, Andrew~G Barto, and Nuttapong Chentanez.
+\newblock Intrinsically motivated reinforcement learning.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1281--1288, 2004.
 
 \bibitem{smith2006optimizer}
 James~E Smith and Robert~L Winkler.
@@ -410,6 +449,11 @@ Joannes Vermorel and Mehryar Mohri.
 \newblock Multi-armed bandit algorithms and empirical evaluation.
 \newblock In {\em European conference on machine learning}, pages 437--448.
   Springer, 2005.
+
+\bibitem{vlassis2012bayesian}
+Nikos Vlassis, Mohammad Ghavamzadeh, Shie Mannor, and Pascal Poupart.
+\newblock Bayesian reinforcement learning.
+\newblock In {\em Reinforcement Learning}, pages 359--386. Springer, 2012.
 
 \bibitem{wang2015dueling}
 Ziyu Wang, Tom Schaul, Matteo Hessel, Hado Van~Hasselt, Marc Lanctot, and Nando

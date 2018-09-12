@@ -1,907 +1,796 @@
-In recent years, RL has made enormous advances, especially on
-high-dimensional tasks, such as Atari games \cite{mnih2015human}. One
-of the open problems in such complex domains is how to explore the environment in
-order to uncover sparse valuable states. Before seeing these states
-the agent does not necessarily have much information to base its
-decisions on. %Even if this problem is related to the \textsl{exploration/exploitation} trade-off, it is not all about that. 
-For example, an agent may always perceive a null reward except for a
-terminal state that is particularly difficult to reach. Before the
-agent reaches the terminal state and observes the subsequent reward, it cannot connect its actions to
-rewards. In this particular case, the traditional quest for solving the
-\text{exploration/exploitation} trade-off (near)-optimally makes no
+\chapter{Exploration Driven by an Optimistic Bellman Equation}
+The complexity of exploration in \gls{rl} is, among other reasons, explained by the presence a sparse reward function; indeed before seeing the states yielding a sparse reward the agent does not necessarily have much information to base its decisions on. In this particular case, the attempt to address the \textit{exploration/exploitation} trade-off (near)-optimally makes no
 sense since the agent has no information to reason about possible
-rewards that it has not yet observed. A classical way to solve this
-problem is to explore randomly. However, classical exploration
+rewards that it has not yet observed. In this setting, classical exploration
 approaches such as $\epsilon$-greedy may fail as the probability of
 reaching the positive reward can be low. A more effective strategy
 should take into account the underlying uncertainty and try to
 minimize it, in order to maximize the information gain. Bayesian approaches consider the uncertainty
 in a principled way but are often
-computational demanding \cite{vlassis2012bayesian,engel2005reinforcement}. Recently, computationally feasible
+computational demanding~\cite{vlassis2012bayesian,engel2005reinforcement}. Recently, computationally feasible
 algorithms inspired by Bayesian principles have been
-introduced \cite{azizzadenesheli2517efficient,osband2016deep}.
-Bootstrapped DQN (BDQN) \cite{osband2016deep} uses an ensemble of
-value functions in order to have different estimates of the $Q$-value
-function approximating posterior sampling
-\cite{strens2000bayesian}. However, to the best of our knowledge,
-there is no algorithm among these approximate techniques that is particularly suited for very sparse rewards in high dimensional state space. Our hypothesis is that Bayesian methods are
+introduced such as Bayesian \gls{dqn}~\cite{azizzadenesheli2517efficient} and \gls{bdqn}~\cite{osband2017deep} discussed in Chapter~\ref{C:ts}.
+However, to the best of our knowledge, there is no algorithm among these approximate techniques that is particularly suited for very sparse rewards in high-dimensional state space. Our hypothesis is that Bayesian methods are
 in general more focused on balancing between exploration and
-exploitation while they cannot achieve deep exploration.  The broad
-category of algorithms based on \textsl{intrinsic motivation} (IM)
-\cite{singh2004intrinsically}, have less theoretical guarantees
+exploitation while they cannot achieve deep exploration. The broad
+category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, have less theoretical guarantees
 than Bayesian approaches, yet they have obtained impressive results
-for example in the challenging Montezuma's Revenge task~\cite{bellemare2016unifying}. IM
-algorithms define an additional \textsl{intrinsic} reward, which acts as an exploration bonus. Often, the additional
+for example in the challenging Montezuma's Revenge task~\cite{bellemare2016unifying}. \gls{im}
+algorithms define an additional \textit{intrinsic} reward, which acts as an exploration bonus. Often, the additional
 reward is defined using heuristics, such as counting state visits and
 rewarding less visited states~\cite{ostrovski2017count}, or by
-``surprise'', that is, the error in predicting future
-states~\cite{pathak2017curiosity}. The drawback of IM techniques is
+\textit{surprise} which is the error in predicting future
+states~\cite{pathak2017curiosity}. However, the drawback of \gls{im} techniques is
 their lack of a principled definition of the intrinsic reward for exploration.
 
-Another related class of techniques is based on optimism; which provides an optimistic estimation under uncertainty, encouraging in this way exploration of uncertain region. Optimism can be categorized in 1) \textsl{optimistic
-	initial values}, proposed first by \citeauthor{sutton1998reinforcement}~\shortcite{sutton1998reinforcement},
-and subsequently \citeauthor{even2002convergence}~\shortcite{even2002convergence} proved convergence of th so-called ``optimistic and incremental
-$Q$-learning'' to a 
-near-optimal solution; and 2) methods that require \textsl{confidence
-	interval estimation}, such as IEQL+ \cite{meuleau1999exploration}
-which directly estimates $Q$-value confidence intervals.
+The \gls{ofu}-based techniques already discussed in Chapter~\ref{C:ts} provide an optimistic estimation under uncertainty, encouraging in this way exploration of uncertain region. Optimism can be categorized in
+\begin{itemize}
+ \item \textbf{optimistic initialization} of the action-value function approximator to an optimistic value, a method proposed first by~\cite{sutton1998reinforcement} about which subsequently~\cite{even2002convergence} proved convergence to a near-optimal solution;
+ \item \textbf{confidence interval estimation}, such as IEQL+~\cite{meuleau1999exploration} and UCRL~\cite{auer2007logarithmic}, which directly estimates $Q$-value confidence intervals.
+\end{itemize}
 
-%% Methods like \textsl{upper confidence bound} (UCB) are thought mainly
-%% for multi-armed bandits (MAB) and they do not propagate the upper
-%% confidence in the bellman recursion, and they additionally requires to
-%% use the number of state visit.
-
-%% It is interesting to note that there is another class of techniques
-%% which have been shown to be equivalent to IM (although not always the
-%% bonus is propagated by the bellman equation): the
-%% \textsl{optimism}. 
-
-\paragraph{Contribution.} We introduce a novel Optimistic
-Bellman Equation (OBE). The OBE results in an optimistic $Q$-value estimate
-from an ensemble of value functions where the optimistic estimate is obtained from a maximum-entropy principle. For the exploration bonus that OBE implicitly defines,
-we can prove that the bonus decreases consistently with the number of
+Considering this premise, we worked on the proposal of a novel \gls{obe}. The \gls{obe} results in an optimistic $Q$-value estimate
+from an ensemble of value functions where the optimistic estimate is obtained from a maximum-entropy principle. For the exploration bonus that \gls{obe} implicitly defines, we can prove that the bonus decreases consistently with the number of
 state visits. Our proposed algorithm can be seen as a mixture of
-different techniques: as an approximated Bayesian method, we estimate
-the uncertainty with an ensemble; like optimism-based methods, we select
-optimistic estimates, and like IM, we propagate an implicit
-exploration bonus.
-
-\subsection{Problem Statement and Notation}
-An infinite-horizon discounted time-discrete Markov Decision Process (MDP) 
-is defined by a tuple of $<\Sset, \Aset,R,P,\gamma, \mu_0>$
-where $\Sset$ is the set of the states, $\Aset$ is a finite set of
-actions, $R:\Sset \times \Aset \to \mathcal{M}(\mathbb{R})$ where
-$\mathcal{M(Z)}$ denotes the sets of probability measures over the
-space $Z$, $P:\Sset \times \Aset \to \mathcal{M}(\Sset)$ is the
-transition distribution, $\gamma \in [0,1)$ denotes the discount
-factor and $\mu_0$ is the initial state distribution.  We define the
-set of deterministic policies as $\Pi:\Sset \to \Aset$. Our goal is
-to find the optimal policy $\pi^* \in \Pi$ that maximizes the
-expected return $J^{\pi}$
-\begin{equation}
-J^{\pi} = \EV \Biggl[ \sum_{t=1}^T \gamma^{(t-1)} r_t\Biggr],  \nonumber
-\end{equation} 
-where $r_t \sim \Rew{s_t}{a_t}$, $s_t \sim \Trans{\cdot}{s_{t-1}}{a_{t-1}}$, $a_t = \pi(s_t)$, $s_1 \sim \mu_0$.
-A common approach to solve such a problem is to find the so-called optimal Q-value function $Q^*$, which is the solution to the optimal Bellman equation (BE):
-\begin{equation}
-Q^*(s,a) = \ORew{s}{a} + \gamma \sum_{s' \in \Sset} \Trans{s'}{s}{a} \max_{a' \in \Aset} Q^*(s',a'), \label{bellman equation}
-\end{equation}
-where $\ORew{s}{a} = \EV[\Rew{s}{a}]$ and the summation could be replaced by an integral, depending on whether $\Sset$ is discrete or continuous.
-Once the optimal Q-value function $Q^*$ is found, we know that the optimal policy is equivalent to $\pi^*(s) = \argmax_{a}Q(s,a)$.
-
-\subsection{Related Work}
-
-The algorithm we propose could be considered as a mixture of
 different techniques: as an approximated Bayesian method~\cite{engel2005reinforcement,vlassis2012bayesian}, we estimate
-the uncertainty with an ensemble~\cite{osband2016deep}; like
-optimism~\cite{lai1985asymptotically,kearns2002near,brafman2002r,azizzadenesheli2517efficient}, we will
-select optimistic estimates, and like intrinsic motivation (IM) approaches 
-\cite{singh2004intrinsically,schmidhuber2008driven,white2010interval}, we propagate an implicit exploration bonus. Unlike
-   many IM techniques, our bonus is defined implicitly in a so-called \textsl{optimistic Bellman
-    equation} (OBE), by selecting an optimistic estimate from an ensemble of value
-functions.
+the uncertainty with an ensemble~\cite{osband2017deep}; like optimism-based methods~\cite{lai1985asymptotically,kearns2002near,brafman2002r,azizzadenesheli2517efficient}, we select
+optimistic estimates, and like \gls{im}, we propagate an implicit
+exploration bonus~\cite{singh2004intrinsically,schmidhuber2008driven,white2010interval}.
 
-Intrinsic motivation
-algorithms define an additional \textsl{intrinsic} reward often using heuristics, such as counting state visits and
-rewarding less visited states~\cite{ostrovski2017count,bellemare2016unifying}, or by
-``surprise'', that is, the error in predicting future
-states~\cite{pathak2017curiosity}. Approaches based on the optimism in the face of uncertainty
-principle~\cite{lai1985asymptotically,kearns2002near,brafman2002r} add an additional reward term to
-state-action pairs
-proportional to the amount of uncertainty. The amount of uncertainty, and thus the additional reward,
-usually depends on the amount of information collected of a state-action pair. Due to explicit
-uncertainty modeling these methods are able to restrict exploration to regions where the policy is
-still far from the optimal solution. Often these methods provide performance guarantees. However, in
-practice the method may not always converge \cite{jaksch2010near,osband2016deep}. 
-Bayesian posterior sampling has shown performance improvements over optimism in the face of uncertainty methods \cite{strens2000bayesian,osband2013more,grande2014}.
-
-There is a broad range of recent work on exploration in high dimensional
-state-spaces. UCB Exploration via $Q$-Ensembles \cite{chen2017ucb},
-similarly to our approach, uses $M$ different estimates of the $Q$
-value function in order to infer the uncertainty of the estimate. In
-particular, \cite{chen2017ucb} use an optimistic bound for the policy:
-\begin{equation}
-a \in \argmax_a \mu(s,a) + \lambda \sigma(s,a) \nonumber.
-\end{equation}
-\citeauthor{chen2017ucb}~\shortcite{chen2017ucb} compute directly an estimate of the standard deviation
-over multiple estimations of the $Q$ function, and use it to guide
-the exploration. However, such methods do not propagate the variance
-through the Bellman equation, and thus the agent is not able to be
-foresighted w.r.t.\ future exploration possibilities. Contrary to these approaches, the 
-recent ``uncertainty
-Bellman equation'' \cite{odonoghue18a} propagates variance estimates of the $Q$-value 
-with a Bellman recursion and uses the estimates for posterior sampling (our action selection is deterministic). For tabular policies, \citeauthor{odonoghue18a} estimate
-local uncertainty proportional to the inverse visitation count similarly to count based
-approaches and for neural network policies a linear uncertainty approximation is used. Instead, our
-implicit state/action specific uncertainty estimation is based on the diversity in the $Q$-function ensemble while taking future $Q$-function uncertainty into account.
- Moreover, contrary to our
-approach,
-\citeauthor{odonoghue18a} assume that the MDP is a directed acyclic graph.
-
-%\joni{Samuele, do we assume the MDP is ergodic?}
-
-%We also would like to notice that our work is intimately related to \textsl{risk-aware} RL \citeauthor{NIPS1998_1583}. In some application, it is not important only to estimate the expectation of the return, but it important to take in account its variability: it is sometimes better to have a lower performance which outcome is more predictable and leads with less probability to catastrophic behavior. Our work can be regarded as a risk-seeking method w.r.t. the model uncertainty. The measure which we use for risk is called \textsl{entropic map} and it is been used in a very similar way as we have done  \citeauthor{cavazos2010optimality}.
 \section{Learning Value Function Ensembles with Optimistic Estimate Selection}
 \label{sec:obe}
-% What is it an ensemble, and what is bootstrapping
-Ensemble methods \cite{opitz1999popular} are a prevalent machine learning technique where multiple models are used to learn the same target function. In addition to being commonly used to improve the generalization of the prediction, ensemble methods offer a simple way to estimate the uncertainty of the prediction. We consider the application of ensemble methods in the RL framework with the purpose of approximating the action-value functions.   
-Indeed we want to obtain a cheap estimate of the uncertainty of action-values, in order to apply the \textsl{optimism in the face of uncertainty} (OFU) principle in action selection.
+Ensemble methods~\cite{opitz1999popular} are a prevalent \gls{ml} technique where multiple models are used to learn the same target function. In addition to being commonly used to improve the generalization of the prediction, ensemble methods offer a simple way to estimate the uncertainty of the prediction. We consider the application of ensemble methods in the \gls{rl} framework with the purpose of approximating the action-value functions while having an estimate of the its uncertainty, in order to apply the \gls{ofu} principle in action selection.
 
 \subsection{An Optimistic Bellman Equation for Action-Value Function Ensembles}
-The core of our work consists of a BE for action-value ensembles which incorporates the information about the uncertainty provided by a $Q$-function ensemble.
+The core of our work consists of a \gls{be} for action-value ensembles which incorporates the information about the uncertainty provided by a $Q$-function ensemble.
 In more detail, we want to overestimate the action-value functions with the result of encouraging exploration.   
-Thus, we propose an optimistic Bellman equation (OBE) which propagates an optimistic estimate of the action-value function. 
-We want to emphasize that when all the $Q$-functions of the ensemble are identical, we assume that there is no uncertainty, and under this condition the OBE will behave exactly equivalently to the classic BE. The solution $Q^*$ of OBE is the same of the classic BE. In other words, the OBE differs from the classic BE when it is not satisfied, and more precisely when approximation is introduced either by limited availability of samples and/or functional approximation. This makes sense, since when the perfect solution is available there is no need of optimism and exploration. 
-The optimistic Bellman operator derived from the OBE, enjoys the properties of the classical one, like contractivity and the existence of a unique fixed point, potentially enabling its usage in value-based or actor-critic reinforcement algorithms. 
-The diversity in the $Q$-value ensemble should be ideally consistent with the uncertainty of the estimation; e.g. when the estimate is certain, all the values in the ensemble should agree on the same value, otherwise the ensemble should have discordant values.        
-%Thus, we invite the reader always to consider the case of approximation, even if the equations are presented for the perfect case.
-
-% Add both views: - Entropic Regularization (give a sketch of proof)
-%                 - Bound Information Loss (text )
+Thus, we propose an \gls{obe} which propagates an optimistic estimate of the action-value function. 
+We want to emphasize that when all the $Q$-functions of the ensemble are identical, we assume that there is no uncertainty, and under this condition the \gls{obe} will behave exactly equivalently to the classic \gls{be}. The solution $Q^*$ of \gls{obe} is the same of the classic \gls{be}. In other words, the \gls{obe} differs from the classic \gls{be} when it is not satisfied, and more precisely when approximation is introduced either by limited availability of samples and/or functional approximation. This makes sense, since when the perfect solution is available there is no need of optimism and exploration. 
+The optimistic Bellman operator derived from the \gls{obe}, enjoys the properties of the classical one, like contractivity and the existence of a unique fixed point, potentially enabling its usage in value-based or actor-critic reinforcement algorithms. 
+The diversity in the $Q$-value ensemble should be ideally consistent with the uncertainty of the estimation; e.g. when the estimate is certain, all the values in the ensemble should agree on the same value, otherwise the ensemble should have discordant values.
 Given an ensemble of $Q$-value functions $\{Q_m\}_{m=1}^M$, we want to work out an optimistic estimate from the diverse estimates provided by the ensemble. The simplest and most optimistic solution is to select the highest value 
 \begin{equation}
 \max_m Q_m(s,a).\nonumber
 \end{equation} 
-However selecting the highest estimate makes poor use of the information provided by the ensemble and can be sensible to noise. In order to mitigate this effect, we introduce a notion of \textsl{belief} over the estimates where $b_m(s,a)$ is the belief of $Q_m(s,a)$. The main idea is to add an entropic regularization term to the objective (i.e., $\max_{b(s,a)} \sum_m b_m(s,a) Q_m(s,a) + c \sum_{m} p_m \log p_m $); or to bound the information loss (i.e., $\sum_m p_m \log p_m < \psi$). Hard constraint on the information loss is more appealing since the introduced hyper-parameter does not depend on the magnitude of the rewards but has no closed-form solution. In contrast, the penalization weighting constant introduced by the soft-constraint regularization term is sensitive to the magnitude of the rewards, but admits a closed-form solution.
+However selecting the highest estimate makes poor use of the information provided by the ensemble and can be sensible to noise. In order to mitigate this effect, we introduce a notion of \textit{belief} over the estimates where $b_m(s,a)$ is the belief of $Q_m(s,a)$. The main idea is to add an entropic regularization term to the objective (i.e., $\max_{b(s,a)} \sum_m b_m(s,a) Q_m(s,a) + c \sum_{m} p_m \log p_m $); or to bound the information loss (i.e., $\sum_m p_m \log p_m < \psi$). Hard constraint on the information loss is more appealing since the introduced hyper-parameter does not depend on the magnitude of the rewards but has no closed-form solution. In contrast, the penalization weighting constant introduced by the soft-constraint regularization term is sensitive to the magnitude of the rewards, but admits a closed-form solution.
 We define two different problems where we use an optimistic estimate of the $Q$-value function.
 
-\paragraph{Entropy-Regularized Optimistic $Q$ Selection.}
-We define here a Bellman equation over the $Q$-function ensemble by introducing an optimistic estimate penalized by an entropic regularization term.
-\begin{probdef}[Regularized version]
-	\begin{equation}
-	\arraycolsep=1.4pt\def\arraystretch{2.2}
-	\begin{array}{rrclcl}
-%	\displaystyle Q_i(s,a) = \max_{p_i(s,a) \forall i \in \{1,\dots,M\}} & \multicolumn{3}{l}{\overline{R}(s,a)  + \gamma \sum_{m=1}^{M} V_m'  p_m \nonumber } \\\\
-\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f\big(s,a;b(s,a)\big)-\frac{1}{\eta}D_{\mathrm{KL}}\big(p(s,a)\big{\|}u\big) } \\
-	\textrm{s.t.} & \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
-	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
-	\end{array}\nonumber
-	\end{equation}
-	where $f(a,s;p)\! =\! \Rew{s}{a} + \gamma \sum_m{b}_m(s,a)V_m'(s,a)$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$,$u_m  =  1/M$, $D_{KL}(b(s,a)\| u)$ is the Kullback-Leibler divergence between the belief $b(s,a)$ and the uniform distribution $u$.
-	\label{prob:regularized}
-\end{probdef}
-The choice of using the relative entropy instead of the absolute one has two main advantages: it admits a solution for $\eta \to 0$ and provides a normalization factor.
-Since problem definition \ref{prob:regularized} is a convex constrained problem, it is solvable by dual optimization. Introducing $\lambda$ as Lagrangian multiplier for the constraint, we write the Lagrangian
-\begin{eqnarray}
-L_i(s,a) \!&=& \!f(s,a; b(s,a)) -\frac{1}{\eta}D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big)\nonumber \\ && + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian}
-\end{eqnarray}
-Requiring the partial derivatives of $L_i$ w.r.t $p_m$ and $\lambda$ to be zero yields 
-\begin{equation}
-b_m(s,a) = \frac{e^{\eta  \gamma V_m'(s,a)}}{\sum_{k=1}^{M} e^{\eta \gamma   V_k'(s,a)}}\label{pm}.
-\end{equation} 
-By substituting $b_m$ in \eqref{lagrangian}, we obtain the solution to the problem (a detailed derivation is provided in the Supplement)
-\begin{obedef}\footnote{We extend the solution for $\eta = 0$ by computing the limit.} 
-	\begin{equation}
-	Q_i(s,a) = \begin{cases}
-	\overline{R}(s,a) + \frac{1}{\eta} \log \frac{\sum_{m=1}^Me^{\eta \gamma  V_m'(s,a) }}{M} & \mathrm{if} \eta \neq 0 \label{OBE} \\
-	\overline{R}(s,a) + \frac{\gamma}M \sum_{m=1}^{M} V_m'(s,a) & \mathrm{otherwise}
-	\end{cases}.
-	\end{equation}
-\end{obedef}
-Notice that $\eta>0$ leads to a positive (optimistic) biased estimation, while $\eta<0$ will leads to a negative (pessimistic) estimate; in this work we will always assume $\eta>0$ (and therefore we refer to the equation as optimistic). 
-However, in general, the choice of $\eta$ is difficult since it depends on the magnitude of the reward function. For this reason we introduce the constrained version of the proposed problem.
- 
-\paragraph{Optimistic $Q$ Selection Bounding the Information Loss.}
-We bound the information loss between the distribution $b_m$ and the uniform distribution to maintain compatibility with Problem~\ref{prob:regularized}. The information loss is bounded between $-\log M$ and $0$ where  $-\log M$ stands for complete information loss (i.e., only one model is selected) while $0$ corresponds to no information loss (i.e., uniform belief distribution). Constraining the information loss has succeeded in prior work, for instance in policy search methods such as \cite{peters2010relative}.
-\begin{probdef}[Constrained version]
-	\begin{equation}
-	\begin{array}{rrclcl}
-	\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f(s,a;b(s,a))\nonumber } \\
-	\text{s.t.} & D_{\mathrm{KL}}\big(b(s,a)\big{\|} u \big)& \leq & \iota_{\max} \\
-	& \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
-	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
-	\end{array} \nonumber
-	\end{equation}
-	\label{constrversion}
-\end{probdef}
-By letting $\beta$ be the Lagrangian multiplier associated with the KL constraint, we obtain the Lagrangian
-\begin{eqnarray}
-L_i &\! = \!& f(s,a;b(s,a)) + \beta \Bigl(D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big) - \iota_{\max} \Bigr) \nonumber \\
-& &   + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian1}
-\end{eqnarray}
-Substituting $\beta$ with $-1/\eta$ we note that \eqref{lagrangian1} becomes identical to \eqref{lagrangian} except for a constant factor. Since we can not solve $\eta$ (or $\beta$) analytically, we obtain an approximate solution by iteratively optimizing $\eta$ (or $\beta$) and $b_m$ subsequently.
-\begin{figure}
-	\includegraphics[scale=0.54]{plots/confidence_plot.pdf}
-	\caption{\textbf{Left:} Different estimates of a function. \textbf{Right:} The entropic-map combines the function estimates to obtain an optimistic estimate where $\eta$ controls the level of optimism.}
-	\label{fig:uncertainty}
-\end{figure}
-OBE takes its name from the fact that when $\eta > 0$, the \textsl{log-sum-exp} acts as a \textsl{soft-max} operator. Such operator is also well known as an \textsl{entropic mapping}, as it can be derived from a maximum-entropy principle. Figure \ref{fig:uncertainty} shows how the entropic mapping works.
-
-The use of the entropic mapping is not new in reinforcement learning: \citeauthor{asadi2017alternative}~\shortcite{asadi2017alternative} propose an interesting use of the entropic mapping as a soft-max over the action in the Bellman equation; \citeauthor{peters2010relative}~\shortcite{peters2010relative} instead obtain it from an entropic regularization over the state-action distribution.
-
-\paragraph{Relation to Intrinsic Motivation}
-% Related to the \textsl{intrinsic motivation}.
-In order to highlight the connection between OBE and IM, we reformulate OBE utilizing the unbiased average of the estimates instead of the log-sum-exp,
-and by introducing the resulting exploratory bonus $U$ which includes the positive bias
-\begin{eqnarray}
-Q_i(s,a)\! &=&\! \overline{R}(s,a) + U(s,a) +  \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M} \label{bonusBE}
-\end{eqnarray}
-with
-\begin{equation}
-U(s,a) \! =\!  \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a)}}{M} - \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M}. \label{bonusdef}
-\end{equation}
-Noticing that $\sum_{i=1}^N e^{\eta x_i}/N$ is the \textsl{sample moment generator} w.r.t. samples $\{x_i\}_{i=1}^N$ we can rephrase the exploration bonus as
-\begin{eqnarray}
-U(s,a)& = & \lim_{N \to +\infty}\frac{1}{\eta} \log \Biggl[  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)\Biggr] \nonumber \\
-& = & \eta \gamma \mathcal{M}_2(s,a)  + O(\eta^2)\label{bonus}
-\end{eqnarray}
-where $\mathcal{M}_n$ is the $n$\textsuperscript{th} central moment of the random variable $V_m'$ (Proof in Supplement)
-\begin{equation}
-\mathcal{M}_n(s,a) = M^{-1} \sum_{m=1}^M \Biggl[ \Big( V_m'(s,a) -\overline{V}(s,a) \Big)^n \Biggr]\nonumber
-\end{equation}
-with 
-\begin{equation}
-\overline{V}(s,a) = M^{-1} \sum_{m=1}^M V_m'(s,a).\nonumber
-\end{equation}
-Equation \eqref{bonusBE} shows that OBE is equivalent to BE with an additional bonus defined by Equation \eqref{bonus}. The bonus $U$ (for any positive $\eta$) is always positive, and provides a measure of the uncertainty w.r.t. $Q$. This is why OBE can be interpreted as a special principled form of IM.
-
-\paragraph{Explicit Exploration.} A general problem affecting intrinsically motivated algorithms, is that the policy greedy to the obtained $Q$-value function, is not optimized for the original problem. As a solution to this issue we approximate two functions: $\tilde{Q}$, which will be updated using the true reward and $Q_E$ which will be updated using only the intrinsic reward \cite{szita2008many}. In this way we obtain both the intrinsically motivated policy $\pi_o(s) = \argmax_{a} \tilde{Q}(s,a) + Q_E(s,a)$ and the classic policy  $\pi_u(s) = \argmax_{a} \tilde{Q}(s,a)$.
-Define 
-\begin{eqnarray}
-	\tilde{Q}_i(s,a) = \Rew{s}{a} + \gamma \sum_{m=1}^M\frac{\tilde{V}_m'(s,a)}{M} \quad \text{with} \\
-	\tilde{V}_m'(s,a) =  \sum_{s'} P(s'|s,a)\max_{a'}\tilde{Q}_m(s',a') \label{unbiasedQ}
-\end{eqnarray}
-to obtain an unbiased estimate of the $Q$-value function, yielding
-\begin{eqnarray}
-Q_E(s,a) & = & \sum_{t=0}^T \gamma^t U(s_t,a_t) \quad \text{where} \quad s_0 = s, a_0 = a \nonumber \\
-& = & \eta^{-1}\log \frac{\sum_{k=1}^M e^{\eta\gamma\max_{a'}\tilde{Q}_k(s',a') + Q_E(s',a')}}{M}\nonumber \\
-& &  -  \frac{\sum_{k=1}^M \gamma\max_{a'}\tilde{Q}_k(s',a')}{M}.
-\end{eqnarray}
-By a simple equation rearrangement, it is possible to show that $\tilde{Q}_i(s,a) + Q_E(s,a)$ is equivalent to $Q_i(s,a)$ as defined in the OBE \eqref{OBE}. 
- 
-\subsection{Optimistic Value Function Estimators}
-The OBE offers a theoretical framework in which it is possible to develop optimistic value based algorithms. In fact, OBE enjoys all the desirable properties of the BE (e.g. max-norm contractivity), as shown in the supplement. We present briefly two practical applications of the OBE, an optimistic variant of $Q$-learning (OQL) and DQN (ODQN).
-%
-%\paragraph{Optimistic Value Iteration.}
-%Value iteration (VI), is an iterative procedure for finding the solution of the BE. VI assumes the knowledge of the MDP (or equivalently an infinite amount of samples) and the possibility of having a perfect representation of the intermediate solutions. VI guarantees convergence to the optimal solution starting from any arbitrary $Q$-function. VI can be seen as an iterative application of the bellman operator. We introduce for this reason the optimistic Bellman operator:
-%\begin{definition}[Optimistic Bellman operator]
-%	We define the bellman operator $\OptBellOp :\{1,\dots,M\} \times(\Sset \times \Aset \to \Re)\to \{1,\dots,M\} \times ( \Sset \times \Aset \to \Re)$, $M \in \mathbb{N^+}$ as:
-%	\begin{equation}
-%	(\OptBellOp Q)_i(s,a) = \ORew{s}{a} + \frac{1}{\eta}\log \frac{1}{M} \sum_{m=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q_m(s',a')\de s'} \quad \quad \quad \forall s, a \in \Sset \times \Aset \nonumber
-%	\end{equation}
-%	for each $Q_{i}:\Sset \times \Aset \to \Re$ with $i \in \{1, \dots M\}$.
-%\end{definition}
-%The OVI procedure consists in an arbitrary choice of the action-value ensemble $\{Q_{0,i}\}_{i=1}^M$, and by iterating the optimistic Bellman operator $Q_{t+1,i} = (\OptBellOp Q_t)_i$. We can show that $\OptBellOp$ is a max-norm contraction, and it has $Q^*$ as fixed point. Therefore OVI converges to the same solution of VI (Proof in Appendix). An interesting property of OVI is that all the action-value functions converges to the same value after the first iteration: this is due to the fact that having perfect knowledge and perfect representation of the action-value function, any form of uncertainty is completely avoided. 
-\paragraph{Optimistic $Q$-Learning.}
-Motivated by the idea of employing an ensemble of regressors as is done in BDQN \cite{osband2016deep}, we assume to have $M$ randomly initialized $Q$-tables. Inspired by the well known $Q$-learning update rule, we derive an optimistic version which is consistent with the OBE.
-%\joni{We need to add $Q_E$ also here for OQL?}
-\begin{definition}[Optimistic $Q$-learning]
-	\footnote{We use $\alpha_t$ as a shortcut for $\alpha_t(s,a)$.}
-	\begin{align*}
-		\small  Q_{i, t+1}(s,a) &= (1-\alpha_t)Q_{i,t}(s,a)  \nonumber  \\
-	    & \small + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s', a')}\Bigr).\nonumber
-	\end{align*}
-%	\begin{eqnarray}
-%	\scriptsize \begin{cases}
-%	Q_{i, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
-%	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}\Bigr) &  \mathrm{if} s = s_t \land a = a_t \nonumber \\
-%	Q_{t, t+1}(s,a) = Q_t(s,a) & \mathrm{otherwise}
-%	\end{cases} \nonumber 
-%	\end{eqnarray}
-	\label{def:optimistic_qlearning}
-\end{definition}
-\vspace{-1.5em}
-We show that, with the update rule proposed, given infinite visits of each state-action pair, all the tables will converge to the same values, and more precisely, after each update, the $n$\textsuperscript{th} central moment of the updated cell is scaled exactly by $(1 - \alpha_t)^n$:
-\begin{equation}
-	\mathcal{M}_{n,t+1}(s,a) = (1-\alpha_t)^n \mathcal{M}_{n,t}(s,a) \label{momentdecreasing}
-\end{equation}
-where 
-\begin{equation}
-	\mathcal{M}_{n,t}(s,a) = M^{-1} \sum_{i=1}^M \bigg(Q_{i,t}(s,a) - \sum_{k=1}^M \frac{Q_{k,t}(s,a)}{M} \bigg)^n. \nonumber
-\end{equation}
-This implies that a cell updated $N$ times, with learning rates $\{\alpha_i\}$, will have the $n$\textsuperscript{th} central moments scaled by $\Pi_{\alpha_i}(1-\alpha_i)^n$ w.r.t.\ the initial one. This leads us to some interesting considerations: 1) the bonus decrease accordingly to the number of state visits; 2) differing from several count-based approaches, our algorithm takes into account the impact of the learning rate; 3) in the limit of an infinite number of visits, the exploration bonus converges to zero.
-Further details, including a proof of convergence, are given in the supplemental material\footnote{We based our convergence proof for OQL on the works of \citeauthor{melo2001convergence}~\shortcite{melo2001convergence} and \citeauthor{jaakkola1994convergence}~\shortcite{jaakkola1994convergence}.}.
-All the considerations done so far provide a deeper insight about how the algorithm works and its properties. However, in a more complex settings, (e.g., function approximation) the convergence to zero of the exploratory bonus is not guaranteed in general.
-
-\paragraph{Optimistic DQN.}
-\label{sec:proposedalg}
-
-In addition to the novel OQL algorithm described previously that can be used for limited discrete state spaces, we
-propose another algorithm for continuous state spaces based on our optimistic Bellman equation
-(OBE). We take inspiration from the framework provided by Bootstrapped DQN (BDQN)~\cite{osband2016deep}
-that uses an ensemble of neural networks as estimator for the $Q$ value function.
-BDQN minimizes the loss
-\begin{equation}
-	\mathcal{L}_B(s,a)\! = \! \sum_{k=1}^M \bigg(r + \gamma \max_{a'}Q_k^T(s',a') - Q_k(s,a)\bigg)^2, \nonumber
-\end{equation}
-where $Q_k^T$ is the target network of the $k$\textsuperscript{th} approximator. 
-To get an unbiased performance evaluation, we decided to update $M-1$ components of the ensemble with the update rule provided by BDQN. We make this choice in order to maintain diversity between the approximations of the ensemble as shown in~\cite{osband2016deep}. We use the remaining single component of the ensemble to approximate $Q_E$. Using the first component to approximate $Q_E$, we get for our new algorithm optimistic DQN (ODQN) the loss
-%\begin{eqnarray}
-%	\mathcal{L}_O(s,a)\! & \!=\!& \bigg(\eta^{-1}\log \frac{\sum_{k=2}^M e^{\eta\gamma\max_{a'}Q_k^T(s',a')+ Q_1^T(s',a')}}{M}\nonumber \\
-%	& &  -  \frac{\sum_{k=2}^M  \gamma\max_{a'}Q^T_k(s',a')}{M} -Q_1(s,a)\bigg)^2\nonumber \\
-%	& &  + \sum_{k=2}^M \bigg(r + \frac{\sum_{k=2}^M  \gamma\max_{a'}Q^T_k(s',a')}{M}\nonumber \\ & & - Q_k(s,a)\bigg)^2.  \label{optimisticloss}
-%\end{eqnarray}
-\begin{eqnarray}
-	&\mathcal{L}_O(s,a) = \bigg(\eta^{-1}\log \frac{\sum_{k=2}^M
-	 e^{\eta\gamma\max_{a'}Q_k^T(s',a')+ Q_1^T(s',a')}}{M}\nonumber \\
-&\qquad\qquad\;\;\;\;  -  \frac{\sum_{k=2}^M  \gamma\max_{a'}Q^T_k(s',a')}{M} -Q_1(s,a)\bigg)^2\nonumber \\
-&\;  + \sum_{k=2}^M \bigg(r + \gamma\max_{a'}Q^T_k(s',a') -
-	 Q_k(s,a)\bigg)^2.  \label{optimisticloss}
-\end{eqnarray}
-The exploratory bonus represented by $Q_E = Q_1$ in the proposed OQL and OQDN algorithms is needed to
-guide exploration during learning. During evaluation, we use majority voting on the remaining $M-1$
-components $\{Q_k\}_{k=2}^M$. While we always select an optimistic policy in OQL during the training phase, in
-ODQN the neural network function approximator may have problems learning to approximate the optimal
-policy: if there are not enough unbiased samples the approximator may learn to model only the optimistic
-biased samples. Note that in the tabular case, this is not a problem since there is no $Q$-function
-approximation. In order to mitigate this problem, we introduce a hyper-parameter $\chi$ which denotes the probability to select an optimistic policy $\pi_o$ in place of the unbiased one $\pi_u$. In this way, we can balance the number of unbiased and optimistic samples.
-Algorithm \ref{optimisticdqn} shows the pseudocode of ODQN. 
-\begin{algorithm}[t]
-	\caption{Optimistic DQN}
-	\label{optimisticdqn}
-	\begin{algorithmic}
-		\STATE \textbf{Input:} $\{Q_k\}_{k=1}^K$, $\iota_{\max}$, $\eta_{\mathrm{init}}$, $\chi$, $N$, $C$
-		\STATE Let $B$ be a replay buffer storing the experience for training.
-		\STATE $\eta = \eta_{\mathrm{init}}$.
-		\STATE Let $i \sim \mathrm{Uniform}\{1 \dots M\}$ and $\psi = 1$ w.p. $\chi$ otherwise $\psi = 0$
-		\FOR{$N$ epochs}
-		\FOR{$C$ steps}
-		\STATE Observe $s$
-		\STATE Choose $a = \argmax_a Q_i(s,a) + \psi Q_1(s,a)$
-		\STATE Observe reward $r$, next state $s'$, end of episode $t$
-		\STATE If $t$ is terminal, $i \sim \mathrm{Uniform}\{2 \dots M\}$ and \\ \ \ \ \ \ \ $\psi = 1$ w.p. $\chi$ otherwise $\psi=0$
-		\STATE Store $<s,a,r,s',t>$ in buffer $B$
-		\STATE Sample mini-batch $B_{\mathrm{batch}}$
-		\STATE Update $\{Q_k\}_{k=1}^K$ using equation \eqref{optimisticloss}
-		\STATE $V \leftarrow V + |$ violated constraints \eqref{batchconstr} in $B_{\mathrm{batch}}|$ 
-		\ENDFOR
-		\STATE Let $\rho = \frac{V}{C * \mathrm{batch\_size}}$
-		\STATE Update $\eta$ by \eqref{etaupdate}
-		\STATE Update target network
-		\ENDFOR
-	\end{algorithmic}
-\end{algorithm}
-
-\paragraph{Automatic Hyper-parameter Adaptation.}
-\label{subsec:adaptive}
-Recalling that the regularization coefficient $\eta$ in the OBE is hard to tune, we want to focus our attention on Problem~\ref{constrversion}. We propose a way, inspired by \cite{schulman2017proximal}, to optimize $\eta$.
-One of the optimization techniques proposed by \citeauthor{schulman2017proximal} is to measure the ``degree'' of constraint violation and to update the Lagrangian multiplier accordingly. We have to adapt the technique to multiple constraints, as the problem is defined for each state-action pair: we count the number of times the constraints have been violated and then update $\eta$. In more detail, suppose to have $N$ state-action pairs and for each pair $(s_i, a_i)$
-\begin{eqnarray}
-\sum_m b_m(s_i,a_i) (\log b_m(s_i,a_i) + \log M) \leq \iota_{\max}, \label{batchconstr}
-\end{eqnarray}
-where $\iota_{\max}$ is defined in Problem~\ref{constrversion}, while $b_m(s_i,a_i)$ is defined by \eqref{pm}. We define $\rho$ as the ratio of violated constraints. We update $\eta$ according to the following rule
-\begin{equation}
-\eta_{T+1} = \frac{\eta_{T}}{(0.5 +  10 \rho)} \label{etaupdate}.
-\end{equation}
-In ODQN, we decided to count the number of constraints violated every $C$ time-steps (basically every update of the target network), using the samples of all the extracted mini-batches. See Algorithm \ref{optimisticdqn} for further details.
-
-%\paragraph{Weighting Exploration Samples}
-%Exploration is a desirable property of an agent since it enables the interaction with a wider observable state-space region. However, giving the same importance to all the samples collected with an exploration policy might results in a poor approximation of the interesting region. We argue that among the samples collected with the exploratory policy, some will be included in the state-distribution induced by the next policy improvement, and thus they are important in our regression problem. On the other hand, we want to give less importance to the remaining samples. In order to accomplish this objective, we weight the samples that are drawn from the exploratory policy with weight $0 \leq w \leq 1$ if they belongs to a trajectory with lower return than the current average one of the greedy policy.
-%We weight all the other samples with $1$.
-%This simple heuristic might cause a positive bias in the estimation of $Q$ in stochastic environment, however this problem can be mitigated by an accurate choice of $w$. 
-  
-  
-\paragraph{Ensuring a Prior Distribution.} As already discussed, it is important to maintain diversity in our ensemble, and this diversity should reflect the degree of uncertainty. For this reason, we should introduce a sort of prior distribution, as happens in the Bayesian framework. In the case of OQL, we observe that it is sufficient to randomly initialize each element of the ensemble, sincediversity between estimates is a sufficient condition to obtain positive bonus. 
-For ODQN, as is done in BDQN, we choose to maintain the diversity between approximation, by a random initialization of each component's parameters and by using the bootstrapping technique, so by adding a \textsl{mask} in the replay memory which is sampled by  and use different data samples per regressor. 
-  
-  
-\section{Experimental Evaluation}
-\label{sec:experiments}
-
-In the experiments, we compare in the tabular $Q$-function case our new optimistic $Q$-learning method (OQL) with the well-known state-of-the-art bootstrapped $Q$-learning method (BQL) \cite{osband2016deep}, classical $Q$-learning \cite{watkins1992q}, and $Q$-learning with optimistic initialization \cite{sutton1998reinforcement} in the $50$-Chain \cite{osband2016deep}, Taxi (also known as Maze) \cite{dearden1998bayesian} and Frozen Lake \cite{brockman2016openai} environments. For neural-network based $Q$-functions, we compare our new optimistic deep $Q$-learning (ODQN) method with bootstrapped deep $Q$-learning (BDQN) and classical deep $Q$-learning (DQN) in the Taxi and Acrobot \cite{sutton1996generalization} environments.
-The environments are chosen to cover different types of dynamics, have sparse rewards, and include both discrete and continuous states. For Acrobot and Frozen Lake, we used the implementation provided by OpenAI Gym \cite{brockman2016openai}. First, we will discuss the environments in more detail, then we will provide some details on the
-initialization of the methods, and finally finish with an analysis of the results.
-
-The \textbf{N-Chain} environment \cite{osband2016deep} requires a long sequence of non-rewarding actions to achieve the optimal reward. The MDP consists of a chain with $N$ states $\{s_i\}_{i=1}^N$, and two actions that move the agent to state $s_{i+1}$ or $s_{i-1}$. The agent always starts in state $s_2$. In state $s_1$ the agent observes a small reward $r(s_1)=1/1000$, while in the $N$\textsuperscript{th} state the agent observes $r(s_N) = 1$. The reward function is zero elsewhere. The agent needs to explore until reaching state $s_N$ even if state $s_1$ looks promising.
-
-The \textbf{Taxi} environment, also known as Maze \cite{dearden1998bayesian}, consists of a $8\times 8$ grid-world where a taxi has to collect passengers and take them to the goal position where the only non-null reward is observed. For $0$, $1$, $2$ and $3$ passengers collected, the reward is $0$, $1$, $3$ and $15$, respectively. The agent must explore to 1) discover that reachin the goal position with less than $3$ passengers is not optimal, 2) to find the optimal path.
-  
-The \textbf{Frozen Lake} environment is a $8\times 8$ grid-world, in which the agent has to reach a goal position without falling into some holes. The stochastic perturbation of the agent's movement makes the environment challenging.
-
-The \textbf{Acrobot} environment was firstly proposed by \citeauthor{sutton1996generalization}~\shortcite{sutton1996generalization} and consists of two linked robotic arms that hang downward with only one actuated joint between the two arms. The agent swings the robotic arms until the end of the second link exceeds a certain height. At each step the agent perceives a negative reward of $-1$. The environment requires significant exploration to find a way to swing the robotic arms at defined height.
-
-%This problem consists of modeling a car which is placed in a valley, and the power of its engine is not enough to reach the top of the mountain \cite{moore1990efficient}. The car needs to build momentum by driving backward. We use the implementation provided by OpenAI Gym \cite{brockman2016openai}.
-
-\begin{figure*}[t]
-	\centering
-	\begin{subfigure}[t]{0.42\textwidth}
-		\begin{tikzpicture}[scale=0.8, transform shape]
-		\node[state]             (1) {1};
-		\node[state, right=of 1] (2) {2};
-		\node[state, right=of 2] (3) {\dots};
-		\node[state, right=of 3] (4) {N};
-		%\node[above=0.5 of 4] (5) {R};
-%		\draw[-stealth,
-%		decoration={snake, 
-%			amplitude = .4mm,
-%			segment length = 2mm,
-%			post length=0.9mm},decorate] (4) -- (5);
-		\draw[every loop]
-		(1) edge[loop above] node {b, $0.001$} (1)
-		(1) edge[bend left, auto=left] node {a} (2)
-		%(2) edge[loop above] node {a} (2)
-		(2) edge[bend left, auto=left] node {a} (3)
-		%(3) edge[loop above] node {a} (3)
-		(3) edge[bend left, auto=left] node {a} (4)
-		%(1) edge[loop below] node {b} (1)
-		(2) edge[bend left, auto=left] node {b} (1)
-		%(2) edge[loop below] node {b} (2)
-		(3) edge[bend left, auto=left] node {b} (2)
-		%(3) edge[loop below] node {b, $1$} (3);
-		(4) edge[bend left, auto=left] node {b} (3)
-		(4) edge[loop above] node {a, $1$} (4);
-		\end{tikzpicture}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.25\textwidth}
-		\includegraphics[height=0.8in]{environments/taxi.jpeg}\label{taxienv}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.15\textwidth}
-		\includegraphics[height=0.8in]{environments/frozenlake.png}\label{frozenlake}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.15\textwidth}
-		\includegraphics[height=0.8in]{environments/acrobot.png}\label{acrobot}
-	\end{subfigure}
-	\caption{Illustration of the environments, from the left to the right: $N$-Chain,  Taxi, Frozen Lake and Acrobot. }
-\end{figure*}
-
-\setlength\figureheight{4cm}
-\setlength\figurewidth{4cm}
-\begin{figure*}[t]
-	\input{results/performances.tex}
-	\caption{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
-	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
-	 together with $95\%$ confidence intervals. The
-     second row shows the distribution over the number of time steps before observing the maximum reward in the MDP.}
-	\label{results1}
-\end{figure*}
-\paragraph{Initialization of the $Q$-functions.} In the tabular setting, for optimistically initialized Q-learning (OIQL), we initialize the $Q$-function to $15$ in Taxi and to $1$ in $N$-Chain and Frozen Lake. For the other algorithms, we initialize $Q(s,a) \sim \mathcal{N}(\mu=0,\sigma=2)$, except $Q_E$ of OQL is initialized to $0$.
-In the taxi environment, for both ODQN and BDQN, we use a shared convolutional layer with multiple heads as described in \cite{osband2016deep}. For the Acrobot, each component of the ensemble corresponds to a one-layer neural network. For ODQN, in both the environment, we initialize the output layer corresponding to $Q_E$ to small values of the parameters, in order to obtain initially $Q_E \approx 0$. 
-
-% \textbf{Training and evaluation.} All algorithms go through a training phase, followed by an evaluation. Evaluations are obtained by majority voting of the $Q$-functions for BDQN and BQL. ODQN and OQL perform the majority vote using only $\{Q_k\}_{i=2}^M$ since $Q_1$ approximates $Q_E$. In the tabular setting, the training phase of each epoch requires $1000$ steps. The results are averaged on $64$ different random seeds, with the exception of Frozen Lake, which, due to its high stochasticity, required $128$ experiments to reduce the confidence intervals. For BDQN and ODQN was difficult to find the same hyperparameters working both on Taxi and Acrobot, since for Taxi we used a convolutional neural network with $10$ different 'heads', while for Acrobot we used a simple multilayer perceptron with $2$ layers. The corresponding plots are the results of an average over $100$ different seeds. For further details regarding the implementation and the hyperparameters, please refer to the supplementary material. 
-
-\paragraph{Hyper-Parameter Tuning.} For the tabular settings, we did not run any hyper-parameter optimization. With neural networks we performed a small grid search over the number of neurons of the network, and whether to use bootstrapping or not. More specifically, we selected hyper-parameters maximizing the mean return averaged over the whole learning curve, using $20$ different seeds. In the plots; we compare ODQN and BDQN using the best hyper-parameter setup found for BDQN. In OQL we use $\eta=10$ and for ODQN, we use $\chi=0.25$ and $\iota_{\max}=1$. For further details about the implementation of the algorithms, and the grid search, please see the Supplement.
-
-
-\subsection{Results}
-Figure~\ref{results1} summarizes the results obtained by averaging over $64$ different seed the tabular alrogithms, and $100$ seeds DQN and BDEN (more details, e.g. results for different hyper-parameter 
-settings, can be found in the supplement).
-OQL learns faster than the other tabular algorithms. In the Chain environment, and in Taxi,
-our algorithm OQL finds the highest reward faster than BQL or QL. On the other hand, also OIQL seems to find
-high rewards fast, as shown in the box-plots. However, OIQL requires more training epochs to escape the high initial
-optimistic values of the value function. In contrast, OQL finds high values fast in all the problems
-($50$-Chain, Taxi, Frozen Lake) using the optimistic Bellman equation
-while converging to a near-optimal solution as suggested by our convergence proofs.
-
-With neural network approximation of the value function, ODQN outperforms BDQN in the Taxi environment
-demonstrating that the principles of OBE work even with function approximation. In the Cartpole environment,
-the learning curves of ODQN and ODQN are nearly identical, possibly, due to the simplicity of the environment.
-%However, ODQN has a higher median performance in both Taxi and Cartpole when measured w.r.t.\ the number of steps
-%required to receive maximum return.
-
-
-\section{Conclusion}
-
-The main contribution of our work is the introduction of the optimistic Bellman equation (OBE) which
-provides an optimistic estimate of the value function over uncertainty. Our approach can be viewed as a
-principled IM technique where the agent is intrinsically rewarded by uncertainty and which, similar to
-approximated Bayesian methods, estimates the  an ensemble. We propose two
-algorithms: OQL for the tabular case and ODQN for the neural network case. Given the usual assumptions
-on the learning rate and state visits, we show that OQL convergences to the optimal policy, 
-analyze the implicitly defined exploration bonus in QQL and show the relationship to intrinsic
-motivation based approaches. In empirical
-evaluations on a variety of tasks where exploration is crucial, OQL and OQDN outperform comparison
-methods due to being able to find high rewards earlier.
-
-% We leave the testing of ODQN in higher-dimensional tasks (such as Atari), where analyzing the core 
-% behavior of the algorithm is challenging, as future work. 
-
-% We leave the testing of ODQN on higher-dimensional tasks (such as Atari) as future work. 
-% A drawback of the OBE, consists in the fact that there is not a principled criteria to maintain
-% different estimates in the ensemble. We think that it is possible to overcome this issue by developing
-% an optimistic Bellman equation over a $Q$-distribution instead of over a $Q$-ensemble. we could obtain a
-% practical algorithm over distributions using quantile regression \cite{dabney2017distributional}. 
-
-
-% \subsubsection*{Acknowledgments}
-% The research is financially supported from the Bosch-Forschungsstiftung program. 
-
-%\fontsize{9.0pt}{10.0pt} \selectfont
-\bibliography{bibliography}
-\bibliographystyle{aaai}
-\pagebreak
-\appendix
-\onecolumn
-\section{Supplementary Material for the paper ``Exploration Driven by an Optimistic Bellman Equation''}
-%\allowdisplaybreaks
-This supplement provides details on all the proofs presented in the main paper and shows details of the
-experiments that have been left out of the main paper due to space constraints. 
-We refer to equations and definitions that are presented in the main paper with their assigned numbers.
-
-First, we introduce additional notation for the classic Bellman operator and our optimistic version. 
-We show how to derive the optimistic Bellman equation from Problem \ref{prob:regularized}.
-Subsequently, we show how to interpret the optimistic Bellman equation under an intrinsic
-motivation perspective; we will show how the exploration bonus is related to the central
-moments of the approximations made.
-We then analyze two algorithms: Optimistic Value Iteration (OVI), which is presented mainly for theoretical reasons, introducing the optimistic Bellman operator and its properties, and optimistic Q-learning (OQL). For both algorithms we provide convergence proofs.
-We also show that the exploration bonus decreases according to the learning rate and state visits.
-Finally, we report the hyper-parameters used in our experimental setting. 
-
-\subsection{Notation}
-This section presents the mathematical notation used in the proofs.
-\begin{definition}[Bellman operator]
-	We define the Bellman operator $\BellOp:(\Sset \times \Aset \to \Real)\to(\Sset \times \Aset \to \Real)$ as:
-	\begin{equation}
-	(\BellOp Q)(s,a) = \ORew{s}{a} +\gamma \int P(s'|s,a) \max_{a'} Q(s',a')\de s' \quad \quad \quad \forall s, a \in \Sset \times \Aset \nonumber
-	\end{equation}
-	for each $Q:\Sset \times \Aset \to \Real$.
-	\label{def:bellman_operator}
-\end{definition}
-\begin{definition}[Optimistic Bellman operator]
-	We define the optimistic Bellman operator $\OptBellOp^M:(\Sset \times \Aset \to \Real)^M \to(\Sset \times \Aset \to \Real)^M $ as:
-	\begin{equation}
-	(\OptBellOp Q)_i(s,a) = \ORew{s}{a} +\eta^{-1}\log \sum_{m=1}^M\frac{ e^{\eta \gamma \int P(s'|s,a) \max_{a'} Q_m(s',a')\de s'}}{M} \quad \quad \quad \forall s, a, i \in \Sset \times \Aset \times \{1,\dots,M\} \nonumber
-	\end{equation}
-	for each $Q:\Sset \times \Aset \to \Real$.
-	\label{def:optimistic_bellman_operator}
-\end{definition}
-\begin{definition}[Optimal $Q$]
-	We define the optimal $Q^*$ as the solution:
-	\begin{equation}
-	\BellOp Q^* = Q^* \nonumber.
-	\end{equation}
-	We know from dynamic programming that $Q^*$ exists and it is unique.
-	\label{def:optsol}
-\end{definition}
-\begin{definition}[Optimistic Value Iteration (OVI)]
-	Let $Q = \{Q_i \}_{i=1}^{M}$ be an arbitrary set of $Q$-functions, let $\OptBellOp^NQ$ denote the application of $\OptBellOp$ $N$ times on $Q$, let OVI be the procedure that computes $\tilde{Q} = \OptBellOp^N Q$.
-	\label{def:ovi}
-\end{definition}
-\subsection{Derivation of the Optimistic Bellman Equation}
-In this section, we derive the optimistic Bellman equation (OBE) from Problem~\ref{prob:regularized}. 
-\label{A:derivation}
-\begin{theorem}
-	Consider Problem \ref{prob:regularized}:
-	\begin{equation}
-		\arraycolsep=1.4pt\def\arraystretch{2.2}
-		\begin{array}{rrclcl}
-	%	\displaystyle Q_i(s,a) = \max_{p_i(s,a) \forall i \in \{1,\dots,M\}} & \multicolumn{3}{l}{\overline{R}(s,a)  + \gamma \sum_{m=1}^{M} V_m'  p_m \nonumber } \\\\
-	\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f\big(s,a;b(s,a)\big)-\frac{1}{\eta}D_{\mathrm{KL}}\big(p(s,a)\big{\|}u\big) } \\
-		\textrm{s.t.} & \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
-		\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
-		\end{array}\nonumber
-	\end{equation}
-		where $f(a,s;p)\! =\! \Rew{s}{a} + \gamma \sum_m{b}_m(s,a)V_m'(s,a)$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$,$u_m  =  1/M$, $D_{KL}(b(s,a)\| u)$ is the Kullback-Leibler divergence between the belief $b(s,a)$ and the uniform distribution $u$.
-		From Problem 1, we can derive the optimistic Bellman equation (OBE)
-	\begin{equation}
-		Q_i(s,a)  =   \ORew{s}{a}   + \frac{1}{\eta} \log \frac{ \sum_m e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)} }{M}  \quad \forall i \in \{1, \dots, M\}. \nonumber 
-	\end{equation}
-	\begin{proof}
-		Let $L_i$ be the Lagrangian of the $i^{th}$ problem:
-		\begin{equation}
-		L_i(s,a) = \ORew{s}{a}  + \gamma \sum_m \Bigr( \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) b_m(s,a) - \frac{1}{\eta} \sum_m b_m(s,a) \log \frac{b_m(s,a)}{M^{-1}} + \lambda(\sum_m b_m(s,a) - 1)
-		\label{eq:langrangian_problem1}
-		\end{equation}
-		To find the maximum of the Lagrangian, set the partial derivatives to zero. First, w.r.t. $p_m$:
-		\begin{eqnarray}
-		\partial_{b_m(s,a)} L_i(s,a) &=& \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{1}{\eta} \log \frac{b_m(s,a)}{M^{-1}} - \frac{M^{-1}}{\eta} + \lambda = 0 \nonumber \\
-		\implies \frac{1}{\eta} \log\frac{ b_m(s,a)}{M^{-1}} & = & \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} + \lambda \nonumber \\
-		\implies b_m(s,a) &= &M^{-1} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} + \lambda\Bigl)}\label{oldpm}.
-		\end{eqnarray}
-		Next, set partial derivative w.r.t. $\lambda$ to zero:
-		\begin{eqnarray}
-		\partial_{\lambda} L_i(s,a) &=& \sum_{m}b_m(s,a) - 1 = 0 \nonumber \\
-		\implies  1 & = & \sum_{m} M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} + \lambda\Bigl)} \nonumber \\
-		\implies e^{-\lambda\eta} & = & \sum_m M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} \Bigl)} \nonumber \\
-		\implies \lambda & = & - \frac{1}{\eta} \log \sum_m M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} \Bigl)}\label{lambda}. 
-		\end{eqnarray}
-		
-		Let's substitute \eqref{lambda} into \eqref{oldpm}:
-		\begin{eqnarray}
-		b_m(s,a) &= & \frac{M^{-1}e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} \Bigl)}}{\sum_{m'} M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') - \frac{M^{-1}}{\eta} \Bigl)}}\nonumber \\
-		& = & \frac{e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)}}{\sum_{m'} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}\nonumber.
-		\end{eqnarray}
-		
-		Now that we have solved for the Lagrangian multipliers, substitute $b_m(s,a)$ into  Equation~\eqref{eq:langrangian_problem1}:
-		\begin{eqnarray}
-		L_i(s,a) = \ORew{s}{a}  + \gamma \sum_m \Big( \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) b_m(s,a)
-		(s,a)-\frac{1}{\eta} \sum_m p_m(s,a) \log \frac{p_m(s,a)}{u_m}
-		\end{eqnarray}
-		to get
-		\begin{eqnarray}
-		L_i(s,a) & =& \ORew{s}{a}   + \gamma \sum_m \Bigr( \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) b_m(s,a)  \nonumber \\
-		& & \quad \quad \quad - \frac{1}{\eta} \sum_m b_m(s,a) \log \frac{e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)}}{\sum_{m'} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}  - \frac{\log M}{\eta}  \nonumber \\
-		& =& \ORew{s}{a}   + \gamma \sum_m\Bigr(  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) p_m(s,a)\nonumber \\
-		& & \quad \quad - \frac{1}{\eta} \sum_m  b_m(s,a) \Biggl( \log e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)} - \log{\sum_{m'} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}\Biggr)\nonumber \\
-		& & \quad \quad \quad  - \frac{\log M}{\eta}  \nonumber \\
-		& =& \ORew{s}{a}   + \frac{1}{\eta} \sum_m b_m(s,a) \log \frac{ \sum_{m'} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}{M} \nonumber \\
-		& = & \ORew{s}{a}   + \frac{1}{\eta} \log \frac{\sum_m e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)}}{M}   \label{eq:end}
-		\end{eqnarray}
-		Therefore \eqref{eq:end} implies:
-		\begin{equation}
-		Q_i(s,a)  =   \ORew{s}{a}   + \frac{1}{\eta} \log \frac{ \sum_m e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)} }{M}  \quad \forall i \in \{1, \dots, M\}. \nonumber 
-		\end{equation}
-	\end{proof}
-\end{theorem}
-
-\subsection{Exploration Bonus}
-In the main paper, we discussed the relationship between OBE and intrinsic motivation, and defined the exploration bonus $U(s,a)$ in Equation \eqref{bonusdef}. Here, we present further details on how to derive Equation \eqref{bonus}. We start with how to estimate the value of the next state.
-We assume a set of $Q$-functions. Each $Q_m$-function can be considered as a sample from a distribution that represents our uncertainty about the true $Q$-function. This argument can also be done for the estimation of the value of the next state: we can consider having $M$ different samples, drawn from the distribution that shapes our belief.
-The unbiased estimate of the value of the next state is
-\begin{equation}
-  	\overline{V}'(s,a) = \sum_{m=1}^M \frac{V_m'(s,a)}{M}.
-\end{equation}
-The exploration bonus defined in equation \eqref{bonusdef} can then be expressed as
-\begin{eqnarray}
-U(s,a) & =& \frac{1}{\eta}\log\bigg(\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a) }}{M} \bigg) - \overline{V}'(s,a)\nonumber \\
-& =& \frac{1}{\eta}\Bigg(\log\bigg(\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a) }}{M}\bigg)  - \eta \overline{V}'(s,a)\Bigg)\nonumber \\
-& =& \frac{1}{\eta}\log\bigg(\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a) }}{M}   e^{-\eta \overline{V}'(s,a)}\bigg)\nonumber \\
-& =& \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma( V_m'(s,a) -\overline{V}'(s,a))}}{M}. 
-  \label{eq:Usa}
-\end{eqnarray}
-Note that the average over the exponential function is the sample moment generating function.
-Thus, Equation~\eqref{eq:Usa} can be rephrased as
-\begin{eqnarray}
-U(s,a) & = & \lim_{N \to +\infty}\frac{1}{\eta} \log \Biggl[  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)\Biggr]. \nonumber 
-\end{eqnarray}
-where 
-\begin{equation}
-\mathcal{M}_n(s,a) = M^{-1} \sum_{m=1}^M \Biggl[ \Big( V_m'(s,a) -\overline{V}(s,a) \Big)^n \Biggr]
-\end{equation}
-denotes the $n$\textsuperscript{th}sample central moment.
-Note that further simplifications in Equation~\eqref{bonus} come from the expansion w.r.t.~$\eta$. 
-
-\subsection{Convergence of Value Iteration with the Optimistic Bellman Equation}
-In this Section, we show that value iteration using the optimistic Bellman equation (OBE), which
-we call optimistic value iteration (OVI), converges. First, we show that the fixed point of value
-iteration with OBE is identical to the fixed point of the classic Bellman equation (BE). Next, we show
-the max-norm contractivity of the optimistic
-Bellman operator. Finally, we use the fixed point and max-norm contractivity results to show that value iteration with OBE converges.
-\begin{lemma}[Fixed point of OBE]
-	If $Q_i = Q^*$ then $(\OptBellOp Q)_i = Q^* \quad \forall i \in \{1, \dots M\}$ where $Q^*$ is the unique fixed point of the classic BE .
-	In fact:
-	\begin{proof}
-		\begin{eqnarray}
-		(\tilde{T}^*Q^*)(s,a) & = & \ORew{s}{a} +  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q^*(s',a')\de s'} \nonumber \\
-		& = & \ORew{s}{a} +  \frac{1}{\eta}\log  e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q^*(s',a')\de s'} \nonumber \\
-		& = & \ORew{s}{a} +  \gamma \int P(s'|s,a) \max_{a'} Q^*(s',a')\de s' \nonumber \\
-		& = & (T^*Q^*)(s,a) \nonumber \\
-		& = & Q^*(s,a) \nonumber
-		\end{eqnarray}
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}[Max-Norm contractivity of the optimistic Bellman operator]
-	Given $\{Q_{1,k}\}_{k=1}^M$, $\{Q_{2,k}\}_{k=1}^M$, and $\delta > 0$ such that
-	\begin{equation}
-	\|Q_{1,k} - Q_{2,k} \|_{\infty} \leq \delta \quad \quad \forall k \in \{1,\dots,M\} \nonumber
-	\end{equation}
-	implies that:
-	\begin{equation}
-	\| (\OptBellOp Q_{1})_k - (\OptBellOp Q_{2})_k \|_{\infty} \leq \gamma\delta \quad \quad \forall k \in \{1,\dots,M\}. \nonumber
-	\end{equation}
-	\begin{proof}
-		\begin{eqnarray*}
-			(\OptBellOp Q_{1})_k(s,a) - (\OptBellOp Q_{2})_k(s,a) & = & \ORew{s}{a} +  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q_{1,i}(s',a')\de s'}  \nonumber \\
-			& & -\ORew{s}{a} -  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q_{2,i}(s',a')\de s'}  \nonumber \\
-			&= &  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) (\max_{a'} Q_{1,i}(s',a') - \max_{a'} Q_{2,i}(s',a'))\de s'}  \nonumber \\
-			&\leq &  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \delta \de s'}  \nonumber \\
-			&= & \gamma \delta \nonumber
-		\end{eqnarray*}
-	\end{proof}
-\end{lemma}
-
-\begin{theorem}[Convergence of OBE]
-	If 
-	\begin{equation}
-	|Q_i(s,a) - Q^*(s,a)| \leq \epsilon \quad \quad s,a,i \in \mathcal{S} \times \mathcal{A} \times \{1, \dots, M\}
-	\end{equation}
-	then 
-	\begin{equation}
-	| (\OptBellOp Q)_i(s,a) - Q^*(s,a)| \leq \gamma \epsilon \quad \quad s,a,i \in \mathcal{S} \times \mathcal{A} \times \{1, \dots, M\}.
-	\end{equation}
-	Note that this implies that given an initial set of $Q = \{Q_i\}_{i = 1}^{M}$, $\lim_{N\rightarrow\infty} \OptBellOp^NQ = Q^*$, therefore implies the convergence of $OVI$.
-	\begin{proof}
-		\begin{eqnarray}
-		\bigl|(\OptBellOp Q)_i(s,a) - Q^*(s,a)\bigr| & = & \bigl|(\OptBellOp *Q)_i(s,a) - \OptBellOp Q^*(s,a)\bigr| \nonumber \\
-		& \leq & \gamma \epsilon \nonumber 
-		\end{eqnarray}
-	\end{proof}
-	\label{oviconvergence}
-\end{theorem}
-We note that OVI converges with the same rate as VI.
-
-\subsection{Optimistic $Q$-Learning}
-This section provides a more detailed proof of optimistic $Q$-learning (OQL) converging to $Q(s,a)^*$.
-We first show that the exploration bonus vanishes in OQL and then give the main proof of convergence.
-\begin{theorem}[Vanishing bonus for optimistic $Q$-learning]
-	Let's consider optimistic $Q$-Learning (OQL) described in Definition \ref{def:optimistic_qlearning}. Let's suppose to have a set of $Q_i$. Each entry in the table at time $t=0$ has central moment $\mathcal{M}_{0,n} \in \mathbb{R}$. If we consider a specific entry $(s,a)$, and a sequence of learning rate $\{\alpha_t\}_{t=0}^T$ where $\alpha_t \in [0,1]$, then:
-	\begin{equation}
-	\mathcal{M}_{T+1,n}(s,a) = \prod_{t=0}^T(1-\alpha_t)^n\mathcal{M}_{0,n}(s,a)
-	\end{equation}
-	where $\mathcal{M}_{T+1,n}(s,a)$ is the $n$\textsuperscript{th} central moment of the entry $(s,a)$ at time $T+1$.
-	\begin{proof}
-		Please, note that we always update an entry $(s,a)$ with the same value for all the $M$ tables. We can refer to the sequence of updates to a single state-action pair $(s,a)$ as $\{y_t\}_{t=0}^T$, where each value belongs to $\mathbb{R}$. Now, let's consider the process of updating of the entry $s,a$:
-		\begin{equation}
-		Q_{t+1,i}(s,a) = (1-\alpha_t)Q_{t,i}(s,a) + \alpha_t y_t \quad \quad \forall i \in \{1,\dots M\}.
-		\end{equation}
-		We can write the central moments at time $t+1$ as:
-		\begin{eqnarray}
-		\mathcal{M}_{t+1,n}(s,a)& =& M^{-1} \sum_m \Bigl(Q_{t+1, m}(s,a) - M^{-1} \sum_i Q_{t+1,i}(s,a) \Bigr)^n \nonumber \\
-		& =& M^{-1} \sum_m \Bigl((1-\alpha_t)Q_{t, m}(s,a) + \alpha_t - M^{-1} \sum_i \bigl((1-\alpha_t y_t) Q_{t,i}(s,a) + \alpha_t \bigr)\Bigr)^n \nonumber \\ 
-		& =& M^{-1} \sum_m \Bigl((1-\alpha_t)Q_{t, m}(s,a)  - M^{-1} \sum_i (1-\alpha_t y_t) Q_{t,i}(s,a) \Bigr)^n \nonumber \\
-		& =& (1-\alpha_t)^n M^{-1} \sum_m \Bigl(Q_{t, m}(s,a)  - M^{-1} \sum_i  Q_{t,i}(s,a) \Bigr)^n \nonumber \\
-		& =& (1-\alpha_t)^n \mathcal{M}_{t,n}(s,a) \nonumber 
-		\end{eqnarray}
-		and therefore, unfolding the recursion, 
-		\begin{equation}
-		\mathcal{M}_{T+1,n}(s,a) = \prod_{t=0}^T(1-\alpha_t)^n\mathcal{M}_{0,n}(s,a) \nonumber
-		\end{equation}
-	\end{proof}
-\end{theorem}
-
-Next, we prove the convergence of OQL. Our proof is based on the work of \citeauthor{melo2001convergence}~\shortcite{melo2001convergence}, which relies on the following theorem~\cite{jaakkola1994convergence}:
-\begin{theorem}
-	The random process $\{\Delta_t\}$ taking values in $\mathbb{R}$ and defined as:
-	\begin{equation}
-	\Delta_{t+1}(x) = (1- \alpha_t(x)) \Delta_t(x) + \alpha_t F_t(x)
-	\end{equation}
-	converges to zero w.p. $1$ under the following assumptions:
-	\begin{itemize}
-		\item $0 \leq \alpha_t \leq 1$, $\sum_t \alpha_t(x)  = \infty$ and $\sum_t \alpha^2_t(x) < \infty$
-		\item $\|\EV[F_t(x)| \mathcal{F}_t]\|_W \leq \gamma \|\Delta_t\|_W$ with $0\leq \gamma < 1$
-		\item $\mathrm{Var}[F_t(x)| \mathcal{F}_t] \leq C(1+\|\Delta_t\|^2_W)$ for $C>0$.
-	\end{itemize}
-	\label{theo:randomprocess}
-\end{theorem}
-We are now ready to prove the convergence of optimistic $Q$-learning.
-\begin{theorem}[Convergence of Optimistic $Q$-learning]
-	Let us consider the algorithm provided in Definition~\ref{def:optimistic_qlearning}. Suppose that the rewards are bounded, and consider a learning rate $\alpha_t(s,a)$ which satisfies $0 \leq \alpha_t \leq 1$, $\sum_t \alpha_t(x)  = \infty$ and $\sum_t \alpha^2_t(x) < \infty$. Suppose that each state action pair is visited infinitely many times, then, $\lim_{t\to \infty} Q_{i,t}(s,a) \to Q^*(s,a) \forall i \in \{1,\dots,M\}$ with probability $1$. 
-	Then the algorithm converges.
-	\begin{proof}
-		Let's consider the following stochastic process:
-		\begin{equation}
-		Q_{i, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}\Bigr) \nonumber
-		\end{equation}
-		with $\alpha_t = \alpha_t(s,a)$ (for brevity), and coherent with the assumpions.
-		Let's rename  $\Delta_{i,t}(s,a) = Q_{i, t}(s,a) - Q^*(s,a)$ where $Q^*(s,a)$ is the fixed point of $\OptBellOp$. We can now write:
-		\begin{equation}
-		\Delta_{i,t+1}(s,a) = (1-\alpha_t)\Delta_{i,t}(s,a)  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')} - Q^*(s,a)\Bigr) . \nonumber \\
-		\end{equation}
-		We can rename $F_t(s,a) = r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')} - Q^*(s,a)$ and observe that $\EV[F_t(s,a)]  = \OptBellOp Q_t(s,a) - Q^*(s,a)$, and subsequently, thanks to the max-norm contraction of the optimistic Bellman operator,
-		\begin{eqnarray}
-		\| \EV[F_t(s,a)] \|_{\infty} & \leq & \gamma \| Q_{i,t} - Q^*\|_{\infty} \nonumber \\
-		& = & \gamma \| \Delta_{i,t+1}(s,a) \|_{\infty} \quad \quad \forall i \in \{1,\dots,M\}.\nonumber
-		\end{eqnarray}
-		Then, noticing $\mathrm{Var}[F_{t}(s,a)] = \mathrm{Var}[F_{t}(s,a) - Q^*] = \mathrm{Var}[r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}]$ which, considering that the rewards are assumed to be bounded, leads to:
-		\begin{equation}
-		\exists C : \mathrm{Var}[F_{t}(s,a)] \leq C (1 + \|\Delta_{i,t}\|) \quad \quad \forall i \in \{1, \dots, M\}.
-		\end{equation}
-		Using Theorem~\ref{theo:randomprocess} we can therefore say that $Q_t(s,a)$ converges to $Q^*(s,a)$ w.p. $1$.
-	\end{proof}
-\end{theorem}
-
-\subsection{Details on the Experiments}
-In this section, we provide details on the exact form of bootstrapped $Q$-Learning and optimistic
-$Q$-learning update rules. Furthermore, we describe how hyper-parameters were chosen in the experiments and what kind of neural network structure was used in the experiments with neural network based function
-approximation.
-
-We define Bootstrapped Q-Learning (BQL) with the following update rule
-\begin{definition}[Bootstrapped $Q$-learning]
-	\footnote{We use $\alpha_t$ as a shortcut for $\alpha_t(s,a)$.}
-	\begin{eqnarray}
-	\begin{cases}
-	Q_{i, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
-	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}\Bigr) &  \mathrm{if} s = s_t \land a = a_t \nonumber \\
-	Q_{i, t+1}(s,a) = Q_{i,t}(s,a) & \mathrm{otherwise}
-	\end{cases} \nonumber 
-	\end{eqnarray}
-	\label{def:bootqlearning}
-\end{definition}
-and OQL with
-\begin{definition}[Optimistic $Q$-learning]
-	\begin{eqnarray}
-	\begin{cases}
-	Q_{j, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
-	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log \frac{1}{M-1} \sum_{j=2}^M e^{\gamma \max_{a'} Q_{j,t}(s_{t+1}, a') + Q_1(s_{t+1}, a')} \nonumber \\
-	\quad \quad \quad \quad \quad \quad \quad \quad  -\gamma \frac{1}{M-1} \sum_{j=2}^M  \max_{a'} Q{j,t}(s_{t+1}, a')\Bigr)  &  \mathrm{if} s = s_t \land a = a_t \land  j =1 \nonumber \\
-	Q_{j, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
-	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \gamma \frac{1}{M-1} \sum_{j=2}^M  \max_{a'} Q_{j,t}(s_{t+1}, a')\Bigr) &  \mathrm{if} s = s_t \land a = a_t \land  j \geq 2 \nonumber \\
-	Q_{i, t+1}(s,a) = Q_{i,t}(s,a) & \mathrm{otherwise}
-	\end{cases} \nonumber 
-	\end{eqnarray}
-	\label{def:optqlearningmod}
-\end{definition}
-using the ``explicit exploration'' formulation, in order to enable the evaluation with unbiased $Q$ values.
-The settings provided by Table~\ref{tabularsetting} are fixed for all the different environments.
-\begin{table}[h]
-\begin{tabular}{ l c c c c }
-	\textbf{Parameter} & \textbf{QL} & \textbf{OIQL} & \textbf{BQL} & \textbf{OQL}  \\
-	\hline
-	Number of approximator & $1$ & $1$ & $10$ & $10$  \\ 
-	Initialization & $\mathcal{N}(0,2)$ & $R_{\max}$ & $\mathcal{N}(0,2)$& $\mathcal{N}(0,2)$ \\ 
-	Learning rate & $0.15$ & $0.15$ & $0.15$ & $0.15$  \\   
-	$\epsilon$-greedy & $0.01$ & $0.01$ & $0.01$ & $0.01$ 
-\end{tabular}
-\caption{Setting used for tabular algorithms.\label{tabularsetting}}
-\end{table}
-\vspace{1em}
-
-\subsubsection{DQN and ODQN}
-
-\paragraph{Acrobot configuration.} For Acrobot, we used a single-layer neural network as base component of the ensemble. The input of the neural newtork is $4$-dimensional (and corresponds to the dimension of the state space), and the output has $2$ dimensions, corresponding to the two possible actions. 
-Table~\ref{taxitable} shows the fixed hyper-parameters for Acrobot. Additionally, we
-performed a grid search over the number of neurons in the hidden layer, and for the ``bootstrapped mask'' (see Table \ref{acrobotgrid}). We measured both the mean return averaged over all episodes
-denoted by ``avg'' (which should give an idea about how fast an algorithm can improve performance w.r.t.\ the number of samples), and also the mean of the final performance. For both ODQN and BDQN we selected the hyper-parameters corresponding to the best average performance of BDQN yielding
-yielding $100$ neurons and a bootstrap mask of $0.5$ for the final performance evaluation shown in the main paper. For ODQN we use $\chi = 0.25$ and $\iota_{\max}=1$.
-\begin{table}[h]
-	\begin{tabular}{ c c | c c | c c  }
-		\textbf{Neurons} & \textbf{Bootstrapped Mask} & \textbf{BDQN} avg & \textbf{BDQN} final & \textbf{ODQN} avg & \textbf{ODQN} final  \\ 
-		\hline
-		$100$ & $0.5$ & $-116.96^*$ & $-84.63$ & $-115.25$ & $-86.04$ \\
-		$100$ & $1.0$ & $-129.62$ & $-86.91$ & $-129.06$ & $-95.60$ \\
-		$150$ & $0.5$ & $-123.21$ & $-85.04$ & $-122.10$ & $-80.38$ \\
-		$150$ & $1.0$ & $-136.25$ & $-89.50$ & $-138.38$ & $-83.62$ \\
-		$200$ & $0.5$ & $-123.47$ & $-87.89$ & $-125.72$ & $-84.41$ \\
-		$200$ & $1.0$ & $-143.05$ & $-87.70$ & $-148.64$ & $-81.91$  \\
-		$300$ & $0.5$ & $-129.26$ & $-82.60$ & $-131.24$ & $-81.12$ \\
-		$300$ & $1.0$ & $-150.10$ & $-83.98$ & $-151.14$ & $-86.30$ \\
-		$400$ & $0.5$ & $-133.01$ & $-81.43$ & $-135.30$ & $-83.82$ \\
-		$400$ & $1.0$ & $-154.70$ & $-87.58$ & $-158.38$ & $-86.55$ \\
-	\end{tabular}
-	\caption{Tested hyper-parameters ``Neurons'' and ``Bootstrapped Mask'' for Acrobot with corresponding evaluations.label{acrobotgrid}}
-\end{table}
-
-\paragraph{Taxi configuration.} For Taxi, we decided to encode the state as a $2$-dimensional grid, selecting only the position of the agent to $1$ and the rest to zero, and additionally we provide a one-dimensional vector of length $3$ providing the information about which flags where collected. We decided to use a shared convolutional layer with kernel of $2$ and stride $1$, in order to process the vector and reduce the dimension. Above the convolutional layer, we apply a different hidden layer for each component of the ensemble. The output of each component is $4$-dimensional, corresponding to the four possible actions. Most of the parameters are chosen without any optimization (see Table \ref{taxitable}), except for the number of neurons in the hidden layer, and for the ``bootstrapped mask''.
-We performed a grid search over these two parameters, measuring both the mean return averaged over all
-episodes and also the mean of the final performance, similarly to the Acrobot evaluation (please, see
-Table~\ref{taxigrid}). For both ODQN and BDQN, we selected the hyper-parameters corresponding to the
-best average performance of BDQN yielding $200$ neurons and a bootstrap mask of $0.5$ for the final performance evaluation shown in the main paper.
-\begin{table}[h]
-	\begin{tabular}{ c c | c c | c c  }
-		\textbf{Neurons} & \textbf{Bootstrapped Mask} & \textbf{BDQN} avg & \textbf{BDQN} final & \textbf{ODQN} avg & \textbf{ODQN} final  \\ 
-		\hline
-		$200$ & $0.5$ & $9.51^*$ & $12.05$ & $\mathbf{10.05}$ & $\mathbf{14.25}$ \\
-		$200$ & $1.0$ & $6.16$ & $7.80$ & $\mathbf{8.63}$ & $\mathbf{12.00}$ \\
-		$300$ & $0.5$ & $9.14$ & $\mathbf{10.95}$ & $\mathbf{9.63}$ & $9.65$ \\
-		$300$ & $1.0$ & $\mathbf{9.36}$ & $9.65$ & $9.27$ & $\mathbf{10.55}$ \\
-		$400$ & $0.5$ & $7.21$ & $8.4$ & $\mathbf{10.30}$ & $\mathbf{13.50}$ \\
-		$400$ & $1.0$ & $6.87$ & $9.2$ & $\mathbf{9.42}$ & $\mathbf{11.25}$ 
-	\end{tabular}
-	\caption{Tested hyper-parameters ``Neurons'' and ``Bootstrapped Mask'' for Taxi with corresponding evaluations.\label{taxigrid}}
-\end{table}
-\begin{table}[h]
-	\begin{tabular}{ l c c c}
-		\textbf{Parameter} & \textbf{Acrobot} & \textbf{Taxi}  \\
-		\hline
-		Number of approximators & $10$ & $10$ &\\ 
-		%Number of neurons & $50$ &  \\
-		Shared conv. layer & no & yes \\  
-		Number of layer & $1$ &  $1$\\  
-		Number of neurons & $100$ &  $200$\\  
-		Activation function & $\mathrm{relu}$ & $\mathrm{relu}$  \\
-		Initialization & Glorot Uniform & Glorot Uniform \\
-		Loss & MSE & Huber Loss \\
-		Optimization & Adam & RMSProp \\
-		Learning rate & $0.001$ & $0.00075$ \\
-		Decay (only RMSProp) & none & $0.95$ \\
-		Batch size & $32$ & $100$ \\
-		Max replay size & $5000$ & $100000$ \\
-		Target update frequency & $600$ & $100$ \\
-		$p$-mask & $0.5$ & $0.5$ \\
-		$\epsilon$-greedy (training) & $0.0$ & $0.05$ \\
-		$\epsilon$-greedy (evaluation) & $0.0$ & $0.0$ \\
-		Evaluation frequency & $3000$ & $5000$ \\
-		Total training steps & $250000$ & $400000$ 
-	\end{tabular}
-	\caption{Common hyper-parameters for BDQN and ODQN.\label{taxitable}}
-\end{table} 
+% \paragraph{Entropy-Regularized Optimistic $Q$ Selection.}
+% We define here a Bellman equation over the $Q$-function ensemble by introducing an optimistic estimate penalized by an entropic regularization term.
+% \begin{probdef}[Regularized version]
+% 	\begin{equation}
+% 	\arraycolsep=1.4pt\def\arraystretch{2.2}
+% 	\begin{array}{rrclcl}
+% \displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f\big(s,a;b(s,a)\big)-\frac{1}{\eta}D_{\mathrm{KL}}\big(p(s,a)\big{\|}u\big) } \\
+% 	\textrm{s.t.} & \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
+% 	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
+% 	\end{array}\nonumber
+% 	\end{equation}
+% 	where $f(a,s;p)\! =\! \Rew{s}{a} + \gamma \sum_m{b}_m(s,a)V_m'(s,a)$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$,$u_m  =  1/M$, $D_{KL}(b(s,a)\| u)$ is the Kullback-Leibler divergence between the belief $b(s,a)$ and the uniform distribution $u$.
+% 	\label{prob:regularized}
+% \end{probdef}
+% The choice of using the relative entropy instead of the absolute one has two main advantages: it admits a solution for $\eta \to 0$ and provides a normalization factor.
+% Since problem definition \ref{prob:regularized} is a convex constrained problem, it is solvable by dual optimization. Introducing $\lambda$ as Lagrangian multiplier for the constraint, we write the Lagrangian
+% \begin{eqnarray}
+% L_i(s,a) \!&=& \!f(s,a; b(s,a)) -\frac{1}{\eta}D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big)\nonumber \\ && + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian}
+% \end{eqnarray}
+% Requiring the partial derivatives of $L_i$ w.r.t $p_m$ and $\lambda$ to be zero yields 
+% \begin{equation}
+% b_m(s,a) = \frac{e^{\eta  \gamma V_m'(s,a)}}{\sum_{k=1}^{M} e^{\eta \gamma   V_k'(s,a)}}\label{pm}.
+% \end{equation} 
+% By substituting $b_m$ in \eqref{lagrangian}, we obtain the solution to the problem (a detailed derivation is provided in the Supplement)
+% \begin{obedef}\footnote{We extend the solution for $\eta = 0$ by computing the limit.} 
+% 	\begin{equation}
+% 	Q_i(s,a) = \begin{cases}
+% 	\overline{R}(s,a) + \frac{1}{\eta} \log \frac{\sum_{m=1}^Me^{\eta \gamma  V_m'(s,a) }}{M} & \mathrm{if} \eta \neq 0 \label{OBE} \\
+% 	\overline{R}(s,a) + \frac{\gamma}M \sum_{m=1}^{M} V_m'(s,a) & \mathrm{otherwise}
+% 	\end{cases}.
+% 	\end{equation}
+% \end{obedef}
+% Notice that $\eta>0$ leads to a positive (optimistic) biased estimation, while $\eta<0$ will leads to a negative (pessimistic) estimate; in this work we will always assume $\eta>0$ (and therefore we refer to the equation as optimistic). 
+% However, in general, the choice of $\eta$ is difficult since it depends on the magnitude of the reward function. For this reason we introduce the constrained version of the proposed problem.
+%  
+% \paragraph{Optimistic $Q$ Selection Bounding the Information Loss.}
+% We bound the information loss between the distribution $b_m$ and the uniform distribution to maintain compatibility with Problem~\ref{prob:regularized}. The information loss is bounded between $-\log M$ and $0$ where  $-\log M$ stands for complete information loss (i.e., only one model is selected) while $0$ corresponds to no information loss (i.e., uniform belief distribution). Constraining the information loss has succeeded in prior work, for instance in policy search methods such as \cite{peters2010relative}.
+% \begin{probdef}[Constrained version]
+% 	\begin{equation}
+% 	\begin{array}{rrclcl}
+% 	\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f(s,a;b(s,a))\nonumber } \\
+% 	\text{s.t.} & D_{\mathrm{KL}}\big(b(s,a)\big{\|} u \big)& \leq & \iota_{\max} \\
+% 	& \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
+% 	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
+% 	\end{array} \nonumber
+% 	\end{equation}
+% 	\label{constrversion}
+% \end{probdef}
+% By letting $\beta$ be the Lagrangian multiplier associated with the KL constraint, we obtain the Lagrangian
+% \begin{eqnarray}
+% L_i &\! = \!& f(s,a;b(s,a)) + \beta \Bigl(D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big) - \iota_{\max} \Bigr) \nonumber \\
+% & &   + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian1}
+% \end{eqnarray}
+% Substituting $\beta$ with $-1/\eta$ we note that \eqref{lagrangian1} becomes identical to \eqref{lagrangian} except for a constant factor. Since we can not solve $\eta$ (or $\beta$) analytically, we obtain an approximate solution by iteratively optimizing $\eta$ (or $\beta$) and $b_m$ subsequently.
+% \begin{figure}
+% 	\includegraphics[scale=0.54]{plots/confidence_plot.pdf}
+% 	\caption{\textbf{Left:} Different estimates of a function. \textbf{Right:} The entropic-map combines the function estimates to obtain an optimistic estimate where $\eta$ controls the level of optimism.}
+% 	\label{fig:uncertainty}
+% \end{figure}
+% OBE takes its name from the fact that when $\eta > 0$, the \textsl{log-sum-exp} acts as a \textsl{soft-max} operator. Such operator is also well known as an \textsl{entropic mapping}, as it can be derived from a maximum-entropy principle. Figure \ref{fig:uncertainty} shows how the entropic mapping works.
+% 
+% The use of the entropic mapping is not new in reinforcement learning: \citeauthor{asadi2017alternative}~\shortcite{asadi2017alternative} propose an interesting use of the entropic mapping as a soft-max over the action in the Bellman equation; \citeauthor{peters2010relative}~\shortcite{peters2010relative} instead obtain it from an entropic regularization over the state-action distribution.
+% 
+% \paragraph{Relation to Intrinsic Motivation}
+% % Related to the \textsl{intrinsic motivation}.
+% In order to highlight the connection between OBE and IM, we reformulate OBE utilizing the unbiased average of the estimates instead of the log-sum-exp,
+% and by introducing the resulting exploratory bonus $U$ which includes the positive bias
+% \begin{eqnarray}
+% Q_i(s,a)\! &=&\! \overline{R}(s,a) + U(s,a) +  \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M} \label{bonusBE}
+% \end{eqnarray}
+% with
+% \begin{equation}
+% U(s,a) \! =\!  \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a)}}{M} - \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M}. \label{bonusdef}
+% \end{equation}
+% Noticing that $\sum_{i=1}^N e^{\eta x_i}/N$ is the \textsl{sample moment generator} w.r.t. samples $\{x_i\}_{i=1}^N$ we can rephrase the exploration bonus as
+% \begin{eqnarray}
+% U(s,a)& = & \lim_{N \to +\infty}\frac{1}{\eta} \log \Biggl[  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)\Biggr] \nonumber \\
+% & = & \eta \gamma \mathcal{M}_2(s,a)  + O(\eta^2)\label{bonus}
+% \end{eqnarray}
+% where $\mathcal{M}_n$ is the $n$\textsuperscript{th} central moment of the random variable $V_m'$ (Proof in Supplement)
+% \begin{equation}
+% \mathcal{M}_n(s,a) = M^{-1} \sum_{m=1}^M \Biggl[ \Big( V_m'(s,a) -\overline{V}(s,a) \Big)^n \Biggr]\nonumber
+% \end{equation}
+% with 
+% \begin{equation}
+% \overline{V}(s,a) = M^{-1} \sum_{m=1}^M V_m'(s,a).\nonumber
+% \end{equation}
+% Equation \eqref{bonusBE} shows that OBE is equivalent to BE with an additional bonus defined by Equation \eqref{bonus}. The bonus $U$ (for any positive $\eta$) is always positive, and provides a measure of the uncertainty w.r.t. $Q$. This is why OBE can be interpreted as a special principled form of IM.
+% 
+% \paragraph{Explicit Exploration.} A general problem affecting intrinsically motivated algorithms, is that the policy greedy to the obtained $Q$-value function, is not optimized for the original problem. As a solution to this issue we approximate two functions: $\tilde{Q}$, which will be updated using the true reward and $Q_E$ which will be updated using only the intrinsic reward \cite{szita2008many}. In this way we obtain both the intrinsically motivated policy $\pi_o(s) = \argmax_{a} \tilde{Q}(s,a) + Q_E(s,a)$ and the classic policy  $\pi_u(s) = \argmax_{a} \tilde{Q}(s,a)$.
+% Define 
+% \begin{eqnarray}
+% 	\tilde{Q}_i(s,a) = \Rew{s}{a} + \gamma \sum_{m=1}^M\frac{\tilde{V}_m'(s,a)}{M} \quad \text{with} \\
+% 	\tilde{V}_m'(s,a) =  \sum_{s'} P(s'|s,a)\max_{a'}\tilde{Q}_m(s',a') \label{unbiasedQ}
+% \end{eqnarray}
+% to obtain an unbiased estimate of the $Q$-value function, yielding
+% \begin{eqnarray}
+% Q_E(s,a) & = & \sum_{t=0}^T \gamma^t U(s_t,a_t) \quad \text{where} \quad s_0 = s, a_0 = a \nonumber \\
+% & = & \eta^{-1}\log \frac{\sum_{k=1}^M e^{\eta\gamma\max_{a'}\tilde{Q}_k(s',a') + Q_E(s',a')}}{M}\nonumber \\
+% & &  -  \frac{\sum_{k=1}^M \gamma\max_{a'}\tilde{Q}_k(s',a')}{M}.
+% \end{eqnarray}
+% By a simple equation rearrangement, it is possible to show that $\tilde{Q}_i(s,a) + Q_E(s,a)$ is equivalent to $Q_i(s,a)$ as defined in the OBE \eqref{OBE}. 
+%  
+% \subsection{Optimistic Value Function Estimators}
+% The OBE offers a theoretical framework in which it is possible to develop optimistic value based algorithms. In fact, OBE enjoys all the desirable properties of the BE (e.g. max-norm contractivity), as shown in the supplement. We present briefly two practical applications of the OBE, an optimistic variant of $Q$-learning (OQL) and DQN (ODQN).
+% %
+% %\paragraph{Optimistic Value Iteration.}
+% %Value iteration (VI), is an iterative procedure for finding the solution of the BE. VI assumes the knowledge of the MDP (or equivalently an infinite amount of samples) and the possibility of having a perfect representation of the intermediate solutions. VI guarantees convergence to the optimal solution starting from any arbitrary $Q$-function. VI can be seen as an iterative application of the bellman operator. We introduce for this reason the optimistic Bellman operator:
+% %\begin{definition}[Optimistic Bellman operator]
+% %	We define the bellman operator $\OptBellOp :\{1,\dots,M\} \times(\Sset \times \Aset \to \Re)\to \{1,\dots,M\} \times ( \Sset \times \Aset \to \Re)$, $M \in \mathbb{N^+}$ as:
+% %	\begin{equation}
+% %	(\OptBellOp Q)_i(s,a) = \ORew{s}{a} + \frac{1}{\eta}\log \frac{1}{M} \sum_{m=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q_m(s',a')\de s'} \quad \quad \quad \forall s, a \in \Sset \times \Aset \nonumber
+% %	\end{equation}
+% %	for each $Q_{i}:\Sset \times \Aset \to \Re$ with $i \in \{1, \dots M\}$.
+% %\end{definition}
+% %The OVI procedure consists in an arbitrary choice of the action-value ensemble $\{Q_{0,i}\}_{i=1}^M$, and by iterating the optimistic Bellman operator $Q_{t+1,i} = (\OptBellOp Q_t)_i$. We can show that $\OptBellOp$ is a max-norm contraction, and it has $Q^*$ as fixed point. Therefore OVI converges to the same solution of VI (Proof in Appendix). An interesting property of OVI is that all the action-value functions converges to the same value after the first iteration: this is due to the fact that having perfect knowledge and perfect representation of the action-value function, any form of uncertainty is completely avoided. 
+% \paragraph{Optimistic $Q$-Learning.}
+% Motivated by the idea of employing an ensemble of regressors as is done in BDQN \cite{osband2016deep}, we assume to have $M$ randomly initialized $Q$-tables. Inspired by the well known $Q$-learning update rule, we derive an optimistic version which is consistent with the OBE.
+% %\joni{We need to add $Q_E$ also here for OQL?}
+% \begin{definition}[Optimistic $Q$-learning]
+% 	\footnote{We use $\alpha_t$ as a shortcut for $\alpha_t(s,a)$.}
+% 	\begin{align*}
+% 		\small  Q_{i, t+1}(s,a) &= (1-\alpha_t)Q_{i,t}(s,a)  \nonumber  \\
+% 	    & \small + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s', a')}\Bigr).\nonumber
+% 	\end{align*}
+% %	\begin{eqnarray}
+% %	\scriptsize \begin{cases}
+% %	Q_{i, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
+% %	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}\Bigr) &  \mathrm{if} s = s_t \land a = a_t \nonumber \\
+% %	Q_{t, t+1}(s,a) = Q_t(s,a) & \mathrm{otherwise}
+% %	\end{cases} \nonumber 
+% %	\end{eqnarray}
+% 	\label{def:optimistic_qlearning}
+% \end{definition}
+% \vspace{-1.5em}
+% We show that, with the update rule proposed, given infinite visits of each state-action pair, all the tables will converge to the same values, and more precisely, after each update, the $n$\textsuperscript{th} central moment of the updated cell is scaled exactly by $(1 - \alpha_t)^n$:
+% \begin{equation}
+% 	\mathcal{M}_{n,t+1}(s,a) = (1-\alpha_t)^n \mathcal{M}_{n,t}(s,a) \label{momentdecreasing}
+% \end{equation}
+% where 
+% \begin{equation}
+% 	\mathcal{M}_{n,t}(s,a) = M^{-1} \sum_{i=1}^M \bigg(Q_{i,t}(s,a) - \sum_{k=1}^M \frac{Q_{k,t}(s,a)}{M} \bigg)^n. \nonumber
+% \end{equation}
+% This implies that a cell updated $N$ times, with learning rates $\{\alpha_i\}$, will have the $n$\textsuperscript{th} central moments scaled by $\Pi_{\alpha_i}(1-\alpha_i)^n$ w.r.t.\ the initial one. This leads us to some interesting considerations: 1) the bonus decrease accordingly to the number of state visits; 2) differing from several count-based approaches, our algorithm takes into account the impact of the learning rate; 3) in the limit of an infinite number of visits, the exploration bonus converges to zero.
+% Further details, including a proof of convergence, are given in the supplemental material\footnote{We based our convergence proof for OQL on the works of \citeauthor{melo2001convergence}~\shortcite{melo2001convergence} and \citeauthor{jaakkola1994convergence}~\shortcite{jaakkola1994convergence}.}.
+% All the considerations done so far provide a deeper insight about how the algorithm works and its properties. However, in a more complex settings, (e.g., function approximation) the convergence to zero of the exploratory bonus is not guaranteed in general.
+% 
+% \paragraph{Optimistic DQN.}
+% \label{sec:proposedalg}
+% 
+% In addition to the novel OQL algorithm described previously that can be used for limited discrete state spaces, we
+% propose another algorithm for continuous state spaces based on our optimistic Bellman equation
+% (OBE). We take inspiration from the framework provided by Bootstrapped DQN (BDQN)~\cite{osband2016deep}
+% that uses an ensemble of neural networks as estimator for the $Q$ value function.
+% BDQN minimizes the loss
+% \begin{equation}
+% 	\mathcal{L}_B(s,a)\! = \! \sum_{k=1}^M \bigg(r + \gamma \max_{a'}Q_k^T(s',a') - Q_k(s,a)\bigg)^2, \nonumber
+% \end{equation}
+% where $Q_k^T$ is the target network of the $k$\textsuperscript{th} approximator. 
+% To get an unbiased performance evaluation, we decided to update $M-1$ components of the ensemble with the update rule provided by BDQN. We make this choice in order to maintain diversity between the approximations of the ensemble as shown in~\cite{osband2016deep}. We use the remaining single component of the ensemble to approximate $Q_E$. Using the first component to approximate $Q_E$, we get for our new algorithm optimistic DQN (ODQN) the loss
+% %\begin{eqnarray}
+% %	\mathcal{L}_O(s,a)\! & \!=\!& \bigg(\eta^{-1}\log \frac{\sum_{k=2}^M e^{\eta\gamma\max_{a'}Q_k^T(s',a')+ Q_1^T(s',a')}}{M}\nonumber \\
+% %	& &  -  \frac{\sum_{k=2}^M  \gamma\max_{a'}Q^T_k(s',a')}{M} -Q_1(s,a)\bigg)^2\nonumber \\
+% %	& &  + \sum_{k=2}^M \bigg(r + \frac{\sum_{k=2}^M  \gamma\max_{a'}Q^T_k(s',a')}{M}\nonumber \\ & & - Q_k(s,a)\bigg)^2.  \label{optimisticloss}
+% %\end{eqnarray}
+% \begin{eqnarray}
+% 	&\mathcal{L}_O(s,a) = \bigg(\eta^{-1}\log \frac{\sum_{k=2}^M
+% 	 e^{\eta\gamma\max_{a'}Q_k^T(s',a')+ Q_1^T(s',a')}}{M}\nonumber \\
+% &\qquad\qquad\;\;\;\;  -  \frac{\sum_{k=2}^M  \gamma\max_{a'}Q^T_k(s',a')}{M} -Q_1(s,a)\bigg)^2\nonumber \\
+% &\;  + \sum_{k=2}^M \bigg(r + \gamma\max_{a'}Q^T_k(s',a') -
+% 	 Q_k(s,a)\bigg)^2.  \label{optimisticloss}
+% \end{eqnarray}
+% The exploratory bonus represented by $Q_E = Q_1$ in the proposed OQL and OQDN algorithms is needed to
+% guide exploration during learning. During evaluation, we use majority voting on the remaining $M-1$
+% components $\{Q_k\}_{k=2}^M$. While we always select an optimistic policy in OQL during the training phase, in
+% ODQN the neural network function approximator may have problems learning to approximate the optimal
+% policy: if there are not enough unbiased samples the approximator may learn to model only the optimistic
+% biased samples. Note that in the tabular case, this is not a problem since there is no $Q$-function
+% approximation. In order to mitigate this problem, we introduce a hyper-parameter $\chi$ which denotes the probability to select an optimistic policy $\pi_o$ in place of the unbiased one $\pi_u$. In this way, we can balance the number of unbiased and optimistic samples.
+% Algorithm \ref{optimisticdqn} shows the pseudocode of ODQN. 
+% \begin{algorithm}[t]
+% 	\caption{Optimistic DQN}
+% 	\label{optimisticdqn}
+% 	\begin{algorithmic}
+% 		\STATE \textbf{Input:} $\{Q_k\}_{k=1}^K$, $\iota_{\max}$, $\eta_{\mathrm{init}}$, $\chi$, $N$, $C$
+% 		\STATE Let $B$ be a replay buffer storing the experience for training.
+% 		\STATE $\eta = \eta_{\mathrm{init}}$.
+% 		\STATE Let $i \sim \mathrm{Uniform}\{1 \dots M\}$ and $\psi = 1$ w.p. $\chi$ otherwise $\psi = 0$
+% 		\FOR{$N$ epochs}
+% 		\FOR{$C$ steps}
+% 		\STATE Observe $s$
+% 		\STATE Choose $a = \argmax_a Q_i(s,a) + \psi Q_1(s,a)$
+% 		\STATE Observe reward $r$, next state $s'$, end of episode $t$
+% 		\STATE If $t$ is terminal, $i \sim \mathrm{Uniform}\{2 \dots M\}$ and \\ \ \ \ \ \ \ $\psi = 1$ w.p. $\chi$ otherwise $\psi=0$
+% 		\STATE Store $<s,a,r,s',t>$ in buffer $B$
+% 		\STATE Sample mini-batch $B_{\mathrm{batch}}$
+% 		\STATE Update $\{Q_k\}_{k=1}^K$ using equation \eqref{optimisticloss}
+% 		\STATE $V \leftarrow V + |$ violated constraints \eqref{batchconstr} in $B_{\mathrm{batch}}|$ 
+% 		\ENDFOR
+% 		\STATE Let $\rho = \frac{V}{C * \mathrm{batch\_size}}$
+% 		\STATE Update $\eta$ by \eqref{etaupdate}
+% 		\STATE Update target network
+% 		\ENDFOR
+% 	\end{algorithmic}
+% \end{algorithm}
+% 
+% \paragraph{Automatic Hyper-parameter Adaptation.}
+% \label{subsec:adaptive}
+% Recalling that the regularization coefficient $\eta$ in the OBE is hard to tune, we want to focus our attention on Problem~\ref{constrversion}. We propose a way, inspired by \cite{schulman2017proximal}, to optimize $\eta$.
+% One of the optimization techniques proposed by \citeauthor{schulman2017proximal} is to measure the ``degree'' of constraint violation and to update the Lagrangian multiplier accordingly. We have to adapt the technique to multiple constraints, as the problem is defined for each state-action pair: we count the number of times the constraints have been violated and then update $\eta$. In more detail, suppose to have $N$ state-action pairs and for each pair $(s_i, a_i)$
+% \begin{eqnarray}
+% \sum_m b_m(s_i,a_i) (\log b_m(s_i,a_i) + \log M) \leq \iota_{\max}, \label{batchconstr}
+% \end{eqnarray}
+% where $\iota_{\max}$ is defined in Problem~\ref{constrversion}, while $b_m(s_i,a_i)$ is defined by \eqref{pm}. We define $\rho$ as the ratio of violated constraints. We update $\eta$ according to the following rule
+% \begin{equation}
+% \eta_{T+1} = \frac{\eta_{T}}{(0.5 +  10 \rho)} \label{etaupdate}.
+% \end{equation}
+% In ODQN, we decided to count the number of constraints violated every $C$ time-steps (basically every update of the target network), using the samples of all the extracted mini-batches. See Algorithm \ref{optimisticdqn} for further details.
+% 
+% %\paragraph{Weighting Exploration Samples}
+% %Exploration is a desirable property of an agent since it enables the interaction with a wider observable state-space region. However, giving the same importance to all the samples collected with an exploration policy might results in a poor approximation of the interesting region. We argue that among the samples collected with the exploratory policy, some will be included in the state-distribution induced by the next policy improvement, and thus they are important in our regression problem. On the other hand, we want to give less importance to the remaining samples. In order to accomplish this objective, we weight the samples that are drawn from the exploratory policy with weight $0 \leq w \leq 1$ if they belongs to a trajectory with lower return than the current average one of the greedy policy.
+% %We weight all the other samples with $1$.
+% %This simple heuristic might cause a positive bias in the estimation of $Q$ in stochastic environment, however this problem can be mitigated by an accurate choice of $w$. 
+%   
+%   
+% \paragraph{Ensuring a Prior Distribution.} As already discussed, it is important to maintain diversity in our ensemble, and this diversity should reflect the degree of uncertainty. For this reason, we should introduce a sort of prior distribution, as happens in the Bayesian framework. In the case of OQL, we observe that it is sufficient to randomly initialize each element of the ensemble, sincediversity between estimates is a sufficient condition to obtain positive bonus. 
+% For ODQN, as is done in BDQN, we choose to maintain the diversity between approximation, by a random initialization of each component's parameters and by using the bootstrapping technique, so by adding a \textsl{mask} in the replay memory which is sampled by  and use different data samples per regressor. 
+%   
+%   
+% \section{Experimental Evaluation}
+% \label{sec:experiments}
+% 
+% In the experiments, we compare in the tabular $Q$-function case our new optimistic $Q$-learning method (OQL) with the well-known state-of-the-art bootstrapped $Q$-learning method (BQL) \cite{osband2016deep}, classical $Q$-learning \cite{watkins1992q}, and $Q$-learning with optimistic initialization \cite{sutton1998reinforcement} in the $50$-Chain \cite{osband2016deep}, Taxi (also known as Maze) \cite{dearden1998bayesian} and Frozen Lake \cite{brockman2016openai} environments. For neural-network based $Q$-functions, we compare our new optimistic deep $Q$-learning (ODQN) method with bootstrapped deep $Q$-learning (BDQN) and classical deep $Q$-learning (DQN) in the Taxi and Acrobot \cite{sutton1996generalization} environments.
+% The environments are chosen to cover different types of dynamics, have sparse rewards, and include both discrete and continuous states. For Acrobot and Frozen Lake, we used the implementation provided by OpenAI Gym \cite{brockman2016openai}. First, we will discuss the environments in more detail, then we will provide some details on the
+% initialization of the methods, and finally finish with an analysis of the results.
+% 
+% The \textbf{N-Chain} environment \cite{osband2016deep} requires a long sequence of non-rewarding actions to achieve the optimal reward. The MDP consists of a chain with $N$ states $\{s_i\}_{i=1}^N$, and two actions that move the agent to state $s_{i+1}$ or $s_{i-1}$. The agent always starts in state $s_2$. In state $s_1$ the agent observes a small reward $r(s_1)=1/1000$, while in the $N$\textsuperscript{th} state the agent observes $r(s_N) = 1$. The reward function is zero elsewhere. The agent needs to explore until reaching state $s_N$ even if state $s_1$ looks promising.
+% 
+% The \textbf{Taxi} environment, also known as Maze \cite{dearden1998bayesian}, consists of a $8\times 8$ grid-world where a taxi has to collect passengers and take them to the goal position where the only non-null reward is observed. For $0$, $1$, $2$ and $3$ passengers collected, the reward is $0$, $1$, $3$ and $15$, respectively. The agent must explore to 1) discover that reachin the goal position with less than $3$ passengers is not optimal, 2) to find the optimal path.
+%   
+% The \textbf{Frozen Lake} environment is a $8\times 8$ grid-world, in which the agent has to reach a goal position without falling into some holes. The stochastic perturbation of the agent's movement makes the environment challenging.
+% 
+% The \textbf{Acrobot} environment was firstly proposed by \citeauthor{sutton1996generalization}~\shortcite{sutton1996generalization} and consists of two linked robotic arms that hang downward with only one actuated joint between the two arms. The agent swings the robotic arms until the end of the second link exceeds a certain height. At each step the agent perceives a negative reward of $-1$. The environment requires significant exploration to find a way to swing the robotic arms at defined height.
+% 
+% %This problem consists of modeling a car which is placed in a valley, and the power of its engine is not enough to reach the top of the mountain \cite{moore1990efficient}. The car needs to build momentum by driving backward. We use the implementation provided by OpenAI Gym \cite{brockman2016openai}.
+% 
+% \begin{figure*}[t]
+% 	\centering
+% 	\begin{subfigure}[t]{0.42\textwidth}
+% 		\begin{tikzpicture}[scale=0.8, transform shape]
+% 		\node[state]             (1) {1};
+% 		\node[state, right=of 1] (2) {2};
+% 		\node[state, right=of 2] (3) {\dots};
+% 		\node[state, right=of 3] (4) {N};
+% 		%\node[above=0.5 of 4] (5) {R};
+% %		\draw[-stealth,
+% %		decoration={snake, 
+% %			amplitude = .4mm,
+% %			segment length = 2mm,
+% %			post length=0.9mm},decorate] (4) -- (5);
+% 		\draw[every loop]
+% 		(1) edge[loop above] node {b, $0.001$} (1)
+% 		(1) edge[bend left, auto=left] node {a} (2)
+% 		%(2) edge[loop above] node {a} (2)
+% 		(2) edge[bend left, auto=left] node {a} (3)
+% 		%(3) edge[loop above] node {a} (3)
+% 		(3) edge[bend left, auto=left] node {a} (4)
+% 		%(1) edge[loop below] node {b} (1)
+% 		(2) edge[bend left, auto=left] node {b} (1)
+% 		%(2) edge[loop below] node {b} (2)
+% 		(3) edge[bend left, auto=left] node {b} (2)
+% 		%(3) edge[loop below] node {b, $1$} (3);
+% 		(4) edge[bend left, auto=left] node {b} (3)
+% 		(4) edge[loop above] node {a, $1$} (4);
+% 		\end{tikzpicture}
+% 	\end{subfigure}
+% 	\begin{subfigure}[t]{0.25\textwidth}
+% 		\includegraphics[height=0.8in]{environments/taxi.jpeg}\label{taxienv}
+% 	\end{subfigure}
+% 	\begin{subfigure}[t]{0.15\textwidth}
+% 		\includegraphics[height=0.8in]{environments/frozenlake.png}\label{frozenlake}
+% 	\end{subfigure}
+% 	\begin{subfigure}[t]{0.15\textwidth}
+% 		\includegraphics[height=0.8in]{environments/acrobot.png}\label{acrobot}
+% 	\end{subfigure}
+% 	\caption{Illustration of the environments, from the left to the right: $N$-Chain,  Taxi, Frozen Lake and Acrobot. }
+% \end{figure*}
+% 
+% \setlength\figureheight{4cm}
+% \setlength\figurewidth{4cm}
+% \begin{figure*}[t]
+% 	\input{results/performances.tex}
+% 	\caption{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
+% 	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
+% 	 together with $95\%$ confidence intervals. The
+%      second row shows the distribution over the number of time steps before observing the maximum reward in the MDP.}
+% 	\label{results1}
+% \end{figure*}
+% \paragraph{Initialization of the $Q$-functions.} In the tabular setting, for optimistically initialized Q-learning (OIQL), we initialize the $Q$-function to $15$ in Taxi and to $1$ in $N$-Chain and Frozen Lake. For the other algorithms, we initialize $Q(s,a) \sim \mathcal{N}(\mu=0,\sigma=2)$, except $Q_E$ of OQL is initialized to $0$.
+% In the taxi environment, for both ODQN and BDQN, we use a shared convolutional layer with multiple heads as described in \cite{osband2016deep}. For the Acrobot, each component of the ensemble corresponds to a one-layer neural network. For ODQN, in both the environment, we initialize the output layer corresponding to $Q_E$ to small values of the parameters, in order to obtain initially $Q_E \approx 0$. 
+% 
+% % \textbf{Training and evaluation.} All algorithms go through a training phase, followed by an evaluation. Evaluations are obtained by majority voting of the $Q$-functions for BDQN and BQL. ODQN and OQL perform the majority vote using only $\{Q_k\}_{i=2}^M$ since $Q_1$ approximates $Q_E$. In the tabular setting, the training phase of each epoch requires $1000$ steps. The results are averaged on $64$ different random seeds, with the exception of Frozen Lake, which, due to its high stochasticity, required $128$ experiments to reduce the confidence intervals. For BDQN and ODQN was difficult to find the same hyperparameters working both on Taxi and Acrobot, since for Taxi we used a convolutional neural network with $10$ different 'heads', while for Acrobot we used a simple multilayer perceptron with $2$ layers. The corresponding plots are the results of an average over $100$ different seeds. For further details regarding the implementation and the hyperparameters, please refer to the supplementary material. 
+% 
+% \paragraph{Hyper-Parameter Tuning.} For the tabular settings, we did not run any hyper-parameter optimization. With neural networks we performed a small grid search over the number of neurons of the network, and whether to use bootstrapping or not. More specifically, we selected hyper-parameters maximizing the mean return averaged over the whole learning curve, using $20$ different seeds. In the plots; we compare ODQN and BDQN using the best hyper-parameter setup found for BDQN. In OQL we use $\eta=10$ and for ODQN, we use $\chi=0.25$ and $\iota_{\max}=1$. For further details about the implementation of the algorithms, and the grid search, please see the Supplement.
+% 
+% 
+% \subsection{Results}
+% Figure~\ref{results1} summarizes the results obtained by averaging over $64$ different seed the tabular alrogithms, and $100$ seeds DQN and BDEN (more details, e.g. results for different hyper-parameter 
+% settings, can be found in the supplement).
+% OQL learns faster than the other tabular algorithms. In the Chain environment, and in Taxi,
+% our algorithm OQL finds the highest reward faster than BQL or QL. On the other hand, also OIQL seems to find
+% high rewards fast, as shown in the box-plots. However, OIQL requires more training epochs to escape the high initial
+% optimistic values of the value function. In contrast, OQL finds high values fast in all the problems
+% ($50$-Chain, Taxi, Frozen Lake) using the optimistic Bellman equation
+% while converging to a near-optimal solution as suggested by our convergence proofs.
+% 
+% With neural network approximation of the value function, ODQN outperforms BDQN in the Taxi environment
+% demonstrating that the principles of OBE work even with function approximation. In the Cartpole environment,
+% the learning curves of ODQN and ODQN are nearly identical, possibly, due to the simplicity of the environment.
+% %However, ODQN has a higher median performance in both Taxi and Cartpole when measured w.r.t.\ the number of steps
+% %required to receive maximum return.
+% 
+% 
+% \section{Conclusion}
+% 
+% The main contribution of our work is the introduction of the optimistic Bellman equation (OBE) which
+% provides an optimistic estimate of the value function over uncertainty. Our approach can be viewed as a
+% principled IM technique where the agent is intrinsically rewarded by uncertainty and which, similar to
+% approximated Bayesian methods, estimates the  an ensemble. We propose two
+% algorithms: OQL for the tabular case and ODQN for the neural network case. Given the usual assumptions
+% on the learning rate and state visits, we show that OQL convergences to the optimal policy, 
+% analyze the implicitly defined exploration bonus in QQL and show the relationship to intrinsic
+% motivation based approaches. In empirical
+% evaluations on a variety of tasks where exploration is crucial, OQL and OQDN outperform comparison
+% methods due to being able to find high rewards earlier.
+% 
+% % We leave the testing of ODQN in higher-dimensional tasks (such as Atari), where analyzing the core 
+% % behavior of the algorithm is challenging, as future work. 
+% 
+% % We leave the testing of ODQN on higher-dimensional tasks (such as Atari) as future work. 
+% % A drawback of the OBE, consists in the fact that there is not a principled criteria to maintain
+% % different estimates in the ensemble. We think that it is possible to overcome this issue by developing
+% % an optimistic Bellman equation over a $Q$-distribution instead of over a $Q$-ensemble. we could obtain a
+% % practical algorithm over distributions using quantile regression \cite{dabney2017distributional}. 
+% 
+% 
+% % \subsubsection*{Acknowledgments}
+% % The research is financially supported from the Bosch-Forschungsstiftung program. 
+% 
+% %\fontsize{9.0pt}{10.0pt} \selectfont
+% \bibliography{bibliography}
+% \bibliographystyle{aaai}
+% \pagebreak
+% \appendix
+% \onecolumn
+% \section{Supplementary Material for the paper ``Exploration Driven by an Optimistic Bellman Equation''}
+% %\allowdisplaybreaks
+% This supplement provides details on all the proofs presented in the main paper and shows details of the
+% experiments that have been left out of the main paper due to space constraints. 
+% We refer to equations and definitions that are presented in the main paper with their assigned numbers.
+% 
+% First, we introduce additional notation for the classic Bellman operator and our optimistic version. 
+% We show how to derive the optimistic Bellman equation from Problem \ref{prob:regularized}.
+% Subsequently, we show how to interpret the optimistic Bellman equation under an intrinsic
+% motivation perspective; we will show how the exploration bonus is related to the central
+% moments of the approximations made.
+% We then analyze two algorithms: Optimistic Value Iteration (OVI), which is presented mainly for theoretical reasons, introducing the optimistic Bellman operator and its properties, and optimistic Q-learning (OQL). For both algorithms we provide convergence proofs.
+% We also show that the exploration bonus decreases according to the learning rate and state visits.
+% Finally, we report the hyper-parameters used in our experimental setting. 
+% 
+% \subsection{Notation}
+% This section presents the mathematical notation used in the proofs.
+% \begin{definition}[Bellman operator]
+% 	We define the Bellman operator $\BellOp:(\Sset \times \Aset \to \Real)\to(\Sset \times \Aset \to \Real)$ as:
+% 	\begin{equation}
+% 	(\BellOp Q)(s,a) = \ORew{s}{a} +\gamma \int P(s'|s,a) \max_{a'} Q(s',a')\de s' \quad \quad \quad \forall s, a \in \Sset \times \Aset \nonumber
+% 	\end{equation}
+% 	for each $Q:\Sset \times \Aset \to \Real$.
+% 	\label{def:bellman_operator}
+% \end{definition}
+% \begin{definition}[Optimistic Bellman operator]
+% 	We define the optimistic Bellman operator $\OptBellOp^M:(\Sset \times \Aset \to \Real)^M \to(\Sset \times \Aset \to \Real)^M $ as:
+% 	\begin{equation}
+% 	(\OptBellOp Q)_i(s,a) = \ORew{s}{a} +\eta^{-1}\log \sum_{m=1}^M\frac{ e^{\eta \gamma \int P(s'|s,a) \max_{a'} Q_m(s',a')\de s'}}{M} \quad \quad \quad \forall s, a, i \in \Sset \times \Aset \times \{1,\dots,M\} \nonumber
+% 	\end{equation}
+% 	for each $Q:\Sset \times \Aset \to \Real$.
+% 	\label{def:optimistic_bellman_operator}
+% \end{definition}
+% \begin{definition}[Optimal $Q$]
+% 	We define the optimal $Q^*$ as the solution:
+% 	\begin{equation}
+% 	\BellOp Q^* = Q^* \nonumber.
+% 	\end{equation}
+% 	We know from dynamic programming that $Q^*$ exists and it is unique.
+% 	\label{def:optsol}
+% \end{definition}
+% \begin{definition}[Optimistic Value Iteration (OVI)]
+% 	Let $Q = \{Q_i \}_{i=1}^{M}$ be an arbitrary set of $Q$-functions, let $\OptBellOp^NQ$ denote the application of $\OptBellOp$ $N$ times on $Q$, let OVI be the procedure that computes $\tilde{Q} = \OptBellOp^N Q$.
+% 	\label{def:ovi}
+% \end{definition}
+% \subsection{Derivation of the Optimistic Bellman Equation}
+% In this section, we derive the optimistic Bellman equation (OBE) from Problem~\ref{prob:regularized}. 
+% \label{A:derivation}
+% \begin{theorem}
+% 	Consider Problem \ref{prob:regularized}:
+% 	\begin{equation}
+% 		\arraycolsep=1.4pt\def\arraystretch{2.2}
+% 		\begin{array}{rrclcl}
+% 	%	\displaystyle Q_i(s,a) = \max_{p_i(s,a) \forall i \in \{1,\dots,M\}} & \multicolumn{3}{l}{\overline{R}(s,a)  + \gamma \sum_{m=1}^{M} V_m'  p_m \nonumber } \\\\
+% 	\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f\big(s,a;b(s,a)\big)-\frac{1}{\eta}D_{\mathrm{KL}}\big(p(s,a)\big{\|}u\big) } \\
+% 		\textrm{s.t.} & \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
+% 		\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
+% 		\end{array}\nonumber
+% 	\end{equation}
+% 		where $f(a,s;p)\! =\! \Rew{s}{a} + \gamma \sum_m{b}_m(s,a)V_m'(s,a)$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$,$u_m  =  1/M$, $D_{KL}(b(s,a)\| u)$ is the Kullback-Leibler divergence between the belief $b(s,a)$ and the uniform distribution $u$.
+% 		From Problem 1, we can derive the optimistic Bellman equation (OBE)
+% 	\begin{equation}
+% 		Q_i(s,a)  =   \ORew{s}{a}   + \frac{1}{\eta} \log \frac{ \sum_m e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)} }{M}  \quad \forall i \in \{1, \dots, M\}. \nonumber 
+% 	\end{equation}
+% 	\begin{proof}
+% 		Let $L_i$ be the Lagrangian of the $i^{th}$ problem:
+% 		\begin{equation}
+% 		L_i(s,a) = \ORew{s}{a}  + \gamma \sum_m \Bigr( \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) b_m(s,a) - \frac{1}{\eta} \sum_m b_m(s,a) \log \frac{b_m(s,a)}{M^{-1}} + \lambda(\sum_m b_m(s,a) - 1)
+% 		\label{eq:langrangian_problem1}
+% 		\end{equation}
+% 		To find the maximum of the Lagrangian, set the partial derivatives to zero. First, w.r.t. $p_m$:
+% 		\begin{eqnarray}
+% 		\partial_{b_m(s,a)} L_i(s,a) &=& \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{1}{\eta} \log \frac{b_m(s,a)}{M^{-1}} - \frac{M^{-1}}{\eta} + \lambda = 0 \nonumber \\
+% 		\implies \frac{1}{\eta} \log\frac{ b_m(s,a)}{M^{-1}} & = & \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} + \lambda \nonumber \\
+% 		\implies b_m(s,a) &= &M^{-1} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} + \lambda\Bigl)}\label{oldpm}.
+% 		\end{eqnarray}
+% 		Next, set partial derivative w.r.t. $\lambda$ to zero:
+% 		\begin{eqnarray}
+% 		\partial_{\lambda} L_i(s,a) &=& \sum_{m}b_m(s,a) - 1 = 0 \nonumber \\
+% 		\implies  1 & = & \sum_{m} M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} + \lambda\Bigl)} \nonumber \\
+% 		\implies e^{-\lambda\eta} & = & \sum_m M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} \Bigl)} \nonumber \\
+% 		\implies \lambda & = & - \frac{1}{\eta} \log \sum_m M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} \Bigl)}\label{lambda}. 
+% 		\end{eqnarray}
+% 		
+% 		Let's substitute \eqref{lambda} into \eqref{oldpm}:
+% 		\begin{eqnarray}
+% 		b_m(s,a) &= & \frac{M^{-1}e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') - \frac{M^{-1}}{\eta} \Bigl)}}{\sum_{m'} M^{-1} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') - \frac{M^{-1}}{\eta} \Bigl)}}\nonumber \\
+% 		& = & \frac{e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)}}{\sum_{m'} e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}\nonumber.
+% 		\end{eqnarray}
+% 		
+% 		Now that we have solved for the Lagrangian multipliers, substitute $b_m(s,a)$ into  Equation~\eqref{eq:langrangian_problem1}:
+% 		\begin{eqnarray}
+% 		L_i(s,a) = \ORew{s}{a}  + \gamma \sum_m \Big( \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) b_m(s,a)
+% 		(s,a)-\frac{1}{\eta} \sum_m p_m(s,a) \log \frac{p_m(s,a)}{u_m}
+% 		\end{eqnarray}
+% 		to get
+% 		\begin{eqnarray}
+% 		L_i(s,a) & =& \ORew{s}{a}   + \gamma \sum_m \Bigr( \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) b_m(s,a)  \nonumber \\
+% 		& & \quad \quad \quad - \frac{1}{\eta} \sum_m b_m(s,a) \log \frac{e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)}}{\sum_{m'} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}  - \frac{\log M}{\eta}  \nonumber \\
+% 		& =& \ORew{s}{a}   + \gamma \sum_m\Bigr(  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl) p_m(s,a)\nonumber \\
+% 		& & \quad \quad - \frac{1}{\eta} \sum_m  b_m(s,a) \Biggl( \log e^{\eta\Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)} - \log{\sum_{m'} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}\Biggr)\nonumber \\
+% 		& & \quad \quad \quad  - \frac{\log M}{\eta}  \nonumber \\
+% 		& =& \ORew{s}{a}   + \frac{1}{\eta} \sum_m b_m(s,a) \log \frac{ \sum_{m'} e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_{m'}(s',a') \Bigl)}}{M} \nonumber \\
+% 		& = & \ORew{s}{a}   + \frac{1}{\eta} \log \frac{\sum_m e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)}}{M}   \label{eq:end}
+% 		\end{eqnarray}
+% 		Therefore \eqref{eq:end} implies:
+% 		\begin{equation}
+% 		Q_i(s,a)  =   \ORew{s}{a}   + \frac{1}{\eta} \log \frac{ \sum_m e^{\eta \Bigr( \gamma  \sum_{s'}P(s'|s,a)\max_{a'}Q_m(s',a') \Bigl)} }{M}  \quad \forall i \in \{1, \dots, M\}. \nonumber 
+% 		\end{equation}
+% 	\end{proof}
+% \end{theorem}
+% 
+% \subsection{Exploration Bonus}
+% In the main paper, we discussed the relationship between OBE and intrinsic motivation, and defined the exploration bonus $U(s,a)$ in Equation \eqref{bonusdef}. Here, we present further details on how to derive Equation \eqref{bonus}. We start with how to estimate the value of the next state.
+% We assume a set of $Q$-functions. Each $Q_m$-function can be considered as a sample from a distribution that represents our uncertainty about the true $Q$-function. This argument can also be done for the estimation of the value of the next state: we can consider having $M$ different samples, drawn from the distribution that shapes our belief.
+% The unbiased estimate of the value of the next state is
+% \begin{equation}
+%   	\overline{V}'(s,a) = \sum_{m=1}^M \frac{V_m'(s,a)}{M}.
+% \end{equation}
+% The exploration bonus defined in equation \eqref{bonusdef} can then be expressed as
+% \begin{eqnarray}
+% U(s,a) & =& \frac{1}{\eta}\log\bigg(\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a) }}{M} \bigg) - \overline{V}'(s,a)\nonumber \\
+% & =& \frac{1}{\eta}\Bigg(\log\bigg(\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a) }}{M}\bigg)  - \eta \overline{V}'(s,a)\Bigg)\nonumber \\
+% & =& \frac{1}{\eta}\log\bigg(\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a) }}{M}   e^{-\eta \overline{V}'(s,a)}\bigg)\nonumber \\
+% & =& \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma( V_m'(s,a) -\overline{V}'(s,a))}}{M}. 
+%   \label{eq:Usa}
+% \end{eqnarray}
+% Note that the average over the exponential function is the sample moment generating function.
+% Thus, Equation~\eqref{eq:Usa} can be rephrased as
+% \begin{eqnarray}
+% U(s,a) & = & \lim_{N \to +\infty}\frac{1}{\eta} \log \Biggl[  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)\Biggr]. \nonumber 
+% \end{eqnarray}
+% where 
+% \begin{equation}
+% \mathcal{M}_n(s,a) = M^{-1} \sum_{m=1}^M \Biggl[ \Big( V_m'(s,a) -\overline{V}(s,a) \Big)^n \Biggr]
+% \end{equation}
+% denotes the $n$\textsuperscript{th}sample central moment.
+% Note that further simplifications in Equation~\eqref{bonus} come from the expansion w.r.t.~$\eta$. 
+% 
+% \subsection{Convergence of Value Iteration with the Optimistic Bellman Equation}
+% In this Section, we show that value iteration using the optimistic Bellman equation (OBE), which
+% we call optimistic value iteration (OVI), converges. First, we show that the fixed point of value
+% iteration with OBE is identical to the fixed point of the classic Bellman equation (BE). Next, we show
+% the max-norm contractivity of the optimistic
+% Bellman operator. Finally, we use the fixed point and max-norm contractivity results to show that value iteration with OBE converges.
+% \begin{lemma}[Fixed point of OBE]
+% 	If $Q_i = Q^*$ then $(\OptBellOp Q)_i = Q^* \quad \forall i \in \{1, \dots M\}$ where $Q^*$ is the unique fixed point of the classic BE .
+% 	In fact:
+% 	\begin{proof}
+% 		\begin{eqnarray}
+% 		(\tilde{T}^*Q^*)(s,a) & = & \ORew{s}{a} +  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q^*(s',a')\de s'} \nonumber \\
+% 		& = & \ORew{s}{a} +  \frac{1}{\eta}\log  e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q^*(s',a')\de s'} \nonumber \\
+% 		& = & \ORew{s}{a} +  \gamma \int P(s'|s,a) \max_{a'} Q^*(s',a')\de s' \nonumber \\
+% 		& = & (T^*Q^*)(s,a) \nonumber \\
+% 		& = & Q^*(s,a) \nonumber
+% 		\end{eqnarray}
+% 	\end{proof}
+% \end{lemma}
+% 
+% \begin{lemma}[Max-Norm contractivity of the optimistic Bellman operator]
+% 	Given $\{Q_{1,k}\}_{k=1}^M$, $\{Q_{2,k}\}_{k=1}^M$, and $\delta > 0$ such that
+% 	\begin{equation}
+% 	\|Q_{1,k} - Q_{2,k} \|_{\infty} \leq \delta \quad \quad \forall k \in \{1,\dots,M\} \nonumber
+% 	\end{equation}
+% 	implies that:
+% 	\begin{equation}
+% 	\| (\OptBellOp Q_{1})_k - (\OptBellOp Q_{2})_k \|_{\infty} \leq \gamma\delta \quad \quad \forall k \in \{1,\dots,M\}. \nonumber
+% 	\end{equation}
+% 	\begin{proof}
+% 		\begin{eqnarray*}
+% 			(\OptBellOp Q_{1})_k(s,a) - (\OptBellOp Q_{2})_k(s,a) & = & \ORew{s}{a} +  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q_{1,i}(s',a')\de s'}  \nonumber \\
+% 			& & -\ORew{s}{a} -  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \max_{a'} Q_{2,i}(s',a')\de s'}  \nonumber \\
+% 			&= &  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) (\max_{a'} Q_{1,i}(s',a') - \max_{a'} Q_{2,i}(s',a'))\de s'}  \nonumber \\
+% 			&\leq &  \frac{1}{\eta}\log \frac{1}{M} \sum_{i=1}^{M} e^{\eta\gamma \int P(s'|s,a) \delta \de s'}  \nonumber \\
+% 			&= & \gamma \delta \nonumber
+% 		\end{eqnarray*}
+% 	\end{proof}
+% \end{lemma}
+% 
+% \begin{theorem}[Convergence of OBE]
+% 	If 
+% 	\begin{equation}
+% 	|Q_i(s,a) - Q^*(s,a)| \leq \epsilon \quad \quad s,a,i \in \mathcal{S} \times \mathcal{A} \times \{1, \dots, M\}
+% 	\end{equation}
+% 	then 
+% 	\begin{equation}
+% 	| (\OptBellOp Q)_i(s,a) - Q^*(s,a)| \leq \gamma \epsilon \quad \quad s,a,i \in \mathcal{S} \times \mathcal{A} \times \{1, \dots, M\}.
+% 	\end{equation}
+% 	Note that this implies that given an initial set of $Q = \{Q_i\}_{i = 1}^{M}$, $\lim_{N\rightarrow\infty} \OptBellOp^NQ = Q^*$, therefore implies the convergence of $OVI$.
+% 	\begin{proof}
+% 		\begin{eqnarray}
+% 		\bigl|(\OptBellOp Q)_i(s,a) - Q^*(s,a)\bigr| & = & \bigl|(\OptBellOp *Q)_i(s,a) - \OptBellOp Q^*(s,a)\bigr| \nonumber \\
+% 		& \leq & \gamma \epsilon \nonumber 
+% 		\end{eqnarray}
+% 	\end{proof}
+% 	\label{oviconvergence}
+% \end{theorem}
+% We note that OVI converges with the same rate as VI.
+% 
+% \subsection{Optimistic $Q$-Learning}
+% This section provides a more detailed proof of optimistic $Q$-learning (OQL) converging to $Q(s,a)^*$.
+% We first show that the exploration bonus vanishes in OQL and then give the main proof of convergence.
+% \begin{theorem}[Vanishing bonus for optimistic $Q$-learning]
+% 	Let's consider optimistic $Q$-Learning (OQL) described in Definition \ref{def:optimistic_qlearning}. Let's suppose to have a set of $Q_i$. Each entry in the table at time $t=0$ has central moment $\mathcal{M}_{0,n} \in \mathbb{R}$. If we consider a specific entry $(s,a)$, and a sequence of learning rate $\{\alpha_t\}_{t=0}^T$ where $\alpha_t \in [0,1]$, then:
+% 	\begin{equation}
+% 	\mathcal{M}_{T+1,n}(s,a) = \prod_{t=0}^T(1-\alpha_t)^n\mathcal{M}_{0,n}(s,a)
+% 	\end{equation}
+% 	where $\mathcal{M}_{T+1,n}(s,a)$ is the $n$\textsuperscript{th} central moment of the entry $(s,a)$ at time $T+1$.
+% 	\begin{proof}
+% 		Please, note that we always update an entry $(s,a)$ with the same value for all the $M$ tables. We can refer to the sequence of updates to a single state-action pair $(s,a)$ as $\{y_t\}_{t=0}^T$, where each value belongs to $\mathbb{R}$. Now, let's consider the process of updating of the entry $s,a$:
+% 		\begin{equation}
+% 		Q_{t+1,i}(s,a) = (1-\alpha_t)Q_{t,i}(s,a) + \alpha_t y_t \quad \quad \forall i \in \{1,\dots M\}.
+% 		\end{equation}
+% 		We can write the central moments at time $t+1$ as:
+% 		\begin{eqnarray}
+% 		\mathcal{M}_{t+1,n}(s,a)& =& M^{-1} \sum_m \Bigl(Q_{t+1, m}(s,a) - M^{-1} \sum_i Q_{t+1,i}(s,a) \Bigr)^n \nonumber \\
+% 		& =& M^{-1} \sum_m \Bigl((1-\alpha_t)Q_{t, m}(s,a) + \alpha_t - M^{-1} \sum_i \bigl((1-\alpha_t y_t) Q_{t,i}(s,a) + \alpha_t \bigr)\Bigr)^n \nonumber \\ 
+% 		& =& M^{-1} \sum_m \Bigl((1-\alpha_t)Q_{t, m}(s,a)  - M^{-1} \sum_i (1-\alpha_t y_t) Q_{t,i}(s,a) \Bigr)^n \nonumber \\
+% 		& =& (1-\alpha_t)^n M^{-1} \sum_m \Bigl(Q_{t, m}(s,a)  - M^{-1} \sum_i  Q_{t,i}(s,a) \Bigr)^n \nonumber \\
+% 		& =& (1-\alpha_t)^n \mathcal{M}_{t,n}(s,a) \nonumber 
+% 		\end{eqnarray}
+% 		and therefore, unfolding the recursion, 
+% 		\begin{equation}
+% 		\mathcal{M}_{T+1,n}(s,a) = \prod_{t=0}^T(1-\alpha_t)^n\mathcal{M}_{0,n}(s,a) \nonumber
+% 		\end{equation}
+% 	\end{proof}
+% \end{theorem}
+% 
+% Next, we prove the convergence of OQL. Our proof is based on the work of \citeauthor{melo2001convergence}~\shortcite{melo2001convergence}, which relies on the following theorem~\cite{jaakkola1994convergence}:
+% \begin{theorem}
+% 	The random process $\{\Delta_t\}$ taking values in $\mathbb{R}$ and defined as:
+% 	\begin{equation}
+% 	\Delta_{t+1}(x) = (1- \alpha_t(x)) \Delta_t(x) + \alpha_t F_t(x)
+% 	\end{equation}
+% 	converges to zero w.p. $1$ under the following assumptions:
+% 	\begin{itemize}
+% 		\item $0 \leq \alpha_t \leq 1$, $\sum_t \alpha_t(x)  = \infty$ and $\sum_t \alpha^2_t(x) < \infty$
+% 		\item $\|\EV[F_t(x)| \mathcal{F}_t]\|_W \leq \gamma \|\Delta_t\|_W$ with $0\leq \gamma < 1$
+% 		\item $\mathrm{Var}[F_t(x)| \mathcal{F}_t] \leq C(1+\|\Delta_t\|^2_W)$ for $C>0$.
+% 	\end{itemize}
+% 	\label{theo:randomprocess}
+% \end{theorem}
+% We are now ready to prove the convergence of optimistic $Q$-learning.
+% \begin{theorem}[Convergence of Optimistic $Q$-learning]
+% 	Let us consider the algorithm provided in Definition~\ref{def:optimistic_qlearning}. Suppose that the rewards are bounded, and consider a learning rate $\alpha_t(s,a)$ which satisfies $0 \leq \alpha_t \leq 1$, $\sum_t \alpha_t(x)  = \infty$ and $\sum_t \alpha^2_t(x) < \infty$. Suppose that each state action pair is visited infinitely many times, then, $\lim_{t\to \infty} Q_{i,t}(s,a) \to Q^*(s,a) \forall i \in \{1,\dots,M\}$ with probability $1$. 
+% 	Then the algorithm converges.
+% 	\begin{proof}
+% 		Let's consider the following stochastic process:
+% 		\begin{equation}
+% 		Q_{i, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}\Bigr) \nonumber
+% 		\end{equation}
+% 		with $\alpha_t = \alpha_t(s,a)$ (for brevity), and coherent with the assumpions.
+% 		Let's rename  $\Delta_{i,t}(s,a) = Q_{i, t}(s,a) - Q^*(s,a)$ where $Q^*(s,a)$ is the fixed point of $\OptBellOp$. We can now write:
+% 		\begin{equation}
+% 		\Delta_{i,t+1}(s,a) = (1-\alpha_t)\Delta_{i,t}(s,a)  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')} - Q^*(s,a)\Bigr) . \nonumber \\
+% 		\end{equation}
+% 		We can rename $F_t(s,a) = r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')} - Q^*(s,a)$ and observe that $\EV[F_t(s,a)]  = \OptBellOp Q_t(s,a) - Q^*(s,a)$, and subsequently, thanks to the max-norm contraction of the optimistic Bellman operator,
+% 		\begin{eqnarray}
+% 		\| \EV[F_t(s,a)] \|_{\infty} & \leq & \gamma \| Q_{i,t} - Q^*\|_{\infty} \nonumber \\
+% 		& = & \gamma \| \Delta_{i,t+1}(s,a) \|_{\infty} \quad \quad \forall i \in \{1,\dots,M\}.\nonumber
+% 		\end{eqnarray}
+% 		Then, noticing $\mathrm{Var}[F_{t}(s,a)] = \mathrm{Var}[F_{t}(s,a) - Q^*] = \mathrm{Var}[r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}]$ which, considering that the rewards are assumed to be bounded, leads to:
+% 		\begin{equation}
+% 		\exists C : \mathrm{Var}[F_{t}(s,a)] \leq C (1 + \|\Delta_{i,t}\|) \quad \quad \forall i \in \{1, \dots, M\}.
+% 		\end{equation}
+% 		Using Theorem~\ref{theo:randomprocess} we can therefore say that $Q_t(s,a)$ converges to $Q^*(s,a)$ w.p. $1$.
+% 	\end{proof}
+% \end{theorem}
+% 
+% \subsection{Details on the Experiments}
+% In this section, we provide details on the exact form of bootstrapped $Q$-Learning and optimistic
+% $Q$-learning update rules. Furthermore, we describe how hyper-parameters were chosen in the experiments and what kind of neural network structure was used in the experiments with neural network based function
+% approximation.
+% 
+% We define Bootstrapped Q-Learning (BQL) with the following update rule
+% \begin{definition}[Bootstrapped $Q$-learning]
+% 	\footnote{We use $\alpha_t$ as a shortcut for $\alpha_t(s,a)$.}
+% 	\begin{eqnarray}
+% 	\begin{cases}
+% 	Q_{i, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
+% 	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s_{t+1}, a')}\Bigr) &  \mathrm{if} s = s_t \land a = a_t \nonumber \\
+% 	Q_{i, t+1}(s,a) = Q_{i,t}(s,a) & \mathrm{otherwise}
+% 	\end{cases} \nonumber 
+% 	\end{eqnarray}
+% 	\label{def:bootqlearning}
+% \end{definition}
+% and OQL with
+% \begin{definition}[Optimistic $Q$-learning]
+% 	\begin{eqnarray}
+% 	\begin{cases}
+% 	Q_{j, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
+% 	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \frac{1}{\eta} \log \frac{1}{M-1} \sum_{j=2}^M e^{\gamma \max_{a'} Q_{j,t}(s_{t+1}, a') + Q_1(s_{t+1}, a')} \nonumber \\
+% 	\quad \quad \quad \quad \quad \quad \quad \quad  -\gamma \frac{1}{M-1} \sum_{j=2}^M  \max_{a'} Q{j,t}(s_{t+1}, a')\Bigr)  &  \mathrm{if} s = s_t \land a = a_t \land  j =1 \nonumber \\
+% 	Q_{j, t+1}(s,a) = (1-\alpha_t)Q_{i,t}(s,a)  \\
+% 	\quad \quad \quad \quad \quad \quad \quad \quad  + \alpha_t \Bigl(r_t + \gamma \frac{1}{M-1} \sum_{j=2}^M  \max_{a'} Q_{j,t}(s_{t+1}, a')\Bigr) &  \mathrm{if} s = s_t \land a = a_t \land  j \geq 2 \nonumber \\
+% 	Q_{i, t+1}(s,a) = Q_{i,t}(s,a) & \mathrm{otherwise}
+% 	\end{cases} \nonumber 
+% 	\end{eqnarray}
+% 	\label{def:optqlearningmod}
+% \end{definition}
+% using the ``explicit exploration'' formulation, in order to enable the evaluation with unbiased $Q$ values.
+% The settings provided by Table~\ref{tabularsetting} are fixed for all the different environments.
+% \begin{table}[h]
+% \begin{tabular}{ l c c c c }
+% 	\textbf{Parameter} & \textbf{QL} & \textbf{OIQL} & \textbf{BQL} & \textbf{OQL}  \\
+% 	\hline
+% 	Number of approximator & $1$ & $1$ & $10$ & $10$  \\ 
+% 	Initialization & $\mathcal{N}(0,2)$ & $R_{\max}$ & $\mathcal{N}(0,2)$& $\mathcal{N}(0,2)$ \\ 
+% 	Learning rate & $0.15$ & $0.15$ & $0.15$ & $0.15$  \\   
+% 	$\epsilon$-greedy & $0.01$ & $0.01$ & $0.01$ & $0.01$ 
+% \end{tabular}
+% \caption{Setting used for tabular algorithms.\label{tabularsetting}}
+% \end{table}
+% \vspace{1em}
+% 
+% \subsubsection{DQN and ODQN}
+% 
+% \paragraph{Acrobot configuration.} For Acrobot, we used a single-layer neural network as base component of the ensemble. The input of the neural newtork is $4$-dimensional (and corresponds to the dimension of the state space), and the output has $2$ dimensions, corresponding to the two possible actions. 
+% Table~\ref{taxitable} shows the fixed hyper-parameters for Acrobot. Additionally, we
+% performed a grid search over the number of neurons in the hidden layer, and for the ``bootstrapped mask'' (see Table \ref{acrobotgrid}). We measured both the mean return averaged over all episodes
+% denoted by ``avg'' (which should give an idea about how fast an algorithm can improve performance w.r.t.\ the number of samples), and also the mean of the final performance. For both ODQN and BDQN we selected the hyper-parameters corresponding to the best average performance of BDQN yielding
+% yielding $100$ neurons and a bootstrap mask of $0.5$ for the final performance evaluation shown in the main paper. For ODQN we use $\chi = 0.25$ and $\iota_{\max}=1$.
+% \begin{table}[h]
+% 	\begin{tabular}{ c c | c c | c c  }
+% 		\textbf{Neurons} & \textbf{Bootstrapped Mask} & \textbf{BDQN} avg & \textbf{BDQN} final & \textbf{ODQN} avg & \textbf{ODQN} final  \\ 
+% 		\hline
+% 		$100$ & $0.5$ & $-116.96^*$ & $-84.63$ & $-115.25$ & $-86.04$ \\
+% 		$100$ & $1.0$ & $-129.62$ & $-86.91$ & $-129.06$ & $-95.60$ \\
+% 		$150$ & $0.5$ & $-123.21$ & $-85.04$ & $-122.10$ & $-80.38$ \\
+% 		$150$ & $1.0$ & $-136.25$ & $-89.50$ & $-138.38$ & $-83.62$ \\
+% 		$200$ & $0.5$ & $-123.47$ & $-87.89$ & $-125.72$ & $-84.41$ \\
+% 		$200$ & $1.0$ & $-143.05$ & $-87.70$ & $-148.64$ & $-81.91$  \\
+% 		$300$ & $0.5$ & $-129.26$ & $-82.60$ & $-131.24$ & $-81.12$ \\
+% 		$300$ & $1.0$ & $-150.10$ & $-83.98$ & $-151.14$ & $-86.30$ \\
+% 		$400$ & $0.5$ & $-133.01$ & $-81.43$ & $-135.30$ & $-83.82$ \\
+% 		$400$ & $1.0$ & $-154.70$ & $-87.58$ & $-158.38$ & $-86.55$ \\
+% 	\end{tabular}
+% 	\caption{Tested hyper-parameters ``Neurons'' and ``Bootstrapped Mask'' for Acrobot with corresponding evaluations.label{acrobotgrid}}
+% \end{table}
+% 
+% \paragraph{Taxi configuration.} For Taxi, we decided to encode the state as a $2$-dimensional grid, selecting only the position of the agent to $1$ and the rest to zero, and additionally we provide a one-dimensional vector of length $3$ providing the information about which flags where collected. We decided to use a shared convolutional layer with kernel of $2$ and stride $1$, in order to process the vector and reduce the dimension. Above the convolutional layer, we apply a different hidden layer for each component of the ensemble. The output of each component is $4$-dimensional, corresponding to the four possible actions. Most of the parameters are chosen without any optimization (see Table \ref{taxitable}), except for the number of neurons in the hidden layer, and for the ``bootstrapped mask''.
+% We performed a grid search over these two parameters, measuring both the mean return averaged over all
+% episodes and also the mean of the final performance, similarly to the Acrobot evaluation (please, see
+% Table~\ref{taxigrid}). For both ODQN and BDQN, we selected the hyper-parameters corresponding to the
+% best average performance of BDQN yielding $200$ neurons and a bootstrap mask of $0.5$ for the final performance evaluation shown in the main paper.
+% \begin{table}[h]
+% 	\begin{tabular}{ c c | c c | c c  }
+% 		\textbf{Neurons} & \textbf{Bootstrapped Mask} & \textbf{BDQN} avg & \textbf{BDQN} final & \textbf{ODQN} avg & \textbf{ODQN} final  \\ 
+% 		\hline
+% 		$200$ & $0.5$ & $9.51^*$ & $12.05$ & $\mathbf{10.05}$ & $\mathbf{14.25}$ \\
+% 		$200$ & $1.0$ & $6.16$ & $7.80$ & $\mathbf{8.63}$ & $\mathbf{12.00}$ \\
+% 		$300$ & $0.5$ & $9.14$ & $\mathbf{10.95}$ & $\mathbf{9.63}$ & $9.65$ \\
+% 		$300$ & $1.0$ & $\mathbf{9.36}$ & $9.65$ & $9.27$ & $\mathbf{10.55}$ \\
+% 		$400$ & $0.5$ & $7.21$ & $8.4$ & $\mathbf{10.30}$ & $\mathbf{13.50}$ \\
+% 		$400$ & $1.0$ & $6.87$ & $9.2$ & $\mathbf{9.42}$ & $\mathbf{11.25}$ 
+% 	\end{tabular}
+% 	\caption{Tested hyper-parameters ``Neurons'' and ``Bootstrapped Mask'' for Taxi with corresponding evaluations.\label{taxigrid}}
+% \end{table}
+% \begin{table}[h]
+% 	\begin{tabular}{ l c c c}
+% 		\textbf{Parameter} & \textbf{Acrobot} & \textbf{Taxi}  \\
+% 		\hline
+% 		Number of approximators & $10$ & $10$ &\\ 
+% 		%Number of neurons & $50$ &  \\
+% 		Shared conv. layer & no & yes \\  
+% 		Number of layer & $1$ &  $1$\\  
+% 		Number of neurons & $100$ &  $200$\\  
+% 		Activation function & $\mathrm{relu}$ & $\mathrm{relu}$  \\
+% 		Initialization & Glorot Uniform & Glorot Uniform \\
+% 		Loss & MSE & Huber Loss \\
+% 		Optimization & Adam & RMSProp \\
+% 		Learning rate & $0.001$ & $0.00075$ \\
+% 		Decay (only RMSProp) & none & $0.95$ \\
+% 		Batch size & $32$ & $100$ \\
+% 		Max replay size & $5000$ & $100000$ \\
+% 		Target update frequency & $600$ & $100$ \\
+% 		$p$-mask & $0.5$ & $0.5$ \\
+% 		$\epsilon$-greedy (training) & $0.0$ & $0.05$ \\
+% 		$\epsilon$-greedy (evaluation) & $0.0$ & $0.0$ \\
+% 		Evaluation frequency & $3000$ & $5000$ \\
+% 		Total training steps & $250000$ & $400000$ 
+% 	\end{tabular}
+% 	\caption{Common hyper-parameters for BDQN and ODQN.\label{taxitable}}
+% \end{table} 
