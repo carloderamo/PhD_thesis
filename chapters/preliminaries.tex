@@ -1,5 +1,5 @@
 \chapter{Preliminaries}
-\gls{rl} is intuitively describable as the process of learning from interaction with the environment. This hasty explanation offers a very high level definition of it, then a more formal way to model the problem is required to properly analyze it. This chapter provides a description of the mathematical framework required to model \gls{rl}. It also explains a selection of algorithms that are related to the work done in this thesis in order to provide enough knowledge about the literature I dealt with during my years of Ph.D. research.
+\gls{rl} is intuitively describable as the process of learning from interaction with the environment. This hasty explanation offers a very high level definition of it, then a more formal way to model the problem is required to properly analyze it. To this end, this chapter provides a description of the mathematical framework required to model \gls{rl}. It also explains a selection of algorithms that are related to the work done in this thesis in order to provide enough knowledge about the literature I dealt with during my years of Ph.D. research.
 
 \section{Agent and environment}
 \begin{figure}[b]
@@ -32,7 +32,7 @@ The interaction of the agent with the environment is performed with the purpose 
  J = \sum_{t=0}^\infty \gamma^t r_t.
 \end{equation}
 \end{itemize}
-The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$, called \textit{discount factor}, which has the purpose to give different importance to rewards w.r.t. the time step they have been collected. If $\gamma = 1$ the equation reduces to~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards far in time.
+The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$, called \textit{discount factor}, which has the purpose to give different importance to rewards w.r.t. the time step they have been collected. If $\gamma = 1$ the equation reduces to~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards far in time. In all the following, we consider a \textit{transition} as a $4$-tuple $\langle s,a,r,s' \rangle$ where $s$ is the state where action $a$ is executed arriving at state $s'$ and obtaining a reward $r$.
 
 \section{Markov Decision Processes}
 \begin{figure}[t]
@@ -43,7 +43,7 @@ The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$
 \end{minipage}
 \caption[Markov Decision Process]{An example of a MDP graph representing states $S_i$, actions $a_i$, transition probabilities (numbers over each edge) and rewards (pink arrows).}\label{F:mdp2}
 \end{figure}
-The mathematical framework to study the interaction of the agent with the environment is provided by the theory behind \glspl{mdp}. A \gls{mdp} is defined as a $6$-tuple where $<\mathcal{S}, \mathcal{A}, \mathcal{R}, \mathcal{T}, \gamma, \mu>$:
+The mathematical framework to study the interaction of the agent with the environment is provided by the theory behind \glspl{mdp}. A \gls{mdp} is defined as a $6$-tuple where $\langle \mathcal{S}, \mathcal{A}, \mathcal{R}, \mathcal{T}, \gamma, \mu \rangle$:
 \begin{itemize}
  \item $\mathcal{S}$ is the set of states where the agent can be in the environment;
  \item $\mathcal{A}$ is the set of actions that the agent can execute in the environment;
@@ -63,7 +63,7 @@ These two properties are taken as assumptions by most of the literature about \g
 \subsection{Value functions}
 Recalling that the goal of the agent is to maximize the cumulative (discounted) reward obtained during an episode, a \gls{mdp} is considered \textit{solved} when the agent learns the actions to perform in each state which maximizes this measure. The function defining the probability of executing action $a$ in a state $s$ is called \textit{policy}: $\pi(s) = P(a|s)$. An \textit{optimal} policy $\pi^*$ is the one which, when followed, allows the agent to solve the \gls{mdp}. Considering the stochasticity in the transition function $\mathcal{T}$ and in the policy $\pi$, the expected value of the cumulative discounted reward obtainable following $\pi$ is called \textit{state value function}:
 \begin{equation}
- V_\pi(s) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k R_{t+k} | S_t = s], \forall s \in \mathcal{S}.
+ V_\pi(s) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k r_{t+k}], \forall s \in \mathcal{S}.
 \end{equation}
 Then, an optimal policy can be defined also as the one which maximizes the value function of each state:
 \begin{equation}
@@ -71,7 +71,7 @@ Then, an optimal policy can be defined also as the one which maximizes the value
 \end{equation}
 Together with the state value function, the \textit{action value function} is defined as:
 \begin{equation}
- Q_\pi(s, a) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k R_{t+k} | S_t = s, A_t = a], \forall s \in \mathcal{S}, a \in \mathcal{A}.
+ Q_\pi(s, a) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k r_{t+k}], \forall s \in \mathcal{S}, a \in \mathcal{A}.
 \end{equation}
 And subsequently the optimal policy maximizes also the action value function of each state-action tuple:
 \begin{equation}
@@ -84,12 +84,12 @@ Value functions are the main concept used by several algorithms to address the p
 \subsection{Dynamic Programming}
 When the transition function $\mathcal{T}$ and reward function $\mathcal{R}$ of a \gls{mdp} are known, the full model of the environment is available. This is not the case in many real world problems where an agent does not know where the action would bring it and which return would obtain, but constitutes an interesting scenario to start studying the problem of solving a \gls{mdp}. The theory behind the solving \glspl{mdp} with full model available is known under the name of \gls{dp}~\cite{bertsekas2005dynamic, bellman2013dynamic}. The main concept in the research on \gls{dp} is the optimal Bellman equation, defined as
 \begin{align}
- V^*(s) &= \max_a \mathbb{E}[R_t + \gamma V^*(s') | S_t = s, A_t = a, S_{t+1} = s']\nonumber\\
+ V^*(s) &= \max_a \mathbb{E}[r_t + \gamma V^*(s')]\nonumber\\
         &= \max_a \sum_{s'} p(s' | s, a)[r + \gamma V^*(s')]
 \end{align}
 for state value function, and
 \begin{align}
- Q^*(s,a) &= \mathbb{E}[R_t + \gamma \max_{a'}Q^*(s', a') | S_t = s, A_t = a, S_{t+1} = s']\nonumber\\
+ Q^*(s,a) &= \mathbb{E}[r_t + \gamma \max_{a'}Q^*(s', a')]\nonumber\\
           &= \sum_{s'} p(s' | s, a)[r + \gamma \max_{a'}Q^*(s', a')]
 \end{align}
 for action value function, for all $s, s' \in \mathcal{S}$ and $a \in \mathcal{A}$.
@@ -98,7 +98,7 @@ The optimal Bellman equation serves as a way to derive the optimal policy, but r
 \subsubsection{Policy Iteration}
 The iterative application of the Bellman equation when following a policy $\pi$ is called \textit{iterative policy evaluation} (Algorithm~\ref{A:peval}) since it allows to compute the value functions of states and actions w.r.t. the policy $\pi$:
 \begin{align}
- V_{t+1} (s) &= \mathbb{E}_\pi[R_t + \gamma V_t(S_{t+1}) | S_t = s]\nonumber\\
+ V_{t+1} (s) &= \mathbb{E}_\pi[r_t + \gamma V_t(s_{t+1})]\nonumber\\
              &= \sum_a \pi(a|s) \sum_s P(s' | s, a)[r + \gamma V_t(s')]
 \end{align}
 \begin{algorithm}[t]
@@ -120,7 +120,7 @@ for all $s \in \mathcal{S}$. It can be shown that the iterative application of t
 
 Once the value functions have converged, it is interesting to see if the current policy can be improved in order to make it closer to the optimal one or not. One way to do this consists in considering a state $s$ and an action $a \neq \pi(s)$ and computing
 \begin{align}
- Q_\pi(s,a) &= \mathbb{E}[R_t + \gamma V_\pi(S_{t+1}) | S_t = s, A_t = a]\nonumber\\
+ Q_\pi(s,a) &= \mathbb{E}[r_t + \gamma V_\pi(s_{t+1})]\nonumber\\
             &= \sum_{s'} P(s' | s,a)[r + \gamma V_\pi(s')].
 \end{align}
 Whenever $Q_\pi(s,a) > Q_\pi(s, \pi(s))$ it is convenient to update the policy such as $\pi(s) = a$. This procedure is called \textit{policy improvement}.
@@ -145,7 +145,7 @@ The process of alternating steps of iterative policy evaluation and policy impro
 \subsubsection{Value Iteration}
 The alternation of policy evaluation and policy improvement is a drawback of Policy Iteration which may slowdown the learning. Among other algorithms, the algorithm of \textit{Value Iteration} addresses this problem stopping policy evaluation after only one update of each state value function. The update is different from the one in policy evaluation since it combines the policy evaluation steps and the policy improvement:
 \begin{align}
- V_{t+1} (s) &= \max_a \mathbb{E}[R_t + \gamma V_t(S_{t+1}) | S_t = s]\nonumber\\
+ V_{t+1} (s) &= \max_a \mathbb{E}[r_t + \gamma V_t(s_{t+1})]\nonumber\\
              &= \max_a \sum_s P(s' | s, a)[r + \gamma V_t(s')]
 \end{align}
 for all $s \in \mathcal{S}$. Desirably, Value Iteration maintains the properties of Policy Iteration about convergence to the fixed point corresponding to the optimal value functions.
@@ -200,14 +200,14 @@ The \textit{mm} operator~\ref{E:mm} is a softmax operator with the desirable pro
 \subsubsection{Temporal Difference Learning}
 Given a policy, \gls{rl} is able to evaluate it from raw experience differently from \gls{dp} which needs to know the complete model of the \gls{mdp}. A well-known class of methods to do this is called \gls{mc}~\cite{robert2013monte} and consists in collecting samples for an entire episode and then updating the considered value functions using the discounted cumulative reward obtained during the run:
 \begin{equation}\label{E:mc}
- V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]
+ V(s) \leftarrow V(s) + \alpha [G - V(s)]
 \end{equation}
-where $G_t$ is the cumulative reward obtained from state $S_t$ till the end of the episode and $\alpha$ is the learning rate.
+where $G$ is the cumulative reward obtained from state $s$ till the end of the episode and $\alpha$ is the learning rate.
 The drawback of these techniques is that they need the episode to be finished before updating the value-function estimates slowing down the learning time.
 
 To keep the desirable property of \gls{mc} of being able to estimate value-functions from raw experience without losing the good property of \gls{dp} of being able to update the same estimates after each step (i.e. \textit{bootstrapping}), \gls{td} methods have been studied in the past literature and are still one of the most used methods in \gls{rl}. The simplest \gls{td} method is known as \gls{td}(0) and updates the value-function after each step with
 \begin{equation}
- V(S_t) \leftarrow V(S_t) + \alpha [R_{t+1} + \gamma V(S_{t+1}) - V(S_t)].
+ V(s) \leftarrow V(s) + \alpha [r + \gamma V(s') - V(s)].
 \end{equation}
 The success of \gls{td} over \gls{dp} and \gls{mc} is motivated by this simple update formula since the algorithm is able to take the advantages of both techniques with guarantees of convergence to the optimal value-function.
 
@@ -218,24 +218,25 @@ The success of \gls{td} over \gls{dp} and \gls{mc} is motivated by this simple u
 \end{itemize}
 
 \paragraph{SARSA}\label{S:SARSA}
-The SARSA algorithm is a well-known on-policy TD method for control. Being an on-policy control method, given a policy $\pi$ its purpose is to estimate the action-value function $q_\pi(s,a)$ for each $(s,a)$ tuple via the update formula:
+The SARSA algorithm is a well-known on-policy TD method for control. Being an on-policy control method, given a policy $\pi$ its purpose is to estimate the action-value function $Q_\pi(s,a)$ for each $(s,a)$ tuple via the update formula:
 \begin{equation}
- Q(S_t, A_t) \leftarrow Q(S_t,A_t) + \alpha [R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t,A_t)]
+ Q(s,a) \leftarrow Q(s,a) + \alpha [r + \gamma Q(s',a') - Q(s,a)]
 \end{equation}
-where $A_{t+1} = \pi(S_{t+1})$. Being a \gls{td}(0) variant for control, the same convergence properties of \gls{td}(0) applies for SARSA.
+where $a' = \pi(s')$. Being a \gls{td}$(0)$ variant for control, the same convergence properties of \gls{td}(0) applies for SARSA.
 \paragraph{Q-Learning}\label{S:Q-Learning}
 The corresponding off-policy \gls{td} algorithm for control w.r.t. SARSA is Q-Learning~\cite{watkins1989learning}. Contrarily to SARSA, Q-Learning directly approximates the optimal action-value functions using a different policy to compute the target of the \gls{td} update. In particular, Q-Learning uses the greedy policy to compute the target, resulting in the update formula
 \begin{equation}\label{eq:Q-formula}
- Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha_t(s_t,a_t) \left(r_t + \gamma \max_a Q(s_{t+1},a) - Q(s_t,a_t)\right).
+ Q(s,a) \leftarrow Q(s,a) + \alpha_t(s,a) \left(r + \gamma \max_{a'} Q(s',a') - Q(s,a)\right).
 \end{equation}
 
 According to the difference between on-policy and off-policy methods, SARSA and Q-Learning are two algorithms that may behave very differently in some problems where the agent can reach some catastrophic states. For instance, if the desired goal state is close to other undesirable catastrophic states, SARSA will learn a policy which let the agent stay far to undesired state and reach the goal safely but slowly; while Q-Learning will learn a policy moving close to undesired states, but reaching the goal faster than SARSA. Thus, SARSA is more suitable for real applications, e.g. robotics, where the cost of reaching catastrophic situations is very high and is better to be conservative in order not to damage the physical system; on the contrary, Q-Learning is more suitable when the cost of reaching bad states is not high, e.g. simulations.
 
 \paragraph{Fitted Q-Iteration}\label{S:FQI}
-A well known \gls{td} batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems. Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, s'_i, r_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set:
+A well known \gls{td} batch variant of $Q$-Learning is the \gls{fqi} algorithm~\cite{ernst2005tree}. The idea of \gls{fqi} is to reformulate the \gls{rl} problem as a sequence of supervised learning problems. Given a set of samples $\mathcal{D} = \left\{\langle s_i, a_i, r_i, s'_i \rangle \right\}_{1\leq i\leq N}$ previously collected by the agent according to a given sampling strategy, at each iteration $t$, \gls{fqi} builds an approximation $\hat{Q}$ of the optimal $Q$-function by fitting a regression model on a bootstrapped sample set
 \begin{equation}
- \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} Q_{t-1}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
+ \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} \hat{Q}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
 \end{equation}
+Under some conditions, the algorithm is proved to converge to the optimal $Q$ in a finite number of steps. \gls{fqi} has been firstly presented using extra-trees regression~\cite{geurts2006extremely}, but has been proved to work well with other kind of regression, e.g. neural network in the \gls{nfqi} algorithm~\cite{riedmiller2005neural} or \gls{gp} regression~\cite{rasmussen2005gaussian} in the \gls{wfqi} algorithm~\cite{deramo2017maximum}.
 
 \subsubsection{Approximated Temporal Difference Learning}
 
@@ -261,6 +262,4 @@ y_i=
 \end{equation}
 and learning it in a supervised way.
 
-The algorithm shows outstanding performance on the previously almost intractable problems of Atari games~\cite{bellemare2013arcade}, a set of more than $50$ old but challenging videogames, where \gls{dqn} achieves state-of-the-art results even beating a human expert in some of them. The most remarkable quality of \gls{dqn} is its relatively simple implementation consisting of using raw pixel frame as input of a convolutional network and applying a simple gradient descent step to update the network. In this way the complexity of the input, that made the solving of these problems intractable in the past, is addressed with the power of the deep convolutional network to extract highly abstract representation of it sensibly reducing its dimensionality and making it suitable for approximating the action-value function effectively. Despite its good properties, \gls{dqn} has some issues about the stability of learning and the sample-efficiency that are common problems among \gls{drl} techniques. Indeed, the number of samples required by \gls{dqn} to learn are in the order of millions and correspond to more than month of human playing; moreover in some games the algorithm shows very unstable performance even bringing to completely forgetting the good policy it learned after many steps. For these reasons, without forgetting the promising line of research that \gls{dqn} revealed, the following literature focused on many variants of \gls{dqn} to improve some of the issues it has.
-
-\paragraph{Double Deep Q-Network}
+The algorithm shows outstanding performance on the previously almost intractable problems of Atari games~\cite{bellemare2013arcade}, a set of more than $50$ old but challenging videogames, where \gls{dqn} achieves state-of-the-art results even beating a human expert in some of them. The most remarkable quality of \gls{dqn} is its relatively simple implementation consisting of using raw pixel frame as input of a convolutional network and applying a simple gradient descent step to update the network. In this way the complexity of the input, that made the solving of these problems intractable in the past, is addressed with the power of the deep convolutional network to extract highly abstract representation of it sensibly reducing its dimensionality and making it suitable for approximating the action-value function effectively. Despite its good properties, \gls{dqn} has some issues about the stability of learning and the sample-efficiency that are common problems among \gls{drl} techniques. Indeed, the number of samples required by \gls{dqn} to learn are in the order of millions and correspond to more than month of human playing; moreover in some games the algorithm shows very unstable performance even bringing to completely forgetting the good policy it learned after many steps. For these reasons, without forgetting the promising line of research that \gls{dqn} revealed, the following literature focused on many variants of \gls{dqn} to improve some of the issues it has. For instance, \gls{ddqn}~\cite{hasselt2015double} has been proposed to improve the estimate of the action-value function whereas \gls{bdqn}~\cite{osband2017deep} to improve exploration capabilities; both these algorithms will be considered and explained further in the thesis respectively in Chapter~\ref{C:mev} and~\ref{C:ts}.
