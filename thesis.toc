@@ -27,7 +27,7 @@
 \contentsline {subsubsection}{Approximated Temporal Difference Learning}{15}{subsubsection*.19}
 \contentsline {subsubsection}{Deep Reinforcement Learning}{15}{subsubsection*.20}
 \contentsline {paragraph}{Deep Q-Network}{15}{paragraph*.21}
-\contentsline {part}{\textlatin {II}\hspace {1em}On Bellman Updates}{17}{part.2}
+\contentsline {part}{\textlatin {II}\hspace {1em}Bellman Update}{17}{part.2}
 \contentsline {chapter}{\numberline {3}Maximum Expected Value estimation}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{20}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Related Works}{20}{subsection.3.1.1}
@@ -42,47 +42,46 @@
 \contentsline {subsection}{\numberline {3.4.1}Online}{27}{subsection.3.4.1}
 \contentsline {subsubsection}{Weighted Q-Learning}{27}{subsubsection*.27}
 \contentsline {subsection}{\numberline {3.4.2}Batch}{28}{subsection.3.4.2}
-\contentsline {subsubsection}{Weighted Fitted Q-Iteration}{28}{subsubsection*.28}
-\contentsline {section}{\numberline {3.5}Empirical results}{29}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Discrete States and Action Spaces}{29}{subsection.3.5.1}
-\contentsline {subsubsection}{Internet Ads}{29}{subsubsection*.29}
-\contentsline {subsubsection}{Sponsored Search Auctions}{30}{subsubsection*.31}
-\contentsline {subsubsection}{Grid World}{31}{subsubsection*.33}
-\contentsline {subsubsection}{Forex}{32}{subsubsection*.36}
-\contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{33}{subsection.3.5.2}
-\contentsline {subsubsection}{Pricing Problem}{33}{subsubsection*.37}
-\contentsline {subsubsection}{Swing-Up Pendulum}{35}{subsubsection*.40}
-\contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{37}{chapter.4}
-\contentsline {section}{\numberline {4.1}Preliminaries}{38}{section.4.1}
-\contentsline {section}{\numberline {4.2}The Proposed Method}{39}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Decomposition of the TD error}{39}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Analysis of the decomposed update}{40}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Variance dependent learning rate}{40}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Discussion on convergence}{42}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Experimental Results}{43}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Noisy Grid World}{44}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Double Chain}{45}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Grid World with Holes}{47}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}On-policy learning}{48}{subsection.4.3.4}
-\contentsline {part}{\textlatin {III}\hspace {1em}Uncertainty-Driven Exploration}{51}{part.3}
-\contentsline {chapter}{\numberline {5}Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{53}{chapter.5}
-\contentsline {section}{\numberline {5.1}Related work}{54}{section.5.1}
-\contentsline {section}{\numberline {5.2}Thompson Sampling in value-based Reinforcement Learning}{55}{section.5.2}
-\contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{56}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Online estimation}{56}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{59}{subsection.5.3.2}
-\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{59}{paragraph*.52}
-\contentsline {paragraph}{Bootstrapped Q-Learning}{59}{paragraph*.53}
-\contentsline {section}{\numberline {5.4}Experiments}{60}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Discrete state space}{60}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}Other results}{61}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Continuous state space}{61}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Deep Reinforcement Learning}{62}{subsection.5.5.2}
-\contentsline {chapter}{\numberline {6}Deep}{65}{chapter.6}
-\contentsline {subsection}{\numberline {6.0.1}Deep Reinforcement Learning}{65}{subsection.6.0.1}
-\contentsline {paragraph}{Weighted Deep Q-Network}{65}{paragraph*.60}
-\contentsline {subsection}{\numberline {6.0.2}Deep Reinforcement Learning Scenario}{66}{subsection.6.0.2}
-\contentsline {subsubsection}{Acrobot}{66}{subsubsection*.61}
-\contentsline {chapter}{\numberline {7}Mushroom}{69}{chapter.7}
-\contentsline {chapter}{\numberline {8}Conclusion}{71}{chapter.8}
-\contentsline {chapter}{Bibliography}{73}{section*.64}
+\contentsline {subsubsection}{Weighted Fitted Q-Iteration}{29}{subsubsection*.28}
+\contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{29}{subsection.3.4.3}
+\contentsline {subsubsection}{Weighted Deep Q-Network}{29}{subsubsection*.29}
+\contentsline {section}{\numberline {3.5}Empirical results}{30}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Discrete States and Action Spaces}{30}{subsection.3.5.1}
+\contentsline {subsubsection}{Internet Ads}{30}{subsubsection*.30}
+\contentsline {subsubsection}{Sponsored Search Auctions}{31}{subsubsection*.32}
+\contentsline {subsubsection}{Grid World}{31}{subsubsection*.34}
+\contentsline {subsubsection}{Forex}{33}{subsubsection*.37}
+\contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{34}{subsection.3.5.2}
+\contentsline {subsubsection}{Pricing Problem}{34}{subsubsection*.38}
+\contentsline {subsubsection}{Swing-Up Pendulum}{36}{subsubsection*.41}
+\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning Scenario}{37}{subsection.3.5.3}
+\contentsline {subsubsection}{Acrobot}{37}{subsubsection*.43}
+\contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{39}{chapter.4}
+\contentsline {section}{\numberline {4.1}Preliminaries}{40}{section.4.1}
+\contentsline {section}{\numberline {4.2}The Proposed Method}{41}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Decomposition of the TD error}{41}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Analysis of the decomposed update}{42}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Variance dependent learning rate}{42}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Discussion on convergence}{44}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Experimental Results}{45}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Noisy Grid World}{46}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Double Chain}{47}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Grid World with Holes}{49}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}On-policy learning}{50}{subsection.4.3.4}
+\contentsline {part}{\textlatin {III}\hspace {1em}Uncertainty-Driven Exploration}{53}{part.3}
+\contentsline {chapter}{\numberline {5}Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{55}{chapter.5}
+\contentsline {section}{\numberline {5.1}Related work}{56}{section.5.1}
+\contentsline {section}{\numberline {5.2}Thompson Sampling in value-based Reinforcement Learning}{57}{section.5.2}
+\contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{58}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Online estimation}{58}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{61}{subsection.5.3.2}
+\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{61}{paragraph*.56}
+\contentsline {paragraph}{Bootstrapped Q-Learning}{61}{paragraph*.57}
+\contentsline {section}{\numberline {5.4}Experiments}{62}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Discrete state space}{62}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}Other results}{63}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Continuous state space}{63}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Deep Reinforcement Learning}{64}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Mushroom}{67}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{69}{chapter.7}
+\contentsline {chapter}{Bibliography}{71}{section*.64}
