@@ -48,117 +48,110 @@ Thus, we propose an \gls{obe} which propagates an optimistic estimate of the act
 We want to emphasize that when all the $Q$-functions of the ensemble are identical, we assume that there is no uncertainty, and under this condition the \gls{obe} will behave exactly equivalently to the classic \gls{be}. The solution $Q^*$ of \gls{obe} is the same of the classic \gls{be}. In other words, the \gls{obe} differs from the classic \gls{be} when it is not satisfied, and more precisely when approximation is introduced either by limited availability of samples and/or functional approximation. This makes sense, since when the perfect solution is available there is no need of optimism and exploration. 
 The optimistic Bellman operator derived from the \gls{obe}, enjoys the properties of the classical one, like contractivity and the existence of a unique fixed point, potentially enabling its usage in value-based or actor-critic reinforcement algorithms. 
 The diversity in the $Q$-value ensemble should be ideally consistent with the uncertainty of the estimation; e.g. when the estimate is certain, all the values in the ensemble should agree on the same value, otherwise the ensemble should have discordant values.
-Given an ensemble of $Q$-value functions $\{Q_m\}_{m=1}^M$, we want to work out an optimistic estimate from the diverse estimates provided by the ensemble. The simplest and most optimistic solution is to select the highest value 
-\begin{equation}
-\max_m Q_m(s,a).\nonumber
-\end{equation} 
+Given an ensemble of $Q$-value functions $\{Q_m\}_{m=1}^M$, we want to work out an optimistic estimate from the diverse estimates provided by the ensemble. The simplest and most optimistic solution is to select the highest value $\max_m Q_m(s,a)$.
 However selecting the highest estimate makes poor use of the information provided by the ensemble and can be sensible to noise. In order to mitigate this effect, we introduce a notion of \textit{belief} over the estimates where $b_m(s,a)$ is the belief of $Q_m(s,a)$. The main idea is to add an entropic regularization term to the objective (i.e., $\max_{b(s,a)} \sum_m b_m(s,a) Q_m(s,a) + c \sum_{m} p_m \log p_m $); or to bound the information loss (i.e., $\sum_m p_m \log p_m < \psi$). Hard constraint on the information loss is more appealing since the introduced hyper-parameter does not depend on the magnitude of the rewards but has no closed-form solution. In contrast, the penalization weighting constant introduced by the soft-constraint regularization term is sensitive to the magnitude of the rewards, but admits a closed-form solution.
 We define two different problems where we use an optimistic estimate of the $Q$-value function.
 
-\paragraph{Entropy-Regularized Optimistic $Q$ Selection.}
+\subsubsection{Entropy-Regularized Optimistic $Q$ Selection}
 We define here a Bellman equation over the $Q$-function ensemble by introducing an optimistic estimate penalized by an entropic regularization term.
 \begin{probdef}[Regularized version]
 	\begin{equation}
 	\arraycolsep=1.4pt\def\arraystretch{2.2}
 	\begin{array}{rrclcl}
-%	\displaystyle Q_i(s,a) = \max_{p_i(s,a) \forall i \in \{1,\dots,M\}} & \multicolumn{3}{l}{\overline{R}(s,a)  + \gamma \sum_{m=1}^{M} V_m'  p_m \nonumber } \\\\
 \displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f\big(s,a;b(s,a)\big)-\frac{1}{\eta}D_{\mathrm{KL}}\big(p(s,a)\big{\|}u\big) } \\
-	\textrm{s.t.} & \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
-	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
+	\textit{s.t.} & \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
+	\multicolumn{4}{l}{ \forall s,a,i \in \mathcal{S} \times \mathcal{A} \times \{1,\dots,M\}}
 	\end{array}\nonumber
 	\end{equation}
-	where $f(a,s;p)\! =\! \Rew{s}{a} + \gamma \sum_m{b}_m(s,a)V_m'(s,a)$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$,$u_m  =  1/M$, $D_{KL}(b(s,a)\| u)$ is the Kullback-Leibler divergence between the belief $b(s,a)$ and the uniform distribution $u$.
+	where $f(s,a;p)\! =\! r(s,a) + \gamma \sum_m{b}_m(s,a)V_m'(s,a)$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$,$u_m  =  1/M$, $D_{KL}(b(s,a)\| u)$ is the \gls{kl} divergence between the belief $b(s,a)$ and the uniform distribution $u$.
 	\label{prob:regularized}
 \end{probdef}
-% The choice of using the relative entropy instead of the absolute one has two main advantages: it admits a solution for $\eta \to 0$ and provides a normalization factor.
-% Since problem definition \ref{prob:regularized} is a convex constrained problem, it is solvable by dual optimization. Introducing $\lambda$ as Lagrangian multiplier for the constraint, we write the Lagrangian
-% \begin{eqnarray}
-% L_i(s,a) \!&=& \!f(s,a; b(s,a)) -\frac{1}{\eta}D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big)\nonumber \\ && + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian}
-% \end{eqnarray}
-% Requiring the partial derivatives of $L_i$ w.r.t $p_m$ and $\lambda$ to be zero yields 
-% \begin{equation}
-% b_m(s,a) = \frac{e^{\eta  \gamma V_m'(s,a)}}{\sum_{k=1}^{M} e^{\eta \gamma   V_k'(s,a)}}\label{pm}.
-% \end{equation} 
-% By substituting $b_m$ in \eqref{lagrangian}, we obtain the solution to the problem (a detailed derivation is provided in the Supplement)
-% \begin{obedef}\footnote{We extend the solution for $\eta = 0$ by computing the limit.} 
-% 	\begin{equation}
-% 	Q_i(s,a) = \begin{cases}
-% 	\overline{R}(s,a) + \frac{1}{\eta} \log \frac{\sum_{m=1}^Me^{\eta \gamma  V_m'(s,a) }}{M} & \mathrm{if} \eta \neq 0 \label{OBE} \\
-% 	\overline{R}(s,a) + \frac{\gamma}M \sum_{m=1}^{M} V_m'(s,a) & \mathrm{otherwise}
-% 	\end{cases}.
-% 	\end{equation}
-% \end{obedef}
-% Notice that $\eta>0$ leads to a positive (optimistic) biased estimation, while $\eta<0$ will leads to a negative (pessimistic) estimate; in this work we will always assume $\eta>0$ (and therefore we refer to the equation as optimistic). 
-% However, in general, the choice of $\eta$ is difficult since it depends on the magnitude of the reward function. For this reason we introduce the constrained version of the proposed problem.
-%  
-% \paragraph{Optimistic $Q$ Selection Bounding the Information Loss.}
-% We bound the information loss between the distribution $b_m$ and the uniform distribution to maintain compatibility with Problem~\ref{prob:regularized}. The information loss is bounded between $-\log M$ and $0$ where  $-\log M$ stands for complete information loss (i.e., only one model is selected) while $0$ corresponds to no information loss (i.e., uniform belief distribution). Constraining the information loss has succeeded in prior work, for instance in policy search methods such as \cite{peters2010relative}.
-% \begin{probdef}[Constrained version]
-% 	\begin{equation}
-% 	\begin{array}{rrclcl}
-% 	\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f(s,a;b(s,a))\nonumber } \\
-% 	\text{s.t.} & D_{\mathrm{KL}}\big(b(s,a)\big{\|} u \big)& \leq & \iota_{\max} \\
-% 	& \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
-% 	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
-% 	\end{array} \nonumber
-% 	\end{equation}
-% 	\label{constrversion}
-% \end{probdef}
-% By letting $\beta$ be the Lagrangian multiplier associated with the KL constraint, we obtain the Lagrangian
-% \begin{eqnarray}
-% L_i &\! = \!& f(s,a;b(s,a)) + \beta \Bigl(D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big) - \iota_{\max} \Bigr) \nonumber \\
-% & &   + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian1}
-% \end{eqnarray}
-% Substituting $\beta$ with $-1/\eta$ we note that \eqref{lagrangian1} becomes identical to \eqref{lagrangian} except for a constant factor. Since we can not solve $\eta$ (or $\beta$) analytically, we obtain an approximate solution by iteratively optimizing $\eta$ (or $\beta$) and $b_m$ subsequently.
-% \begin{figure}
-% 	\includegraphics[scale=0.54]{plots/confidence_plot.pdf}
-% 	\caption{\textbf{Left:} Different estimates of a function. \textbf{Right:} The entropic-map combines the function estimates to obtain an optimistic estimate where $\eta$ controls the level of optimism.}
-% 	\label{fig:uncertainty}
-% \end{figure}
-% OBE takes its name from the fact that when $\eta > 0$, the \textsl{log-sum-exp} acts as a \textsl{soft-max} operator. Such operator is also well known as an \textsl{entropic mapping}, as it can be derived from a maximum-entropy principle. Figure \ref{fig:uncertainty} shows how the entropic mapping works.
-% 
-% The use of the entropic mapping is not new in reinforcement learning: \citeauthor{asadi2017alternative}~\shortcite{asadi2017alternative} propose an interesting use of the entropic mapping as a soft-max over the action in the Bellman equation; \citeauthor{peters2010relative}~\shortcite{peters2010relative} instead obtain it from an entropic regularization over the state-action distribution.
-% 
-% \paragraph{Relation to Intrinsic Motivation}
-% % Related to the \textsl{intrinsic motivation}.
-% In order to highlight the connection between OBE and IM, we reformulate OBE utilizing the unbiased average of the estimates instead of the log-sum-exp,
-% and by introducing the resulting exploratory bonus $U$ which includes the positive bias
-% \begin{eqnarray}
-% Q_i(s,a)\! &=&\! \overline{R}(s,a) + U(s,a) +  \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M} \label{bonusBE}
-% \end{eqnarray}
-% with
-% \begin{equation}
-% U(s,a) \! =\!  \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a)}}{M} - \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M}. \label{bonusdef}
-% \end{equation}
-% Noticing that $\sum_{i=1}^N e^{\eta x_i}/N$ is the \textsl{sample moment generator} w.r.t. samples $\{x_i\}_{i=1}^N$ we can rephrase the exploration bonus as
-% \begin{eqnarray}
-% U(s,a)& = & \lim_{N \to +\infty}\frac{1}{\eta} \log \Biggl[  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)\Biggr] \nonumber \\
-% & = & \eta \gamma \mathcal{M}_2(s,a)  + O(\eta^2)\label{bonus}
-% \end{eqnarray}
-% where $\mathcal{M}_n$ is the $n$\textsuperscript{th} central moment of the random variable $V_m'$ (Proof in Supplement)
-% \begin{equation}
-% \mathcal{M}_n(s,a) = M^{-1} \sum_{m=1}^M \Biggl[ \Big( V_m'(s,a) -\overline{V}(s,a) \Big)^n \Biggr]\nonumber
-% \end{equation}
-% with 
-% \begin{equation}
-% \overline{V}(s,a) = M^{-1} \sum_{m=1}^M V_m'(s,a).\nonumber
-% \end{equation}
-% Equation \eqref{bonusBE} shows that OBE is equivalent to BE with an additional bonus defined by Equation \eqref{bonus}. The bonus $U$ (for any positive $\eta$) is always positive, and provides a measure of the uncertainty w.r.t. $Q$. This is why OBE can be interpreted as a special principled form of IM.
-% 
-% \paragraph{Explicit Exploration.} A general problem affecting intrinsically motivated algorithms, is that the policy greedy to the obtained $Q$-value function, is not optimized for the original problem. As a solution to this issue we approximate two functions: $\tilde{Q}$, which will be updated using the true reward and $Q_E$ which will be updated using only the intrinsic reward \cite{szita2008many}. In this way we obtain both the intrinsically motivated policy $\pi_o(s) = \argmax_{a} \tilde{Q}(s,a) + Q_E(s,a)$ and the classic policy  $\pi_u(s) = \argmax_{a} \tilde{Q}(s,a)$.
-% Define 
-% \begin{eqnarray}
-% 	\tilde{Q}_i(s,a) = \Rew{s}{a} + \gamma \sum_{m=1}^M\frac{\tilde{V}_m'(s,a)}{M} \quad \text{with} \\
-% 	\tilde{V}_m'(s,a) =  \sum_{s'} P(s'|s,a)\max_{a'}\tilde{Q}_m(s',a') \label{unbiasedQ}
-% \end{eqnarray}
-% to obtain an unbiased estimate of the $Q$-value function, yielding
-% \begin{eqnarray}
-% Q_E(s,a) & = & \sum_{t=0}^T \gamma^t U(s_t,a_t) \quad \text{where} \quad s_0 = s, a_0 = a \nonumber \\
-% & = & \eta^{-1}\log \frac{\sum_{k=1}^M e^{\eta\gamma\max_{a'}\tilde{Q}_k(s',a') + Q_E(s',a')}}{M}\nonumber \\
-% & &  -  \frac{\sum_{k=1}^M \gamma\max_{a'}\tilde{Q}_k(s',a')}{M}.
-% \end{eqnarray}
-% By a simple equation rearrangement, it is possible to show that $\tilde{Q}_i(s,a) + Q_E(s,a)$ is equivalent to $Q_i(s,a)$ as defined in the OBE \eqref{OBE}. 
-%  
+The choice of using the relative entropy instead of the absolute one has two main advantages: it admits a solution for $\eta \to 0$ and provides a normalization factor.
+Since problem definition~\ref{prob:regularized} is a convex constrained problem, it is solvable by dual optimization. Introducing $\lambda$ as Lagrangian multiplier for the constraint, we write the Lagrangian
+\begin{eqnarray}
+L_i(s,a) \!&=& \!f(s,a; b(s,a)) -\frac{1}{\eta}D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big)\nonumber \\ && + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian}
+\end{eqnarray}
+Requiring the partial derivatives of $L_i$ w.r.t $p_m$ and $\lambda$ to be zero yields 
+\begin{equation}
+b_m(s,a) = \frac{e^{\eta  \gamma V_m'(s,a)}}{\sum_{k=1}^{M} e^{\eta \gamma   V_k'(s,a)}}\label{pm}.
+\end{equation} 
+By substituting $b_m$ in \eqref{lagrangian}, we obtain the solution to the problem (a detailed derivation is provided in the Supplement)
+\begin{equation}
+Q_i(s,a) = \begin{cases}
+\overline{R}(s,a) + \frac{1}{\eta} \log \frac{\sum_{m=1}^Me^{\eta \gamma  V_m'(s,a) }}{M} & \mathrm{if} \eta \neq 0 \label{OBE} \\
+\overline{R}(s,a) + \frac{\gamma}M \sum_{m=1}^{M} V_m'(s,a) & \mathrm{otherwise}
+\end{cases}.
+\end{equation}
+Notice that $\eta>0$ leads to a positive (optimistic) biased estimation, while $\eta<0$ will leads to a negative (pessimistic) estimate; in this work we will always assume $\eta>0$ (and therefore we refer to the equation as optimistic). 
+However, in general, the choice of $\eta$ is difficult since it depends on the magnitude of the reward function. For this reason we introduce the constrained version of the proposed problem.
+ 
+\paragraph{Optimistic $Q$ Selection Bounding the Information Loss.}
+We bound the information loss between the distribution $b_m$ and the uniform distribution to maintain compatibility with Problem~\ref{prob:regularized}. The information loss is bounded between $-\log M$ and $0$ where  $-\log M$ stands for complete information loss (i.e., only one model is selected) while $0$ corresponds to no information loss (i.e., uniform belief distribution). Constraining the information loss has succeeded in prior work, for instance in policy search methods such as \cite{peters2010relative}.
+\begin{probdef}[Constrained version]
+	\begin{equation}
+	\begin{array}{rrclcl}
+	\displaystyle Q_i(s,a) = \max_{b(s,a) \in \mathcal{P}^M} & \multicolumn{3}{l}{f(s,a;b(s,a))\nonumber } \\
+	\text{s.t.} & D_{\mathrm{KL}}\big(b(s,a)\big{\|} u \big)& \leq & \iota_{\max} \\
+	& \sum_{m=1}^{M} b_m(s,a) & = & 1 \\
+	\multicolumn{4}{l}{ \forall s,a,i \in \Sset \times \Aset \times \{1,\dots,M\}}
+	\end{array} \nonumber
+	\end{equation}
+	\label{constrversion}
+\end{probdef}
+By letting $\beta$ be the Lagrangian multiplier associated with the \gls{kl} constraint, we obtain the Lagrangian
+\begin{eqnarray}
+L_i &\! = \!& f(s,a;b(s,a)) + \beta \Bigl(D_{\mathrm{KL}}\big(b(s,a)\big{\|}u\big) - \iota_{\max} \Bigr) \nonumber \\
+& &   + \lambda\bigg(\sum_m b_m(s,a) - 1\bigg). \label{lagrangian1}
+\end{eqnarray}
+Substituting $\beta$ with $-1/\eta$ we note that \eqref{lagrangian1} becomes identical to \eqref{lagrangian} except for a constant factor. Since we can not solve $\eta$ (or $\beta$) analytically, we obtain an approximate solution by iteratively optimizing $\eta$ (or $\beta$) and $b_m$ subsequently.
+\begin{figure}
+	\includegraphics[scale=0.54]{plots/confidence_plot.pdf}
+	\caption{\textbf{Left:} Different estimates of a function. \textbf{Right:} The entropic-map combines the function estimates to obtain an optimistic estimate where $\eta$ controls the level of optimism.}
+	\label{fig:uncertainty}
+\end{figure}
+\gls{obe} takes its name from the fact that when $\eta > 0$, the \textsl{log-sum-exp} acts as a \textsl{soft-max} operator. Such operator is also well known as an \textsl{entropic mapping}, as it can be derived from a maximum-entropy principle. Figure \ref{fig:uncertainty} shows how the entropic mapping works.
+
+The use of the entropic mapping is not new in reinforcement learning: \citeauthor{asadi2017alternative}~\shortcite{asadi2017alternative} propose an interesting use of the entropic mapping as a soft-max over the action in the Bellman equation; \citeauthor{peters2010relative}~\shortcite{peters2010relative} instead obtain it from an entropic regularization over the state-action distribution.
+
+\paragraph{Relation to Intrinsic Motivation}
+In order to highlight the connection between OBE and IM, we reformulate OBE utilizing the unbiased average of the estimates instead of the log-sum-exp,
+and by introducing the resulting exploratory bonus $U$ which includes the positive bias
+\begin{eqnarray}
+Q_i(s,a)\! &=&\! \overline{R}(s,a) + U(s,a) +  \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M} \label{bonusBE}
+\end{eqnarray}
+with
+\begin{equation}
+U(s,a) \! =\!  \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a)}}{M} - \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M}. \label{bonusdef}
+\end{equation}
+Noticing that $\sum_{i=1}^N e^{\eta x_i}/N$ is the \textsl{sample moment generator} w.r.t. samples $\{x_i\}_{i=1}^N$ we can rephrase the exploration bonus as
+\begin{eqnarray}
+U(s,a)& = & \lim_{N \to +\infty}\frac{1}{\eta} \log \Biggl[  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)\Biggr] \nonumber \\
+& = & \eta \gamma \mathcal{M}_2(s,a)  + O(\eta^2)\label{bonus}
+\end{eqnarray}
+where $\mathcal{M}_n$ is the $n$\textsuperscript{th} central moment of the random variable $V_m'$ (Proof in Supplement)
+\begin{equation}
+\mathcal{M}_n(s,a) = M^{-1} \sum_{m=1}^M \Biggl[ \Big( V_m'(s,a) -\overline{V}(s,a) \Big)^n \Biggr]\nonumber
+\end{equation}
+with 
+\begin{equation}
+\overline{V}(s,a) = M^{-1} \sum_{m=1}^M V_m'(s,a).\nonumber
+\end{equation}
+Equation \eqref{bonusBE} shows that OBE is equivalent to BE with an additional bonus defined by Equation \eqref{bonus}. The bonus $U$ (for any positive $\eta$) is always positive, and provides a measure of the uncertainty w.r.t. $Q$. This is why OBE can be interpreted as a special principled form of IM.
+
+\paragraph{Explicit Exploration.} A general problem affecting intrinsically motivated algorithms, is that the policy greedy to the obtained $Q$-value function, is not optimized for the original problem. As a solution to this issue we approximate two functions: $\tilde{Q}$, which will be updated using the true reward and $Q_E$ which will be updated using only the intrinsic reward \cite{szita2008many}. In this way we obtain both the intrinsically motivated policy $\pi_o(s) = \argmax_{a} \tilde{Q}(s,a) + Q_E(s,a)$ and the classic policy  $\pi_u(s) = \argmax_{a} \tilde{Q}(s,a)$.
+Define 
+\begin{eqnarray}
+	\tilde{Q}_i(s,a) = \Rew{s}{a} + \gamma \sum_{m=1}^M\frac{\tilde{V}_m'(s,a)}{M} \quad \text{with} \\
+	\tilde{V}_m'(s,a) =  \sum_{s'} P(s'|s,a)\max_{a'}\tilde{Q}_m(s',a') \label{unbiasedQ}
+\end{eqnarray}
+to obtain an unbiased estimate of the $Q$-value function, yielding
+\begin{eqnarray}
+Q_E(s,a) & = & \sum_{t=0}^T \gamma^t U(s_t,a_t) \quad \text{where} \quad s_0 = s, a_0 = a \nonumber \\
+& = & \eta^{-1}\log \frac{\sum_{k=1}^M e^{\eta\gamma\max_{a'}\tilde{Q}_k(s',a') + Q_E(s',a')}}{M}\nonumber \\
+& &  -  \frac{\sum_{k=1}^M \gamma\max_{a'}\tilde{Q}_k(s',a')}{M}.
+\end{eqnarray}
+By a simple equation rearrangement, it is possible to show that $\tilde{Q}_i(s,a) + Q_E(s,a)$ is equivalent to $Q_i(s,a)$ as defined in the OBE \eqref{OBE}. 
+ 
 % \subsection{Optimistic Value Function Estimators}
 % The OBE offers a theoretical framework in which it is possible to develop optimistic value based algorithms. In fact, OBE enjoys all the desirable properties of the BE (e.g. max-norm contractivity), as shown in the supplement. We present briefly two practical applications of the OBE, an optimistic variant of $Q$-learning (OQL) and DQN (ODQN).
 % %

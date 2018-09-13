@@ -340,6 +340,14 @@ J{\"u}rgen Schmidhuber.
 \newblock In {\em International Conference on Simulation of Adaptive Behavior:
   From animals to animats}, pages 222--227, 1991.
 
+\bibitem{schmidhuber2008driven}
+J{\"u}rgen Schmidhuber.
+\newblock Driven by compression progress: A simple principle explains essential
+  aspects of subjective beauty, novelty, surprise, interestingness, attention,
+  curiosity, creativity, art, science, music, jokes.
+\newblock In {\em Workshop on Anticipatory Behavior in Adaptive Learning
+  Systems}, pages 48--76. Springer, 2008.
+
 \bibitem{schweighofer2003meta}
 Nicolas Schweighofer and Kenji Doya.
 \newblock Meta-learning in reinforcement learning.
@@ -465,6 +473,13 @@ Ziyu Wang, Tom Schaul, Matteo Hessel, Hado Van~Hasselt, Marc Lanctot, and Nando
 Christopher John Cornish~Hellaby Watkins.
 \newblock {\em Learning from delayed rewards}.
 \newblock PhD thesis, University of Cambridge England, 1989.
+
+\bibitem{white2010interval}
+Martha White and Adam White.
+\newblock Interval estimation for reinforcement-learning algorithms in
+  continuous-state domains.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  2433--2441, 2010.
 
 \bibitem{xu2013mab}
 Min Xu, Tao Qin, and Tie yan Liu.
