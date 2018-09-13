@@ -148,7 +148,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
 \end{algorithmic}
 \end{algorithm}
 
-\paragraph{Bootstrapped Q-Learning} We slightly modify \gls{bdqn} to adapt it for discrete \glspl{mdp}. We use a tabular approximation of the action value functions instead of using a deep neural network and update the action value functions using the Double Q-Learning update rule~\ref{S:DoubleQ-Learning}. To perform bootstrapping, the action value functions are initialized randomly and masking is used as in \gls{bdqn}.
+\paragraph{Bootstrapped Q-Learning} We slightly modify \gls{bdqn} to adapt it for discrete \glspl{mdp}. We use a tabular approximation of the action value functions instead of using a deep neural network and update the action value functions using the Double Q-Learning update rule~\ref{S:mev_works}. To perform bootstrapping, the action value functions are initialized randomly and masking is used as in \gls{bdqn}.
 
 \begin{figure}[t]
 \begin{minipage}{.66\textwidth}
