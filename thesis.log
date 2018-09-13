@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  13 SEP 2018 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  13 SEP 2018 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1455,7 +1455,7 @@ LaTeX Font Warning: Font shape `LGR/ptm/m/n' undefined
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 107.
-<img/logopoli.png, id=260, 175.65625pt x 175.65625pt>
+<img/logopoli.png, id=268, 175.65625pt x 175.65625pt>
 File: img/logopoli.png Graphic file (type png)
  <use img/logopoli.png>
 Package pdftex.def Info: img/logopoli.png used on input line 107.
@@ -1496,13 +1496,14 @@ LaTeX Font Info:    Try loading font information for OT1+phv on input line 5.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
-) [5])
+) [5]
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 101.
+ [6])
 \tf@toc=\write8
 \openout8 = `thesis.toc'.
 
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 142.
- [6] [7]
+ [7]
 [8
 
 ] (./thesis.lof [9
@@ -1568,7 +1569,7 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
  [3
 
 ]
-<img/rl.png, id=514, 2007.5pt x 1940.24875pt>
+<img/rl.png, id=526, 2007.5pt x 1940.24875pt>
 File: img/rl.png Graphic file (type png)
  <use img/rl.png>
 Package pdftex.def Info: img/rl.png used on input line 14.
@@ -1583,14 +1584,14 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
 )
 (./chapters/preliminaries.tex [6]
 Chapter 2.
-<img/mdp1.jpg, id=556, 421.575pt x 162.6075pt>
+<img/mdp1.jpg, id=568, 421.575pt x 162.6075pt>
 File: img/mdp1.jpg Graphic file (type jpg)
  <use img/mdp1.jpg>
 Package pdftex.def Info: img/mdp1.jpg used on input line 8.
 (pdftex.def)             Requested size: 316.18047pt x 121.95532pt.
  [7
 
- <./img/mdp1.jpg>] <img/mdp2.png, id=566, 401.5pt x 321.2pt>
+ <./img/mdp1.jpg>] <img/mdp2.png, id=578, 401.5pt x 321.2pt>
 File: img/mdp2.png Graphic file (type png)
  <use img/mdp2.png>
 Package pdftex.def Info: img/mdp2.png used on input line 41.
@@ -1606,7 +1607,7 @@ atch vari-ant of $\OML/cmm/m/it/12 Q$\T1/ptm/m/n/12 -Learning is the []Fit-ted
 Q-Iteration
  []
 
-<img/dqn.png, id=677, 1581.91pt x 927.465pt>
+<img/dqn.png, id=689, 1581.91pt x 927.465pt>
 File: img/dqn.png Graphic file (type png)
  <use img/dqn.png>
 Package pdftex.def Info: img/dqn.png used on input line 250.
@@ -1629,7 +1630,7 @@ LaTeX Font Info:    Try loading font information for T1+pcr on input line 130.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-<./img/bias.pdf, id=786, 293.53564pt x 207.01039pt>
+<./img/bias.pdf, id=798, 293.53564pt x 207.01039pt>
 File: ./img/bias.pdf Graphic file (type pdf)
  <use ./img/bias.pdf>
 Package pdftex.def Info: ./img/bias.pdf used on input line 146.
@@ -1639,7 +1640,7 @@ Overfull \hbox (18.54012pt too wide) in paragraph at lines 146--147
  [][] 
  []
 
-<./img/absolute_bias.pdf, id=787, 286.6469pt x 205.47565pt>
+<./img/absolute_bias.pdf, id=799, 286.6469pt x 205.47565pt>
 File: ./img/absolute_bias.pdf Graphic file (type pdf)
 
 <use ./img/absolute_bias.pdf>
@@ -1651,7 +1652,7 @@ Overfull \hbox (13.71802pt too wide) in paragraph at lines 152--153
  []
 
 [24 <./img/bias.pdf> <./img/absolute_bias.pdf>]
-<./img/variance.pdf, id=840, 286.5365pt x 207.00838pt>
+<./img/variance.pdf, id=852, 286.5365pt x 207.00838pt>
 File: ./img/variance.pdf Graphic file (type pdf)
 
 <use ./img/variance.pdf>
@@ -1662,7 +1663,7 @@ Overfull \hbox (13.64073pt too wide) in paragraph at lines 191--192
  [][] 
  []
 
-<./img/mse.pdf, id=841, 286.5365pt x 207.00838pt>
+<./img/mse.pdf, id=853, 286.5365pt x 207.00838pt>
 File: ./img/mse.pdf Graphic file (type pdf)
  <use ./img/mse.pdf>
 Package pdftex.def Info: ./img/mse.pdf used on input line 197.
@@ -1679,10 +1680,9 @@ Overfull \hbox (12.53917pt too wide) in paragraph at lines 206--209
  []
 
 [26 <./img/variance.pdf> <./img/mse.pdf>]
-Overfull \hbox (11.97086pt too wide) in paragraph at lines 255--257
-\T1/ptm/m/n/12 We pro-pose to re-place []ME with []WE in the \T1/ptm/m/it/12 We
-ighted $\OML/cmm/m/it/12 Q$\T1/ptm/m/it/12 -Learning \T1/ptm/m/n/12 al-go-rithm
- [[]24[]]. Weighted
+Overfull \hbox (1.18239pt too wide) in paragraph at lines 255--257
+\T1/ptm/m/n/12 We pro-pose to re-place []ME with []WE in the []Weighted $\OML/c
+mm/m/it/12 Q$\T1/ptm/m/n/12 -Learning (WQL) al-go-rithm [[]24[]].
  []
 
 [27]
@@ -1694,13 +1694,13 @@ Overfull \hbox (1.51132pt too wide) in paragraph at lines 309--310
 u-ble Fit-ted Q-Iteration (DFQI),
  []
 
-[28] <img/bdqn.png, id=956, 409.53pt x 275.0275pt>
+[28] <img/bdqn.png, id=969, 409.53pt x 275.0275pt>
 File: img/bdqn.png Graphic file (type png)
  <use img/bdqn.png>
 Package pdftex.def Info: img/bdqn.png used on input line 317.
 (pdftex.def)             Requested size: 204.7645pt x 137.51341pt.
  [29 <./img/bdqn.png (PNG copy)>] [30]
-<./img/internetAds-impressions.pdf, id=974, 334.7948pt x 304.06999pt>
+<./img/internetAds-impressions.pdf, id=986, 334.7948pt x 304.06999pt>
 File: ./img/internetAds-impressions.pdf Graphic file (type pdf)
 
 <use ./img/internetAds-impressions.pdf>
@@ -1708,14 +1708,14 @@ Package pdftex.def Info: ./img/internetAds-impressions.pdf used on input line 3
 63.
 (pdftex.def)             Requested size: 142.28845pt x 129.23035pt.
 
-<./img/internetAds-actions.pdf, id=975, 313.7592pt x 297.74538pt>
+<./img/internetAds-actions.pdf, id=987, 313.7592pt x 297.74538pt>
 File: ./img/internetAds-actions.pdf Graphic file (type pdf)
 
 <use ./img/internetAds-actions.pdf>
 Package pdftex.def Info: ./img/internetAds-actions.pdf used on input line 364.
 (pdftex.def)             Requested size: 133.34828pt x 126.54237pt.
 
-<./img/internetAds-probs.pdf, id=976, 313.7592pt x 308.1392pt>
+<./img/internetAds-probs.pdf, id=988, 313.7592pt x 308.1392pt>
 File: ./img/internetAds-probs.pdf Graphic file (type pdf)
 
 <use ./img/internetAds-probs.pdf>
@@ -1723,7 +1723,7 @@ Package pdftex.def Info: ./img/internetAds-probs.pdf used on input line 365.
 (pdftex.def)             Requested size: 133.34828pt x 130.95978pt.
  [31 <./img/internetAds-impressions.pdf> <./img/internetAds-actions.pdf> <./img
 /internetAds-probs.pdf>]
-<./img/sponsoredSearch.pdf, id=1031, 298.96796pt x 206.17628pt>
+<./img/sponsoredSearch.pdf, id=1043, 298.96796pt x 206.17628pt>
 File: ./img/sponsoredSearch.pdf Graphic file (type pdf)
 
 <use ./img/sponsoredSearch.pdf>
@@ -1734,101 +1734,94 @@ Package pdftex.def Info: ./img/sponsoredSearch.pdf used on input line 389.
 LaTeX Warning: Citation `lee2012intelligent' on page 32 undefined on input line
  399.
 
-<./img/gridexp08-ng.pdf, id=1038, 157.05676pt x 254.77283pt>
+<./img/gridexp08-ng.pdf, id=1050, 157.05676pt x 254.77283pt>
 File: ./img/gridexp08-ng.pdf Graphic file (type pdf)
 
 <use ./img/gridexp08-ng.pdf>
 Package pdftex.def Info: ./img/gridexp08-ng.pdf used on input line 409.
 (pdftex.def)             Requested size: 157.05637pt x 254.77219pt.
 
-<./img/gridexp08-g.pdf, id=1039, 124.99599pt x 254.13545pt>
+<./img/gridexp08-g.pdf, id=1051, 124.99599pt x 254.13545pt>
 File: ./img/gridexp08-g.pdf Graphic file (type pdf)
 
 <use ./img/gridexp08-g.pdf>
 Package pdftex.def Info: ./img/gridexp08-g.pdf used on input line 411.
 (pdftex.def)             Requested size: 124.99567pt x 254.13481pt.
 
-<./img/gridexp08-g-sigma1.pdf, id=1040, 151.27415pt x 259.86787pt>
+<./img/gridexp08-g-sigma1.pdf, id=1052, 151.27415pt x 259.86787pt>
 File: ./img/gridexp08-g-sigma1.pdf Graphic file (type pdf)
 
 <use ./img/gridexp08-g-sigma1.pdf>
 Package pdftex.def Info: ./img/gridexp08-g-sigma1.pdf used on input line 413.
 (pdftex.def)             Requested size: 151.27377pt x 259.86723pt.
- [32 <./img/sponsoredSearch.pdf>] [33 <./img/gridexp08-ng.pdf> <./img/gridexp08
--g.pdf> <./img/gridexp08-g-sigma1.pdf>]
-<./img/forexTrain.pdf, id=1114, 312.16827pt x 217.44237pt>
+ [32 <./img/sponsoredSearch.pdf>]
+<./img/forexTrain.pdf, id=1075, 312.16827pt x 217.44237pt>
 File: ./img/forexTrain.pdf Graphic file (type pdf)
 
 <use ./img/forexTrain.pdf>
 Package pdftex.def Info: ./img/forexTrain.pdf used on input line 424.
 (pdftex.def)             Requested size: 187.3024pt x 130.46642pt.
 
-<./img/forexTest.pdf, id=1115, 290.15302pt x 217.44838pt>
+<./img/forexTest.pdf, id=1076, 290.15302pt x 217.44838pt>
 File: ./img/forexTest.pdf Graphic file (type pdf)
 
 <use ./img/forexTest.pdf>
 Package pdftex.def Info: ./img/forexTest.pdf used on input line 425.
 (pdftex.def)             Requested size: 174.09314pt x 130.47003pt.
 
-Overfull \hbox (9.03706pt too wide) in paragraph at lines 438--441
-\T1/ptm/m/n/12 main were trained us-ing his-tor-i-cal daily data of GBP/USD ex-
-change rate from 09/22/1997
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [33 <./img/gridexp08-ng.pdf> <./img/gridexp08-g.pdf> <./img/gridexp08-g-sigma1
+.pdf>]
 [34 <./img/forexTrain.pdf> <./img/forexTest.pdf>]
-<./img/MM_123_new_noabs.pdf, id=1134, 626.60301pt x 196.90865pt>
+<./img/MM_123_new_noabs.pdf, id=1146, 626.60301pt x 196.90865pt>
 File: ./img/MM_123_new_noabs.pdf Graphic file (type pdf)
 
 <use ./img/MM_123_new_noabs.pdf>
 Package pdftex.def Info: ./img/MM_123_new_noabs.pdf used on input line 451.
 (pdftex.def)             Requested size: 411.2586pt x 129.236pt.
 
-<./img/MM_45_new_noabs.pdf, id=1135, 626.60301pt x 191.39706pt>
+<./img/MM_45_new_noabs.pdf, id=1147, 626.60301pt x 191.39706pt>
 File: ./img/MM_45_new_noabs.pdf Graphic file (type pdf)
 
 <use ./img/MM_45_new_noabs.pdf>
 Package pdftex.def Info: ./img/MM_45_new_noabs.pdf used on input line 452.
 (pdftex.def)             Requested size: 411.2586pt x 125.61859pt.
 
-<./img/MM_123_new_var.pdf, id=1136, 612.73314pt x 188.38179pt>
+<./img/MM_123_new_var.pdf, id=1148, 612.73314pt x 188.38179pt>
 File: ./img/MM_123_new_var.pdf Graphic file (type pdf)
 
 <use ./img/MM_123_new_var.pdf>
 Package pdftex.def Info: ./img/MM_123_new_var.pdf used on input line 461.
 (pdftex.def)             Requested size: 411.2586pt x 126.43933pt.
 
-<./img/MM_45_new_var.pdf, id=1137, 612.58763pt x 185.35748pt>
+<./img/MM_45_new_var.pdf, id=1149, 612.58763pt x 185.35748pt>
 File: ./img/MM_45_new_var.pdf Graphic file (type pdf)
 
 <use ./img/MM_45_new_var.pdf>
 Package pdftex.def Info: ./img/MM_45_new_var.pdf used on input line 462.
 (pdftex.def)             Requested size: 411.2586pt x 124.4434pt.
  [35 <./img/MM_123_new_noabs.pdf> <./img/MM_45_new_noabs.pdf>] <./img/pendulumD
-iscrete.pdf, id=1175, 580.32808pt x 447.35129pt>
+iscrete.pdf, id=1187, 580.32808pt x 447.35129pt>
 File: ./img/pendulumDiscrete.pdf Graphic file (type pdf)
 
 <use ./img/pendulumDiscrete.pdf>
 Package pdftex.def Info: ./img/pendulumDiscrete.pdf used on input line 500.
 (pdftex.def)             Requested size: 203.11786pt x 156.57529pt.
 
-<./img/pendulumContinuous.pdf, id=1176, 581.77347pt x 447.35129pt>
+<./img/pendulumContinuous.pdf, id=1188, 581.77347pt x 447.35129pt>
 File: ./img/pendulumContinuous.pdf Graphic file (type pdf)
 
 <use ./img/pendulumContinuous.pdf>
 Package pdftex.def Info: ./img/pendulumContinuous.pdf used on input line 502.
 (pdftex.def)             Requested size: 203.62376pt x 156.57529pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [36 <./img/MM_123_new_var.pdf> <./img/MM_45_new_var.pdf>]
-<./img/acrobot.pdf, id=1210, 864.3492pt x 504.4446pt>
+ [36 <./img/MM_123_new_var.pdf> <./img/MM_45_new_var.pdf>] <./img/acrobot.pdf, 
+id=1225, 864.3492pt x 504.4446pt>
 File: ./img/acrobot.pdf Graphic file (type pdf)
- <use ./img/acrobot.pdf>
+
+<use ./img/acrobot.pdf>
 Package pdftex.def Info: ./img/acrobot.pdf used on input line 523.
 (pdftex.def)             Requested size: 302.52675pt x 176.55824pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [37 <./img/pendulumDiscrete.pdf> <./img/pendulumContinuous.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./img/pendulumContinuous.pdf): PDF incl
@@ -1851,40 +1844,40 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[42] [43] <./img/allAlgs1.pdf, id=1427, 169.25032pt x 286.1832pt>
+[42] [43] <./img/allAlgs1.pdf, id=1440, 169.25032pt x 286.1832pt>
 File: ./img/allAlgs1.pdf Graphic file (type pdf)
 
 <use ./img/allAlgs1.pdf>
 Package pdftex.def Info: ./img/allAlgs1.pdf used on input line 143.
 (pdftex.def)             Requested size: 118.4744pt x 200.32686pt.
 
-<./img/allAlgs08.pdf, id=1428, 161.39798pt x 286.17715pt>
+<./img/allAlgs08.pdf, id=1441, 161.39798pt x 286.17715pt>
 File: ./img/allAlgs08.pdf Graphic file (type pdf)
 
 <use ./img/allAlgs08.pdf>
 Package pdftex.def Info: ./img/allAlgs08.pdf used on input line 144.
 (pdftex.def)             Requested size: 112.9778pt x 200.32263pt.
- <./img/QDecs1.pdf, id=1429, 189.2671pt x 257.8433pt>
+ <./img/QDecs1.pdf, id=1442, 189.2671pt x 257.8433pt>
 File: ./img/QDecs1.pdf Graphic file (type pdf)
 
 <use ./img/QDecs1.pdf>
 Package pdftex.def Info: ./img/QDecs1.pdf used on input line 152.
 (pdftex.def)             Requested size: 132.48605pt x 180.48907pt.
- <./img/QDecs08.pdf, id=1430, 179.21454pt x 257.84128pt>
+ <./img/QDecs08.pdf, id=1443, 179.21454pt x 257.84128pt>
 File: ./img/QDecs08.pdf Graphic file (type pdf)
 
 <use ./img/QDecs08.pdf>
 Package pdftex.def Info: ./img/QDecs08.pdf used on input line 153.
 (pdftex.def)             Requested size: 125.44931pt x 180.48766pt.
 
-<./img/QDecHasselt.pdf, id=1431, 189.2671pt x 257.84529pt>
+<./img/QDecHasselt.pdf, id=1444, 189.2671pt x 257.84529pt>
 File: ./img/QDecHasselt.pdf Graphic file (type pdf)
 
 <use ./img/QDecHasselt.pdf>
 Package pdftex.def Info: ./img/QDecHasselt.pdf used on input line 161.
 (pdftex.def)             Requested size: 132.48605pt x 180.49046pt.
 
-<./img/QDecWinHasselt.pdf, id=1432, 179.21454pt x 257.8493pt>
+<./img/QDecWinHasselt.pdf, id=1445, 179.21454pt x 257.8493pt>
 File: ./img/QDecWinHasselt.pdf Graphic file (type pdf)
 
 <use ./img/QDecWinHasselt.pdf>
@@ -1893,8 +1886,8 @@ Package pdftex.def Info: ./img/QDecWinHasselt.pdf used on input line 162.
 
 Overfull \hbox (2.25934pt too wide) in paragraph at lines 169--170
 \T1/ptm/m/n/12 We com-pare $\OML/cmm/m/it/12 RQ$\T1/ptm/m/n/12 -Learning agains
-t $\OML/cmm/m/it/12 Q$\T1/ptm/m/n/12 -Learning [[]80[]], Dou-ble $\OML/cmm/m/it
-/12 Q$\T1/ptm/m/n/12 -Learning [[]74[]], Weighted
+t $\OML/cmm/m/it/12 Q$\T1/ptm/m/n/12 -Learning [[]85[]], Dou-ble $\OML/cmm/m/it
+/12 Q$\T1/ptm/m/n/12 -Learning [[]79[]], Weighted
  []
 
 
@@ -1904,25 +1897,25 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [44] [45 <./img/allAlgs1.pdf> <./img/allAlgs08.pdf>]
-<./img/v1-1.pdf, id=1514, 189.2671pt x 132.13365pt>
+<./img/v1-1.pdf, id=1526, 189.2671pt x 132.13365pt>
 File: ./img/v1-1.pdf Graphic file (type pdf)
  <use ./img/v1-1.pdf>
 Package pdftex.def Info: ./img/v1-1.pdf used on input line 261.
 (pdftex.def)             Requested size: 104.09721pt x 72.67372pt.
 
-<./img/v1-51.pdf, id=1515, 166.61748pt x 132.12662pt>
+<./img/v1-51.pdf, id=1527, 166.61748pt x 132.12662pt>
 File: ./img/v1-51.pdf Graphic file (type pdf)
  <use ./img/v1-51.pdf>
 Package pdftex.def Info: ./img/v1-51.pdf used on input line 262.
 (pdftex.def)             Requested size: 91.63988pt x 72.66985pt.
 
-<./img/v5-1.pdf, id=1516, 189.2671pt x 134.70827pt>
+<./img/v5-1.pdf, id=1528, 189.2671pt x 134.70827pt>
 File: ./img/v5-1.pdf Graphic file (type pdf)
  <use ./img/v5-1.pdf>
 Package pdftex.def Info: ./img/v5-1.pdf used on input line 263.
 (pdftex.def)             Requested size: 104.09721pt x 74.08977pt.
 
-<./img/v5-51.pdf, id=1517, 172.49243pt x 134.70726pt>
+<./img/v5-51.pdf, id=1529, 172.49243pt x 134.70726pt>
 File: ./img/v5-51.pdf Graphic file (type pdf)
  <use ./img/v5-51.pdf>
 Package pdftex.def Info: ./img/v5-51.pdf used on input line 264.
@@ -1938,53 +1931,53 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [46 <./img/QDecs1.pdf> <./img/QDecs08.pdf>]
-<./img/lrs1-1.pdf, id=1551, 189.2671pt x 134.70627pt>
+<./img/lrs1-1.pdf, id=1564, 189.2671pt x 134.70627pt>
 File: ./img/lrs1-1.pdf Graphic file (type pdf)
  <use ./img/lrs1-1.pdf>
 Package pdftex.def Info: ./img/lrs1-1.pdf used on input line 272.
 (pdftex.def)             Requested size: 104.09721pt x 74.08865pt.
 
-<./img/lrs1-51.pdf, id=1552, 169.88167pt x 134.70627pt>
+<./img/lrs1-51.pdf, id=1565, 169.88167pt x 134.70627pt>
 File: ./img/lrs1-51.pdf Graphic file (type pdf)
 
 <use ./img/lrs1-51.pdf>
 Package pdftex.def Info: ./img/lrs1-51.pdf used on input line 273.
 (pdftex.def)             Requested size: 93.4352pt x 74.08865pt.
- <./img/lrs5-1.pdf, id=1553, 189.2671pt x 134.70627pt>
+ <./img/lrs5-1.pdf, id=1566, 189.2671pt x 134.70627pt>
 File: ./img/lrs5-1.pdf Graphic file (type pdf)
 
 <use ./img/lrs5-1.pdf>
 Package pdftex.def Info: ./img/lrs5-1.pdf used on input line 274.
 (pdftex.def)             Requested size: 104.09721pt x 74.08865pt.
- <./img/lrs5-51.pdf, id=1554, 169.88167pt x 134.70627pt>
+ <./img/lrs5-51.pdf, id=1567, 169.88167pt x 134.70627pt>
 File: ./img/lrs5-51.pdf Graphic file (type pdf)
 
 <use ./img/lrs5-51.pdf>
 Package pdftex.def Info: ./img/lrs5-51.pdf used on input line 275.
 (pdftex.def)             Requested size: 93.4352pt x 74.08865pt.
 
-<./img/max_a-1.pdf, id=1559, 342.54475pt x 137.52579pt>
+<./img/max_a-1.pdf, id=1572, 342.54475pt x 137.52579pt>
 File: ./img/max_a-1.pdf Graphic file (type pdf)
 
 <use ./img/max_a-1.pdf>
 Package pdftex.def Info: ./img/max_a-1.pdf used on input line 283.
 (pdftex.def)             Requested size: 188.40019pt x 75.6394pt.
 
-<./img/max_a-51.pdf, id=1560, 304.16235pt x 137.52579pt>
+<./img/max_a-51.pdf, id=1573, 304.16235pt x 137.52579pt>
 File: ./img/max_a-51.pdf Graphic file (type pdf)
 
 <use ./img/max_a-51.pdf>
 Package pdftex.def Info: ./img/max_a-51.pdf used on input line 284.
 (pdftex.def)             Requested size: 167.28981pt x 75.6394pt.
  [47 <./img/QDecHasselt.pdf> <./img/QDecWinHasselt.pdf>] <./img/grid_hole.pdf, 
-id=1610, 337.95457pt x 290.09076pt>
+id=1622, 337.95457pt x 290.09076pt>
 File: ./img/grid_hole.pdf Graphic file (type pdf)
 
 <use ./img/grid_hole.pdf>
 Package pdftex.def Info: ./img/grid_hole.pdf used on input line 300.
 (pdftex.def)             Requested size: 236.56659pt x 203.06213pt.
 
-<./img/gridhole.pdf, id=1611, 165.08221pt x 165.08102pt>
+<./img/gridhole.pdf, id=1623, 165.08221pt x 165.08102pt>
 File: ./img/gridhole.pdf Graphic file (type pdf)
 
 <use ./img/gridhole.pdf>
@@ -1999,13 +1992,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [48 <./img/v1-1.pdf> <./img/v1-51.pdf> <./img/v5-1.pdf> <./img/v5-51.pdf> <./im
 g/lrs1-1.pdf> <./img/lrs1-51.pdf> <./img/lrs5-1.pdf> <./img/lrs5-51.pdf>]
-<./img/sarsa1.pdf, id=1683, 189.2671pt x 290.10081pt>
+<./img/sarsa1.pdf, id=1695, 189.2671pt x 290.10081pt>
 File: ./img/sarsa1.pdf Graphic file (type pdf)
  <use ./img/sarsa1.pdf>
 Package pdftex.def Info: ./img/sarsa1.pdf used on input line 319.
 (pdftex.def)             Requested size: 132.48605pt x 203.06917pt.
 
-<./img/sarsa08.pdf, id=1684, 179.21454pt x 290.08273pt>
+<./img/sarsa08.pdf, id=1696, 179.21454pt x 290.08273pt>
 File: ./img/sarsa08.pdf Graphic file (type pdf)
 
 <use ./img/sarsa08.pdf>
@@ -2054,19 +2047,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[58] [59] <img/comp.pdf, id=1954, 5130.897pt x 4210.90376pt>
+[58] [59] <img/comp.pdf, id=1966, 5130.897pt x 4210.90376pt>
 File: img/comp.pdf Graphic file (type pdf)
 
 <use img/comp.pdf>
 Package pdftex.def Info: img/comp.pdf used on input line 156.
 (pdftex.def)             Requested size: 230.8804pt x 189.4825pt.
- <img/taxi.png, id=1955, 331.2375pt x 284.56313pt>
+ <img/taxi.png, id=1967, 331.2375pt x 284.56313pt>
 File: img/taxi.png Graphic file (type png)
 
 <use img/taxi.png>
 Package pdftex.def Info: img/taxi.png used on input line 161.
 (pdftex.def)             Requested size: 82.80916pt x 71.1406pt.
- <img/taxi_boot.pdf, id=1956, 526.16264pt x 395.3642pt>
+ <img/taxi_boot.pdf, id=1968, 526.16264pt x 395.3642pt>
 File: img/taxi_boot.pdf Graphic file (type pdf)
 
 <use img/taxi_boot.pdf>
@@ -2074,44 +2067,44 @@ Package pdftex.def Info: img/taxi_boot.pdf used on input line 162.
 (pdftex.def)             Requested size: 131.54033pt x 98.8408pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 165.
- <img/mc_comp.pdf, id=1960, 790.79192pt x 395.48062pt>
+ <img/mc_comp.pdf, id=1972, 790.79192pt x 395.48062pt>
 File: img/mc_comp.pdf Graphic file (type pdf)
 
 <use img/mc_comp.pdf>
 Package pdftex.def Info: img/mc_comp.pdf used on input line 170.
 (pdftex.def)             Requested size: 237.2394pt x 118.6451pt.
- <img/acrobot_ts.pdf, id=1961, 440.24004pt x 375.12485pt>
+ <img/acrobot_ts.pdf, id=1973, 440.24004pt x 375.12485pt>
 File: img/acrobot_ts.pdf Graphic file (type pdf)
 
 <use img/acrobot_ts.pdf>
 Package pdftex.def Info: img/acrobot_ts.pdf used on input line 171.
 (pdftex.def)             Requested size: 132.07303pt x 112.53831pt.
 
-<img/bounds.pdf, id=1964, 7371.26701pt x 2401.13933pt>
+<img/bounds.pdf, id=1976, 7371.26701pt x 2401.13933pt>
 File: img/bounds.pdf Graphic file (type pdf)
  <use img/bounds.pdf>
 Package pdftex.def Info: img/bounds.pdf used on input line 179.
 (pdftex.def)             Requested size: 368.58495pt x 120.064pt.
 
-<img/cs.pdf, id=1965, 7371.26701pt x 2401.13933pt>
+<img/cs.pdf, id=1977, 7371.26701pt x 2401.13933pt>
 File: img/cs.pdf Graphic file (type pdf)
  <use img/cs.pdf>
 Package pdftex.def Info: img/cs.pdf used on input line 187.
 (pdftex.def)             Requested size: 368.58495pt x 120.064pt.
 
-<img/chics.pdf, id=1966, 7371.26701pt x 2401.13933pt>
+<img/chics.pdf, id=1978, 7371.26701pt x 2401.13933pt>
 File: img/chics.pdf Graphic file (type pdf)
  <use img/chics.pdf>
 Package pdftex.def Info: img/chics.pdf used on input line 195.
 (pdftex.def)             Requested size: 368.58495pt x 120.064pt.
 
-<img/pong.pdf, id=1967, 370.84798pt x 340.54703pt>
+<img/pong.pdf, id=1979, 370.84798pt x 340.54703pt>
 File: img/pong.pdf Graphic file (type pdf)
  <use img/pong.pdf>
 Package pdftex.def Info: img/pong.pdf used on input line 203.
 (pdftex.def)             Requested size: 111.25525pt x 102.16489pt.
 
-<img/breakout.pdf, id=1968, 366.78593pt x 340.54703pt>
+<img/breakout.pdf, id=1980, 366.78593pt x 340.54703pt>
 File: img/breakout.pdf Graphic file (type pdf)
  <use img/breakout.pdf>
 Package pdftex.def Info: img/breakout.pdf used on input line 205.
@@ -2166,33 +2159,116 @@ tiple pdfs with page group included in a single page
 
 ]
 Chapter 6.
-[65] [66]) [67] [68
+[65] [66] [67pdfTeX warning (ext4): destination with the same identifier (name{
+equation.6.1.1}) has been already used, duplicate ignored
+<recently read> \AtBeginShipoutBox 
+                                   
+l.78 \begin{equation}
+                     ] [68pdfTeX warning (ext4): destination with the same iden
+tifier (name{equation.6.1.4}) has been already used, duplicate ignored
+<recently read> \AtBeginShipoutBox 
+                                   
+l.113 \end{eqnarray}
+                    ] [69pdfTeX warning (ext4): destination with the same ident
+ifier (name{equation.6.1.8}) has been already used, duplicate ignored
+<recently read> \AtBeginShipoutBox 
+                                   
+l.144 \end{eqnarray}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{equation.6.1.8}) has been already used, duplicate ignored
+<recently read> \AtBeginShipoutBox 
+                                   
+l.144 \end{eqnarray}
+                    ]
 
-] [69] [70] (./chapters/mushroom.tex
+LaTeX Font Warning: Command \small invalid in math mode on input line 154.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 154.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 154.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 154.
+
+[70]pdfTeX warning (ext4): destination with the same identifier (name{equation.
+6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.175 \begin{equation}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.175 \begin{equation}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.175 \begin{equation}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.175 \begin{equation}
+                      
+
+LaTeX Warning: Citation `osband2016deep' on page 71 undefined on input line 179
+.
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.6.1.
+12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.180 \begin{eqnarray}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.180 \begin{eqnarray}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.180 \begin{eqnarray}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.6.1.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.180 \begin{eqnarray}
+                      
+
+LaTeX Warning: Reference `constrversion' on page 71 undefined on input line 228
+.
+
+[71]) [72] [73
+
+] [74] (./chapters/mushroom.tex
 Chapter 7.
-) (./chapters/conclusion.tex [71
+) (./chapters/conclusion.tex [75
 
-] [72
+] [76
 
 ]
 Chapter 8.
-) [73] [74
+) [77] [78
 
 ] (./thesis.bbl
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
- [75
+ [79
 
-] [76] [77]) [78]
+] [80] [81]) [82]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 178.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 178.
  (./thesis.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 178.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 178.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 02E45C27E90F028B677A0932343F8A0B;4603.
+(rerunfilecheck)             Checksum: FCBF9D7E6BB49F8780D42ED5C767DB00;4761.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2205,11 +2281,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 39035 strings out of 493029
- 820658 string characters out of 6136234
- 1043955 words of memory out of 5000000
- 41138 multiletter control sequences out of 15000+600000
- 112838 words of font info for 146 fonts, out of 8000000 for 9000
+ 39308 strings out of 493029
+ 824599 string characters out of 6136234
+ 1047816 words of memory out of 5000000
+ 41353 multiletter control sequences out of 15000+600000
+ 120127 words of font info for 151 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,77p,1990b,897s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -2248,11 +2324,12 @@ nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (94 pages, 2100952 bytes).
+mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
+Output written on thesis.pdf (98 pages, 2141488 bytes).
 PDF statistics:
- 2680 PDF objects out of 2984 (max. 8388607)
- 2081 compressed objects within 21 object streams
- 532 named destinations out of 1000 (max. 500000)
- 797 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2798 PDF objects out of 2984 (max. 8388607)
+ 2193 compressed objects within 22 object streams
+ 587 named destinations out of 1000 (max. 500000)
+ 813 words of extra memory for PDF output out of 10000 (max. 10000000)
 

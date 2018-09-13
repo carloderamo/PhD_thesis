@@ -5,50 +5,51 @@ The style file: plain.bst
 Database file #1: thesis.bib
 Warning--I didn't find a database entry for "lee2012intelligent"
 Warning--I didn't find a database entry for "d2016estimating"
+Warning--I didn't find a database entry for "osband2016deep"
 Warning--empty year in azizzadenesheli2517efficient
 Warning--can't use both volume and number fields in bertsekas2005dynamic
 Warning--can't use both author and editor fields in EvenDar2001
 Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
-You've used 84 entries,
+You've used 89 entries,
             2118 wiz_defined-function locations,
-            951 strings with 18570 characters,
-and the built_in function-call counts, 33890 in all, are:
-= -- 3365
-> -- 1615
-< -- 43
-+ -- 640
-- -- 545
-* -- 2282
-:= -- 5301
-add.period$ -- 268
-call.type$ -- 84
-change.case$ -- 499
+            976 strings with 19357 characters,
+and the built_in function-call counts, 36056 in all, are:
+= -- 3593
+> -- 1699
+< -- 47
++ -- 674
+- -- 573
+* -- 2410
+:= -- 5620
+add.period$ -- 285
+call.type$ -- 89
+change.case$ -- 528
 chr.to.int$ -- 0
-cite$ -- 89
-duplicate$ -- 1395
-empty$ -- 2627
-format.name$ -- 545
-if$ -- 7343
+cite$ -- 94
+duplicate$ -- 1494
+empty$ -- 2799
+format.name$ -- 573
+if$ -- 7834
 int.to.chr$ -- 0
-int.to.str$ -- 84
-missing$ -- 90
-newline$ -- 422
-num.names$ -- 174
-pop$ -- 615
+int.to.str$ -- 89
+missing$ -- 95
+newline$ -- 447
+num.names$ -- 184
+pop$ -- 653
 preamble$ -- 1
-purify$ -- 426
+purify$ -- 450
 quote$ -- 0
-skip$ -- 1091
+skip$ -- 1174
 stack$ -- 0
-substring$ -- 2161
-swap$ -- 481
-text.length$ -- 43
+substring$ -- 2315
+swap$ -- 525
+text.length$ -- 47
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 318
+type$ -- 338
 warning$ -- 5
-while$ -- 326
-width$ -- 86
-write$ -- 926
-(There were 7 warnings)
+while$ -- 348
+width$ -- 91
+write$ -- 982
+(There were 8 warnings)

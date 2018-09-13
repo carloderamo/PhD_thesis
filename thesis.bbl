@@ -215,6 +215,12 @@ Wassily Hoeffding.
 \newblock {\em Journal of the American statistical association},
   58(301):13--30, 1963.
 
+\bibitem{jaakkola1994convergence}
+Tommi Jaakkola, Michael~I Jordan, and Satinder~P Singh.
+\newblock Convergence of stochastic iterative dynamic programming algorithms.
+\newblock In {\em Advances in neural information processing systems}, pages
+  703--710, 1994.
+
 \bibitem{jaksch2010near}
 Thomas Jaksch, Ronald Ortner, and Peter Auer.
 \newblock Near-optimal regret bounds for reinforcement learning.
@@ -259,6 +265,11 @@ Benedict~C May and David~S Leslie.
   contextual-bandit problems.
 \newblock {\em Statistics Group, Department of Mathematics, University of
   Bristol}, 11:02, 2011.
+
+\bibitem{melo2001convergence}
+Francisco~S Melo.
+\newblock Convergence of q-learning: A simple proof.
+\newblock {\em Institute Of Systems and Robotics, Tech. Rep}, pages 1--4, 2001.
 
 \bibitem{meuleau1999exploration}
 Nicolas Meuleau and Paul Bourgine.
@@ -321,6 +332,11 @@ Jan Peters, Katharina Mulling, and Yasemin Altun.
 \newblock Relative entropy policy search.
 \newblock In {\em Proc. AAAI}, 2010.
 
+\bibitem{peters2010relative}
+Jan Peters, Katharina M{\"u}lling, and Yasemin Altun.
+\newblock Relative entropy policy search.
+\newblock In {\em AAAI}, pages 1607--1612. Atlanta, 2010.
+
 \bibitem{rasmussen2005gaussian}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.
 \newblock {\em Gaussian Processes for Machine Learning (Adaptive Computation
@@ -352,6 +368,11 @@ J{\"u}rgen Schmidhuber.
   curiosity, creativity, art, science, music, jokes.
 \newblock In {\em Workshop on Anticipatory Behavior in Adaptive Learning
   Systems}, pages 48--76. Springer, 2008.
+
+\bibitem{schulman2017proximal}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+\newblock Proximal policy optimization algorithms.
+\newblock {\em arXiv preprint arXiv:1707.06347}, 2017.
 
 \bibitem{schweighofer2003meta}
 Nicolas Schweighofer and Kenji Doya.
@@ -415,6 +436,12 @@ Malcolm Strens.
 Richard~S Sutton, Andrew~G Barto, et~al.
 \newblock {\em Reinforcement learning: An introduction}.
 \newblock MIT press, 1998.
+
+\bibitem{szita2008many}
+Istv{\'a}n Szita and Andr{\'a}s L{\H{o}}rincz.
+\newblock The many faces of optimism: a unifying approach.
+\newblock In {\em Proceedings of the 25th international conference on Machine
+  learning}, pages 1048--1055. ACM, 2008.
 
 \bibitem{tang2017exploration}
 Haoran Tang, Rein Houthooft, Davis Foote, Adam Stooke, OpenAI~Xi Chen, Yan

@@ -9,3 +9,4 @@
 \contentsline {algorithm}{\numberline {9}{\ignorespaces SARSA with online variance update and Hoeffding upper bound\relax }}{57}{algorithm.9}
 \contentsline {algorithm}{\numberline {10}{\ignorespaces SARSA with function approximation with variance update\relax }}{58}{algorithm.10}
 \contentsline {algorithm}{\numberline {11}{\ignorespaces Bootstrapped DQN with Thompson Sampling\relax }}{60}{algorithm.11}
+\contentsline {algorithm}{\numberline {12}{\ignorespaces Optimistic Deep $Q$-Network\relax }}{72}{algorithm.12}
