@@ -141,6 +141,11 @@ Carlo D'Eramo, Marcello Restelli, and Alessandro Nuara.
 \newblock In {\em {ICML}}, volume~48 of {\em {JMLR} Workshop and Conference
   Proceedings}, pages 1032--1040. JMLR.org, 2016.
 
+\bibitem{doya2000reinforcement}
+Kenji Doya.
+\newblock Reinforcement learning in continuous time and space.
+\newblock {\em Neural computation}, 12(1):219--245, 2000.
+
 \bibitem{engel2005reinforcement}
 Yaakov Engel, Shie Mannor, and Ron Meir.
 \newblock Reinforcement learning with gaussian processes.

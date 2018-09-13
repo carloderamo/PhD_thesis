@@ -311,14 +311,32 @@ The \gls{fqi} variant which replaces \gls{me} with \gls{de} is called \gls{dfqi}
 \subsection{Deep Reinforcement Learning}
 We also analyzed the case of \gls{drl} where the overestimation problem caused by \gls{me} happens also in the \gls{dqn} algorithm resulting in critical loss of performance in some problems due to instability. The \gls{ddqn} algorithm~\cite{hasselt2015double} replaces \gls{me} with \gls{de} and shows considerable improvements and performance and stability. We worked on the replacement of \gls{me} with \gls{we} even though it is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks.
 
-\subsubsection{Weighted Deep Q-Network}
-We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep}. This work follows the \gls{dqn} algorithm described in~\cite{mnih2015human} with few, but important changes. The output of the neural network is split in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in {0,1}$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follow the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
+\subsubsection{Weighted Deep Q-Network}\label{S:drl}
+\begin{figure}[t]
+\begin{center}
+  \includegraphics[scale=.5]{img/bdqn.png}
+\end{center}
+\caption[Boostrapped DQN network]{Architecture of the neural network used in Bootstrapped DQN.}\label{F:bdqn-net}
+\end{figure}
+We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep} showed in Figure~\ref{F:bdqn-net}. This work follows the \gls{dqn} algorithm described in~\cite{mnih2015human} with few, but important changes. The output of the neural network is split in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in {0,1}$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follow the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
 
-We propose to use the architecture of \gls{bdqn} replacing the \gls{de} with \gls{we} and to approximate the weights of its update formula using the output of each head. The resulting update formula is:
-\begin{equation}
-Q_{t+1}^k \leftarrow Q_t^k + r_t + \gamma \sum_{i \in {1, \dots, \#\mathcal{A}}} w_t^i Q_t^k(s_{t+1}, a_i; \theta_k^-),
+We propose to use the architecture of \gls{bdqn} and use \gls{we} to compute the target of the $K$-th head, while using the target provided by \gls{me} for the other $K-1$ heads. Moreover, we only use the $K$-th head trained with \gls{we} for exploration. This way, the training of the $K-1$ heads do not differ from the one of \gls{bdqn}, while the $K$-th head is trained with \gls{we} exploiting the uncertainty on the action-values provided by the ensemble. Given a dataset of transitions $\langle s_t, a_t, r_t, s'_t \rangle$, the resulting formulas to compute the target $y^k$ of each head $k$ are:
+\begin{equation}\label{E:dqn_update}
+y_i^k=
+    \begin{cases}
+    r_i & \text{if episode terminates at episode }i+1\\
+    r_i + \gamma \max_{a'} \hat{Q^k}(s'_i, a') & \text{otherwise}
+    \end{cases}
 \end{equation}
-where $w_t^i$ is the weight of \gls{we} for action $i$ at time $t$ and $\theta_k^-$ are the parameters of the target network of the head $k$. Since the $Q$-values of the next state are computed using the target network, we propose to compute the weights using the online network in order to emulate the desirable behavior of \gls{de}. Note that the weights vector $\mathbf{w}_t = \langle w_t^1, w_t^2, \dots, w_t^K \rangle$ is the same for all heads.
+with $k \in \lbrace 1, \dots, K-1 \rbrace$ and
+\begin{equation}\label{E:dqn_update}
+y_i^K=
+    \begin{cases}
+    r_i & \text{if episode terminates at episode }i+1\\
+    r_i + \gamma \sum_{j \in {1, \dots, \#\mathcal{A}}} w^j_i Q^K(s_i', a_j; \theta_K^-) & \text{otherwise}
+    \end{cases}
+\end{equation}
+for the $K$-th head where $w^j_i$ is the percentage of the $K-1$ heads where action $a_j$ is the one with the highest action-value and $\theta_K^-$ are the parameters of the target network of the head $k$. To compute the action under the given policy, only the $K$-th head is used.
 The resulting algorithm is a slight change to the original \gls{bdqn} that allows to use the \gls{we} in the \gls{dqn} framework without differences in computational time and memory requirements w.r.t. \gls{bdqn}. We call this algorithm \gls{wdqn}.
 
 \section{Empirical results}
@@ -427,22 +445,6 @@ Double $Q$-learning performs worse than $Q$-learning and Weighted $Q$-learning b
 The reason is that in many states there is an action that is significantly better than the others, that represents the case where \gls{me} gives the best results, and the case where \gls{de} suffers the most.
 
 \subsection{Continuous state spaces}
-
-\subsubsection{Pricing Problem}
-This problem consists in estimating the \gls{mev} of the gross profit in a pricing problem. In this \gls{mab} problem we validate the \gls{we} with infinite random variables ($\text{WE}_{\infty}$) and we compare its performance against \gls{me} and \gls{de} whose support (actions) has been discretized.
-It is crucial to estimate the value of the gross profit accurately in order to evaluate, for example, an investment decision or to analyze the profitability of products.
-The support (action) space is bounded but continuous, and represents the price $p$ to be shown to the user ($p \in [0,10]$).
-The reserve price $\tau$ , which is the highest price that a buyer is willing to pay, is modeled as a mixture of $3$ Gaussian distributions with mean $\mu=\lbrace 2, 4, 8 \rbrace$, covariances $\sigma^2= \lbrace 0.01, 0.01, 0.09 \rbrace$ and weights $w = \lbrace 0.6, 0.1, 0.3 \rbrace$.
-The revenue function $r_{\tau}(p)$ is $p$ when $\tau \geq p$ and $0$ otherwise.
-The maximum revenue is about $2.17$.
-In each test the algorithms are fed with a set of samples $\mathcal{D} = \left\{ \langle p_i, r_i \rangle \right\}_{i=1}^{n_s}$. Each sample is obtained by sampling a reserve price $\tau_i$ from the Gaussian mixture, a price $p_i$ from a uniform distribution over the price range, and by evaluating the revenue function ($r_i=r_{\tau_i}(p_i)$). Clearly, the reserve price is unknown to the algorithm.
-Results are averaged on $50$ runs in order and confidence intervals at $95\%$ are shown.
-\gls{we} exploits a Gaussian process with squared exponential kernel to generalize over the continuous price (\gls{gp} parameters are learned from $\mathcal{D}$), while \gls{me} and \gls{de} discretize the price space into $n_b$ uniformly spaced bins.
-As shown in Figure~\ref{F:pricing_bias}, the number $n_b$ of optimal bins varies with the number $n_s$ of available samples.
-This means that, once the samples have been collected, \gls{me} and \gls{de} need an optimization phase for selecting the appropriate number of bins (not required by \gls{we}). 
-\gls{we} is able to achieve the lowest or a comparable level of bias with every batch dimension even through it exploits a sensibly wider action space (infinite).
-In fact, as shown by the experiments, the performance of \gls{me} and \gls{de} may degrade as the number of bins increases, i.e. the action space increases.
-This means that, if you want to be accurate, you cannot increase the number of bins arbitrarily (it is somehow counterintuitive).
 \begin{figure*}
  \begin{minipage}{.99\columnwidth}
  \centering
@@ -463,6 +465,21 @@ This means that, if you want to be accurate, you cannot increase the number of b
   }
   \label{F:pricing_variance}
 \end{figure*}
+\subsubsection{Pricing Problem}
+This problem consists in estimating the \gls{mev} of the gross profit in a pricing problem. In this \gls{mab} problem we validate the \gls{we} with infinite random variables ($\text{WE}_{\infty}$) and we compare its performance against \gls{me} and \gls{de} whose support (actions) has been discretized.
+It is crucial to estimate the value of the gross profit accurately in order to evaluate, for example, an investment decision or to analyze the profitability of products.
+The support (action) space is bounded but continuous, and represents the price $p$ to be shown to the user ($p \in [0,10]$).
+The reserve price $\tau$ , which is the highest price that a buyer is willing to pay, is modeled as a mixture of $3$ Gaussian distributions with mean $\mu=\lbrace 2, 4, 8 \rbrace$, covariances $\sigma^2= \lbrace 0.01, 0.01, 0.09 \rbrace$ and weights $w = \lbrace 0.6, 0.1, 0.3 \rbrace$.
+The revenue function $r_{\tau}(p)$ is $p$ when $\tau \geq p$ and $0$ otherwise.
+The maximum revenue is about $2.17$.
+In each test the algorithms are fed with a set of samples $\mathcal{D} = \left\{ \langle p_i, r_i \rangle \right\}_{i=1}^{n_s}$. Each sample is obtained by sampling a reserve price $\tau_i$ from the Gaussian mixture, a price $p_i$ from a uniform distribution over the price range, and by evaluating the revenue function ($r_i=r_{\tau_i}(p_i)$). Clearly, the reserve price is unknown to the algorithm.
+Results are averaged on $50$ runs in order and confidence intervals at $95\%$ are shown.
+\gls{we} exploits a Gaussian process with squared exponential kernel to generalize over the continuous price (\gls{gp} parameters are learned from $\mathcal{D}$), while \gls{me} and \gls{de} discretize the price space into $n_b$ uniformly spaced bins.
+As shown in Figure~\ref{F:pricing_bias}, the number $n_b$ of optimal bins varies with the number $n_s$ of available samples.
+This means that, once the samples have been collected, \gls{me} and \gls{de} need an optimization phase for selecting the appropriate number of bins (not required by \gls{we}). 
+\gls{we} is able to achieve the lowest or a comparable level of bias with every batch dimension even through it exploits a sensibly wider action space (infinite).
+In fact, as shown by the experiments, the performance of \gls{me} and \gls{de} may degrade as the number of bins increases, i.e. the action space increases.
+This means that, if you want to be accurate, you cannot increase the number of bins arbitrarily (it is somehow counterintuitive).
 Additionally, Figure~\ref{F:pricing_variance} shows that the higher complexity of \gls{we} has practically no impact on the variance of the estimate.
 The variance is always comparable to the one of the best configuration of \gls{we} and \gls{de}.
 Finally, several applications do not consider positive and negative bias to be the same, in particular, in iterative application positive bias can lead to large overestimates that have proven to be critical (e.g. in \gls{rl}).
@@ -481,10 +498,10 @@ An episode starts with $x_0 = (\theta_0, 0)$ where $\theta_0 \sim \mathcal{U}(-\
 \begin{minipage}{\textwidth}
 \centering
 \subfigure[Discrete actions.\label{F:pendulum_discrete}]{\includegraphics[scale=0.35]{./img/pendulumDiscrete.pdf}}
-\hspace{-1.025cm}
+\hspace{-.5cm}
 \subfigure[Continuous actions.\label{F:pendulum_continuous}]{\includegraphics[scale=0.35]{./img/pendulumContinuous.pdf}}
 \end{minipage}
-\caption[Swing-up pendulum results]{Average reward averaged on 100 experiments.}\label{F:forex}
+\caption[Swing-up pendulum results]{Swing-up pendulum performance averaged over $100$ experiments.}\label{F:pendulum}
 \end{figure*}
 The reward depends on the height of the pendulum: $r(x) = \cos(\theta)$.
 The problem is discounted with $\gamma = 0.9$.
@@ -494,37 +511,39 @@ The \gls{fqi} horizon is $10$ iterations.
 The final performance of the algorithm is the \emph{average reward}, calculated starting from $36$ different initial angles $\theta_0 = \lbrace \frac{2\pi k}{36} | k=\left\{0, 1, \ldots, 35\right\}\rbrace$.
 We consider two settings of this problem: one with a discrete set of 11 uniformly spaced torque values in $[-5,5]$ and another with a continuous action space.
 In the former setting we use a different \gls{gp} for each action.
-Results show that \gls{wfqi} for discrete actions \ref{A:WFQI} and \gls{fqi} are robust with respect to the number of episodes and \gls{wfqi} reaches the highest average reward in each case (with statistical confidence obtained over $100$ runs and level $95\%$).
+Figure~\ref{F:pendulum} show that \gls{wfqi} for discrete actions \ref{A:WFQI} and \gls{fqi} are robust with respect to the number of episodes and \gls{wfqi} reaches the highest average reward in each case (with statistical confidence obtained over $100$ runs and level $95\%$).
 \gls{dfqi} performance is reasonably poor with few examples since it uses a half of the training set to train each regressor.
 In the latter setting, the only algorithm that is able to directly handle continuous space is the \gls{wfqi} defined in Algorithm~\ref{A:continuousWFQI}.
 The other algorithms use a \gls{gp} with $100$ actions to approximate the maximum.
 
 \subsection{Deep Reinforcement Learning Scenario}
 \subsubsection{Acrobot}
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[scale=.6]{./img/acrobot.pdf}
-  \caption{Average reward averaged on 10 experiments.
+  \includegraphics[scale=.35]{./img/acrobot.pdf}
+  \caption[Acrobot results]{Acrobot performance averaged on $100$ experiments.
   }
-  \label{F:acrobot}
-\end{figure*}
+  \label{F:acrobot_wdqn}
+\end{figure}
+We evaluate the performance of \gls{dqn}, \gls{ddqn} and \gls{wdqn} on the \gls{rl} problem of Acrobot. This is a well-known problem consisting in swinging up a two-link robot over a certain threshold. The state space and the dynamics of the problem make it a complex \gls{mdp} to be solved\footnote{We use the Acrobot-v1 environment of the OpenAI Gym library~\cite{gym}.}. The reward of the \gls{mdp} is $-1$ at each step and $0$ when the arm of the bot reaches the threshold height. The discount factor is $\gamma = 0.99$. The horizon is set to $1000$. The hyperparameters of the training are specified in Table~\ref{T:acrobot_pars}.
+
 \begin{table*}[t]
  \centering
- \caption{Average reward in continuous action MDP.}
+ \caption{Hyperparameters setting in the Acrobot experiment.}
  \label{T:acrobot_pars}
 \begin{small}
 \setlength{\tabcolsep}{4pt}
  \begin{tabular}{|c|c|}
 \hline
-Replay memory size & 50000\\
+Replay memory size & 5000\\
 \hline
-Initial replay size & 5000\\
+Initial replay size & 100\\
 \hline
 Agent history length & 1\\
 \hline
 Target network update frequency & 100\\
 \hline
-Masking probability $p$ & $\nicefrac{2}{3}$\\
+Masking probability $p$ & $1$\\
 \hline
 Number of hidden layers & 2\\
 \hline
@@ -534,11 +553,17 @@ Number of heads & 10\\
 \hline
 Test samples & 5000\\
 \hline
-Evaluation frequency & 5000\\
+Evaluation frequency & 1000\\
+\hline
+Initial exploration rate & 1\\
+\hline
+Final exploration rate & 0.05\\
+\hline
+Final exploration frame & 5000\\
 \hline
 Max no-op actions & 0\\
 \hline
-Total number of steps & 250000\\
+Total number of steps & 50000\\
 \hline
 Optimizer & Adam\\
 \hline
@@ -546,6 +571,4 @@ Optimizer & Adam\\
  \end{small}
 \end{table*}
 
-We evaluate the performance of \gls{bdqn} with \gls{me} and \gls{de} and \gls{wdqn} on the \gls{rl} problem of Acrobot. This is a well-known problem consisting in swinging up a two-link robot over a certain threshold. The state space and the dynamics of the problem make it a complex \gls{mdp} to be solved\footnote{We use the Acrobot-v1 environment of the OpenAI Gym library~\cite{gym}.}. The reward of the \gls{mdp} is -1 at each step and 0 when the arm of the bot reaches the threshold height. The discount factor is $\gamma = 0.99$. The horizon is set to 200. The training phase policy is the Bootstrapped policy described in Section \ref{S:WDQN}, while the evaluation policy computes the best action through ensemble voting. The hyperparameters of \gls{dqn} are the same used in the Atari experiments in~\cite{osband2017deep}, except for the ones specified in Table \ref{T:acrobot_pars}. The policy used is the Bootstrapped policy used in~\cite{osband2017deep}, where at the beginning of an episode a head is chosen randomly and the greedy policy derived by that head is followed. In our setting, we choose a random head at each step instead at each episode in order to favor exploration.
-
-Figure \ref{F:acrobot} shows that all algorithms converges to the same performance, but \gls{wdqn} achieves it considerably faster than the others. Moreover, the score obtained by \gls{wdqn} is more stable during the training epochs, showing that \gls{we} helps also to stabilize the learning which is an important issue in the \gls{drl} scenario.
+The results shown in Figure~\ref{F:acrobot_wdqn} are not satisfying in this problem and we still need to investigate the reasons of this. Moreover, we plan to evaluate the performance of \gls{wdqn} in more complex problems such as Atari games.

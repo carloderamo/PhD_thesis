@@ -252,7 +252,7 @@ The groundbreaking works that revived the research on \gls{rl} in recent years a
 \end{minipage}
 \caption[DQN network scheme]{Synthetic scheme of a deep neural network which takes the input of the screen of a videogame and output the action to perform in that state.}
 \end{figure}
-The pioneering work which showed the potential of \gls{drl} and started the research about it is the \gls{dqn} algorithm~\cite{mnih2015human}. It consists in the use of a deep neural network and the storing of a replay memory of past transitions $<s_t, a_t, r_t, s'_t>$ to approximate the action-value function $\hat{Q}$ of the problem computing the target
+The pioneering work which showed the potential of \gls{drl} and started the research about it is the \gls{dqn} algorithm~\cite{mnih2015human}. It consists in the use of a deep neural network and the storing of a replay memory of past transitions $\langle s_t, a_t, r_t, s'_t \rangle$ to approximate the action-value function $\hat{Q}$ of the problem computing the target
 \begin{equation}\label{E:dqn_update}
 y_i=
     \begin{cases}

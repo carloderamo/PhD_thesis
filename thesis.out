@@ -1,0 +1,63 @@
+\BOOKMARK [0][]{section*.7}{Glossary}{}% 1
+\BOOKMARK [-1][]{part.1}{I Starting Point}{}% 2
+\BOOKMARK [0][]{chapter.1}{Introduction}{part.1}% 3
+\BOOKMARK [1][]{section.1.1}{Perception and interaction}{chapter.1}% 4
+\BOOKMARK [1][]{section.1.2}{Learn how to act with Reinforcement Learning}{chapter.1}% 5
+\BOOKMARK [2][]{subsection.1.2.1}{Uncertainty in Reinforcement Learning}{section.1.2}% 6
+\BOOKMARK [2][]{subsection.1.2.2}{Balancing exploration and exploitation}{section.1.2}% 7
+\BOOKMARK [1][]{section.1.3}{My research}{chapter.1}% 8
+\BOOKMARK [0][]{chapter.2}{Preliminaries}{part.1}% 9
+\BOOKMARK [1][]{section.2.1}{Agent and environment}{chapter.2}% 10
+\BOOKMARK [1][]{section.2.2}{Markov Decision Processes}{chapter.2}% 11
+\BOOKMARK [2][]{subsection.2.2.1}{Value functions}{section.2.2}% 12
+\BOOKMARK [1][]{section.2.3}{Solving a MDP}{chapter.2}% 13
+\BOOKMARK [2][]{subsection.2.3.1}{Dynamic Programming}{section.2.3}% 14
+\BOOKMARK [2][]{subsection.2.3.2}{Reinforcement Learning}{section.2.3}% 15
+\BOOKMARK [-1][]{part.2}{II Bellman Update}{}% 16
+\BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimation}{part.2}% 17
+\BOOKMARK [1][]{section.3.1}{Problem definition}{chapter.3}% 18
+\BOOKMARK [2][]{subsection.3.1.1}{Related Works}{section.3.1}% 19
+\BOOKMARK [1][]{section.3.2}{Weighted Estimator}{chapter.3}% 20
+\BOOKMARK [2][]{subsection.3.2.1}{Generalization to Infinite Random Variables}{section.3.2}% 21
+\BOOKMARK [1][]{section.3.3}{Analysis of Weighted Estimator}{chapter.3}% 22
+\BOOKMARK [2][]{subsection.3.3.1}{Bias}{section.3.3}% 23
+\BOOKMARK [2][]{subsection.3.3.2}{Variance}{section.3.3}% 24
+\BOOKMARK [1][]{section.3.4}{Maximum Expected Value estimation in Reinforcement Learning}{chapter.3}% 25
+\BOOKMARK [2][]{subsection.3.4.1}{Online}{section.3.4}% 26
+\BOOKMARK [2][]{subsection.3.4.2}{Batch}{section.3.4}% 27
+\BOOKMARK [2][]{subsection.3.4.3}{Deep Reinforcement Learning}{section.3.4}% 28
+\BOOKMARK [1][]{section.3.5}{Empirical results}{chapter.3}% 29
+\BOOKMARK [2][]{subsection.3.5.1}{Discrete States and Action Spaces}{section.3.5}% 30
+\BOOKMARK [2][]{subsection.3.5.2}{Continuous state spaces}{section.3.5}% 31
+\BOOKMARK [2][]{subsection.3.5.3}{Deep Reinforcement Learning Scenario}{section.3.5}% 32
+\BOOKMARK [0][]{chapter.4}{Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{part.2}% 33
+\BOOKMARK [1][]{section.4.1}{Preliminaries}{chapter.4}% 34
+\BOOKMARK [1][]{section.4.2}{The Proposed Method}{chapter.4}% 35
+\BOOKMARK [2][]{subsection.4.2.1}{Decomposition of the TD error}{section.4.2}% 36
+\BOOKMARK [2][]{subsection.4.2.2}{Analysis of the decomposed update}{section.4.2}% 37
+\BOOKMARK [2][]{subsection.4.2.3}{Variance dependent learning rate}{section.4.2}% 38
+\BOOKMARK [2][]{subsection.4.2.4}{Discussion on convergence}{section.4.2}% 39
+\BOOKMARK [1][]{section.4.3}{Experimental Results}{chapter.4}% 40
+\BOOKMARK [2][]{subsection.4.3.1}{Noisy Grid World}{section.4.3}% 41
+\BOOKMARK [2][]{subsection.4.3.2}{Double Chain}{section.4.3}% 42
+\BOOKMARK [2][]{subsection.4.3.3}{Grid World with Holes}{section.4.3}% 43
+\BOOKMARK [2][]{subsection.4.3.4}{On-policy learning}{section.4.3}% 44
+\BOOKMARK [-1][]{part.3}{III Uncertainty-Driven Exploration}{}% 45
+\BOOKMARK [0][]{chapter.5}{Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{part.3}% 46
+\BOOKMARK [1][]{section.5.1}{Related work}{chapter.5}% 47
+\BOOKMARK [1][]{section.5.2}{Thompson Sampling in value-based Reinforcement Learning}{chapter.5}% 48
+\BOOKMARK [1][]{section.5.3}{Efficient uncertainty estimation}{chapter.5}% 49
+\BOOKMARK [2][]{subsection.5.3.1}{Online estimation}{section.5.3}% 50
+\BOOKMARK [2][]{subsection.5.3.2}{Bootstrapping}{section.5.3}% 51
+\BOOKMARK [1][]{section.5.4}{Experiments}{chapter.5}% 52
+\BOOKMARK [2][]{subsection.5.4.1}{Discrete state space}{section.5.4}% 53
+\BOOKMARK [1][]{section.5.5}{Other results}{chapter.5}% 54
+\BOOKMARK [2][]{subsection.5.5.1}{Continuous state space}{section.5.5}% 55
+\BOOKMARK [2][]{subsection.5.5.2}{Deep Reinforcement Learning}{section.5.5}% 56
+\BOOKMARK [0][]{chapter.6}{Exploration Driven by an Optimistic Bellman Equation}{part.3}% 57
+\BOOKMARK [1][]{section.6.1}{Learning Value Function Ensembles with Optimistic Estimate Selection}{chapter.6}% 58
+\BOOKMARK [2][]{subsection.6.1.1}{An Optimistic Bellman Equation for Action-Value Function Ensembles}{section.6.1}% 59
+\BOOKMARK [-1][]{part.4}{IV Final Considerations}{}% 60
+\BOOKMARK [0][]{chapter.7}{Mushroom}{part.4}% 61
+\BOOKMARK [0][]{chapter.8}{Conclusion}{part.4}% 62
+\BOOKMARK [0][]{section*.65}{Bibliography}{part.4}% 63
