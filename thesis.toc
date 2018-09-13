@@ -58,34 +58,34 @@
 \contentsline {subsubsection}{Acrobot}{38}{subsubsection*.44}
 \contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{39}{chapter.4}
 \contentsline {section}{\numberline {4.1}Preliminaries}{40}{section.4.1}
-\contentsline {section}{\numberline {4.2}The Proposed Method}{41}{section.4.2}
+\contentsline {section}{\numberline {4.2}The Proposed Method}{40}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Decomposition of the TD error}{41}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Analysis of the decomposed update}{42}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.2}Analysis of the decomposed update}{41}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Variance dependent learning rate}{42}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Discussion on convergence}{44}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Experimental Results}{45}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Noisy Grid World}{46}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.2.4}Discussion on convergence}{43}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Experimental Results}{44}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Noisy Grid World}{45}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Double Chain}{47}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Grid World with Holes}{49}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}Grid World with Holes}{48}{subsection.4.3.3}
 \contentsline {subsection}{\numberline {4.3.4}On-policy learning}{50}{subsection.4.3.4}
-\contentsline {part}{\textlatin {III}\hspace {1em}Uncertainty-Driven Exploration}{53}{part.3}
-\contentsline {chapter}{\numberline {5}Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{55}{chapter.5}
-\contentsline {section}{\numberline {5.1}Related work}{56}{section.5.1}
-\contentsline {section}{\numberline {5.2}Thompson Sampling in value-based Reinforcement Learning}{57}{section.5.2}
-\contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{58}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Online estimation}{58}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{61}{subsection.5.3.2}
-\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{61}{paragraph*.57}
-\contentsline {paragraph}{Bootstrapped Q-Learning}{61}{paragraph*.58}
-\contentsline {section}{\numberline {5.4}Experiments}{62}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Discrete state space}{62}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}Other results}{63}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Continuous state space}{63}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Deep Reinforcement Learning}{64}{subsection.5.5.2}
-\contentsline {chapter}{\numberline {6}Exploration Driven by an Optimistic Bellman Equation}{67}{chapter.6}
-\contentsline {section}{\numberline {6.1}Learning Value Function Ensembles with Optimistic Estimate Selection}{68}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}An Optimistic Bellman Equation for Action-Value Function Ensembles}{68}{subsection.6.1.1}
-\contentsline {part}{\textlatin {IV}\hspace {1em}Final Considerations}{71}{part.4}
-\contentsline {chapter}{\numberline {7}Mushroom}{73}{chapter.7}
-\contentsline {chapter}{\numberline {8}Conclusion}{75}{chapter.8}
-\contentsline {chapter}{Bibliography}{77}{section*.65}
+\contentsline {part}{\textlatin {III}\hspace {1em}Uncertainty-Driven Exploration}{51}{part.3}
+\contentsline {chapter}{\numberline {5}Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Related work}{54}{section.5.1}
+\contentsline {section}{\numberline {5.2}Thompson Sampling in value-based Reinforcement Learning}{55}{section.5.2}
+\contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{56}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Online estimation}{56}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{59}{subsection.5.3.2}
+\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{59}{paragraph*.57}
+\contentsline {paragraph}{Bootstrapped Q-Learning}{59}{paragraph*.58}
+\contentsline {section}{\numberline {5.4}Experiments}{60}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Discrete state space}{60}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}Other results}{61}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Continuous state space}{61}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Deep Reinforcement Learning}{62}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Exploration Driven by an Optimistic Bellman Equation}{65}{chapter.6}
+\contentsline {section}{\numberline {6.1}Learning Value Function Ensembles with Optimistic Estimate Selection}{66}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}An Optimistic Bellman Equation for Action-Value Function Ensembles}{66}{subsection.6.1.1}
+\contentsline {part}{\textlatin {IV}\hspace {1em}Final Considerations}{69}{part.4}
+\contentsline {chapter}{\numberline {7}Mushroom}{71}{chapter.7}
+\contentsline {chapter}{\numberline {8}Conclusion}{73}{chapter.8}
+\contentsline {chapter}{Bibliography}{75}{section*.65}
