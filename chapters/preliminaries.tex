@@ -10,14 +10,14 @@
 \end{minipage}
 \caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:mdp1}
 \end{figure}
-The interaction of an agent inside an environment can be seen as the execution of actions to move itself and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $S_t$ of the environment, executes an action $A_t$ and observes the new representation of the environment $S_{t+1}$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. Together with $S_{t+1}$, the agent also sees a return $R_t$ which is not given by the environment, but is a measure considered by the agent to evaluate the convenience of the consequences of the actions it executes. The total number of time steps is called \textit{horizon} $H$ and determines a first taxonomy of problems:
+The interaction of an agent inside an environment can be seen as the execution of actions to move itself and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $s$ of the environment, executes an action $a$ and observes the new representation of the environment $s'$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. The total number of time steps $t_i$ is called \textit{horizon} $H$ and determines a first taxonomy of problems:
 \begin{itemize}
  \item finite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, H)$;
  \item infinite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, \infty)$.
 \end{itemize}
-Some problems can terminate before reaching the horizon, which happens when the agent reaches special situations called \textit{absorbing} states. These states are usually desirable or catastrophic states when the interaction of the agent with the environment is no more useful or impossible. The set of steps between the start of the interaction to the end is called \textit{episode}.
+Some problems can terminate before reaching the horizon, which happens when the agent reaches special situations called \textit{absorbing} states. These states are usually desired or catastrophic states when the interaction of the agent with the environment is no more useful or impossible. The set of steps between the start of the interaction to the end is called \textit{episode}.
 
-The interaction of the agent with the environment is performed with the purpose to reach a goal for which the agent has been designed. The way to give the knowledge of the goal to the agent is to provide it with a measure of the quality of its behavior. This measure is called \textit{reward} and is a function usually returning a real scalar value given the observation of the current state of the agent. The goal of the agent is to maximize a measure related to the collected rewards. In an infinite time horizon problem it can be:
+The interaction of the agent with the environment is performed with the purpose to reach a goal for which the agent has been designed. The way to give the knowledge of the goal to the agent is to provide it with a measure of the quality of its behavior. This measure is called \textit{reward} $R(s,a,s')$ and is a function usually returning a real scalar value $r$ given the action $a$ performed by the agent in state $s$ and bringing to state $s'$. The goal of the agent is to maximize a measure related to the collected rewards. In an infinite time horizon problem it can be:
 \begin{itemize}
  \item cumulative reward:
  \begin{equation}\label{E:sumrew}
@@ -32,7 +32,7 @@ The interaction of the agent with the environment is performed with the purpose 
  J = \sum_{t=0}^\infty \gamma^t r_t.
 \end{equation}
 \end{itemize}
-The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$, called \textit{discount factor}, which has the purpose to give different importance to rewards w.r.t. the time step they have been collected. If $\gamma = 1$ the equation reduces to~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards far in time. In all the following, we consider a \textit{transition} as a $4$-tuple $\langle s,a,r,s' \rangle$ where $s$ is the state where action $a$ is executed arriving at state $s'$ and obtaining a reward $r$.
+The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in (0, 1]$, called \textit{discount factor}, which has the purpose to give different importance to rewards w.r.t. the time step they have been collected. If $\gamma = 1$ the equation reduces to~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards far in time.
 
 \section{Markov Decision Processes}
 \begin{figure}[t]
@@ -56,24 +56,25 @@ A \gls{mdp} is called \textit{finite}, or \textit{discrete}, if the set of state
 Two important properties of \glspl{mdp} are:
 \begin{itemize}
  \item \textbf{stationarity:} the transition function $\mathcal{T}$ does not change over time;
- \item \textbf{Markovian assumption:} the transition and reward function depend only on the current time step and not on the previous ones.
+ \item \textbf{Markovian assumption:} the transition and reward function depend only on the current time step and not on the previous ones;
+ \item \textbf{ergodicity:} a \gls{mdp} is called \textit{ergodic} when the agent can reach all the states of the \gls{mdp} from every state.
 \end{itemize}
-These two properties are taken as assumptions by most of the literature about \glspl{mdp} and by the work presented in this thesis too.
+These three properties are taken as assumptions by most of the literature about \glspl{mdp} and by the works presented in this thesis too.
 
 \subsection{Value functions}
-Recalling that the goal of the agent is to maximize the cumulative (discounted) reward obtained during an episode, a \gls{mdp} is considered \textit{solved} when the agent learns the actions to perform in each state which maximizes this measure. The function defining the probability of executing action $a$ in a state $s$ is called \textit{policy}: $\pi(s) = P(a|s)$. An \textit{optimal} policy $\pi^*$ is the one which, when followed, allows the agent to solve the \gls{mdp}. Considering the stochasticity in the transition function $\mathcal{T}$ and in the policy $\pi$, the expected value of the cumulative discounted reward obtainable following $\pi$ is called \textit{state value function}:
+Recalling that the goal of the agent is to maximize the cumulative (discounted) reward $J$ obtained during an episode, a \gls{mdp} is considered \textit{solved} when the agent learns the actions to perform in each state which maximizes this measure. The function defining the probability of executing action $a$ in a state $s$ is called \textit{policy}: $\pi(s) = P(a|s)$. An \textit{optimal} policy $\pi^*$ is the one which, when followed, allows the agent to solve the \gls{mdp}. Considering the stochasticity in the transition function $\mathcal{T}$ and in the policy $\pi$, the expected value of the cumulative discounted reward obtainable following $\pi$ is called \textit{state-value function}
 \begin{equation}
  V_\pi(s) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k r_{t+k}], \forall s \in \mathcal{S}.
 \end{equation}
-Then, an optimal policy can be defined also as the one which maximizes the value function of each state:
+Then, an optimal policy can be defined also as the one which maximizes the value function of each state
 \begin{equation}
  V^*(s) = \max_\pi V_\pi(s), \forall s \in \mathcal{S}.
 \end{equation}
-Together with the state value function, the \textit{action value function} is defined as:
+Together with the state-value function, the \textit{action-value function} is defined as
 \begin{equation}
  Q_\pi(s, a) = \mathbb{E}_\pi[\sum_{k=0} \gamma^k r_{t+k}], \forall s \in \mathcal{S}, a \in \mathcal{A}.
 \end{equation}
-And subsequently the optimal policy maximizes also the action value function of each state-action tuple:
+And subsequently the optimal policy maximizes also the action value function of each state-action tuple
 \begin{equation}
  Q^*(s,a) = \max_\pi Q_\pi(s,a), \forall s \in \mathcal{S}, a \in \mathcal{A}.
 \end{equation}
