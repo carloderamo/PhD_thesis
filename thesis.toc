@@ -2,6 +2,8 @@
 \select@language {english}
 \select@language {english}
 \select@language {english}
+\contentsline {section}{List of Figures}{\textlatin {IX}}{chapter*.4}
+\contentsline {section}{List of Algorithms}{\textlatin {XI}}{chapter*.5}
 \contentsline {chapter}{Glossary}{\textlatin {XIII}}{section*.7}
 \contentsline {part}{\textlatin {I}\hspace {1em}Starting Point}{1}{part.1}
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
