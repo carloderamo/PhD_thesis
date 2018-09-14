@@ -42,9 +42,9 @@
 \contentsline {subsection}{\numberline {3.4.1}Online}{27}{subsection.3.4.1}
 \contentsline {subsubsection}{Weighted $Q$-Learning}{27}{subsubsection*.27}
 \contentsline {subsection}{\numberline {3.4.2}Batch}{28}{subsection.3.4.2}
-\contentsline {subsubsection}{Weighted Fitted Q-Iteration}{28}{subsubsection*.28}
+\contentsline {subsubsection}{Weighted Fitted $Q$-Iteration}{28}{subsubsection*.28}
 \contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{29}{subsection.3.4.3}
-\contentsline {subsubsection}{Weighted Deep Q-Network}{29}{subsubsection*.29}
+\contentsline {subsubsection}{Weighted Deep $Q$-Network}{29}{subsubsection*.29}
 \contentsline {section}{\numberline {3.5}Empirical results}{30}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Discrete States and Action Spaces}{30}{subsection.3.5.1}
 \contentsline {subsubsection}{Internet Ads}{30}{subsubsection*.31}
@@ -91,11 +91,14 @@
 \contentsline {paragraph}{Explicit Exploration.}{69}{paragraph*.68}
 \contentsline {subsection}{\numberline {6.1.2}Optimistic Value Function Estimators}{70}{subsection.6.1.2}
 \contentsline {paragraph}{Optimistic $Q$-Learning.}{70}{paragraph*.69}
-\contentsline {paragraph}{Optimistic DQN.}{71}{paragraph*.70}
+\contentsline {paragraph}{Optimistic Deep $Q$-Network}{71}{paragraph*.70}
 \contentsline {paragraph}{Automatic Hyper-parameter Adaptation.}{71}{paragraph*.71}
 \contentsline {paragraph}{Ensuring a Prior Distribution.}{72}{paragraph*.72}
 \contentsline {section}{\numberline {6.2}Experimental Evaluation}{72}{section.6.2}
-\contentsline {part}{\textlatin {IV}\hspace {1em}Final Considerations}{73}{part.4}
-\contentsline {chapter}{\numberline {7}Mushroom}{75}{chapter.7}
-\contentsline {chapter}{\numberline {8}Conclusion}{77}{chapter.8}
-\contentsline {chapter}{Bibliography}{79}{section*.73}
+\contentsline {paragraph}{Initialization of the $Q$-functions.}{73}{paragraph*.73}
+\contentsline {paragraph}{Hyper-Parameter Tuning.}{73}{paragraph*.74}
+\contentsline {subsection}{\numberline {6.2.1}Results}{73}{subsection.6.2.1}
+\contentsline {part}{\textlatin {IV}\hspace {1em}Final Considerations}{75}{part.4}
+\contentsline {chapter}{\numberline {7}Mushroom}{77}{chapter.7}
+\contentsline {chapter}{\numberline {8}Conclusion}{79}{chapter.8}
+\contentsline {chapter}{Bibliography}{81}{section*.75}

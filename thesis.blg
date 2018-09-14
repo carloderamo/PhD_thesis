@@ -6,6 +6,8 @@ Database file #1: thesis.bib
 Warning--I didn't find a database entry for "lee2012intelligent"
 Warning--I didn't find a database entry for "d2016estimating"
 Warning--I didn't find a database entry for "osband2016deep"
+Warning--I didn't find a database entry for "brockman2016openai"
+Warning--I didn't find a database entry for "moore1990efficient"
 Warning--empty year in azizzadenesheli2517efficient
 Warning--can't use both volume and number fields in bertsekas2005dynamic
 Warning--can't use both author and editor fields in EvenDar2001
@@ -13,7 +15,7 @@ Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
 You've used 89 entries,
             2118 wiz_defined-function locations,
-            976 strings with 19357 characters,
+            978 strings with 19393 characters,
 and the built_in function-call counts, 36056 in all, are:
 = -- 3593
 > -- 1699
@@ -52,4 +54,4 @@ warning$ -- 5
 while$ -- 348
 width$ -- 91
 write$ -- 982
-(There were 8 warnings)
+(There were 10 warnings)

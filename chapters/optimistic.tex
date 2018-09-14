@@ -165,7 +165,7 @@ This implies that a cell updated $N$ times, with learning rates $\{\alpha_i\}$, 
 Further details, including a proof of convergence, are given in the supplemental material\footnote{We based our convergence proof for \gls{oql} on the works of~\cite{melo2001convergence} and~\cite{jaakkola1994convergence}.}.
 All the considerations done so far provide a deeper insight about how the algorithm works and its properties. However, in a more complex settings, (e.g., function approximation) the convergence to zero of the exploratory bonus is not guaranteed in general.
 
-\paragraph{Optimistic DQN.}
+\paragraph{Optimistic Deep $Q$-Network}
 \label{sec:proposedalg}
 
 In addition to the novel \gls{oql} algorithm described previously that can be used for limited discrete state spaces, we
@@ -236,20 +236,16 @@ For \gls{odqn}, as is done in \gls{bdqn}, we choose to maintain the diversity be
 
 \section{Experimental Evaluation}
 \label{S:odqn_experiments}
-% In the experiments, we compare in the tabular $Q$-function case our novel \gls{oql} with the well-known state-of-the-art bootstrapped $Q$-learning method (BQL) \cite{osband2016deep}, classical $Q$-learning~\cite{watkins1989learning}, and $Q$-learning with optimistic initialization~\cite{sutton1998reinforcement} in the $50$-Chain \cite{osband2016deep}, Taxi (also known as Maze) \cite{dearden1998bayesian} and Frozen Lake \cite{brockman2016openai} environments. For neural-network based $Q$-functions, we compare our new optimistic deep $Q$-learning (ODQN) method with bootstrapped deep $Q$-learning (BDQN) and classical deep $Q$-learning (DQN) in the Taxi and Acrobot \cite{sutton1996generalization} environments.
-% The environments are chosen to cover different types of dynamics, have sparse rewards, and include both discrete and continuous states. For Acrobot and Frozen Lake, we used the implementation provided by OpenAI Gym \cite{brockman2016openai}. First, we will discuss the environments in more detail, then we will provide some details on the
-% initialization of the methods, and finally finish with an analysis of the results.
-% 
-% The \textbf{N-Chain} environment \cite{osband2016deep} requires a long sequence of non-rewarding actions to achieve the optimal reward. The \gls{mdp} consists of a chain with $N$ states $\{s_i\}_{i=1}^N$, and two actions that move the agent to state $s_{i+1}$ or $s_{i-1}$. The agent always starts in state $s_2$. In state $s_1$ the agent observes a small reward $r(s_1)=1/1000$, while in the $N$\textsuperscript{th} state the agent observes $r(s_N) = 1$. The reward function is zero elsewhere. The agent needs to explore until reaching state $s_N$ even if state $s_1$ looks promising.
-% 
-% The \textbf{Taxi} environment, also known as Maze~\cite{dearden1998bayesian}, consists of a $8\times 8$ grid-world where a taxi has to collect passengers and take them to the goal position where the only non-null reward is observed. For $0$, $1$, $2$ and $3$ passengers collected, the reward is $0$, $1$, $3$ and $15$, respectively. The agent must explore to 1) discover that reaching the goal position with less than $3$ passengers is not optimal, 2) to find the optimal path.
-%   
-% The \textbf{Frozen Lake} environment is a $8\times 8$ grid-world, in which the agent has to reach a goal position without falling into some holes. The stochastic perturbation of the agent's movement makes the environment challenging.
-% 
-% The \textbf{Acrobot} environment was firstly proposed by~\cite{sutton1996generalization} and consists of two linked robotic arms that hang downward with only one actuated joint between the two arms. The agent swings the robotic arms until the end of the second link exceeds a certain height. At each step the agent perceives a negative reward of $-1$. The environment requires significant exploration to find a way to swing the robotic arms at defined height.
+In the experiments, we compare in the tabular $Q$-function case our novel \gls{oql} with the well-known state-of-the-art bootstrapped $Q$-learning method (BQL) \cite{osband2016deep}, classical $Q$-learning~\ref{S:FQI}, and $Q$-learning with optimistic initialization~\cite{sutton1998reinforcement} in the $50$-Chain \cite{osband2016deep}, Taxi (also known as Maze) \cite{dearden1998bayesian} and Frozen Lake \cite{brockman2016openai} environments. In the case of neural networks approximation, we compare our \gls{odqn} method with \gls{bdqn} and classical \gls{dqn} in the Taxi and Acrobot environments already described in the previous chapters.
+The environments are chosen to cover different types of dynamics, have sparse rewards, and include both discrete and continuous states. For Acrobot and Frozen Lake, we used the implementation provided by OpenAI Gym~\cite{brockman2016openai}. First, we will discuss the environments in more detail, then we will provide some details on the
+initialization of the methods, and finally finish with an analysis of the results.
 
-%This problem consists of modeling a car which is placed in a valley, and the power of its engine is not enough to reach the top of the mountain \cite{moore1990efficient}. The car needs to build momentum by driving backward. We use the implementation provided by OpenAI Gym \cite{brockman2016openai}.
-% 
+The \textbf{N-Chain} environment \cite{osband2016deep} requires a long sequence of non-rewarding actions to achieve the optimal reward. The \gls{mdp} consists of a chain with $N$ states $\{s_i\}_{i=1}^N$, and two actions that move the agent to state $s_{i+1}$ or $s_{i-1}$. The agent always starts in state $s_2$. In state $s_1$ the agent observes a small reward $r(s_1)=1/1000$, while in the $N$\textsuperscript{th} state the agent observes $r(s_N) = 1$. The reward function is zero elsewhere. The agent needs to explore until reaching state $s_N$ even if state $s_1$ looks promising.
+   
+The \textbf{Frozen Lake} environment is a $8\times 8$ grid-world, in which the agent has to reach a goal position without falling into some holes. The stochastic perturbation of the agent's movement makes the environment challenging.
+
+This problem consists of modeling a car which is placed in a valley, and the power of its engine is not enough to reach the top of the mountain \cite{moore1990efficient}. The car needs to build momentum by driving backward. We use the implementation provided by OpenAI Gym \cite{brockman2016openai}.
+
 % \begin{figure*}[t]
 % 	\centering
 % 	\begin{subfigure}[t]{0.42\textwidth}
@@ -258,24 +254,24 @@ For \gls{odqn}, as is done in \gls{bdqn}, we choose to maintain the diversity be
 % 		\node[state, right=of 1] (2) {2};
 % 		\node[state, right=of 2] (3) {\dots};
 % 		\node[state, right=of 3] (4) {N};
-% 		%\node[above=0.5 of 4] (5) {R};
-% %		\draw[-stealth,
-% %		decoration={snake, 
-% %			amplitude = .4mm,
-% %			segment length = 2mm,
-% %			post length=0.9mm},decorate] (4) -- (5);
+% 		\node[above=0.5 of 4] (5) {R};
+% 		\draw[-stealth,
+% 		decoration={snake, 
+% 			amplitude = .4mm,
+% 			segment length = 2mm,
+% 			post length=0.9mm},decorate] (4) -- (5);
 % 		\draw[every loop]
 % 		(1) edge[loop above] node {b, $0.001$} (1)
 % 		(1) edge[bend left, auto=left] node {a} (2)
-% 		%(2) edge[loop above] node {a} (2)
+% 		(2) edge[loop above] node {a} (2)
 % 		(2) edge[bend left, auto=left] node {a} (3)
-% 		%(3) edge[loop above] node {a} (3)
+% 		(3) edge[loop above] node {a} (3)
 % 		(3) edge[bend left, auto=left] node {a} (4)
-% 		%(1) edge[loop below] node {b} (1)
+% 		(1) edge[loop below] node {b} (1)
 % 		(2) edge[bend left, auto=left] node {b} (1)
-% 		%(2) edge[loop below] node {b} (2)
+% 		(2) edge[loop below] node {b} (2)
 % 		(3) edge[bend left, auto=left] node {b} (2)
-% 		%(3) edge[loop below] node {b, $1$} (3);
+% 		(3) edge[loop below] node {b, $1$} (3);
 % 		(4) edge[bend left, auto=left] node {b} (3)
 % 		(4) edge[loop above] node {a, $1$} (4);
 % 		\end{tikzpicture}
@@ -291,7 +287,7 @@ For \gls{odqn}, as is done in \gls{bdqn}, we choose to maintain the diversity be
 % 	\end{subfigure}
 % 	\caption{Illustration of the environments, from the left to the right: $N$-Chain,  Taxi, Frozen Lake and Acrobot. }
 % \end{figure*}
-% 
+
 % \setlength\figureheight{4cm}
 % \setlength\figurewidth{4cm}
 % \begin{figure*}[t]
@@ -299,55 +295,39 @@ For \gls{odqn}, as is done in \gls{bdqn}, we choose to maintain the diversity be
 % 	\caption{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
 % 	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
 % 	 together with $95\%$ confidence intervals. The
-%      second row shows the distribution over the number of time steps before observing the maximum reward in the MDP.}
+%      second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
 % 	\label{results1}
 % \end{figure*}
-% \paragraph{Initialization of the $Q$-functions.} In the tabular setting, for optimistically initialized Q-learning (OIQL), we initialize the $Q$-function to $15$ in Taxi and to $1$ in $N$-Chain and Frozen Lake. For the other algorithms, we initialize $Q(s,a) \sim \mathcal{N}(\mu=0,\sigma=2)$, except $Q_E$ of OQL is initialized to $0$.
-% In the taxi environment, for both ODQN and BDQN, we use a shared convolutional layer with multiple heads as described in \cite{osband2016deep}. For the Acrobot, each component of the ensemble corresponds to a one-layer neural network. For ODQN, in both the environment, we initialize the output layer corresponding to $Q_E$ to small values of the parameters, in order to obtain initially $Q_E \approx 0$. 
-% 
-% % \textbf{Training and evaluation.} All algorithms go through a training phase, followed by an evaluation. Evaluations are obtained by majority voting of the $Q$-functions for BDQN and BQL. ODQN and OQL perform the majority vote using only $\{Q_k\}_{i=2}^M$ since $Q_1$ approximates $Q_E$. In the tabular setting, the training phase of each epoch requires $1000$ steps. The results are averaged on $64$ different random seeds, with the exception of Frozen Lake, which, due to its high stochasticity, required $128$ experiments to reduce the confidence intervals. For BDQN and ODQN was difficult to find the same hyperparameters working both on Taxi and Acrobot, since for Taxi we used a convolutional neural network with $10$ different 'heads', while for Acrobot we used a simple multilayer perceptron with $2$ layers. The corresponding plots are the results of an average over $100$ different seeds. For further details regarding the implementation and the hyperparameters, please refer to the supplementary material. 
-% 
-% \paragraph{Hyper-Parameter Tuning.} For the tabular settings, we did not run any hyper-parameter optimization. With neural networks we performed a small grid search over the number of neurons of the network, and whether to use bootstrapping or not. More specifically, we selected hyper-parameters maximizing the mean return averaged over the whole learning curve, using $20$ different seeds. In the plots; we compare ODQN and BDQN using the best hyper-parameter setup found for BDQN. In OQL we use $\eta=10$ and for ODQN, we use $\chi=0.25$ and $\iota_{\max}=1$. For further details about the implementation of the algorithms, and the grid search, please see the Supplement.
-% 
-% 
-% \subsection{Results}
-% Figure~\ref{results1} summarizes the results obtained by averaging over $64$ different seed the tabular alrogithms, and $100$ seeds DQN and BDEN (more details, e.g. results for different hyper-parameter 
-% settings, can be found in the supplement).
-% OQL learns faster than the other tabular algorithms. In the Chain environment, and in Taxi,
-% our algorithm OQL finds the highest reward faster than BQL or QL. On the other hand, also OIQL seems to find
-% high rewards fast, as shown in the box-plots. However, OIQL requires more training epochs to escape the high initial
-% optimistic values of the value function. In contrast, OQL finds high values fast in all the problems
-% ($50$-Chain, Taxi, Frozen Lake) using the optimistic Bellman equation
-% while converging to a near-optimal solution as suggested by our convergence proofs.
-% 
-% With neural network approximation of the value function, ODQN outperforms BDQN in the Taxi environment
-% demonstrating that the principles of OBE work even with function approximation. In the Cartpole environment,
-% the learning curves of ODQN and ODQN are nearly identical, possibly, due to the simplicity of the environment.
-% %However, ODQN has a higher median performance in both Taxi and Cartpole when measured w.r.t.\ the number of steps
-% %required to receive maximum return.
-% 
-% 
-% \section{Conclusion}
-% 
-% The main contribution of our work is the introduction of the optimistic Bellman equation (OBE) which
-% provides an optimistic estimate of the value function over uncertainty. Our approach can be viewed as a
-% principled IM technique where the agent is intrinsically rewarded by uncertainty and which, similar to
-% approximated Bayesian methods, estimates the  an ensemble. We propose two
-% algorithms: OQL for the tabular case and ODQN for the neural network case. Given the usual assumptions
-% on the learning rate and state visits, we show that OQL convergences to the optimal policy, 
-% analyze the implicitly defined exploration bonus in QQL and show the relationship to intrinsic
-% motivation based approaches. In empirical
-% evaluations on a variety of tasks where exploration is crucial, OQL and OQDN outperform comparison
-% methods due to being able to find high rewards earlier.
-% 
-% % We leave the testing of ODQN in higher-dimensional tasks (such as Atari), where analyzing the core 
-% % behavior of the algorithm is challenging, as future work. 
-% 
-% % We leave the testing of ODQN on higher-dimensional tasks (such as Atari) as future work. 
-% % A drawback of the OBE, consists in the fact that there is not a principled criteria to maintain
-% % different estimates in the ensemble. We think that it is possible to overcome this issue by developing
-% % an optimistic Bellman equation over a $Q$-distribution instead of over a $Q$-ensemble. we could obtain a
-% % practical algorithm over distributions using quantile regression \cite{dabney2017distributional}. 
+\paragraph{Initialization of the $Q$-functions.} In the tabular setting, for optimistically initialized Q-learning (OIQL), we initialize the $Q$-function to $15$ in Taxi and to $1$ in $N$-Chain and Frozen Lake. For the other algorithms, we initialize $Q(s,a) \sim \mathcal{N}(\mu=0,\sigma=2)$, except $Q_E$ of \gls{oql} is initialized to $0$.
+In the taxi environment, for both \gls{odqn} and \gls{bdqn}, we use a shared convolutional layer with multiple heads as described in \cite{osband2016deep}. For the Acrobot, each component of the ensemble corresponds to a one-layer neural network. For \gls{odqn}, in both the environment, we initialize the output layer corresponding to $Q_E$ to small values of the parameters, in order to obtain initially $Q_E \approx 0$. 
+
+% \textbf{Training and evaluation.} All algorithms go through a training phase, followed by an evaluation. Evaluations are obtained by majority voting of the $Q$-functions for BDQN and BQL. ODQN and OQL perform the majority vote using only $\{Q_k\}_{i=2}^M$ since $Q_1$ approximates $Q_E$. In the tabular setting, the training phase of each epoch requires $1000$ steps. The results are averaged on $64$ different random seeds, with the exception of Frozen Lake, which, due to its high stochasticity, required $128$ experiments to reduce the confidence intervals. For BDQN and ODQN was difficult to find the same hyperparameters working both on Taxi and Acrobot, since for Taxi we used a convolutional neural network with $10$ different 'heads', while for Acrobot we used a simple multilayer perceptron with $2$ layers. The corresponding plots are the results of an average over $100$ different seeds. For further details regarding the implementation and the hyperparameters, please refer to the supplementary material. 
+
+\paragraph{Hyper-Parameter Tuning.} For the tabular settings, we did not run any hyper-parameter optimization. With neural networks we performed a small grid search over the number of neurons of the network, and whether to use bootstrapping or not. More specifically, we selected hyper-parameters maximizing the mean return averaged over the whole learning curve, using $20$ different seeds. In the plots; we compare \gls{odqn} and \gls{bdqn} using the best hyper-parameter setup found for \gls{bdqn}. In \gls{oql} we use $\eta=10$ and for \gls{odqn}, we use $\chi=0.25$ and $\iota_{\max}=1$. For further details about the implementation of the algorithms, and the grid search, please see the Supplement.
+
+
+\subsection{Results}
+Figure~\ref{results1} summarizes the results obtained by averaging over $64$ different seed the tabular algorithms, and $100$ seeds \gls{dqn} and BDEN (more details, e.g. results for different hyper-parameter 
+settings, can be found in the supplement).
+\gls{oql} learns faster than the other tabular algorithms. In the Chain environment, and in Taxi,
+our algorithm \gls{oql} finds the highest reward faster than \gls{bql} or \gls{ql}. On the other hand, also OIQL seems to find
+high rewards fast, as shown in the box-plots. However, OIQL requires more training epochs to escape the high initial
+optimistic values of the value function. In contrast, \gls{oql} finds high values fast in all the problems
+($50$-Chain, Taxi, Frozen Lake) using the optimistic Bellman equation
+while converging to a near-optimal solution as suggested by our convergence proofs.
+
+With neural network approximation of the value function, \gls{odqn} outperforms \gls{bdqn} in the Taxi environment
+demonstrating that the principles of \gls{obe} work even with function approximation. In the Cartpole environment,
+the learning curves of \gls{odqn} and \gls{odqn} are nearly identical, possibly, due to the simplicity of the environment.
+
+% We leave the testing of ODQN in higher-dimensional tasks (such as Atari), where analyzing the core 
+% behavior of the algorithm is challenging, as future work. 
+
+% We leave the testing of ODQN on higher-dimensional tasks (such as Atari) as future work. 
+% A drawback of the OBE, consists in the fact that there is not a principled criteria to maintain
+% different estimates in the ensemble. We think that it is possible to overcome this issue by developing
+% an optimistic Bellman equation over a $Q$-distribution instead of over a $Q$-ensemble. we could obtain a
+% practical algorithm over distributions using quantile regression \cite{dabney2017distributional}. 
 % 
 % 
 % % \subsubsection*{Acknowledgments}

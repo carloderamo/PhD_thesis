@@ -234,7 +234,7 @@ It is demonstrated that since \gls{ql}~\ref{S:Q-Learning} is a stochastic approx
 In the last years, different approaches have been proposed trying to overcome this issue~\cite{lee2013bias,bellemare2015increasing,ijcai2017-483}. In particular, the most successful one is the \gls{dql} algorithm~\cite{van2010double} which replaces the \gls{me} used in \gls{ql} with \gls{de}. The underestimation of the $Q$-function performed by \gls{dql} allows to learn a good policy in very noisy environments where \gls{ql} fails.
 
 \begin{algorithm}[t]
-\caption{Weighted Q-learning}
+\caption{Weighted $Q$-learning}
 \label{A:WQ-Learning}
 \begin{algorithmic}[1]
 \STATE Initialize $Q(s,a) = 0$, $\mu(s,a) = 0$, $\sigma(s,a) = \infty$ and $s$
@@ -305,13 +305,13 @@ The \gls{fqi} update~\ref{S:FQI}, similarly to the \gls{ql} update, requires the
 \end{small}
 \end{algorithm}
 
-\subsubsection{Weighted Fitted Q-Iteration}
+\subsubsection{Weighted Fitted $Q$-Iteration}
 The \gls{fqi} variant which replaces \gls{me} with \gls{de} is called \gls{dfqi}, and the variant which we propose using \gls{we} is called \textit{Weighted} \gls{fqi} (WFQI)~\cite{deramo2017maximum}. \gls{wfqi} uses \gls{gp} regression in order to compute the mean $Q$-value and its variance in continuous state spaces (Algorithm \ref{A:WFQI}). The interesting aspect of \gls{wfqi} is that it can handle infinite action spaces too, as explained in Section \ref{S:infinite} and showed in Algorithm \ref{A:continuousWFQI}. At the best of our knowledge, this makes it the only value-based algorithm able to deal with infinite action spaces.
 
 \subsection{Deep Reinforcement Learning}
 We also analyzed the case of \gls{drl} where the overestimation problem caused by \gls{me} happens also in the \gls{dqn} algorithm resulting in critical loss of performance in some problems due to instability. The \gls{ddqn} algorithm~\cite{hasselt2015double} replaces \gls{me} with \gls{de} and shows considerable improvements and performance and stability. We worked on the replacement of \gls{me} with \gls{we} even though it is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks.
 
-\subsubsection{Weighted Deep Q-Network}\label{S:drl}
+\subsubsection{Weighted Deep $Q$-Network}\label{S:drl}
 \begin{figure}[t]
 \begin{center}
   \includegraphics[scale=.5]{img/bdqn.png}
