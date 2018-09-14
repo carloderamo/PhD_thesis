@@ -36,13 +36,13 @@
 \contentsline {section}{\numberline {3.2}Weighted Estimator}{21}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Generalization to Infinite Random Variables}{22}{subsection.3.2.1}
 \contentsline {subsubsection}{Spatially Correlated Variables}{23}{subsubsection*.23}
-\contentsline {subsubsection}{Gaussian Process Regression}{23}{subsubsection*.24}
+\contentsline {subsubsection}{Gaussian Process Regression}{24}{subsubsection*.24}
 \contentsline {section}{\numberline {3.3}Analysis of Weighted Estimator}{24}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Bias}{24}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Variance}{26}{subsection.3.3.2}
 \contentsline {section}{\numberline {3.4}Maximum Expected Value estimation in Reinforcement Learning}{27}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Online}{27}{subsection.3.4.1}
-\contentsline {subsubsection}{Weighted $Q$-Learning}{27}{subsubsection*.27}
+\contentsline {subsubsection}{Weighted $Q$-Learning}{28}{subsubsection*.27}
 \contentsline {subsection}{\numberline {3.4.2}Batch}{28}{subsection.3.4.2}
 \contentsline {subsubsection}{Weighted Fitted $Q$-Iteration}{28}{subsubsection*.28}
 \contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{29}{subsection.3.4.3}
@@ -55,9 +55,9 @@
 \contentsline {subsubsection}{Forex}{34}{subsubsection*.38}
 \contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{35}{subsection.3.5.2}
 \contentsline {subsubsection}{Pricing Problem}{35}{subsubsection*.41}
-\contentsline {subsubsection}{Swing-Up Pendulum}{36}{subsubsection*.42}
-\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning Scenario}{37}{subsection.3.5.3}
-\contentsline {subsubsection}{Acrobot}{37}{subsubsection*.44}
+\contentsline {subsubsection}{Swing-Up Pendulum}{37}{subsubsection*.42}
+\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning Scenario}{38}{subsection.3.5.3}
+\contentsline {subsubsection}{Acrobot}{38}{subsubsection*.44}
 \contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{39}{chapter.4}
 \contentsline {section}{\numberline {4.1}Preliminaries}{40}{section.4.1}
 \contentsline {section}{\numberline {4.2}The Proposed Method}{40}{section.4.2}

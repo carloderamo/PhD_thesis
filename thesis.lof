@@ -9,8 +9,8 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Markov Decision Process}}{9}{figure.caption.11}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces DQN network scheme}}{16}{figure.caption.22}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Bias analysis in WE}}{24}{figure.caption.25}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Absolute bias analysis in WE}}{24}{figure.caption.25}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Bias analysis in WE}}{25}{figure.caption.25}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Absolute bias analysis in WE}}{25}{figure.caption.25}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Variance analysis in WE}}{26}{figure.caption.26}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces MSE analysis in WE}}{26}{figure.caption.26}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Boostrapped DQN network}}{29}{figure.caption.30}
