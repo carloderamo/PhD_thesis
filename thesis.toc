@@ -19,16 +19,16 @@
 \contentsline {section}{\numberline {2.3}Solving a MDP}{10}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Dynamic Programming}{10}{subsection.2.3.1}
 \contentsline {subsubsection}{Policy Iteration}{11}{subsubsection*.12}
-\contentsline {subsubsection}{Value Iteration}{12}{subsubsection*.13}
+\contentsline {subsubsection}{Value Iteration}{11}{subsubsection*.13}
 \contentsline {subsection}{\numberline {2.3.2}Reinforcement Learning}{12}{subsection.2.3.2}
 \contentsline {paragraph}{Exploration policies}{13}{paragraph*.14}
 \contentsline {subsubsection}{Temporal Difference Learning}{14}{subsubsection*.15}
 \contentsline {paragraph}{SARSA}{14}{paragraph*.16}
-\contentsline {paragraph}{$Q$-Learning}{14}{paragraph*.17}
+\contentsline {paragraph}{$Q$-Learning}{15}{paragraph*.17}
 \contentsline {paragraph}{Fitted Q-Iteration}{15}{paragraph*.18}
 \contentsline {subsubsection}{Approximated Temporal Difference Learning}{15}{subsubsection*.19}
 \contentsline {subsubsection}{Deep Reinforcement Learning}{15}{subsubsection*.20}
-\contentsline {paragraph}{Deep Q-Network}{15}{paragraph*.21}
+\contentsline {paragraph}{Deep Q-Network}{16}{paragraph*.21}
 \contentsline {part}{\textlatin {II}\hspace {1em}Bellman Update}{17}{part.2}
 \contentsline {chapter}{\numberline {3}Maximum Expected Value estimation}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{20}{section.3.1}
@@ -103,4 +103,4 @@
 \contentsline {part}{\textlatin {IV}\hspace {1em}Final Considerations}{75}{part.4}
 \contentsline {chapter}{\numberline {7}Conclusion}{77}{chapter.7}
 \contentsline {chapter}{Bibliography}{79}{section*.75}
-\contentsline {chapter}{\numberline {A}Mushroom}{83}{appendix.A}
+\contentsline {chapter}{\numberline {A}Mushroom}{85}{appendix.A}
