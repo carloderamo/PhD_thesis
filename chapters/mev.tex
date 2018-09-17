@@ -202,7 +202,7 @@ Such results can be generalized as follows: \gls{de} suffers a small bias when t
 	\begin{minipage}{0.45\textwidth}
 	\centering	
 	\includegraphics[scale=0.7]{./img/mse.pdf}
-	\caption[MSE analysis in WE]{Comparison of the MSE of the different estimators varying the difference of the means.}\label{F:mse}
+	\caption[MSE analysis in WE]{Comparison of the \gls{mse} of the different estimators varying the difference of the means.}\label{F:mse}
 	\end{minipage}
 	\label{F:Variance_mse}
 \end{figure}
@@ -403,7 +403,7 @@ The true bid price is highlighted with a black vertical bar. \gls{me} results to
 
 \subsubsection{Grid World}
 This simple \gls{mdp} consists of a $3 \times 3$ grid world where the start state in the lower-left cell and the goal state in the upper-right cell~\cite{van2010double}. 
-In this domain, we compare the three estimators together with the performance of an algorithm called Bias-corrected \gls{ql}, a modified version of \gls{ql} that, assuming Gaussian rewards, corrects the positive bias of \gls{me} by subtracting to each $Q$-value a quantity that depends on the standard deviation of the reward and on the number of actions~\cite{lee2012intelligent,lee2013bias}. Moreover, we test \gls{wql} also using a different policy, that we call \textit{weighted policy}, which samples the action to perform in a state from the probability distribution of the weights of WE.
+In this domain, we compare the three estimators together with the performance of an algorithm called Bias-Corrected \gls{ql}, a modified version of \gls{ql} that, assuming Gaussian rewards, corrects the positive bias of \gls{me} by subtracting to each $Q$-value a quantity that depends on the standard deviation of the reward and on the number of actions~\cite{lee2012intelligent,lee2013bias}. Moreover, we test \gls{wql} also using a different policy, that we call \textit{weighted policy}, which samples the action to perform in a state from the probability distribution of the weights of WE.
 We use an $\varepsilon$-greedy policy with $\varepsilon = \frac{1}{\sqrt{n(s)}}$ where $n(s)$ is the number of times the state $s$ has been visited.
 Learning rate is $\alpha_t(s, a) = \frac{1}{n_t(s, a)^{0.8}}$ where $n_t(s, a)$ is the current number of updates of that action value and the discount factor is $\gamma = 0.95$. 
 In \gls{dql} we use two learning rates $\alpha_t^A(s, a) = \frac{1}{n_t^A(s, a)^{0.8}}$ and $\alpha_t^B(s, a) = \frac{1}{n_t^B(s, a)^{0.8}}$ where $n_t^A(s, a)$ and $n_t^B(s, a)$ are respectively the number of times when table A and table B are updated. 
@@ -422,7 +422,7 @@ In Figure \ref{F:grid}, the top plots show the average reward per step obtained 
   \end{minipage}
 \end{figure*}
 Figures~\ref{F:bernoulli} and~\ref{F:gaussian5} show that, regardless of the bad approximation of the $Q$-function, the underestimation of \gls{dql} allows to learn the best policy faster than other algorithm in these noisy settings.
-Bias-corrected \gls{ql} estimates the $Q$-function better than \gls{dql}, but performs worse than the other algorithms, except for \gls{ql}, when the variance is large.
+Bias-Corrected \gls{ql} estimates the $Q$-function better than \gls{dql}, but performs worse than the other algorithms, except for \gls{ql}, when the variance is large.
 \gls{wql} shows much less bias than the other estimators in all settings; moreover, the use of the weighted policy generally reduces the bias of the estimation and achieves the best performance in the case with $\sigma = 1$ (see Figure~\ref{F:gaussian1}). These good results are explained considering that the weighted policy is able to reduce the exploration faster than $\varepsilon$ greedy due to exploiting of the good approximation of the $Q$-function computed by \gls{wql}. It is worth to point out that \gls{wql} works well for both Gaussian and Bernoullian rewards, showing that \gls{we} is effective even with non-Gaussian distributions even if it uses a Gaussian approximation of $Q$-values,
 
 \begin{figure*}

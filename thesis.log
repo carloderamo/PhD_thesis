@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  14 SEP 2018 18:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  17 SEP 2018 15:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1672,6 +1672,11 @@ Overfull \hbox (13.64073pt too wide) in paragraph at lines 204--205
  []
 
 
+Underfull \hbox (badness 1137) in paragraph at lines 205--205
+\T1/ptm/m/it/10 Er-ror (MSE) of the dif-fer-ent es-ti-ma-tors
+ []
+
+
 Overfull \hbox (12.53917pt too wide) in paragraph at lines 213--216
 \T1/ptm/m/n/12 with the sum of the vari-ances of the sam-ple means: $[] [] \OMS
 /cmsy/m/n/12 ^^T [][] []$\T1/ptm/m/n/12 , $[] [] \OMS/cmsy/m/n/12 ^^T
@@ -1992,18 +1997,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [48 <./img/v1-1.pdf> <./img/v1-51.pdf> <./img/v5-1.pdf> <./img/v5-51.pdf> <./im
 g/lrs1-1.pdf> <./img/lrs1-51.pdf> <./img/lrs5-1.pdf> <./img/lrs5-51.pdf>]
-<./img/sarsa1.pdf, id=1750, 189.2671pt x 290.10081pt>
+<./img/sarsa1.pdf, id=1750, 187.06688pt x 290.09076pt>
 File: ./img/sarsa1.pdf Graphic file (type pdf)
  <use ./img/sarsa1.pdf>
 Package pdftex.def Info: ./img/sarsa1.pdf used on input line 319.
-(pdftex.def)             Requested size: 132.48605pt x 203.06917pt.
+(pdftex.def)             Requested size: 130.9459pt x 203.06213pt.
 
-<./img/sarsa08.pdf, id=1751, 179.21454pt x 290.08273pt>
+<./img/sarsa08.pdf, id=1751, 179.21454pt x 290.09477pt>
 File: ./img/sarsa08.pdf Graphic file (type pdf)
 
 <use ./img/sarsa08.pdf>
 Package pdftex.def Info: ./img/sarsa08.pdf used on input line 320.
-(pdftex.def)             Requested size: 125.44931pt x 203.05652pt.
+(pdftex.def)             Requested size: 125.44931pt x 203.06494pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2370,7 +2375,7 @@ dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (103 pages, 2158606 bytes).
+Output written on thesis.pdf (103 pages, 2157875 bytes).
 PDF statistics:
  2876 PDF objects out of 2984 (max. 8388607)
  2265 compressed objects within 23 object streams
