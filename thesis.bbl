@@ -28,11 +28,6 @@ Peter Auer and Ronald Ortner.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   49--56, 2007.
 
-\bibitem{azizzadenesheli2517efficient}
-Kamyar Azizzadenesheli, Emma Brunskill, and Animashree Anandkumar.
-\newblock Efficient exploration through bayesian deep q-networks.
-\newblock {\em Asteroids}, 2517(1516):108.
-
 \bibitem{bao2008infinite}
 Bing-Kun Bao, Bao-Qun Yin, and Hong-Sheng Xi.
 \newblock Infinite-horizon policy-gradient estimation with variable discount
