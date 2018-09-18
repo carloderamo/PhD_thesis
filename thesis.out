@@ -43,3 +43,15 @@
 \BOOKMARK [2][]{subsection.4.2.4}{Discussion on convergence}{section.4.2}% 43
 \BOOKMARK [1][]{section.4.3}{Experimental Results}{chapter.4}% 44
 \BOOKMARK [2][]{subsection.4.3.1}{Noisy Grid World}{section.4.3}% 45
+\BOOKMARK [2][]{subsection.4.3.2}{Double Chain}{section.4.3}% 46
+\BOOKMARK [2][]{subsection.4.3.3}{Grid World with Holes}{section.4.3}% 47
+\BOOKMARK [2][]{subsection.4.3.4}{On-policy learning}{section.4.3}% 48
+\BOOKMARK [-1][]{part.3}{III Uncertainty-Driven Exploration}{}% 49
+\BOOKMARK [0][]{chapter.5}{Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{part.3}% 50
+\BOOKMARK [1][]{section.5.1}{Related work}{chapter.5}% 51
+\BOOKMARK [1][]{section.5.2}{Thompson Sampling in value-based Reinforcement Learning}{chapter.5}% 52
+\BOOKMARK [1][]{section.5.3}{Efficient uncertainty estimation}{chapter.5}% 53
+\BOOKMARK [2][]{subsection.5.3.1}{Online estimation}{section.5.3}% 54
+\BOOKMARK [2][]{subsection.5.3.2}{Bootstrapping}{section.5.3}% 55
+\BOOKMARK [1][]{section.5.4}{Experiments}{chapter.5}% 56
+\BOOKMARK [2][]{subsection.5.4.1}{Discrete state space}{section.5
