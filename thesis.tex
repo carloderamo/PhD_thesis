@@ -38,6 +38,9 @@
 \usepackage{xcolor}
 \usepackage{subfigure} 
 \usepackage{tikz,pgfplots}
+\usetikzlibrary{automata,positioning,snakes}
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=tempfig/]
 \usepackage{graphicx}
 \usepackage{glossaries}
 \usepackage{listings}
@@ -53,7 +56,7 @@
 \usepackage{phdtitle}
 \usepackage{paralist}
 \usepackage{bibentry}
-%\usepackage[algochapter]{algorithm2e}
+\usepgfplotslibrary{groupplots}
 \usepackage[bookmarks=true,pdftex=false,bookmarksopen=true,pdfborder={0,0,0}]{hyperref}
 \usepackage{lscape}
 \usepackage{algorithmic}
