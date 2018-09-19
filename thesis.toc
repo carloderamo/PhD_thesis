@@ -1,0 +1,122 @@
+\select@language {greek}
+\select@language {english}
+\select@language {english}
+\select@language {english}
+\contentsline {section}{List of Figures}{\textlatin {IX}}{chapter*.4}
+\contentsline {section}{List of Algorithms}{\textlatin {XI}}{chapter*.5}
+\contentsline {chapter}{Glossary}{\textlatin {XIII}}{section*.7}
+\contentsline {part}{\textlatin {I}\hspace {1em}Starting Point}{1}{part.1}
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Perception and interaction}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Learn how to act with Reinforcement Learning}{4}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Uncertainty in Reinforcement Learning}{4}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Balancing exploration and exploitation}{5}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}My research}{5}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}What is my research about}{5}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}What I have done}{6}{subsection.1.3.2}
+\contentsline {chapter}{\numberline {2}Preliminaries}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Agent and environment}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}Markov Decision Processes}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Value functions}{9}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}Solving a MDP}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Dynamic Programming}{10}{subsection.2.3.1}
+\contentsline {subsubsection}{Policy Iteration}{11}{subsubsection*.12}
+\contentsline {subsubsection}{Value Iteration}{11}{subsubsection*.13}
+\contentsline {subsection}{\numberline {2.3.2}Reinforcement Learning}{12}{subsection.2.3.2}
+\contentsline {paragraph}{Exploration policies}{13}{paragraph*.14}
+\contentsline {subsubsection}{Temporal Difference Learning}{14}{subsubsection*.15}
+\contentsline {paragraph}{SARSA}{14}{paragraph*.16}
+\contentsline {paragraph}{$Q$-Learning}{15}{paragraph*.17}
+\contentsline {paragraph}{Fitted Q-Iteration}{15}{paragraph*.18}
+\contentsline {subsubsection}{Deep Reinforcement Learning}{15}{subsubsection*.19}
+\contentsline {paragraph}{Deep Q-Network}{15}{paragraph*.20}
+\contentsline {part}{\textlatin {II}\hspace {1em}Bellman Update}{17}{part.2}
+\contentsline {chapter}{\numberline {3}Maximum Expected Value estimation}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Problem definition}{20}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Related Works}{20}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Weighted Estimator}{21}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Generalization to Infinite Random Variables}{22}{subsection.3.2.1}
+\contentsline {subsubsection}{Spatially Correlated Variables}{23}{subsubsection*.22}
+\contentsline {subsubsection}{Gaussian Process Regression}{24}{subsubsection*.23}
+\contentsline {section}{\numberline {3.3}Analysis of Weighted Estimator}{24}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Bias}{24}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Variance}{26}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Maximum Expected Value estimation in Reinforcement Learning}{27}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Online}{27}{subsection.3.4.1}
+\contentsline {subsubsection}{Weighted $Q$-Learning}{28}{subsubsection*.26}
+\contentsline {subsection}{\numberline {3.4.2}Batch}{28}{subsection.3.4.2}
+\contentsline {subsubsection}{Weighted Fitted $Q$-Iteration}{28}{subsubsection*.27}
+\contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{29}{subsection.3.4.3}
+\contentsline {subsubsection}{Weighted Deep $Q$-Network}{29}{subsubsection*.28}
+\contentsline {section}{\numberline {3.5}Empirical results}{30}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Discrete States and Action Spaces}{30}{subsection.3.5.1}
+\contentsline {subsubsection}{Internet Ads}{30}{subsubsection*.30}
+\contentsline {subsubsection}{Sponsored Search Auctions}{31}{subsubsection*.32}
+\contentsline {subsubsection}{Grid World}{32}{subsubsection*.34}
+\contentsline {subsubsection}{Forex}{34}{subsubsection*.37}
+\contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{35}{subsection.3.5.2}
+\contentsline {subsubsection}{Pricing Problem}{35}{subsubsection*.40}
+\contentsline {subsubsection}{Swing-Up Pendulum}{37}{subsubsection*.41}
+\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning Scenario}{38}{subsection.3.5.3}
+\contentsline {subsubsection}{Acrobot}{38}{subsubsection*.43}
+\contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{39}{chapter.4}
+\contentsline {section}{\numberline {4.1}Preliminaries}{40}{section.4.1}
+\contentsline {section}{\numberline {4.2}The Proposed Method}{40}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Decomposition of the TD error}{41}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Analysis of the decomposed update}{41}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Variance dependent learning rate}{42}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Discussion on convergence}{43}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Experimental Results}{44}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Noisy Grid World}{45}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Double Chain}{47}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Grid World with Holes}{48}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}On-policy learning}{50}{subsection.4.3.4}
+\contentsline {part}{\textlatin {III}\hspace {1em}Uncertainty-Driven Exploration}{51}{part.3}
+\contentsline {chapter}{\numberline {5}Thompson Sampling Based Algorithms for Exploration in Reinforcement Learning}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Related work}{54}{section.5.1}
+\contentsline {section}{\numberline {5.2}Thompson Sampling in value-based Reinforcement Learning}{55}{section.5.2}
+\contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{56}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Online estimation}{56}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{59}{subsection.5.3.2}
+\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{59}{paragraph*.56}
+\contentsline {paragraph}{Bootstrapped Q-Learning}{59}{paragraph*.57}
+\contentsline {section}{\numberline {5.4}Experiments}{60}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Discrete state space}{60}{subsection.5.4.1}
+\contentsline {subsubsection}{Taxi}{60}{subsubsection*.64}
+\contentsline {paragraph}{Details}{60}{paragraph*.65}
+\contentsline {paragraph}{Setting}{60}{paragraph*.66}
+\contentsline {paragraph}{Results}{61}{paragraph*.67}
+\contentsline {subsection}{\numberline {5.4.2}Continuous state space}{62}{subsection.5.4.2}
+\contentsline {subsubsection}{Mountain Car}{62}{subsubsection*.68}
+\contentsline {paragraph}{Details}{62}{paragraph*.69}
+\contentsline {paragraph}{Setting}{62}{paragraph*.70}
+\contentsline {subsubsection}{Acrobot}{63}{subsubsection*.71}
+\contentsline {paragraph}{Details}{63}{paragraph*.72}
+\contentsline {paragraph}{Setting}{63}{paragraph*.73}
+\contentsline {paragraph}{Results}{64}{paragraph*.74}
+\contentsline {subsection}{\numberline {5.4.3}Deep Reinforcement Learning}{64}{subsection.5.4.3}
+\contentsline {paragraph}{Details}{64}{paragraph*.75}
+\contentsline {paragraph}{Setting}{64}{paragraph*.76}
+\contentsline {paragraph}{Results}{64}{paragraph*.77}
+\contentsline {chapter}{\numberline {6}Exploration Driven by an Optimistic Bellman Equation}{65}{chapter.6}
+\contentsline {section}{\numberline {6.1}Learning value function ensembles with optimistic estimate selection}{66}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}An optimistic Bellman equation for action-value function ensembles}{66}{subsection.6.1.1}
+\contentsline {subsubsection}{Entropy-regularized optimistic action-value selection}{67}{subsubsection*.78}
+\contentsline {subsubsection}{Optimistic action-value selection bounding the information loss}{68}{subsubsection*.79}
+\contentsline {subsection}{\numberline {6.1.2}Relation to Intrinsic Motivation}{68}{subsection.6.1.2}
+\contentsline {subsubsection}{Explicit exploration}{69}{subsubsection*.80}
+\contentsline {section}{\numberline {6.2}Optimistic value function estimators}{70}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Optimistic $Q$-Learning.}{70}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Optimistic Deep $Q$-Network}{71}{subsection.6.2.2}
+\contentsline {paragraph}{Automatic hyper-parameter adaptation}{71}{paragraph*.81}
+\contentsline {paragraph}{Ensuring a prior distribution}{72}{paragraph*.82}
+\contentsline {section}{\numberline {6.3}Experimental evaluation}{73}{section.6.3}
+\contentsline {paragraph}{Initialization of the $Q$-functions}{73}{paragraph*.84}
+\contentsline {paragraph}{Hyper-parameters tuning}{73}{paragraph*.85}
+\contentsline {subsection}{\numberline {6.3.1}Results}{74}{subsection.6.3.1}
+\contentsline {part}{\textlatin {IV}\hspace {1em}Final Remarks}{75}{part.4}
+\contentsline {chapter}{\numberline {7}Conclusion}{77}{chapter.7}
+\contentsline {section}{\numberline {7.1}Recap of the thesis}{77}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future directions}{78}{section.7.2}
+\contentsline {chapter}{Bibliography}{79}{section*.86}
+\contentsline {chapter}{\numberline {A}Mushroom}{85}{appendix.A}

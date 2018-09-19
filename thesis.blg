@@ -4,7 +4,6 @@ The top-level auxiliary file: thesis.aux
 The style file: plain.bst
 Database file #1: thesis.bib
 Warning--I didn't find a database entry for "lee2012intelligent"
-Warning--I didn't find a database entry for "d2016estimating"
 Warning--I didn't find a database entry for "osband2016deep"
 Warning--I didn't find a database entry for "brockman2016openai"
 Warning--I didn't find a database entry for "moore1990efficient"
@@ -15,7 +14,7 @@ Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
 You've used 90 entries,
             2118 wiz_defined-function locations,
-            985 strings with 19567 characters,
+            984 strings with 19552 characters,
 and the built_in function-call counts, 36340 in all, are:
 = -- 3625
 > -- 1701
@@ -54,4 +53,4 @@ warning$ -- 5
 while$ -- 352
 width$ -- 92
 write$ -- 993
-(There were 10 warnings)
+(There were 9 warnings)
