@@ -6,7 +6,7 @@ Shipra Agrawal and Navin Goyal.
 \newblock In {\em Conference on Learning Theory}, pages 39--1, 2012.
 
 \bibitem{asadi2016alternative}
-Kavosh Asadi and Michael~L Littman.
+Kavosh Asadi and Michael~L. Littman.
 \newblock An alternative softmax operator for reinforcement learning.
 \newblock {\em arXiv preprint arXiv:1612.05628}, 2016.
 
@@ -28,6 +28,11 @@ Peter Auer and Ronald Ortner.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   49--56, 2007.
 
+\bibitem{azizzadenesheli2517efficient}
+Kamyar Azizzadenesheli, Emma Brunskill, and Animashree Anandkumar.
+\newblock Efficient exploration through bayesian deep q-networks.
+\newblock {\em Asteroids}, 2517(1516):108.
+
 \bibitem{bao2008infinite}
 Bing-Kun Bao, Bao-Qun Yin, and Hong-Sheng Xi.
 \newblock Infinite-horizon policy-gradient estimation with variable discount
@@ -48,7 +53,7 @@ Marc Bellemare, Sriram Srinivasan, Georg Ostrovski, Tom Schaul, David Saxton,
   1471--1479, 2016.
 
 \bibitem{bellemare2013arcade}
-Marc~G Bellemare, Yavar Naddaf, Joel Veness, and Michael Bowling.
+Marc~G. Bellemare, Yavar Naddaf, Joel Veness, and Michael Bowling.
 \newblock The arcade learning environment: An evaluation platform for general
   agents.
 \newblock {\em Journal of Artificial Intelligence Research}, 47:253--279, 2013.
@@ -66,8 +71,7 @@ Richard Bellman.
 \newblock Courier Corporation, 2013.
 
 \bibitem{bertsekas2005dynamic}
-Dimitri~P Bertsekas, Dimitri~P Bertsekas, Dimitri~P Bertsekas, and Dimitri~P
-  Bertsekas.
+Dimitri~P. Bertsekas.
 \newblock {\em Dynamic programming and optimal control}, volume~1.
 \newblock Athena scientific Belmont, MA, 2005.
 
@@ -78,7 +82,7 @@ Andrea Bonarini, Alessandro Lazaric, Marcello Restelli, and Patrick Vitali.
   178, pages 355--362, 2006.
 
 \bibitem{brafman2002r}
-Ronen~I Brafman and Moshe Tennenholtz.
+Ronen~I. Brafman and Moshe Tennenholtz.
 \newblock R-max-a general polynomial time algorithm for near-optimal
   reinforcement learning.
 \newblock {\em Journal of Machine Learning Research}, 3(Oct):213--231, 2002.
@@ -102,13 +106,13 @@ Olivier Chapelle and Lihong Li.
   2249--2257, 2011.
 
 \bibitem{chentanez2005intrinsically}
-Nuttapong Chentanez, Andrew~G Barto, and Satinder~P Singh.
+Nuttapong Chentanez, Andrew~G. Barto, and Satinder~P. Singh.
 \newblock Intrinsically motivated reinforcement learning.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   1281--1288, 2005.
 
 \bibitem{crites1996improving}
-Robert~H Crites and Andrew~G Barto.
+Robert~H. Crites and Andrew~G. Barto.
 \newblock Improving elevator performance using reinforcement learning.
 \newblock In {\em Proc. NIPS}, pages 1017--1023, 1996.
 
@@ -211,7 +215,7 @@ Wassily Hoeffding.
   58(301):13--30, 1963.
 
 \bibitem{jaakkola1994convergence}
-Tommi Jaakkola, Michael~I Jordan, and Satinder~P Singh.
+Tommi Jaakkola, Michael~I. Jordan, and Satinder~P. Singh.
 \newblock Convergence of stochastic iterative dynamic programming algorithms.
 \newblock In {\em Advances in neural information processing systems}, pages
   703--710, 1994.
@@ -238,13 +242,13 @@ Kunikazu Kobayashi, Hiroyuki Mizoue, Takashi Kuremoto, and Masanao Obayashi.
 \newblock Springer Berlin Heidelberg, 2009.
 
 \bibitem{kober2013reinforcement}
-Jens Kober, J~Andrew Bagnell, and Jan Peters.
+Jens Kober, J.~Andrew Bagnell, and Jan Peters.
 \newblock Reinforcement learning in robotics: A survey.
 \newblock {\em The International Journal of Robotics Research},
   32(11):1238--1274, 2013.
 
 \bibitem{kolter2009near}
-J~Zico Kolter and Andrew~Y Ng.
+J.~Zico Kolter and Andrew~Y. Ng.
 \newblock Near-bayesian exploration in polynomial time.
 \newblock In {\em International Conference on Machine Learning}, pages
   513--520. ACM, 2009.
@@ -255,20 +259,20 @@ Tze~Leung Lai and Herbert Robbins.
 \newblock {\em Advances in applied mathematics}, 6(1):4--22, 1985.
 
 \bibitem{lee2013bias}
-Daewoo Lee, Boris Defourny, and Warren~B Powell.
+Daewoo Lee, Boris Defourny, and Warren~B. Powell.
 \newblock Bias-corrected q-learning to control max-operator bias in q-learning.
 \newblock In {\em Adaptive Dynamic Programming And Reinforcement Learning
   (ADPRL), 2013 IEEE Symposium on}, pages 93--99. IEEE, 2013.
 
 \bibitem{may2011simulation}
-Benedict~C May and David~S Leslie.
+Benedict~C. May and David~S. Leslie.
 \newblock Simulation studies in optimistic bayesian sampling in
   contextual-bandit problems.
 \newblock {\em Statistics Group, Department of Mathematics, University of
   Bristol}, 11:02, 2011.
 
 \bibitem{melo2001convergence}
-Francisco~S Melo.
+Francisco~S. Melo.
 \newblock Convergence of q-learning: A simple proof.
 \newblock {\em Institute Of Systems and Robotics, Tech. Rep}, pages 1--4, 2001.
 
@@ -279,15 +283,15 @@ Nicolas Meuleau and Paul Bourgine.
 \newblock {\em Machine Learning}, 35(2):117--154, 1999.
 
 \bibitem{mnih2015human}
-Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A Rusu, Joel Veness,
-  Marc~G Bellemare, Alex Graves, Martin Riedmiller, Andreas~K Fidjeland, Georg
-  Ostrovski, et~al.
+Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei~A. Rusu, Joel Veness,
+  Marc~G. Bellemare, Alex Graves, Martin Riedmiller, Andreas~K. Fidjeland,
+  Georg Ostrovski, et~al.
 \newblock Human-level control through deep reinforcement learning.
 \newblock {\em Nature}, 518(7540):529, 2015.
 
 \bibitem{mohagheghi2007proportional}
 Salman Mohagheghi, Yamille del Valle, Ganesh~Kumar Venayagamoorthy, and
-  Ronald~G Harley.
+  Ronald~G. Harley.
 \newblock A proportional-integrator type adaptive critic design-based
   neurocontroller for a static compensator in a multimachine power system.
 \newblock {\em IEEE Transactions on Industrial Electronics}, 54(1):86--96,
@@ -318,12 +322,12 @@ Ian Osband, Benjamin Van~Roy, and Zheng Wen.
   2377--2386, 2016.
 
 \bibitem{ostrovski2017count}
-Georg Ostrovski, Marc~G Bellemare, Aaron van~den Oord, and R{\'e}mi Munos.
+Georg Ostrovski, Marc~G. Bellemare, Aaron van~den Oord, and R{\'e}mi Munos.
 \newblock Count-based exploration with neural density models.
 \newblock {\em arXiv preprint arXiv:1703.01310}, 2017.
 
 \bibitem{pathak2017curiosity}
-Deepak Pathak, Pulkit Agrawal, Alexei~A Efros, and Trevor Darrell.
+Deepak Pathak, Pulkit Agrawal, Alexei~A. Efros, and Trevor Darrell.
 \newblock Curiosity-driven exploration by self-supervised prediction.
 \newblock In {\em International Conference on Machine Learning}, volume 2017,
   2017.
@@ -381,13 +385,13 @@ Nicolas Schweighofer and Kenji Doya.
 \newblock {\em Neural Networks}, 16(1):5--9, 2003.
 
 \bibitem{scott2010modern}
-Steven~L Scott.
+Steven~L. Scott.
 \newblock A modern bayesian look at the multi-armed bandit.
 \newblock {\em Applied Stochastic Models in Business and Industry},
   26(6):639--658, 2010.
 
 \bibitem{silver2016mastering}
-David Silver, Aja Huang, Chris~J Maddison, Arthur Guez, Laurent Sifre, George
+David Silver, Aja Huang, Chris~J. Maddison, Arthur Guez, Laurent Sifre, George
   Van Den~Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda
   Panneershelvam, Marc Lanctot, et~al.
 \newblock Mastering the game of go with deep neural networks and tree search.
@@ -409,19 +413,19 @@ David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja
 \newblock {\em Nature}, 550(7676):354, 2017.
 
 \bibitem{singh2004intrinsically}
-Satinder~P Singh, Andrew~G Barto, and Nuttapong Chentanez.
+Satinder~P. Singh, Andrew~G. Barto, and Nuttapong Chentanez.
 \newblock Intrinsically motivated reinforcement learning.
 \newblock In {\em Advances in neural information processing systems}, pages
   1281--1288, 2004.
 
 \bibitem{smith2006optimizer}
-James~E Smith and Robert~L Winkler.
+James~E. Smith and Robert~L. Winkler.
 \newblock The optimizer's curse: Skepticism and postdecision surprise in
   decision analysis.
 \newblock {\em Management Science}, 52(3):311--322, 2006.
 
 \bibitem{strehl2006pac}
-Alexander~L Strehl, Lihong Li, Eric Wiewiora, John Langford, and Michael~L
+Alexander~L. Strehl, Lihong Li, Eric Wiewiora, John Langford, and Michael~L.
   Littman.
 \newblock Pac model-free reinforcement learning.
 \newblock In {\em International Conference on Machine Learning}, pages
@@ -434,7 +438,7 @@ Malcolm Strens.
   943--950, 2000.
 
 \bibitem{sutton1998reinforcement}
-Richard~S Sutton, Andrew~G Barto, et~al.
+Richard~S. Sutton, Andrew~G. Barto, et~al.
 \newblock {\em Reinforcement learning: An introduction}.
 \newblock MIT press, 1998.
 
@@ -458,7 +462,7 @@ Ambuj Tewari and Peter~L. Bartlett.
 \newblock 2007.
 
 \bibitem{thompson1933likelihood}
-William~R Thompson.
+William~R. Thompson.
 \newblock On the likelihood that one unknown probability exceeds another in
   view of the evidence of two samples.
 \newblock {\em Biometrika}, 25(3/4):285--294, 1933.

@@ -1,26 +1,20 @@
 \chapter{Exploration Driven by an Optimistic Bellman Equation}\label{C:opt}
-The broad category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, have less theoretical guarantees
-than Bayesian approaches, yet they have obtained impressive results
-for example in the challenging Montezuma's Revenge task~\cite{bellemare2016unifying}. \gls{im}
-algorithms define an additional \textit{intrinsic} reward, which acts as an exploration bonus. Often, the additional
-reward is defined using heuristics, such as counting state visits and
-rewarding less visited states~\cite{ostrovski2017count}, or by
-\textit{surprise} which is the error in predicting future
-states~\cite{pathak2017curiosity}. However, the drawback of \gls{im} techniques is
-their lack of a principled definition of the intrinsic reward for exploration.
-
-The \gls{ofu}-based techniques already discussed in Chapter~\ref{C:ts} provide an optimistic estimation under uncertainty, encouraging in this way exploration of uncertain region. Optimism can be categorized in
+As described in Chapter~\ref{C:ts}, the \gls{ofu}-based techniques provide an optimistic estimation under uncertainty, encouraging in this way exploration of uncertain region. Optimism can be categorized in
 \begin{itemize}
- \item \textbf{optimistic initialization} of the action-value function approximator to an optimistic value, a method proposed first by~\cite{sutton1998reinforcement} about which subsequently~\cite{even2002convergence} proved convergence to a near-optimal solution;
- \item \textbf{confidence interval estimation}, such as IEQL+~\cite{meuleau1999exploration} and UCRL~\cite{auer2007logarithmic}, which directly estimates $Q$-value confidence intervals.
+\item \textbf{confidence interval estimation}, such as IEQL+~\cite{meuleau1999exploration} and UCRL~\cite{auer2007logarithmic}, which directly estimates $Q$-value confidence intervals;
+ \item \textbf{optimistic initialization} of the action-value function approximator to an optimistic value, a method proposed first by~\cite{sutton1998reinforcement} about which subsequently~\cite{even2002convergence} proved convergence to a near-optimal solution.
 \end{itemize}
+While the work in Chapter~\ref{C:ts} deals with the first category of optimism-based algorithms, the work described in the following deals with the second one. This is only partially true since we do not consider optimistic initialization, but we want the action-value to be an optimistic estimate which is propagated through the updates by the \gls{be}.
+This approach is inspired by the broad category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, that despite having less theoretical guarantees
+than Bayesian approaches, they have been able to obtain impressive results~\cite{bellemare2016unifying}. As already discussed in Chapter~\ref{C:ts}, \gls{im}
+algorithms define an additional \textit{intrinsic} reward, which acts as an exploration bonus. Often, the additional reward is defined using heuristics, such as counting state visits and rewarding less visited states~\cite{ostrovski2017count}, or by \textit{surprise} which is the error in predicting future states~\cite{pathak2017curiosity}. However, the drawback of \gls{im} techniques is their lack of a principled definition of the intrinsic reward for exploration.
 
 Considering this premise, we worked on the proposal of a novel \gls{obe}. The \gls{obe} results in an optimistic $Q$-value estimate
 from an ensemble of value functions where the optimistic estimate is obtained from a maximum-entropy principle. For the exploration bonus that \gls{obe} implicitly defines, we can prove that the bonus decreases consistently with the number of
 state visits. Our proposed algorithm can be seen as a mixture of
-different techniques: as an approximated Bayesian method~\cite{engel2005reinforcement,vlassis2012bayesian}, we estimate
-the uncertainty with an ensemble~\cite{osband2017deep}; like optimism-based methods~\cite{lai1985asymptotically,kearns2002near,brafman2002r,azizzadenesheli2517efficient}, we select
-optimistic estimates, and like \gls{im}, we propagate an implicit
+different techniques: as an approximated Bayesian method~\cite{engel2005reinforcement,vlassis2012bayesian} we estimate
+the uncertainty with an ensemble~\cite{osband2017deep}; like optimism-based methods~\cite{lai1985asymptotically,kearns2002near,brafman2002r,azizzadenesheli2517efficient} we select
+optimistic estimates, and like \gls{im} we propagate an implicit
 exploration bonus~\cite{singh2004intrinsically,schmidhuber2008driven,white2010interval}.
 
 \section{Learning Value Function Ensembles with Optimistic Estimate Selection}

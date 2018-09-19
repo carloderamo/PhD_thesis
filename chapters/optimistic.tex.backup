@@ -1,21 +1,7 @@
 \chapter{Exploration Driven by an Optimistic Bellman Equation}\label{C:opt}
-The complexity of exploration in \gls{rl} is, among other reasons, explained by the presence a sparse reward function; indeed before seeing the states yielding a sparse reward the agent does not necessarily have much information to base its decisions on. In this particular case, the attempt to address the \textit{exploration/exploitation} trade-off (near)-optimally makes no
-sense since the agent has no information to reason about possible
-rewards that it has not yet observed. In this setting, classical exploration
-approaches such as $\epsilon$-greedy may fail as the probability of
-reaching the positive reward can be low. A more effective strategy
-should take into account the underlying uncertainty and try to
-minimize it, in order to maximize the information gain. Bayesian approaches consider the uncertainty
-in a principled way but are often
-computational demanding~\cite{vlassis2012bayesian,engel2005reinforcement}. Recently, computationally feasible
-algorithms inspired by Bayesian principles have been
-introduced such as Bayesian \gls{dqn}~\cite{azizzadenesheli2517efficient} and \gls{bdqn}~\cite{osband2017deep} discussed in Chapter~\ref{C:ts}.
-However, to the best of our knowledge, there is no algorithm among these approximate techniques that is particularly suited for very sparse rewards in high-dimensional state space. Our hypothesis is that Bayesian methods are
-in general more focused on balancing between exploration and
-exploitation while they cannot achieve deep exploration. The broad
-category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, have less theoretical guarantees
+The broad category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, have less theoretical guarantees
 than Bayesian approaches, yet they have obtained impressive results
-for example in the challenging Montezuma's Revenge task~\cite{bellemare2016unifying}. \gls{im}
+for example in the challenging Montezuma's Revenge task~\cite{bellemare2016unifying}. As already discussed in Chapter~\ref{C:ts}, \gls{im}
 algorithms define an additional \textit{intrinsic} reward, which acts as an exploration bonus. Often, the additional
 reward is defined using heuristics, such as counting state visits and
 rewarding less visited states~\cite{ostrovski2017count}, or by
@@ -248,18 +234,11 @@ This problem consists of modeling a car which is placed in a valley, and the pow
 
 \begin{figure*}[t]
   \centering
-  \begin{subfigure}[t]{0.42\textwidth}
-  \begin{tikzpicture}[scale=0.8, transform shape]
+  \begin{tikzpicture}[scale=1, transform shape]
   \node[state]             (1) {1};
   \node[state, right=of 1] (2) {2};
   \node[state, right=of 2] (3) {\dots};
   \node[state, right=of 3] (4) {N};
-  %\node[above=0.5 of 4] (5) {R};
-  %		\draw[-stealth,
-  %		decoration={snake, 
-  %			amplitude = .4mm,
-  %			segment length = 2mm,
-  %			post length=0.9mm},decorate] (4) -- (5);
   \draw[every loop]
   (1) edge[loop above] node {b, $0.001$} (1)
   (1) edge[bend left, auto=left] node {a} (2)
@@ -284,14 +263,14 @@ In the taxi environment, for both \gls{odqn} and \gls{bdqn}, we use a shared con
 
 \setlength\figureheight{4cm}
 \setlength\figurewidth{4cm}
-\begin{figure*}[t]
-	\input{img/performances.tex}
-	\caption{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
-	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
-	 together with $95\%$ confidence intervals. The
-     second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
-	\label{results1}
-\end{figure*}
+% \begin{figure*}[t]
+% 	\input{img/performances.tex}
+% 	\caption{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
+% 	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
+% 	 together with $95\%$ confidence intervals. The
+%      second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
+% 	\label{results1}
+% \end{figure*}
 \subsection{Results}
 Figure~\ref{results1} summarizes the results obtained by averaging over $64$ different seed the tabular algorithms, and $100$ seeds \gls{dqn} and BDEN (more details, e.g. results for different hyper-parameter 
 settings, can be found in the supplement).
