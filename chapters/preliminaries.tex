@@ -10,7 +10,7 @@
 \end{minipage}
 \caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:mdp1}
 \end{figure}
-The interaction of an agent inside an environment can be seen as the execution of actions to move itself and observing the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $s$ of the environment, executes an action $a$ and observes the new representation of the environment $s'$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. The total number of time steps $t_i$ is called \textit{horizon} $H$ and determines a first taxonomy of problems:
+The interaction of an agent inside an environment can be seen as the execution of actions to move itself and the observation of the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $s$ of the environment, executes an action $a$ and observes the new representation of the environment $s'$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. The total number of time steps $t_i$ is called \textit{horizon} $H$ and determines a first taxonomy of problems:
 \begin{itemize}
  \item finite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, H)$;
  \item infinite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, \infty)$.
@@ -83,7 +83,7 @@ And subsequently the optimal policy maximizes also the action value function of 
 Value functions are the main concept used by several algorithms to address the problem of solving \glspl{mdp}. In the following, a description of algorithms exploiting value functions to solve \glspl{mdp} is provided, from the easiest case to the hardest ones.
 
 \subsection{Dynamic Programming}
-When the transition function $\mathcal{T}$ and reward function $\mathcal{R}$ of a \gls{mdp} are known, the full model of the environment is available. This is not the case in many real world problems where an agent does not know where the action would bring it and which return would obtain, but constitutes an interesting scenario to start studying the problem of solving a \gls{mdp}. The theory behind the solving \glspl{mdp} with full model available is known under the name of \gls{dp}~\cite{bertsekas2005dynamic, bellman2013dynamic}. The main concept in the research on \gls{dp} is the optimal \gls{be}, defined as
+When the transition function $\mathcal{T}$ and reward function $\mathcal{R}$ of a \gls{mdp} are known, the full model of the environment is available. This is not the case in many real world problems where an agent does not know where the action would bring it and which return would obtain, but constitutes an interesting scenario to start studying the problem of solving a \gls{mdp}. The theory behind the solving of \glspl{mdp} with full model available is known under the name of \gls{dp}~\cite{bertsekas2005dynamic, bellman2013dynamic}. The main concept in the research on \gls{dp} is the optimal \gls{be}, defined as
 \begin{align}
  V^*(s) &= \max_a \mathbb{E}[r_t + \gamma V^*(s')]\nonumber\\
         &= \max_a \sum_{s'} p(s' | s, a)[r + \gamma V^*(s')]
@@ -254,9 +254,6 @@ A well known \gls{td} batch variant of $Q$-Learning is the \gls{fqi} algorithm~\
  \mathcal{D}_t = \left\{ \langle (s_i,a_i), r_i + \gamma \max_{a'} \hat{Q}\left(s'_i, a'\right) \rangle\right\}_{1 \leq i \leq N}.
 \end{equation}
 Under some conditions, the algorithm is proved to converge to the optimal $Q$ in a finite number of steps. \gls{fqi} has been firstly presented using extra-trees regression~\cite{geurts2006extremely}, but has been proved to work well with other kind of regression, e.g. neural network in the \gls{nfqi} algorithm~\cite{riedmiller2005neural} or \gls{gp} regression~\cite{rasmussen2005gaussian} in the Weighted Fitted Q-Iteration algorithm~\cite{deramo2017maximum}.
-
-\subsubsection{Approximated Temporal Difference Learning}
-DA SCRIVERE
 
 \subsubsection{Deep Reinforcement Learning}
 The groundbreaking works that revived the research on \gls{rl} in recent years are certainly the ones belonging to the \gls{drl} field which consists to the use of \gls{dl} methodologies to address the \gls{rl} problem in complex high-dimensional \glspl{mdp}. Indeed, the very large state and action spaces together with the high number of features represent an obstacle to the learning with shallow \gls{rl} techniques making them computationally impractical. The recent coming of powerful computational resources, in particular the use of \glspl{gpu} for training deep neural networks in \gls{dl}, allowed to overcome this issue favoring the use of powerful deep function approximators in \gls{rl}.
