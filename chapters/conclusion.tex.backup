@@ -5,10 +5,21 @@ This thesis is the result of three years where I studied and worked on amazing t
 \section{Recap of the thesis}
 This thesis resumes the work I made during my three years of Ph.D. research about the exploitation of uncertainty in Reinforcement Learning (RL). After a first part with the introduction about general consideration on \gls{rl} and the description of preliminary concepts, the thesis is split in two parts where it is showed how uncertainty can be exploited to improve performance of state-of-the-art algorithms. In the former part, uncertainty is used to improve the estimate of the components of the update by means of the Bellman operator; in the latter part, uncertainty is used to drive exploration aiming to improve sample-efficiency of exploration policies. The exploitation of uncertainty is not a new line of research in \gls{rl}, thus my works are mainly inspired by methodologies available in literature that I considered to work out my own novel ones
 
-\subsection{What I studied}
-The first work I dealt with, after the initial study of the classical literature and the state-of-the-art works, was the Double Q-Learning (DQL)~\ref{van2010double}. This paper addresses the problem of overestimation of the action-value function happening in Q-Learning (QL)~\ref{smith2006optimizer} because of the maximum operator involved in the update rule via Bellman Equation (BE).
+\subsection{Bellman update}
+\subsubsection{What I studied}
+The first work I dealt with, after the initial study of the classical literature and the state-of-the-art works, was the Double Q-Learning (DQL)~\cite{van2010double}. This paper addresses the problem of overestimation of the Maximum Expected Value (MEV) in the context of action-value function estimation. This happens, for instance, in Q-Learning (QL)~\cite{smith2006optimizer} because of the Maximum Estimator (ME) involved in the update rule via Bellman Equation (BE). The importance of \gls{dql} stands on the proposal of a variant of \gls{ql} which replaces the \gls{me} with the Double Estimator (DE) making \gls{dql} able to avoid the overestimation providing, on the contrary, an underestimation of the optimal action-values. The underestimation helps to have good learning in some problems with high stochasticity and, more in general, in problems where there is not clearly an action which is better than the others. One of the interesting aspects of the \gls{de} is that it can be used in several value-based \gls{rl} algorithms without major changes. For instance, the offline value-based algorithm of Fitted $Q$-Iteration (FQI) can be easily modified to make it use \gls{de} resulting in what we call Double Fitted $Q$-Iteration algorithm. Moreover, the ideas behind \gls{dql} have been also applied in Deep RL (DRL) with the Double Deep $Q$-Network (DDQN) which I also considered during my research on this topic.
 
-\subsection{What I did}
+The study of 
+
+\subsubsection{What I did}
+
+\subsection{Exploration}
+
+\subsubsection{What I studied}
+
+\subsubsection{What I did}
+
+\subsubsection{Deep Reinforcement Learning}
 
 \subsection{Comments}
 
