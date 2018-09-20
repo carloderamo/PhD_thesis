@@ -106,17 +106,17 @@
 \contentsline {subsection}{\numberline {6.1.2}Relation to Intrinsic Motivation}{68}{subsection.6.1.2}
 \contentsline {subsubsection}{Explicit exploration}{69}{subsubsection*.80}
 \contentsline {section}{\numberline {6.2}Optimistic value function estimators}{70}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Optimistic $Q$-Learning.}{70}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.1}Optimistic $Q$-Learning}{70}{subsection.6.2.1}
 \contentsline {subsection}{\numberline {6.2.2}Optimistic Deep $Q$-Network}{71}{subsection.6.2.2}
-\contentsline {paragraph}{Automatic hyper-parameter adaptation}{71}{paragraph*.81}
+\contentsline {paragraph}{Automatic hyper-parameter adaptation}{72}{paragraph*.81}
 \contentsline {paragraph}{Ensuring a prior distribution}{72}{paragraph*.82}
-\contentsline {section}{\numberline {6.3}Experimental evaluation}{73}{section.6.3}
-\contentsline {paragraph}{Initialization of the $Q$-functions}{73}{paragraph*.84}
+\contentsline {section}{\numberline {6.3}Experimental evaluation}{72}{section.6.3}
+\contentsline {paragraph}{Initialization of the action-value function}{72}{paragraph*.84}
 \contentsline {paragraph}{Hyper-parameters tuning}{73}{paragraph*.85}
-\contentsline {subsection}{\numberline {6.3.1}Results}{74}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.1}Results}{73}{subsection.6.3.1}
 \contentsline {part}{\textlatin {IV}\hspace {1em}Final Remarks}{75}{part.4}
 \contentsline {chapter}{\numberline {7}Conclusion}{77}{chapter.7}
 \contentsline {section}{\numberline {7.1}Recap of the thesis}{77}{section.7.1}
 \contentsline {section}{\numberline {7.2}Future directions}{78}{section.7.2}
 \contentsline {chapter}{Bibliography}{79}{section*.86}
-\contentsline {chapter}{\numberline {A}Mushroom}{85}{appendix.A}
+\contentsline {chapter}{\numberline {A}Mushroom}{83}{appendix.A}

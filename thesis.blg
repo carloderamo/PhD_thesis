@@ -4,53 +4,50 @@ The top-level auxiliary file: thesis.aux
 The style file: plain.bst
 Database file #1: thesis.bib
 Warning--I didn't find a database entry for "lee2012intelligent"
-Warning--I didn't find a database entry for "osband2016deep"
-Warning--I didn't find a database entry for "brockman2016openai"
-Warning--I didn't find a database entry for "moore1990efficient"
 Warning--empty year in azizzadenesheli2517efficient
 Warning--can't use both volume and number fields in bertsekas2005dynamic
 Warning--can't use both author and editor fields in EvenDar2001
 Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
-You've used 90 entries,
+You've used 88 entries,
             2118 wiz_defined-function locations,
-            984 strings with 19552 characters,
-and the built_in function-call counts, 36340 in all, are:
-= -- 3625
-> -- 1701
-< -- 47
-+ -- 675
-- -- 573
-* -- 2430
-:= -- 5665
-add.period$ -- 288
-call.type$ -- 90
-change.case$ -- 531
+            971 strings with 19214 characters,
+and the built_in function-call counts, 35546 in all, are:
+= -- 3542
+> -- 1676
+< -- 45
++ -- 665
+- -- 565
+* -- 2386
+:= -- 5549
+add.period$ -- 282
+call.type$ -- 88
+change.case$ -- 521
 chr.to.int$ -- 0
-cite$ -- 95
-duplicate$ -- 1505
-empty$ -- 2828
-format.name$ -- 573
-if$ -- 7894
+cite$ -- 93
+duplicate$ -- 1466
+empty$ -- 2761
+format.name$ -- 565
+if$ -- 7713
 int.to.chr$ -- 0
-int.to.str$ -- 90
-missing$ -- 96
-newline$ -- 452
-num.names$ -- 186
-pop$ -- 654
+int.to.str$ -- 88
+missing$ -- 94
+newline$ -- 442
+num.names$ -- 182
+pop$ -- 641
 preamble$ -- 1
-purify$ -- 452
+purify$ -- 444
 quote$ -- 0
-skip$ -- 1181
+skip$ -- 1148
 stack$ -- 0
-substring$ -- 2351
-swap$ -- 526
-text.length$ -- 47
+substring$ -- 2293
+swap$ -- 509
+text.length$ -- 45
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 342
+type$ -- 334
 warning$ -- 5
-while$ -- 352
-width$ -- 92
-write$ -- 993
-(There were 9 warnings)
+while$ -- 342
+width$ -- 90
+write$ -- 971
+(There were 6 warnings)

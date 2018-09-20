@@ -214,12 +214,6 @@ Wassily Hoeffding.
 \newblock {\em Journal of the American statistical association},
   58(301):13--30, 1963.
 
-\bibitem{jaakkola1994convergence}
-Tommi Jaakkola, Michael~I. Jordan, and Satinder~P. Singh.
-\newblock Convergence of stochastic iterative dynamic programming algorithms.
-\newblock In {\em Advances in neural information processing systems}, pages
-  703--710, 1994.
-
 \bibitem{jaksch2010near}
 Thomas Jaksch, Ronald Ortner, and Peter Auer.
 \newblock Near-optimal regret bounds for reinforcement learning.
@@ -270,11 +264,6 @@ Benedict~C. May and David~S. Leslie.
   contextual-bandit problems.
 \newblock {\em Statistics Group, Department of Mathematics, University of
   Bristol}, 11:02, 2011.
-
-\bibitem{melo2001convergence}
-Francisco~S. Melo.
-\newblock Convergence of q-learning: A simple proof.
-\newblock {\em Institute Of Systems and Robotics, Tech. Rep}, pages 1--4, 2001.
 
 \bibitem{meuleau1999exploration}
 Nicolas Meuleau and Paul Bourgine.
