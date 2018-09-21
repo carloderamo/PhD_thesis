@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  20 SEP 2018 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  21 SEP 2018 15:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2308,14 +2308,13 @@ LaTeX Warning: Reference `F:opt_results' on page 73 undefined on input line 269
 Chapter 7.
 [77
 
-] [78]) [79] [80
-
-] (./thesis.bbl
+] [78] [79]) [80] (./thesis.bbl
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
  [81
+
 
 ] [82] [83]) (./chapters/mushroom.tex
 [84]
@@ -2348,7 +2347,7 @@ Here is how much of TeX's memory you used:
  42496 multiletter control sequences out of 15000+600000
  117340 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,14n,77p,1965b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,77p,1967b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -2386,10 +2385,10 @@ nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (103 pages, 2159803 bytes).
+Output written on thesis.pdf (103 pages, 2164203 bytes).
 PDF statistics:
- 2952 PDF objects out of 2984 (max. 8388607)
- 2341 compressed objects within 24 object streams
+ 2961 PDF objects out of 2984 (max. 8388607)
+ 2350 compressed objects within 24 object streams
  639 named destinations out of 1000 (max. 500000)
  917 words of extra memory for PDF output out of 10000 (max. 10000000)
 
