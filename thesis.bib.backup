@@ -142,13 +142,6 @@
   year={2015}
 }
 
-@article{yuan2017adversarial,
-  title={Adversarial examples: Attacks and defenses for deep learning},
-  author={Yuan, Xiaoyong and He, Pan and Zhu, Qile and Bhat, Rajendra Rana and Li, Xiaolin},
-  journal={arXiv preprint arXiv:1712.07107},
-  year={2017}
-}
-
 @article{schulman2017proximal,
   title={Proximal policy optimization algorithms},
   author={Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},

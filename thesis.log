@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  21 SEP 2018 16:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  25 SEP 2018 15:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2323,13 +2323,13 @@ Appendix A.
 ) [87
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 182.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 182.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 181.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 182.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 182.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 181.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 0B34D8E92D352C147147217DDEF146AC;5619.
+(rerunfilecheck)             Checksum: 2673C5265ECCAA2340A1CC013C78DA37;5619.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2342,13 +2342,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 40531 strings out of 493029
- 863064 string characters out of 6136234
- 1092017 words of memory out of 5000000
- 42496 multiletter control sequences out of 15000+600000
+ 40533 strings out of 493029
+ 863116 string characters out of 6136234
+ 1092240 words of memory out of 5000000
+ 42498 multiletter control sequences out of 15000+600000
  117340 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,14n,77p,1967b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,77p,2119b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -2386,10 +2386,10 @@ nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (105 pages, 2166753 bytes).
+Output written on thesis.pdf (105 pages, 2168650 bytes).
 PDF statistics:
- 2970 PDF objects out of 2984 (max. 8388607)
- 2357 compressed objects within 24 object streams
+ 2973 PDF objects out of 2984 (max. 8388607)
+ 2360 compressed objects within 24 object streams
  641 named destinations out of 1000 (max. 500000)
  917 words of extra memory for PDF output out of 10000 (max. 10000000)
 

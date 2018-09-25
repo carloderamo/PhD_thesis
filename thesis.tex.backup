@@ -164,7 +164,8 @@
 \part{Uncertainty-Driven Exploration}
 \input{chapters/exploration}
 \input{chapters/optimistic}
-\part{Final Remarks}\input{chapters/conclusion}
+\part{Final Remarks}
+\input{chapters/conclusion}
 
 %\cleardoublepage
 

@@ -515,6 +515,11 @@ Naoto Yoshida, Eiji Uchibe, and Kenji Doya.
 \newblock Reinforcement learning with state-dependent discount factor.
 \newblock In {\em Proc. ICDL}, pages 1--6. IEEE, 2013.
 
+\bibitem{yuan2017adversarial}
+Xiaoyong Yuan, Pan He, Qile Zhu, Rajendra~Rana Bhat, and Xiaolin Li.
+\newblock Adversarial examples: Attacks and defenses for deep learning.
+\newblock {\em arXiv preprint arXiv:1712.07107}, 2017.
+
 \bibitem{ijcai2017-483}
 Zhang Zongzhang, Pan Zhiyuan, and Kochenderfer Mykel~J.
 \newblock Weighted double q-learning.
