@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  25 SEP 2018 15:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  25 SEP 2018 16:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1586,12 +1586,12 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 ] [12
 
 ]
-Underfull \hbox (badness 5592) in paragraph at lines 66--66
+Underfull \hbox (badness 5592) in paragraph at lines 75--75
 []\T1/ptm/m/n/12 Distribution-Aware Weighted Es-ti-ma-tor.
  []
 
 
-Underfull \hbox (badness 8075) in paragraph at lines 150--150
+Underfull \hbox (badness 8075) in paragraph at lines 166--166
 []\T1/ptm/m/n/12 Posterior Sam-pling for Re-in-force-ment
  []
 
@@ -2386,7 +2386,7 @@ nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (105 pages, 2168647 bytes).
+Output written on thesis.pdf (105 pages, 2168851 bytes).
 PDF statistics:
  2973 PDF objects out of 2984 (max. 8388607)
  2360 compressed objects within 24 object streams
