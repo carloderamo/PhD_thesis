@@ -1,7 +1,5 @@
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{4}
-\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{4}
 \glossaryentry{ML?\glossentry{ml}|setentrycounter[]{page}\glsnumberformat}{4}
-\glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{4}
 \glossaryentry{MAB?\glossentry{mab}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{RL?\glossentry{rl}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{MAB?\glossentry{mab}|setentrycounter[]{page}\glsnumberformat}{5}
@@ -626,6 +624,7 @@
 \glossaryentry{OIQL?\glossentry{oiql}|setentrycounter[]{page}\glsnumberformat}{72}
 \glossaryentry{OQL?\glossentry{oql}|setentrycounter[]{page}\glsnumberformat}{72}
 \glossaryentry{ODQN?\glossentry{odqn}|setentrycounter[]{page}\glsnumberformat}{72}
+\glossaryentry{MDP?\glossentry{mdp}|setentrycounter[]{page}\glsnumberformat}{73}
 \glossaryentry{ODQN?\glossentry{odqn}|setentrycounter[]{page}\glsnumberformat}{73}
 \glossaryentry{BDQN?\glossentry{bdqn}|setentrycounter[]{page}\glsnumberformat}{73}
 \glossaryentry{BDQN?\glossentry{bdqn}|setentrycounter[]{page}\glsnumberformat}{73}
