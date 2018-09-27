@@ -36,11 +36,11 @@ All the works done for this thesis, the other ones I did but that are out of the
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
 \begin{center}
-  \subfigure[Breakout\label{F:breakout_frame}]{\includegraphics[scale=.01]{img/breakout.jpg}}
+  \subfigure[Breakout\label{F:breakout_frame}]{\includegraphics[scale=.1]{img/breakout.jpg}}
   \hspace{1cm}
   \subfigure[Humanoid\label{F:humanoid}]{\includegraphics[scale=.3]{img/humanoid.jpg}}
 \end{center}
 \end{minipage}
 \caption[Breakout and Humanoid problems]{Graphical rendering of Breakout and Humanoid problems.}\label{F:breakout_humanoid}
 \end{figure}
-Considering that the models and their fitting algorithms used in \gls{drl} are the same of \gls{dl}, it is intuitive how they can suffer of the previously described issues with impact on the quality of the learned policy. Figure~\ref{F:breakout_humanoid} show two examples of environments to highlight the problems that may arise when learning how to solve them. In particular, Figure~\ref{F:breakout_frame} refers to the Breakout game briefly described in Section~\ref{S:exploration_drl}. Recalling that in this game the purpose is to catch the ball with the platform on the bottom in order to let it bounce and hit the bricks on the wall on the top, it is intuitive how the number of features needed to solve this games are way less than all the number of pixels of the raw frame. 
+Considering that the models and their fitting algorithms used in \gls{drl} are the same of \gls{dl}, it is intuitive how they can suffer of the previously described issues with impact on the quality of the learned policy. Figure~\ref{F:breakout_humanoid} show two examples of environments to highlight the problems that may arise when learning how to solve them. In particular, Figure~\ref{F:breakout_frame} refers to the Breakout game briefly described in Section~\ref{S:exploration_drl}. Recalling that in this game the purpose is to catch the ball with the platform on the bottom in order to let it bounce and hit the bricks on the wall on the top, it is intuitive how the number of features needed to solve this games are way less than all the number of pixels of the raw frame. Thus, desirably the deep $Q$-network should be able to extract only the few relevant features, such as the coordinates of the ball and the platform, in order to simplify the learning of the policy. However, usually this does not happen and the network learns a very abstract representation of the input whose semantics is practically not interpretable. On the other hand, Figure~\ref{F:humanoid} refers to a control problem where a humanoid walker is taught how to run avoiding obstacles. In this case, 
