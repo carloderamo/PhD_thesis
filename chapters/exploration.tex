@@ -162,7 +162,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \subfigure[Bootstrapped variance\label{F:taxi_boot}]{\includegraphics[scale=.25]{img/taxi_boot.pdf}}
 \end{center}
 \end{minipage}
-\caption[Taxi problem results]{Results on the \textbf{Taxi} problem. Figure~\ref{F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref{F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref{F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.}\label{F:taxi}
+\caption[Taxi results]{Results on the \textbf{Taxi} problem. Figure~\ref{F:taxi_online} shows the performance of the online variance estimation in terms of mean reward per step. The plots on the left show results using the setting of the policies parameters that is optimal in evaluation; the ones on the right consider parameters optimal in training. An epoch corresponds to $1000$ training steps. Figure~\ref{F:taxi_grid} shows the structure of the grid where S is the initial position of the agent, P is a passenger and G is the goal. Figure~\ref{F:taxi_boot} shows the performance during training of the bootstrapping approach in terms of mean reward per step.}\label{F:taxi}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -195,7 +195,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \subfigure[Acrobot\label{F:acrobot}]{\includegraphics[scale=.3]{img/acrobot_ts.pdf}}
 \end{center}
 \end{minipage}
-\caption[Mountain car and acrobot problems results]{Figure~\ref{F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref{F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.}\label{F:TS_cont}
+\caption[Mountain car and acrobot results]{Figure~\ref{F:mountain_car} shows the mean cumulative reward in train and evaluation for Mountain Car, while Figure~\ref{F:acrobot} shows the mean cumulative reward in evaluation for Acrobot. Evaluation epochs are performed every $20$ training episodes for the former, and every $1000$ training steps for the latter.}\label{F:TS_cont}
 \end{figure}
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -205,7 +205,7 @@ The application of \gls{ts} in \gls{bdqn} simply consists in changing its explor
   \subfigure[Breakout\label{F:breakout}]{\includegraphics[scale=.3]{img/breakout.pdf}}
 \end{center}
 \end{minipage}
-\caption[Pong and Breakout problems results]{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.}\label{F:atari}
+\caption[Pong and Breakout results]{Mean cumulative reward in evaluation. An epoch is performed every $250000$ steps.}\label{F:atari}
 \end{figure}
 
 \section{Experiments}
@@ -231,7 +231,7 @@ We also conduct further studies on the performance of the different algorithms d
 
 \paragraph{Results} The need for exploration in the previously described two problems is given by the sparse reward function, even if exploration is not highly critical as in the Taxi problem. Nevertheless, we want to consider these problems to show how \gls{ts} is robust w.r.t. generic \gls{rl} problems. Since Mountain Car has a small continuous state space, we test our online variance estimation with SARSA (Algorithm~\ref{A:SARSA-apprx}) for the continuous case in this problem, while we consider the more complex Acrobot for bootstrapping. Figure~\ref{F:TS_cont} shows how \gls{ts} reaches better performance than the others and how exploration with \gls{ts} can help to speed up the convergence of the algorithm. In particular, Figure~\ref{F:mountain_car} highlights the effectiveness of exploration driven by \gls{ts} during the training phase.
 
-\subsection{Deep Reinforcement Learning}
+\subsection{Deep Reinforcement Learning}\label{S:exploration_drl}
 \paragraph{Details} We use the \textit{PongNoFrameskip-v4} and \textit{BreakoutNoFrameskip-v4} implementations of \textbf{Pong} and \textbf{Breakout} available in OpenAI Gym~\cite{gym}. The state is represented by $210 \times 160$ raw pixel frames and there are $4$ discrete actions in both of them. The reward function is sparse. In Pong, the episode ends when the score of one of the players reaches $21$. In Breakout, the episode ends when the player finishes its lives.
 \paragraph{Setting} We use the same setting described in~\cite{osband2017deep}. However, in this work, it is not clear whether $\varepsilon = 0$ for Bootstrapped DQN or not. For the purpose of our work, we decide to use $\varepsilon = 0$.
 \paragraph{Results} We evaluate \gls{ts} via bootstrapping in \gls{drl} considering the \textbf{Atari} games~\cite{bellemare13arcade} of \textbf{Pong} and \textbf{Breakout}. 

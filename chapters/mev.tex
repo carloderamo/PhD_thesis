@@ -271,7 +271,7 @@ where $W_t(s')$ is the current value of \gls{we} in state $s'$.
 The \gls{fqi} update~\ref{S:FQI}, similarly to the \gls{ql} update, requires the computation of \gls{me} which causes the same overestimation problem of \gls{ql}. Intuitively, the replacement of \gls{me} with \gls{de} or \gls{we} can help to solve this issue also in \gls{fqi}.
 
 \begin{algorithm}[t]
-\caption{Weighted Fitted Q-Iteration (finite actions)}
+\caption{Weighted Fitted $Q$-Iteration (finite actions)}
 \label{A:WFQI}
 \begin{small}
 \begin{algorithmic} 
@@ -293,7 +293,7 @@ The \gls{fqi} update~\ref{S:FQI}, similarly to the \gls{ql} update, requires the
 \end{algorithm}
 
 \begin{algorithm}[t]
-\caption{Weighted Fitted Q-Iteration$_{\infty}$ (continuous actions)}
+\caption{Weighted Fitted $Q$-Iteration$_{\infty}$ (continuous actions)}
 \label{A:continuousWFQI}
 \begin{small}
 \begin{algorithmic} 

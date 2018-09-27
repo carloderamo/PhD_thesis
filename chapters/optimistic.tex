@@ -255,16 +255,16 @@ In the taxi environment, we use a shared convolutional layer with multiple heads
 
 \paragraph{Hyper-parameters tuning} For the tabular settings, we did not run any hyper-parameter optimization. With neural networks we compare \gls{odqn} and \gls{bdqn} using the best hyper-parameter setup found for \gls{bdqn}. In \gls{oql} we use $\eta=10$ and for \gls{odqn}, we use $\chi=0.25$ and $\iota_{\max}=1$.
 
-\setlength\figureheight{4cm}
-\setlength\figurewidth{4cm}
-\begin{figure*}[t]
-	\input{img/performances.tex}
-	\caption[Results in Chain, Taxi and Frozen Lake]{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
-	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
-	 together with $95\%$ confidence intervals. The
-     second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
-	\label{F:opt_results}
-\end{figure*}
+% \setlength\figureheight{4cm}
+% \setlength\figurewidth{4cm}
+% \begin{figure*}[t]
+% 	\input{img/performances.tex}
+% 	\caption[Results in Chain, Taxi and Frozen Lake]{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
+% 	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
+% 	 together with $95\%$ confidence intervals. The
+%      second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
+% 	\label{F:opt_results}
+% \end{figure*}
 \subsection{Results}
 Figure~\ref{F:opt_results} summarizes the results obtained by averaging over $64$ different seed the tabular algorithms, and $100$ seeds \gls{dqn} and \gls{bdqn}. \gls{oql} learns faster than the other tabular algorithms. In the Chain environment, and in Taxi,
 our algorithm \gls{oql} finds the highest reward faster than \gls{bql} or \gls{ql}. On the other hand, also \gls{oiql} seems to find

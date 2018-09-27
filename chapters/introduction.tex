@@ -6,7 +6,7 @@ We start from the assumption that, by definition, an individual perceive the env
 It is arguable that discussing about the concept of true information and the concept of will requires strong theoretical considerations since they are both hardly definable concepts. For many centuries scientists and philosophers debated about these topics, in particular trying to solve complex problems like the real nature of perceivable things and the concept of free will. However, to make the discussion of these concepts suitable for our purposes throughout all this thesis, we lighten the definition of them to the one provided by common sense.
 
 \section{Learn how to act with Reinforcement Learning}
-Reinforcement Learning (RL)~\cite{sutton1998reinforcement} is a subfield of \gls{ml} which aims to realize autonomous \textit{agents} able to learn how to act in a certain \textit{environment} in order to maximize an objective function; this is achieved providing the agent with the perception of its \textit{state} in the environment and making it learn the appropriate \textit{action} to perform, where an action can be seen as an atomic operation that brings the agent from a state to another one. The objective function represents a measure of how well the agent is accomplishing its task in the environment and it is usually formalized by a discounted sum of \textit{rewards} obtained after each action (Figure~\ref{F:rl}). The sum is discounted to give more importance to the most recent rewards w.r.t. the ones further in the future. The reward function, i.e. the function returning the reward after each action, is not a concrete part of the environment, but it is often designed by a human which decides whether a certain behavior has to be reinforced (returning a positive reward) or inhibited (returning a negative reward).
+\gls{rl}~\cite{sutton1998reinforcement} is a subfield of \gls{ml} which aims to realize autonomous \textit{agents} able to learn how to act in a certain \textit{environment} in order to maximize an objective function; this is achieved providing the agent with the perception of its \textit{state} in the environment and making it learn the appropriate \textit{action} to perform, where an action can be seen as an atomic operation that brings the agent from a state to another one. The objective function represents a measure of how well the agent is accomplishing its task in the environment and it is usually formalized by a discounted sum of \textit{rewards} obtained after each action (Figure~\ref{F:rl}). The sum is discounted to give more importance to the most recent rewards w.r.t. the ones further in the future. The reward function, i.e. the function returning the reward after each action, is not a concrete part of the environment, but it is often designed by a human which decides whether a certain behavior has to be reinforced (returning a positive reward) or inhibited (returning a negative reward).
 
 \begin{figure}[t]
 \begin{minipage}{\textwidth}
@@ -14,7 +14,7 @@ Reinforcement Learning (RL)~\cite{sutton1998reinforcement} is a subfield of \gls
   \includegraphics[scale=.1]{img/rl.png}
 \end{center}
 \end{minipage}
-\caption[Reinforcement Learning problem scheme]{The scheme of a \gls{rl} model.}\label{F:rl}
+\caption[Reinforcement Learning problem scheme]{The scheme of a Reinforcement Learning model.}\label{F:rl}
 \end{figure}
 
 \subsection{Uncertainty in Reinforcement Learning}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  26 SEP 2018 17:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.7.27)  27 SEP 2018 23:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1665,10 +1665,10 @@ Package pdftex.def Info: img/mdp2.png used on input line 41.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 106.
  [11] [12] [13] [14]
-Overfull \hbox (3.9503pt too wide) in paragraph at lines 252--253
-[] []\T1/ptm/b/n/10 Fit-ted Q-It-er-a-tion[] \T1/ptm/m/n/12 A well known []TD b
-atch vari-ant of $\OML/cmm/m/it/12 Q$\T1/ptm/m/n/12 -Learning is the []Fit-ted 
-$\OML/cmm/m/it/12 Q$\T1/ptm/m/n/12 -Iteration
+Overfull \hbox (4.07596pt too wide) in paragraph at lines 252--253
+[] []\T1/ptm/b/n/10 Fit-ted $\OML/cmm/m/it/10 Q$\T1/ptm/b/n/10 -Iteration[] \T1
+/ptm/m/n/12 A well known []TD batch vari-ant of $\OML/cmm/m/it/12 Q$\T1/ptm/m/n
+/12 -Learning is the []Fit-ted $\OML/cmm/m/it/12 Q$\T1/ptm/m/n/12 -Iteration
  []
 
 <img/dqn.png, id=774, 1581.91pt x 927.465pt>
@@ -2295,14 +2295,40 @@ er (name{equation.6.2.15}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.165 \begin{eqnarray}
-                       [71] [72] (./img/performances.tex)) [73] [74
+                       [71] [72]
 
-] [75]
-[76] (./chapters/conclusion.tex
+LaTeX Warning: Reference `F:opt_results' on page 73 undefined on input line 269
+.
+
+) [73] [74
+
+] [75] [76] (./chapters/conclusion.tex
 Chapter 7.
 [77
 
-] [78] [79] [80]) [81] [82
+] [78] [79] [80] <img/breakout.jpg, id=2685, 2190.1825pt x 1640.1275pt>
+File: img/breakout.jpg Graphic file (type jpg)
+
+<use img/breakout.jpg>
+Package pdftex.def Info: img/breakout.jpg used on input line 39.
+(pdftex.def)             Requested size: 21.88974pt x 16.39221pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]\T1/ptm/m/n/8 (a)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+\T1/ptm/m/n/8 Break-
+ []
+
+<img/humanoid.jpg, id=2686, 642.4pt x 354.32375pt>
+File: img/humanoid.jpg Graphic file (type jpg)
+ <use img/humanoid.jpg>
+Package pdftex.def Info: img/humanoid.jpg used on input line 41.
+(pdftex.def)             Requested size: 192.72148pt x 106.29794pt.
+)
+[81 <./img/breakout.jpg> <./img/humanoid.jpg>] [82
 
 ] (./thesis.bbl
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <9> not available
@@ -2311,8 +2337,8 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
  [83
 
-] [84] [85])
-(./chapters/mushroom.tex [86]
+] [84]
+[85]) (./chapters/mushroom.tex [86]
 Appendix A.
 ) [87
 
@@ -2336,13 +2362,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 41390 strings out of 493029
- 888805 string characters out of 6136234
- 2343279 words of memory out of 5000000
- 43356 multiletter control sequences out of 15000+600000
+ 40547 strings out of 493029
+ 863410 string characters out of 6136234
+ 1092641 words of memory out of 5000000
+ 42513 multiletter control sequences out of 15000+600000
  117340 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,19n,107p,2183b,2430s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,77p,2282b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
@@ -2380,10 +2406,10 @@ nts/type1/public/prodint/prodint.pfb></usr/share/texlive/texmf-dist/fonts/type1
 dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (103 pages, 2287000 bytes).
+Output written on thesis.pdf (103 pages, 2246421 bytes).
 PDF statistics:
- 2969 PDF objects out of 2984 (max. 8388607)
- 2358 compressed objects within 24 object streams
- 640 named destinations out of 1000 (max. 500000)
- 917 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2973 PDF objects out of 2984 (max. 8388607)
+ 2360 compressed objects within 24 object streams
+ 642 named destinations out of 1000 (max. 500000)
+ 927 words of extra memory for PDF output out of 10000 (max. 10000000)
 
