@@ -5,6 +5,12 @@ Shipra Agrawal and Navin Goyal.
 \newblock Analysis of thompson sampling for the multi-armed bandit problem.
 \newblock In {\em Conference on Learning Theory}, pages 39--1, 2012.
 
+\bibitem{ammar2014online}
+Haitham~Bou Ammar, Eric Eaton, Paul Ruvolo, and Matthew Taylor.
+\newblock Online multi-task learning for policy gradient methods.
+\newblock In {\em International Conference on Machine Learning}, pages
+  1206--1214, 2014.
+
 \bibitem{asadi2016alternative}
 Kavosh Asadi and Michael~L. Littman.
 \newblock An alternative softmax operator for reinforcement learning.
@@ -207,6 +213,14 @@ Michael Grossman and Robert Katz.
 Hasselt Hado~van, Guez Arthur, and Silver David.
 \newblock Deep reinforcement learning with double q-learning.
 \newblock {\em CoRR}, abs/1509.06461, 2015.
+
+\bibitem{higgins2017darla}
+Irina Higgins, Arka Pal, Andrei Rusu, Loic Matthey, Christopher Burgess,
+  Alexander Pritzel, Matthew Botvinick, Charles Blundell, and Alexander
+  Lerchner.
+\newblock Darla: Improving zero-shot transfer in reinforcement learning.
+\newblock In {\em International Conference on Machine Learning}, pages
+  1480--1490, 2017.
 
 \bibitem{hoeffding1963probability}
 Wassily Hoeffding.
@@ -448,6 +462,13 @@ Haoran Tang, Rein Houthooft, Davis Foote, Adam Stooke, OpenAI~Xi Chen, Yan
 \newblock \# exploration: A study of count-based exploration for deep
   reinforcement learning.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2017.
+
+\bibitem{teh2017distral}
+Yee Teh, Victor Bapst, Wojciech~M Czarnecki, John Quan, James Kirkpatrick, Raia
+  Hadsell, Nicolas Heess, and Razvan Pascanu.
+\newblock Distral: Robust multitask reinforcement learning.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  4496--4506, 2017.
 
 \bibitem{Tewari2007}
 Ambuj Tewari and Peter~L. Bartlett.
