@@ -325,7 +325,7 @@ We also analyzed the case of \gls{drl} where the overestimation problem caused b
 \end{center}
 \caption[Boostrapped DQN network]{Architecture of the neural network used in BDQN.}\label{F:bdqn-net}
 \end{figure}
-We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep} showed in Figure~\ref{F:bdqn-net}. This work follows the \gls{dqn} algorithm described in~\ref{S:dqn} with few, but important changes. The output of the neural network is split in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in {0,1}$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follow the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
+We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep} showed in Figure~\ref{F:bdqn-net}. This work follows the \gls{dqn} algorithm described in~\ref{S:dqn} with few, but important changes. The output of the neural network is split in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in \lbrace 0,1 \rbrace$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follows the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
 
 We propose to use the architecture of \gls{bdqn} and use \gls{we} to compute the target of the $K$-th head, while using the target provided by \gls{me} for the other $K-1$ heads. Moreover, we only use the $K$-th head trained with \gls{we} for exploration. This way, the training of the $K-1$ heads do not differ from the one of \gls{bdqn}, while the $K$-th head is trained with \gls{we} exploiting the uncertainty on the action-values provided by the ensemble. Given a dataset of transitions $\langle s_t, a_t, r_t, s'_t \rangle$, the resulting formulas to compute the target $y^k$ of each head $k$ are:
 \begin{equation}\label{E:dqn_update}
@@ -370,7 +370,7 @@ In the last setting, we modify the interval of the mean \gls{ctr} by changing th
     \subfigure[Increasing number of impressions.\label{F:ia_first}]{\includegraphics[scale=.425]{./img/internetAds-impressions.pdf}}
     \subfigure[Increasing number of ads.\label{F:ia_second}]{\includegraphics[scale=.425]{./img/internetAds-actions.pdf}}
     \subfigure[Increasing value of maximum CTR.\label{F:ia_third}]{\includegraphics[scale=.425]{./img/internetAds-probs.pdf}}
-    \caption[Internet ads results]{\gls{mse} for each setting. Results are averaged over 2000 experiments.}\label{F:iAds}
+    \caption[Internet Ads results]{\gls{mse} for each setting. Results are averaged over 2000 experiments.}\label{F:iAds}
     \end{minipage}
 \end{figure*}
 
@@ -394,7 +394,7 @@ We measure the utility gain of advertiser $1$, whose true per click value is $v_
     \begin{minipage}{\columnwidth}
     \centering 
     \includegraphics[scale=0.9]{./img/sponsoredSearch.pdf}
-    \caption[Sponsored search auctions results]{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
+    \caption[Sponsored Search Auctions results]{Relative player 1 utility gain for different value of the bid defined as $\frac{utility(b)}{utility(v)} - 1$. Results are averaged over 2000 experiments.}\label{F:spSearch}
     \end{minipage}
 \end{figure}
 
@@ -418,7 +418,7 @@ In Figure \ref{F:grid}, the top plots show the average reward per step obtained 
     \subfigure[$\mathcal{N}(-1, 5)$.\label{F:gaussian5}]{\includegraphics{./img/gridexp08-g.pdf}}
     \hspace{-.5cm}
     \subfigure[$\mathcal{N}(-1, 1)$.\label{F:gaussian1}]{\includegraphics{./img/gridexp08-g-sigma1.pdf}}
-    \caption[Grid world results]{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.}\label{F:grid}
+    \caption[Grid World results]{Grid world results with the three reward functions averaged over 10000 experiments. Optimal policy is the black line.}\label{F:grid}
   \end{minipage}
 \end{figure*}
 Figures~\ref{F:bernoulli} and~\ref{F:gaussian5} show that, regardless of the bad approximation of the $Q$-function, the underestimation of \gls{dql} allows to learn the best policy faster than other algorithm in these noisy settings.
@@ -508,7 +508,7 @@ An episode starts with $x_0 = (\theta_0, 0)$ where $\theta_0 \sim \mathcal{U}(-\
 \hspace{-.5cm}
 \subfigure[Continuous actions.\label{F:pendulum_continuous}]{\includegraphics[scale=0.35]{./img/pendulumContinuous.pdf}}
 \end{minipage}
-\caption[Swing-up pendulum results]{Swing-up pendulum performance averaged over $100$ experiments.}\label{F:pendulum}
+\caption[Swing-Up Pendulum results]{Swing-Up Pendulum performance averaged over $100$ experiments.}\label{F:pendulum}
 \end{figure*}
 The reward depends on the height of the pendulum: $r(x) = \cos(\theta)$.
 The problem is discounted with $\gamma = 0.9$.

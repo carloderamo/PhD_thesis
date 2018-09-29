@@ -8,7 +8,7 @@
   \includegraphics[scale=.75]{img/mdp1.jpg}
 \end{center}
 \end{minipage}
-\caption[Scheme of a Markov Decision Process]{Graphical representation of a Markov Decision Process.}\label{F:mdp1}
+\caption[Markov Decision Process scheme]{Graphical representation of a Markov Decision Process.}\label{F:mdp1}
 \end{figure}
 The interaction of an agent inside an environment can be seen as the execution of actions to move itself and the observation of the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $s$ of the environment, executes an action $a$ and observes the new representation of the environment $s'$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to observe from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. The total number of time steps $t_i$ is called \textit{horizon} $H$ and determines a first taxonomy of problems:
 \begin{itemize}
