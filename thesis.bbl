@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{agrawal2012analysis}
 Shipra Agrawal and Navin Goyal.
@@ -105,6 +105,11 @@ S{\'e}bastien Bubeck, Nicolo Cesa-Bianchi, et~al.
 \newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
   5(1):1--122, 2012.
 
+\bibitem{bworld}
+{chainer.org}.
+\newblock {ChainerRL}.
+\newblock \url{https://github.com/chainer/chainerrl}, 2017.
+
 \bibitem{chapelle2011empirical}
 Olivier Chapelle and Lihong Li.
 \newblock An empirical evaluation of thompson sampling.
@@ -151,6 +156,12 @@ Kenji Doya.
 \newblock Reinforcement learning in continuous time and space.
 \newblock {\em Neural computation}, 12(1):219--245, 2000.
 
+\bibitem{duan2016benchmarking}
+Yan Duan, Xi~Chen, Rein Houthooft, John Schulman, and Pieter Abbeel.
+\newblock Benchmarking deep reinforcement learning for continuous control.
+\newblock In {\em International Conference on Machine Learning}, pages
+  1329--1338, 2016.
+
 \bibitem{engel2005reinforcement}
 Yaakov Engel, Shie Mannor, and Ron Meir.
 \newblock Reinforcement learning with gaussian processes.
@@ -183,6 +194,13 @@ Vincent Fran{\c{c}}ois-Lavet, Raphael Fonteneau, and Damien Ernst.
 J\"{u}rgen Franke and Michael~H. Neumann.
 \newblock Bootstrapping neural networks.
 \newblock {\em Neural Computation}, 12(8), 2000.
+
+\bibitem{JMLR:v16:geramifard15a}
+Alborz Geramifard, Christoph Dann, Robert~H. Klein, William Dabney, and
+  Jonathan~P. How.
+\newblock Rlpy: A value-function-based reinforcement learning framework for
+  education and research.
+\newblock {\em Journal of Machine Learning Research}, 16:1573--1578, 2015.
 
 \bibitem{geurts2006extremely}
 Pierre Geurts, Damien Ernst, and Louis Wehenkel.
@@ -334,6 +352,12 @@ Georg Ostrovski, Marc~G. Bellemare, Aaron van~den Oord, and R{\'e}mi Munos.
 \newblock Count-based exploration with neural density models.
 \newblock {\em arXiv preprint arXiv:1703.01310}, 2017.
 
+\bibitem{paszke2017automatic}
+Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary
+  DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer.
+\newblock Automatic differentiation in pytorch.
+\newblock In {\em NIPS-W}, 2017.
+
 \bibitem{pathak2017curiosity}
 Deepak Pathak, Pulkit Agrawal, Alexei~A. Efros, and Trevor Darrell.
 \newblock Curiosity-driven exploration by self-supervised prediction.
@@ -366,6 +390,11 @@ Martin Riedmiller.
 Christian Robert and George Casella.
 \newblock {\em Monte Carlo statistical methods}.
 \newblock Springer Science \& Business Media, 2013.
+
+\bibitem{schaarschmidt2017tensorforce}
+Michael Schaarschmidt, Alexander Kuhnle, and Kai Fricke.
+\newblock Tensorforce: A tensorflow library for applied reinforcement learning.
+\newblock Web page, 2017.
 
 \bibitem{schmidhuber1991possibility}
 J{\"u}rgen Schmidhuber.
@@ -456,12 +485,23 @@ Istv{\'a}n Szita and Andr{\'a}s L{\H{o}}rincz.
 \newblock In {\em Proceedings of the 25th international conference on Machine
   learning}, pages 1048--1055. ACM, 2008.
 
+\bibitem{simpledqn}
+{Tambet, Matiisen}.
+\newblock {simple-dqn}.
+\newblock \url{https://github.com/tambetm/simple_dqn}, 2015.
+
 \bibitem{tang2017exploration}
 Haoran Tang, Rein Houthooft, Davis Foote, Adam Stooke, OpenAI~Xi Chen, Yan
   Duan, John Schulman, Filip DeTurck, and Pieter Abbeel.
 \newblock \# exploration: A study of count-based exploration for deep
   reinforcement learning.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2017.
+
+\bibitem{tanner2009rl}
+Brian Tanner and Adam White.
+\newblock Rl-glue: Language-independent software for reinforcement-learning
+  experiments.
+\newblock {\em Journal of Machine Learning Research}, 10(Sep):2133--2136, 2009.
 
 \bibitem{teh2017distral}
 Yee Teh, Victor Bapst, Wojciech~M Czarnecki, John Quan, James Kirkpatrick, Raia

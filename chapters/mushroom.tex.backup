@@ -21,15 +21,15 @@ Mushroom is both user-friendly and flexible: only a high-level interface is expo
 Standard Python libraries useful for \gls{rl} tasks have been adopted:
 \begin{itemize}[noitemsep]
  \item \textit{Scientific calculus}: numpy, scipy;
- \item \textit{Basic \gls{ml}}: scikit-learn;
- \item \textit{\gls{rl} benchmark}: gym;
- \item \textit{Neural networks and \gls{gpu} computation}: pytorch, tensorflow, theano;
+ \item \textit{Basic ML}: scikit-learn;
+ \item \textit{RL benchmark}: gym;
+ \item \textit{Neural networks and GPU computation}: tensorflow, theano;
  \item \textit{Plotting}: matplotlib.
 \end{itemize}
 Mushroom provides an interface to these libraries, in order to integrate their functionalities in the framework, e.g. an interface for gym environments, support for regression with scikit-learn models.
 
 \paragraph{Easy to use}
-Mushroom enables to develop and run experiments writing a minimal amount of code. In most of the tasks an experiment can be written in a few Python lines without the need of complex configuration files. The majority of the \gls{rl} problems can be solved with experiments written following the structure of the library examples.
+Mushroom enables to develop and run experiments writing a minimal amount of code. In most of the tasks an experiment can be written in a few Python lines without the need of complex configuration files. The majority of the RL problems can be solved with experiments written following the structure of the library examples.
 
 \section{Design}
 The main module of Mushroom is the \texttt{Core} whose purpose is to manage the interaction between the agent and the environment for both learning and testing tasks.
@@ -39,7 +39,7 @@ An instance of the \texttt{Core} class is built providing an agent and an enviro
 
 The \texttt{evaluate} method runs the current policy on the environment and collects the dataset. The \texttt{learn} method also feeds the collected dataset to the learning algorithm of the agent, when needed. Both these methods can be run for a fixed number of episodes or steps; moreover, \texttt{learn} allows to specify the frequency, in terms of episodes or steps, of the call to the learning algorithm. Thanks to this choice, it is possible to implement online and batch algorithms transparently. The \texttt{Core} can also run a list of callback functions after each learning step.
 \begin{python}
-# Online learning running for $30$ episodes
+# Online learning running for 30 episodes
 core.learn(n_steps=30, n_steps_per_fit=1)
 # Batch learning over a dataset of 30 episodes
 core.learn(n_episodes=30, n_episodes_per_fit=30)
@@ -54,9 +54,9 @@ core.learn(n_episodes=300, n_steps_per_fit=50)
 
 To simplify the implementation of generic \gls{rl} algorithms, and \gls{td} algorithms in particular, Mushroom offers a high-level interface for the function regressors. This interface supports the use of ensemble regressors that are created specifying the number of models in the ensemble. Moreover, it manages the regressor of the $Q$-function in the case of discrete action spaces: it transparently deals with the creation of a different regressor for each action or a single regressor with a different output for each action. The user should not care about the low-level implementation of these regressors, since everything is managed by the \texttt{Regressor} interface, which also supports generic function approximator. Furthermore, both parametric and non-parametric are transparently managed by the interface.
 \begin{python}
-# $Q$-function regressor with $5$ different linear approximator
+# Q-function regressor with 5 different linear approximator
 approximator = Regressor(LinearApproximator, n_actions=5, output_shape=(1,), ...)
-# $Q$-function regressor with a single linear approximator with 5 outputs
+# Q-function regressor with a single linear approximator with 5 outputs
 approximator = Regressor(LinearApproximator, n_actions=5, output_shape=(5,), ...)
 # Generic linear approximator
 approximator = Regressor(LinearApproximator, output_shape=(1,), ...)

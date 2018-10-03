@@ -41,6 +41,7 @@
 \usetikzlibrary{automata,positioning,snakes}
 \usepackage{graphicx}
 \usepackage{glossaries}
+\usepackage{listings}
 \usepackage{nicefrac}
 \usepackage{booktabs}
 \usepackage{latexsym}
@@ -62,14 +63,6 @@
 \usepackage[T1]{fontenc} 
 \usepackage[latin1]{inputenc}
 \usepackage[greek,english,italian]{babel}
-\usepackage{listings}
-
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8.8} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8.8}  % for normal
-\definecolor{deepblue}{rgb}{0,0,0.5}
-\definecolor{deepred}{rgb}{0.6,0,0}
-\definecolor{deepgreen}{rgb}{0,0.5,0}
-\definecolor{gray}{rgb}{.5, .5, .5}
 
 \newcommand\pythonstyle{\lstset{
 language=Python,

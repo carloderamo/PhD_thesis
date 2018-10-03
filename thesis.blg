@@ -9,45 +9,45 @@ Warning--can't use both volume and number fields in bertsekas2005dynamic
 Warning--can't use both author and editor fields in EvenDar2001
 Warning--empty publisher in Tewari2007
 Warning--empty publisher in xu2013mab
-You've used 93 entries,
+You've used 100 entries,
             2118 wiz_defined-function locations,
-            994 strings with 20131 characters,
-and the built_in function-call counts, 38126 in all, are:
-= -- 3786
-> -- 1836
-< -- 48
-+ -- 728
-- -- 623
-* -- 2578
-:= -- 5950
-add.period$ -- 297
-call.type$ -- 93
-change.case$ -- 565
+            1025 strings with 21228 characters,
+and the built_in function-call counts, 40701 in all, are:
+= -- 4025
+> -- 1990
+< -- 49
++ -- 789
+- -- 677
+* -- 2755
+:= -- 6375
+add.period$ -- 318
+call.type$ -- 100
+change.case$ -- 613
 chr.to.int$ -- 0
-cite$ -- 98
-duplicate$ -- 1562
-empty$ -- 2933
-format.name$ -- 623
-if$ -- 8262
+cite$ -- 105
+duplicate$ -- 1644
+empty$ -- 3128
+format.name$ -- 677
+if$ -- 8800
 int.to.chr$ -- 0
-int.to.str$ -- 93
-missing$ -- 99
-newline$ -- 467
-num.names$ -- 192
-pop$ -- 692
+int.to.str$ -- 100
+missing$ -- 103
+newline$ -- 502
+num.names$ -- 206
+pop$ -- 755
 preamble$ -- 1
-purify$ -- 483
+purify$ -- 524
 quote$ -- 0
-skip$ -- 1231
+skip$ -- 1296
 stack$ -- 0
-substring$ -- 2447
-swap$ -- 550
-text.length$ -- 48
+substring$ -- 2580
+swap$ -- 570
+text.length$ -- 49
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 354
+type$ -- 382
 warning$ -- 5
-while$ -- 362
-width$ -- 95
-write$ -- 1025
+while$ -- 382
+width$ -- 103
+write$ -- 1098
 (There were 6 warnings)
