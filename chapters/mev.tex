@@ -328,7 +328,7 @@ We also analyzed the case of \gls{drl} where the overestimation problem caused b
 We propose to estimate the variance of the approximation using an ensemble of target networks, following the neural network architecture proposed in another algorithm called \gls{bdqn}~\cite{osband2017deep} showed in Figure~\ref{F:bdqn-net}. This work follows the \gls{dqn} algorithm described in~\ref{S:dqn} with few, but important changes. The output of the neural network is split in $K$ heads that share the same first hidden layers. To perform bootstrapping, a binary mask $w_1, \dots, w_K \in \lbrace 0,1 \rbrace$ is assigned to each sample to indicate the heads assigned to it. The binary mask is generated with a binomial distribution with probability $p$. The exploration policy of \gls{bdqn} uniformly samples a head at the beginning of the episode, and follows the greedy policy learned by it. During the learning phase, the different heads are updated following the update rule of \gls{ddqn} to avoid the overestimation problem.
 
 We propose to use the architecture of \gls{bdqn} and use \gls{we} to compute the target of the $K$-th head, while using the target provided by \gls{me} for the other $K-1$ heads. Moreover, we only use the $K$-th head trained with \gls{we} for exploration. This way, the training of the $K-1$ heads do not differ from the one of \gls{bdqn}, while the $K$-th head is trained with \gls{we} exploiting the uncertainty on the action-values provided by the ensemble. Given a dataset of transitions $\langle s_t, a_t, r_t, s'_t \rangle$, the resulting formulas to compute the target $y^k$ of each head $k$ are:
-\begin{equation}\label{E:dqn_update}
+\begin{equation}\label{E:dqn_update1}
 y_i^k=
     \begin{cases}
     r_i & \text{if episode terminates at episode }i+1\\
@@ -336,7 +336,7 @@ y_i^k=
     \end{cases}
 \end{equation}
 with $k \in \lbrace 1, \dots, K-1 \rbrace$ and
-\begin{equation}\label{E:dqn_update}
+\begin{equation}\label{E:dqn_update2}
 y_i^K=
     \begin{cases}
     r_i & \text{if episode terminates at episode }i+1\\
