@@ -31,9 +31,9 @@
 \contentsline {part}{\textlatin {II}\hspace {1em}Bellman Update}{17}{part.2}
 \contentsline {chapter}{\numberline {3}Maximum Expected Value estimation}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{20}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Related Works}{20}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.1}Related works}{20}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}Weighted Estimator}{21}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Generalization to Infinite Random Variables}{22}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.1}Generalization to infinite random variables}{22}{subsection.3.2.1}
 \contentsline {subsubsection}{Spatially Correlated Variables}{23}{subsubsection*.21}
 \contentsline {subsubsection}{Gaussian Process Regression}{24}{subsubsection*.22}
 \contentsline {section}{\numberline {3.3}Analysis of Weighted Estimator}{24}{section.3.3}
@@ -47,7 +47,7 @@
 \contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{29}{subsection.3.4.3}
 \contentsline {subsubsection}{Weighted Deep $Q$-Network}{29}{subsubsection*.27}
 \contentsline {section}{\numberline {3.5}Empirical results}{30}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Discrete States and Action Spaces}{30}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.1}Discrete states and action spaces}{30}{subsection.3.5.1}
 \contentsline {subsubsection}{Internet Ads}{30}{subsubsection*.29}
 \contentsline {subsubsection}{Sponsored Search Auctions}{31}{subsubsection*.31}
 \contentsline {subsubsection}{Grid World}{32}{subsubsection*.33}
@@ -55,16 +55,16 @@
 \contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{35}{subsection.3.5.2}
 \contentsline {subsubsection}{Pricing Problem}{35}{subsubsection*.39}
 \contentsline {subsubsection}{Swing-Up Pendulum}{37}{subsubsection*.40}
-\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning Scenario}{38}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning scenario}{38}{subsection.3.5.3}
 \contentsline {subsubsection}{Acrobot}{38}{subsubsection*.42}
 \contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{39}{chapter.4}
 \contentsline {section}{\numberline {4.1}Preliminaries}{40}{section.4.1}
-\contentsline {section}{\numberline {4.2}The Proposed Method}{40}{section.4.2}
+\contentsline {section}{\numberline {4.2}The proposed method}{40}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Decomposition of the TD error}{41}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Analysis of the decomposed update}{41}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Variance dependent learning rate}{42}{subsection.4.2.3}
 \contentsline {subsection}{\numberline {4.2.4}Discussion on convergence}{43}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Experimental Results}{44}{section.4.3}
+\contentsline {section}{\numberline {4.3}Experimental results}{44}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Noisy Grid World}{45}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Double Chain}{47}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Grid World with Holes}{48}{subsection.4.3.3}

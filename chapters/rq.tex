@@ -34,7 +34,7 @@ We can now write the optimal value function as:
 \end{align}
 
 Our approach shifts the focus of the \gls{rl} task from finding a good estimator for the optimal action-value function, to the task of finding good estimators for $\tilde{R}$ and $\tilde{Q}$. The main motivation is that the sources of uncertainty of the two components of the action-value function are different: $\tilde{R}$ only depends on transition and reward models, while $\tilde{Q}$ also depends on the optimal policy.
-\section{The Proposed Method}
+\section{The proposed method}
 In the following section, we derive our method from (\ref{eq:qdecrqtilde}). We propose the general schema, using the \gls{me}, and we show the relations with the standard $Q$-Learning update. We call this method $RQ$-Learning as it decomposes the \gls{td}-Error in a reward component and an action-value component.
 
 \subsection{Decomposition of the TD error}
@@ -165,7 +165,7 @@ This analysis considers only the estimation of the variance of the sample mean. 
   \label{F:hasselt_QDecTol}
 \end{figure}
 
-\section{Experimental Results}\label{S:empirical}
+\section{Experimental results}\label{S:empirical}
 We compare $RQ$-Learning against $Q$-Learning \cite{watkins1989learning}, Double $Q$-Learning \cite{van2010double}, Weighted $Q$-Learning \cite{deramo2016estimating} and Speedy $Q$-Learning\footnote{In these experiments we consider the asynchronous version of Speedy $Q$-Learning.} \cite{NIPS2011_4251} in three discrete \glspl{mdp}. We choose this set of algorithms because we want to analyze the impact of the maximum expected value estimator in the learning process. Indeed, while \cite{van2010double} strongly suggests that a negatively biased estimator should be used to deal with stochastic \glspl{mdp}, the  empirical results, reported in the following, show that positively biased estimators are able to achieve better performance in highly stochastic problems as well. Instead, we show that the main point consists in exploiting data in the best way, in particular in the estimation of the action-value, giving higher relevancy to more recent samples. We conjecture that the trade-off between keeping the old estimate and updating it with the new one is the key issue in highly stochastic environments. Both $RQ$-Learning and Speedy $Q$-Learning exploit this idea; in particular, the latter uses an increasing learning rate on the difference between the target computed with the current estimation and the one computed with the previous estimation, while $RQ$-Learning weights the update considering the uncertainty of the current estimation.
 
 We analyze the performance of $RQ$-Learning with different choices of learning rates. All the other algorithms use a decaying learning rate $\alpha(s, a) = \frac{1}{n(s, a)^{k}}$ where $n(s, a)$ and $k$ are respectively the number of updates for each action $a$ in state $s$ and a coefficient to tune the rate of decay.\footnote{Assuming that Double $Q$-Learning splits the action-value table in a table A and a table B, also the learning rate is split in $\alpha_A(s, a) = \frac{1}{n_A(s, a)^{k}}$ and $\alpha_B(s, a) = \frac{1}{n_B(s, a)^{k}}$, where $n_A(s, a)$ and $n_B(s, a)$ are the number of updates for each action $a$ in state $s$, respectively in table A and table B.}

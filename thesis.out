@@ -20,9 +20,9 @@
 \BOOKMARK [-1][]{part.2}{II Bellman Update}{}% 20
 \BOOKMARK [0][]{chapter.3}{Maximum Expected Value estimation}{part.2}% 21
 \BOOKMARK [1][]{section.3.1}{Problem definition}{chapter.3}% 22
-\BOOKMARK [2][]{subsection.3.1.1}{Related Works}{section.3.1}% 23
+\BOOKMARK [2][]{subsection.3.1.1}{Related works}{section.3.1}% 23
 \BOOKMARK [1][]{section.3.2}{Weighted Estimator}{chapter.3}% 24
-\BOOKMARK [2][]{subsection.3.2.1}{Generalization to Infinite Random Variables}{section.3.2}% 25
+\BOOKMARK [2][]{subsection.3.2.1}{Generalization to infinite random variables}{section.3.2}% 25
 \BOOKMARK [1][]{section.3.3}{Analysis of Weighted Estimator}{chapter.3}% 26
 \BOOKMARK [2][]{subsection.3.3.1}{Bias}{section.3.3}% 27
 \BOOKMARK [2][]{subsection.3.3.2}{Variance}{section.3.3}% 28
@@ -31,17 +31,17 @@
 \BOOKMARK [2][]{subsection.3.4.2}{Batch}{section.3.4}% 31
 \BOOKMARK [2][]{subsection.3.4.3}{Deep Reinforcement Learning}{section.3.4}% 32
 \BOOKMARK [1][]{section.3.5}{Empirical results}{chapter.3}% 33
-\BOOKMARK [2][]{subsection.3.5.1}{Discrete States and Action Spaces}{section.3.5}% 34
+\BOOKMARK [2][]{subsection.3.5.1}{Discrete states and action spaces}{section.3.5}% 34
 \BOOKMARK [2][]{subsection.3.5.2}{Continuous state spaces}{section.3.5}% 35
-\BOOKMARK [2][]{subsection.3.5.3}{Deep Reinforcement Learning Scenario}{section.3.5}% 36
+\BOOKMARK [2][]{subsection.3.5.3}{Deep Reinforcement Learning scenario}{section.3.5}% 36
 \BOOKMARK [0][]{chapter.4}{Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{part.2}% 37
 \BOOKMARK [1][]{section.4.1}{Preliminaries}{chapter.4}% 38
-\BOOKMARK [1][]{section.4.2}{The Proposed Method}{chapter.4}% 39
+\BOOKMARK [1][]{section.4.2}{The proposed method}{chapter.4}% 39
 \BOOKMARK [2][]{subsection.4.2.1}{Decomposition of the TD error}{section.4.2}% 40
 \BOOKMARK [2][]{subsection.4.2.2}{Analysis of the decomposed update}{section.4.2}% 41
 \BOOKMARK [2][]{subsection.4.2.3}{Variance dependent learning rate}{section.4.2}% 42
 \BOOKMARK [2][]{subsection.4.2.4}{Discussion on convergence}{section.4.2}% 43
-\BOOKMARK [1][]{section.4.3}{Experimental Results}{chapter.4}% 44
+\BOOKMARK [1][]{section.4.3}{Experimental results}{chapter.4}% 44
 \BOOKMARK [2][]{subsection.4.3.1}{Noisy Grid World}{section.4.3}% 45
 \BOOKMARK [2][]{subsection.4.3.2}{Double Chain}{section.4.3}% 46
 \BOOKMARK [2][]{subsection.4.3.3}{Grid World with Holes}{section.4.3}% 47

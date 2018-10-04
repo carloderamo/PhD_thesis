@@ -24,7 +24,7 @@ However it can be approximated using a given set of noisy samples $S = \lbrace S
 The random samples means $\hat{\mu}_{1}, ..., \hat{\mu}_{N}$ are unbiased estimators of the true means $\mu_{1}, ..., \mu_{N}$.
 Eventually, the \gls{pdf} and \gls{cdf} of $\hat{\mu}_{i}(S)$ are denoted by $\hat f_i^S$ and $\hat F_i^S$.
 
-\subsection{Related Works}\label{S:mev_works}
+\subsection{Related works}\label{S:mev_works}
 Several methods to estimate the \gls{mev} have been proposed in the literature. The most straightforward one is the \gls{me} which consists in approximating the \gls{mev} with the maximum of the sample means:
 \begin{equation}\label{E:biasME}
 \est{ME}(S) = \max_{i}\hat{\mu}_{i}(S) \approx \mu_{*}(X).
@@ -70,7 +70,7 @@ so that \gls{we} is computed as:
 
 It is worth noting that \gls{we} is consistent with $\mu_*(X)$. In fact, as the number of samples grows to infinity, each sample mean $\hat\mu_i$ converges to the related population mean $\mu_i$, and the variance of the normal distribution $\tilde f_i$ tends to zero, so that the weights of the variables with expected value less than $\mu_*(X)$ go to zero, so that $\est{WE} \rightarrow \mu_*(X)$.
 
-\subsection{Generalization to Infinite Random Variables}\label{S:infinite}
+\subsection{Generalization to infinite random variables}\label{S:infinite}
 As far as we know, previous literature has focused only on the finite case and no approaches that natively handle continuous sets of random variables (e.g. without discretization) are available.
 Let us consider a continuous space of random variables $\mathcal{Z}$ equipped with some metric (e.g. a Polish space) and assume that variables in $\mathcal{Z}$ have some spatial correlation.
 Here, we consider $\mathcal{Z}$ to be a closed interval in $\mathbb{R}$ and that each variable $z \in \mathcal{Z}$ has unknown mean $\mu_z$ and variance $\sigma^2_z$.
@@ -165,7 +165,7 @@ We start with summarizing the main results about the bias of \gls{me} and \gls{d
 For what concerns the direction of the bias, \gls{me} is positively biased, while \gls{de} is negatively biased.
 If we look at the absolute bias, there is no clear winner. 
 For instance, when all the random variables are identically distributed, \gls{de} is unbiased, while the same setting represents a worst case for \gls{me}.
-On the other hand, when the maximum expected value is sufficiently larger than the expected values of the other variables, the absolute bias of \gls{me} can be significantly smaller than the one of \gls{de}.
+On the other hand, when the \gls{mev} is sufficiently larger than the expected values of the other variables, the absolute bias of \gls{me} can be significantly smaller than the one of \gls{de}.
 The bias of \gls{me} is bounded by:
 $$\mathrm{Bias}\left(\est{ME}\right) \leq \sqrt{\frac{M-1}{M}\sum_{i=1}^M \frac{\sigma_i^2}{|S_i|}}.$$
 For the bias of \gls{de}, \cite{van2013estimating} conjectures the following bound (which is proved for two variables):
@@ -316,7 +316,7 @@ The \gls{fqi} update~\ref{S:FQI}, similarly to the \gls{ql} update, requires the
 The \gls{fqi} variant which replaces \gls{me} with \gls{de} is called \gls{dfqi}, and the variant which we propose using \gls{we} is called \gls{wfqi}~\cite{deramo2017maximum}. \gls{wfqi} uses \gls{gp} regression in order to compute the mean $Q$-value and its variance in continuous state spaces (Algorithm \ref{A:WFQI}). The interesting aspect of \gls{wfqi} is that it can handle infinite action spaces too, as explained in Section \ref{S:infinite} and showed in Algorithm \ref{A:continuousWFQI}. At the best of our knowledge, this makes it the only value-based algorithm able to deal with infinite action spaces.
 
 \subsection{Deep Reinforcement Learning}
-We also analyzed the case of \gls{drl} where the overestimation problem caused by \gls{me} happens also in the \gls{dqn} algorithm resulting in critical loss of performance in some problems due to instability. The \gls{ddqn} algorithm~\cite{hasselt2015double} replaces \gls{me} with \gls{de} and shows considerable improvements and performance and stability. We worked on the replacement of \gls{me} with \gls{we} even though it is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks.
+We also analyzed the case of \gls{drl} where the overestimation problem caused by \gls{me} happens also in the \gls{dqn} algorithm resulting in critical loss of performance in some problems due to instability. The \gls{ddqn} algorithm~\cite{hasselt2015double} replaces \gls{me} with \gls{de} and shows considerable improvements and performance and stability. We worked on the replacement of \gls{me} with \gls{we} even though it is not straightforward in this case due to difficulties in computing the variance of the approximation. The \gls{gp} regression, used in \gls{wfqi}, is commonly not used in \gls{drl} and a deep neural network adapts better in important \gls{drl} problems, such as the well known Atari domain~\cite{bellemare2013arcade}. The estimation of mean and variance with a neural network is possible, but the computational complexity increases with the number of parameters such that it becomes unfeasible in deep neural networks.
 
 \subsubsection{Weighted Deep $Q$-Network}\label{S:drl}
 \begin{figure}[t]
@@ -347,9 +347,9 @@ for the $K$-th head where $w^j_i$ is the percentage of the $K-1$ heads where act
 The resulting algorithm is a slight change to the original \gls{bdqn} that allows to use the \gls{we} in the \gls{dqn} framework without differences in computational time and memory requirements w.r.t. \gls{bdqn}. We call this algorithm \gls{wdqn}.
 
 \section{Empirical results}
-We evaluate the performance of \gls{me}, \gls{de} and \gls{we} in \gls{mab} and \gls{rl} problems. We start from considering discrete state and action spaces, then we move to continuous ones and, eventually, to deep \gls{rl} problems.
+We evaluate the performance of \gls{me}, \gls{de} and \gls{we} in \gls{mab} and \gls{rl} problems. We start from considering discrete state and action spaces, then we move to continuous ones and, eventually, to \gls{drl} problems.
 
-\subsection{Discrete States and Action Spaces}
+\subsection{Discrete states and action spaces}
 
 \subsubsection{Internet Ads}
 We consider this \gls{mab} problem as formulated in~\cite{van2013estimating}.
@@ -523,7 +523,7 @@ Figure~\ref{F:pendulum} show that \gls{wfqi} for discrete actions \ref{A:WFQI} a
 In the latter setting, the only algorithm that is able to directly handle continuous space is the \gls{wfqi} defined in Algorithm~\ref{A:continuousWFQI}.
 The other algorithms use a \gls{gp} with $100$ actions to approximate the maximum.
 
-\subsection{Deep Reinforcement Learning Scenario}
+\subsection{Deep Reinforcement Learning scenario}
 \subsubsection{Acrobot}
 \begin{figure}[t]
   \centering
