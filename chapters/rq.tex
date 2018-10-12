@@ -73,7 +73,7 @@ Q_{t+1}(s,a) \leftarrow & Q_t(s,a)+\alpha_t(R(s,a,s')+\gamma\delta_t \max_{a'}Q_
   & - Q_t'(s,a))
 \end{align}
 with $\gamma_t'=\gamma\delta_t$. Notice that $Q_t'(s,a)$ is the Q-value at time step $t$, but computed with a different discount factor. If $\beta_t=\delta_t\alpha_t$, then we can see our method as a variable discount factor learning. If we consider that $\delta_t$ increases monotonically in the interval $[0,1]$, our method works by increasing the effective horizon each step starting from trying to solve a greedy myopic problem and moving towards the real one.
-Similar approaches have been used in practice to solve infinite horizon problems when the discount factor is close to $1$ ~\cite{crites1996improving, bao2008infinite, franccois2015discount}.
+Similar approaches have been used in practice to solve infinite horizon problems when the discount factor $\gamma \approx 1$ ~\cite{crites1996improving, bao2008infinite, franccois2015discount}.
 
 Finally, we can observe that, if the reward function and the transition model are deterministic, we can set $\alpha=1$ and consider only $\beta_t=\delta_t$.
 
@@ -93,13 +93,13 @@ with $\omega=\sum_i^n \alpha_i^2 \prod_{j=i+1}^{n} \left(1-\alpha_j\right)^2$. N
 \begin{align}
  \omega_{n+1}=(1-\alpha_n)^2\omega_n+\alpha_n^2.
 \end{align}
-A weak assumption of this model is that the variables are identically distributed. While this could be true for the reward function, if the \gls{mdp} is stationary, this is not true for the Q-function values whose distribution is affected by the policy and by the current estimates of the other states. However, a good approximation could be to consider data collected in a temporal window in which the distribution is approximately stationary. Using this approach, we can compute the variance of the process in a given time window forgetting old values that can lead to a biased estimation of the current window variance. While this approach is not formally correct, as the derivation of the variance estimates makes the assumption of i.i.d. variables, this approximation leads to very good results in practice as we show in the empirical Section \ref{S:empirical}.
+A weak assumption of this model is that the variables are identically distributed. While this could be true for the reward function, if the \gls{mdp} is stationary, this is not true for the action-value function values whose distribution is affected by the policy and by the current estimates of the other states. However, a good approximation could be to consider data collected in a temporal window in which the distribution is approximately stationary. Using this approach, we can compute the variance of the process in a given time window forgetting old values that can lead to a biased estimation of the current window variance. While this approach is not formally correct, as the derivation of the variance estimates makes the assumption of i.i.d. variables, this approximation leads to very good results in practice as we show in the empirical Section \ref{S:empirical}.
 
 Finally, we can choose a learning rate that depends on the covariance. Let $\sigma_e^2(t)$ be an estimate of $\mathrm{Var}\left[\widetilde{X}_{t}\right]$. We propose the following learning rate for each component of the action-value function:
 \begin{align}\label{eq:alpha_eq}
  \alpha_t=\dfrac{\sigma_e^2(t)}{\sigma_e^2(t)+\eta}
 \end{align}
-where $\eta$ is the amount of the estimator variance for which the learning rate is $0.5$ (i.e. when $\sigma_e=\eta$ the learning rate is 0.5). It can be seen as a soft threshold to tune the speed of the decrease of the learning rate w.r.t. the estimator variance.
+where $\eta$ is the amount of the estimator variance for which the learning rate is $0.5$ (i.e. when $\sigma_e=\eta$ the learning rate is $0.5$). It can be seen as a soft threshold to tune the speed of the decrease of the learning rate w.r.t. the estimator variance.
 
 If we consider the case $\beta_t=\alpha_t\delta_t$, then we have to use a different learning rate. As we want an increase of the discount factor faster than the decrease of the general learning rate, we can use an exponentially increasing learning rate for the delta parameter:
 \begin{align}\label{eq:delta_eq}

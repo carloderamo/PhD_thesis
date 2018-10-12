@@ -59,7 +59,7 @@
 \BOOKMARK [2][]{subsection.5.4.3}{Deep Reinforcement Learning}{section.5.4}% 59
 \BOOKMARK [0][]{chapter.6}{Exploration Driven by an Optimistic Bellman Equation}{part.3}% 60
 \BOOKMARK [1][]{section.6.1}{Learning value function ensembles with optimistic estimate selection}{chapter.6}% 61
-\BOOKMARK [2][]{subsection.6.1.1}{An optimistic Bellman equation for action-value function ensembles}{section.6.1}% 62
+\BOOKMARK [2][]{subsection.6.1.1}{An optimistic Bellman Equation for action-value function ensembles}{section.6.1}% 62
 \BOOKMARK [2][]{subsection.6.1.2}{Relation to Intrinsic Motivation}{section.6.1}% 63
 \BOOKMARK [1][]{section.6.2}{Optimistic value function estimators}{chapter.6}% 64
 \BOOKMARK [2][]{subsection.6.2.1}{Optimistic Q-Learning}{section.6.2}% 65

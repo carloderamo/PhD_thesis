@@ -98,7 +98,7 @@
 \contentsline {paragraph}{Results}{64}{paragraph*.76}
 \contentsline {chapter}{\numberline {6}Exploration Driven by an Optimistic Bellman Equation}{65}{chapter.6}
 \contentsline {section}{\numberline {6.1}Learning value function ensembles with optimistic estimate selection}{66}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}An optimistic Bellman equation for action-value function ensembles}{66}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.1}An optimistic Bellman Equation for action-value function ensembles}{66}{subsection.6.1.1}
 \contentsline {subsubsection}{Entropy-regularized optimistic action-value selection}{67}{subsubsection*.77}
 \contentsline {subsubsection}{Optimistic action-value selection bounding the information loss}{68}{subsubsection*.78}
 \contentsline {subsection}{\numberline {6.1.2}Relation to Intrinsic Motivation}{68}{subsection.6.1.2}

@@ -295,6 +295,11 @@ Daewoo Lee, Boris Defourny, and Warren~B. Powell.
 \newblock In {\em Adaptive Dynamic Programming And Reinforcement Learning
   (ADPRL), 2013 IEEE Symposium on}, pages 93--99. IEEE, 2013.
 
+\bibitem{lee2012intelligent}
+Donghun Lee and Warren~B Powell.
+\newblock An intelligent battery controller using bias-corrected q-learning.
+\newblock In {\em AAAI}. Citeseer, 2012.
+
 \bibitem{may2011simulation}
 Benedict~C. May and David~S. Leslie.
 \newblock Simulation studies in optimistic bayesian sampling in
