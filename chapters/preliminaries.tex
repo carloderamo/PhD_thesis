@@ -10,7 +10,7 @@
 \end{minipage}
 \caption[Markov Decision Process scheme]{Graphical representation of a Markov Decision Process.}\label{F:mdp1}
 \end{figure}
-The interaction of an agent inside an environment can be seen as the execution of actions to change the environment and the observation of the consequences of its actions (Figure \ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $s$ of the environment state, executes an action $a$ and observes the new representation of the state of the environment $s'$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to be observed from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. The total number of time steps $t_i$ is called \textit{horizon} $H$ and determines a first taxonomy of problems:
+The interaction of an agent inside an environment can be seen as the execution of actions to change the environment and the observation of the consequences of its actions (Figure~\ref{F:mdp1}). The temporal progress of the interaction is modeled in a set of discrete time steps $t \in [0, 1, 2, \dots]$ where the agent sees a representation $s$ of the environment state, executes an action $a$ and observes the new representation of the state of the environment $s'$. The problems about observation and interaction discussed in Chapter~\ref{C:intro} are simplified by an explicit selection of data to be observed from the environment and of the executable actions. In this way, only the relevant aspects of the sensory data acquired from the environment by the agent are used. The total number of time steps $t_i$ is called \textit{horizon} $H$ and determines a first taxonomy of problems:
 \begin{itemize}
  \item finite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, H)$;
  \item infinite time horizon: $t_i, \forall i \in [0, 1, 2, \dots, \infty)$.
@@ -32,7 +32,7 @@ The agent's interaction with the environment is performed in order to reach a go
  J = \sum_{t=0}^\infty \gamma^t r_t.
 \end{equation}
 \end{itemize}
-The measure in Equation~\ref{E:discumrew} uses a real scalar $\gamma \in [0, 1)$, called \textit{discount factor}, which has the purpose of giving different importance to the rewards w.r.t. the time steps in which they have been collected. If $\gamma = 1$ the equation reduces to Equation~\ref{E:sumrew}, whereas the smaller it becomes the less the agent cares about rewards collected far in time.
+The measure in Equation~(\ref{E:discumrew}) uses a real scalar $\gamma \in [0, 1)$, called \textit{discount factor}, which has the purpose of giving different importance to the rewards w.r.t. the time steps in which they have been collected. If $\gamma = 1$ the equation reduces to Equation~(\ref{E:sumrew}), whereas the smaller it becomes the less the agent cares about rewards collected far in time.
 
 \section{Markov Decision Processes}
 \begin{figure}[t]
@@ -193,7 +193,7 @@ In a hypothetical setting in which the agent is given the knowledge of the optim
     \dfrac{\varepsilon}{|\mathcal{A}|} & \text{otherwise}
     \end{cases}
 \end{equation}
-Equation~\ref{E:eps} results in the choice, at each step, between a greedy or random action according to the value of $\varepsilon$: the policy is completely random when $\varepsilon = 1$ and is completely greedy when $\varepsilon = 0$.
+Equation~(\ref{E:eps}) results in the choice, at each step, between a greedy or random action according to the value of $\varepsilon$: the policy is completely random when $\varepsilon = 1$ and is completely greedy when $\varepsilon = 0$.
 Despite its simplicity, this policy is used in numerous works in the literature that allow to reach good results with minimum computational demand, but at the cost of a bad sample efficiency.
 
 One of the drawbacks of $\varepsilon$-greedy is that it does not use the information available to the agent. The \textit{Boltzmann} policy, also known as the \textit{Softmax} policy, uses the current estimate of the action-value functions computing the probabilities for each action $a_i$ to be sampled as
