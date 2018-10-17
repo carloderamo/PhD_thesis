@@ -29,7 +29,7 @@
 \contentsline {subsubsection}{Deep Reinforcement Learning}{17}{subsubsection*.18}
 \contentsline {paragraph}{Deep $Q$-Network}{17}{paragraph*.19}
 \contentsline {part}{\textlatin {II}\hspace {1em}Bellman Update}{19}{part.2}
-\contentsline {chapter}{\numberline {3}Maximum Expected Value estimation}{21}{chapter.3}
+\contentsline {chapter}{\numberline {3}Maximum Expected Value Estimation}{21}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{22}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Related works}{22}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}Weighted Estimator}{23}{section.3.2}
@@ -39,24 +39,22 @@
 \contentsline {section}{\numberline {3.3}Analysis of Weighted Estimator}{26}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Bias}{26}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Variance}{28}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Maximum Expected Value estimation in Reinforcement Learning}{29}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Online}{29}{subsection.3.4.1}
+\contentsline {section}{\numberline {3.4}Maximum Expected Value estimation in Reinforcement Learning}{30}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Online}{30}{subsection.3.4.1}
 \contentsline {subsubsection}{Weighted $Q$-Learning}{30}{subsubsection*.25}
-\contentsline {subsection}{\numberline {3.4.2}Batch}{30}{subsection.3.4.2}
-\contentsline {subsubsection}{Weighted Fitted $Q$-Iteration}{30}{subsubsection*.26}
-\contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{31}{subsection.3.4.3}
-\contentsline {subsubsection}{Weighted Deep $Q$-Network}{31}{subsubsection*.27}
-\contentsline {section}{\numberline {3.5}Empirical results}{32}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Discrete states and action spaces}{32}{subsection.3.5.1}
-\contentsline {subsubsection}{Internet Ads}{32}{subsubsection*.29}
-\contentsline {subsubsection}{Sponsored Search Auctions}{33}{subsubsection*.31}
-\contentsline {subsubsection}{Grid World}{34}{subsubsection*.33}
+\contentsline {subsection}{\numberline {3.4.2}Batch}{31}{subsection.3.4.2}
+\contentsline {subsubsection}{Weighted Fitted $Q$-Iteration}{31}{subsubsection*.26}
+\contentsline {subsection}{\numberline {3.4.3}Deep Reinforcement Learning}{32}{subsection.3.4.3}
+\contentsline {subsubsection}{Weighted Deep $Q$-Network}{32}{subsubsection*.27}
+\contentsline {section}{\numberline {3.5}Empirical results}{33}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Discrete states and action spaces}{33}{subsection.3.5.1}
+\contentsline {subsubsection}{Internet Ads}{33}{subsubsection*.29}
+\contentsline {subsubsection}{Sponsored Search Auctions}{34}{subsubsection*.31}
+\contentsline {subsubsection}{Grid World}{35}{subsubsection*.33}
 \contentsline {subsubsection}{Forex}{36}{subsubsection*.36}
-\contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{37}{subsection.3.5.2}
-\contentsline {subsubsection}{Pricing Problem}{37}{subsubsection*.39}
+\contentsline {subsection}{\numberline {3.5.2}Continuous state spaces}{38}{subsection.3.5.2}
+\contentsline {subsubsection}{Pricing Problem}{38}{subsubsection*.39}
 \contentsline {subsubsection}{Swing-Up Pendulum}{39}{subsubsection*.40}
-\contentsline {subsection}{\numberline {3.5.3}Deep Reinforcement Learning scenario}{40}{subsection.3.5.3}
-\contentsline {subsubsection}{Acrobot}{40}{subsubsection*.42}
 \contentsline {chapter}{\numberline {4}Exploiting uncertainty of the Bellman operator components to deal with highly stochastic problems}{41}{chapter.4}
 \contentsline {section}{\numberline {4.1}Preliminaries}{42}{section.4.1}
 \contentsline {section}{\numberline {4.2}The proposed method}{42}{section.4.2}
@@ -76,60 +74,60 @@
 \contentsline {section}{\numberline {5.3}Efficient uncertainty estimation}{58}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Online estimation}{58}{subsection.5.3.1}
 \contentsline {subsection}{\numberline {5.3.2}Bootstrapping}{61}{subsection.5.3.2}
-\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{61}{paragraph*.55}
-\contentsline {paragraph}{Bootstrapped Q-Learning}{61}{paragraph*.56}
+\contentsline {paragraph}{Thompson Sampling via Bootstrapping}{61}{paragraph*.52}
+\contentsline {paragraph}{Bootstrapped Q-Learning}{61}{paragraph*.53}
 \contentsline {section}{\numberline {5.4}Experiments}{62}{section.5.4}
 \contentsline {subsection}{\numberline {5.4.1}Discrete state space}{62}{subsection.5.4.1}
-\contentsline {subsubsection}{Taxi}{62}{subsubsection*.63}
-\contentsline {paragraph}{Details}{62}{paragraph*.64}
-\contentsline {paragraph}{Setting}{62}{paragraph*.65}
-\contentsline {paragraph}{Results}{63}{paragraph*.66}
+\contentsline {subsubsection}{Taxi}{62}{subsubsection*.60}
+\contentsline {paragraph}{Details}{62}{paragraph*.61}
+\contentsline {paragraph}{Setting}{62}{paragraph*.62}
+\contentsline {paragraph}{Results}{63}{paragraph*.63}
 \contentsline {subsection}{\numberline {5.4.2}Continuous state space}{64}{subsection.5.4.2}
-\contentsline {subsubsection}{Mountain Car}{64}{subsubsection*.67}
-\contentsline {paragraph}{Details}{64}{paragraph*.68}
-\contentsline {paragraph}{Setting}{64}{paragraph*.69}
-\contentsline {subsubsection}{Acrobot}{65}{subsubsection*.70}
-\contentsline {paragraph}{Details}{65}{paragraph*.71}
-\contentsline {paragraph}{Setting}{65}{paragraph*.72}
-\contentsline {paragraph}{Results}{66}{paragraph*.73}
+\contentsline {subsubsection}{Mountain Car}{64}{subsubsection*.64}
+\contentsline {paragraph}{Details}{64}{paragraph*.65}
+\contentsline {paragraph}{Setting}{64}{paragraph*.66}
+\contentsline {subsubsection}{Acrobot}{65}{subsubsection*.67}
+\contentsline {paragraph}{Details}{65}{paragraph*.68}
+\contentsline {paragraph}{Setting}{65}{paragraph*.69}
+\contentsline {paragraph}{Results}{66}{paragraph*.70}
 \contentsline {subsection}{\numberline {5.4.3}Deep Reinforcement Learning}{66}{subsection.5.4.3}
-\contentsline {paragraph}{Details}{66}{paragraph*.74}
-\contentsline {paragraph}{Setting}{66}{paragraph*.75}
-\contentsline {paragraph}{Results}{66}{paragraph*.76}
+\contentsline {paragraph}{Details}{66}{paragraph*.71}
+\contentsline {paragraph}{Setting}{66}{paragraph*.72}
+\contentsline {paragraph}{Results}{66}{paragraph*.73}
 \contentsline {chapter}{\numberline {6}Exploration Driven by an Optimistic Bellman Equation}{67}{chapter.6}
 \contentsline {section}{\numberline {6.1}Learning value function ensembles with optimistic estimate selection}{68}{section.6.1}
 \contentsline {subsection}{\numberline {6.1.1}An optimistic Bellman Equation for action-value function ensembles}{68}{subsection.6.1.1}
-\contentsline {subsubsection}{Entropy-regularized optimistic action-value selection}{69}{subsubsection*.77}
-\contentsline {subsubsection}{Optimistic action-value selection bounding the information loss}{70}{subsubsection*.78}
+\contentsline {subsubsection}{Entropy-regularized optimistic action-value selection}{69}{subsubsection*.74}
+\contentsline {subsubsection}{Optimistic action-value selection bounding the information loss}{70}{subsubsection*.75}
 \contentsline {subsection}{\numberline {6.1.2}Relation to Intrinsic Motivation}{70}{subsection.6.1.2}
-\contentsline {subsubsection}{Explicit exploration}{71}{subsubsection*.79}
+\contentsline {subsubsection}{Explicit exploration}{71}{subsubsection*.76}
 \contentsline {section}{\numberline {6.2}Optimistic value function estimators}{72}{section.6.2}
 \contentsline {subsection}{\numberline {6.2.1}Optimistic $Q$-Learning}{72}{subsection.6.2.1}
 \contentsline {subsection}{\numberline {6.2.2}Optimistic Deep $Q$-Network}{73}{subsection.6.2.2}
-\contentsline {paragraph}{Automatic hyper-parameter adaptation}{74}{paragraph*.80}
-\contentsline {paragraph}{Ensuring a prior distribution}{74}{paragraph*.81}
+\contentsline {paragraph}{Automatic hyper-parameter adaptation}{74}{paragraph*.77}
+\contentsline {paragraph}{Ensuring a prior distribution}{74}{paragraph*.78}
 \contentsline {section}{\numberline {6.3}Experimental evaluation}{74}{section.6.3}
 \contentsline {subsection}{\numberline {6.3.1}Settings}{74}{subsection.6.3.1}
-\contentsline {paragraph}{Initialization of the action-value function}{74}{paragraph*.83}
-\contentsline {paragraph}{Hyper-parameters tuning}{75}{paragraph*.84}
+\contentsline {paragraph}{Initialization of the action-value function}{74}{paragraph*.80}
+\contentsline {paragraph}{Hyper-parameters tuning}{75}{paragraph*.81}
 \contentsline {subsection}{\numberline {6.3.2}Results}{75}{subsection.6.3.2}
 \contentsline {part}{\textlatin {IV}\hspace {1em}Final Remarks}{77}{part.4}
 \contentsline {chapter}{\numberline {7}Conclusion}{79}{chapter.7}
 \contentsline {section}{\numberline {7.1}Recap of the thesis}{79}{section.7.1}
 \contentsline {subsection}{\numberline {7.1.1}Bellman update}{80}{subsection.7.1.1}
-\contentsline {subsubsection}{What I studied}{80}{subsubsection*.85}
-\contentsline {subsubsection}{What I did}{80}{subsubsection*.86}
+\contentsline {subsubsection}{What I studied}{80}{subsubsection*.82}
+\contentsline {subsubsection}{What I did}{80}{subsubsection*.83}
 \contentsline {subsection}{\numberline {7.1.2}Exploration}{81}{subsection.7.1.2}
-\contentsline {subsubsection}{What I studied}{81}{subsubsection*.87}
-\contentsline {subsubsection}{What I did}{81}{subsubsection*.88}
+\contentsline {subsubsection}{What I studied}{81}{subsubsection*.84}
+\contentsline {subsubsection}{What I did}{81}{subsubsection*.85}
 \contentsline {subsection}{\numberline {7.1.3}Comments}{82}{subsection.7.1.3}
 \contentsline {section}{\numberline {7.2}Future directions}{83}{section.7.2}
-\contentsline {chapter}{Bibliography}{85}{section*.90}
+\contentsline {chapter}{Bibliography}{85}{section*.87}
 \contentsline {chapter}{\numberline {A}Mushroom}{91}{appendix.A}
 \contentsline {section}{\numberline {A.1}Related works}{91}{section.A.1}
 \contentsline {section}{\numberline {A.2}Ideas and Concepts}{92}{section.A.2}
-\contentsline {paragraph}{General purpose}{92}{paragraph*.92}
-\contentsline {paragraph}{Lightweight}{92}{paragraph*.93}
-\contentsline {paragraph}{Compatible}{92}{paragraph*.94}
-\contentsline {paragraph}{Easy to use}{92}{paragraph*.95}
+\contentsline {paragraph}{General purpose}{92}{paragraph*.89}
+\contentsline {paragraph}{Lightweight}{92}{paragraph*.90}
+\contentsline {paragraph}{Compatible}{92}{paragraph*.91}
+\contentsline {paragraph}{Easy to use}{92}{paragraph*.92}
 \contentsline {section}{\numberline {A.3}Design}{92}{section.A.3}
