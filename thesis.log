@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  18 OCT 2018 15:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  19 OCT 2018 11:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2081,69 +2081,69 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[58] [59] <img/comp.pdf, id=2025, 5130.897pt x 4210.90376pt>
+[58] <img/comp.pdf, id=2017, 5130.897pt x 4210.90376pt>
 File: img/comp.pdf Graphic file (type pdf)
-
-<use img/comp.pdf>
+ <use img/comp.pdf>
 Package pdftex.def Info: img/comp.pdf used on input line 156.
 (pdftex.def)             Requested size: 230.8804pt x 189.4825pt.
- <img/taxi.png, id=2026, 331.2375pt x 284.56313pt>
-File: img/taxi.png Graphic file (type png)
 
-<use img/taxi.png>
+<img/taxi.png, id=2018, 331.2375pt x 284.56313pt>
+File: img/taxi.png Graphic file (type png)
+ <use img/taxi.png>
 Package pdftex.def Info: img/taxi.png used on input line 161.
 (pdftex.def)             Requested size: 82.80916pt x 71.1406pt.
- <img/taxi_boot.pdf, id=2027, 526.16264pt x 395.3642pt>
-File: img/taxi_boot.pdf Graphic file (type pdf)
 
-<use img/taxi_boot.pdf>
+<img/taxi_boot.pdf, id=2019, 526.16264pt x 395.3642pt>
+File: img/taxi_boot.pdf Graphic file (type pdf)
+ <use img/taxi_boot.pdf>
 Package pdftex.def Info: img/taxi_boot.pdf used on input line 162.
 (pdftex.def)             Requested size: 131.54033pt x 98.8408pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 165.
- <img/bounds.pdf, id=2031, 7371.26701pt x 2401.13933pt>
-File: img/bounds.pdf Graphic file (type pdf)
 
-<use img/bounds.pdf>
+<img/bounds.pdf, id=2023, 7371.26701pt x 2401.13933pt>
+File: img/bounds.pdf Graphic file (type pdf)
+ <use img/bounds.pdf>
 Package pdftex.def Info: img/bounds.pdf used on input line 170.
 (pdftex.def)             Requested size: 368.58495pt x 120.064pt.
- <img/cs.pdf, id=2032, 7371.26701pt x 2401.13933pt>
-File: img/cs.pdf Graphic file (type pdf)
 
-<use img/cs.pdf>
+<img/cs.pdf, id=2024, 7371.26701pt x 2401.13933pt>
+File: img/cs.pdf Graphic file (type pdf)
+ <use img/cs.pdf>
 Package pdftex.def Info: img/cs.pdf used on input line 178.
 (pdftex.def)             Requested size: 368.58495pt x 120.064pt.
- <img/chics.pdf, id=2033, 7371.26701pt x 2401.13933pt>
-File: img/chics.pdf Graphic file (type pdf)
 
-<use img/chics.pdf>
+<img/chics.pdf, id=2025, 7371.26701pt x 2401.13933pt>
+File: img/chics.pdf Graphic file (type pdf)
+ <use img/chics.pdf>
 Package pdftex.def Info: img/chics.pdf used on input line 186.
 (pdftex.def)             Requested size: 368.58495pt x 120.064pt.
- <img/mc_comp.pdf, id=2034, 790.79192pt x 395.48062pt>
-File: img/mc_comp.pdf Graphic file (type pdf)
 
-<use img/mc_comp.pdf>
+<img/mc_comp.pdf, id=2026, 790.79192pt x 395.48062pt>
+File: img/mc_comp.pdf Graphic file (type pdf)
+ <use img/mc_comp.pdf>
 Package pdftex.def Info: img/mc_comp.pdf used on input line 194.
 (pdftex.def)             Requested size: 237.2394pt x 118.6451pt.
- <img/acrobot_ts.pdf, id=2035, 440.24004pt x 375.12485pt>
+
+<img/acrobot_ts.pdf, id=2027, 440.24004pt x 375.12485pt>
 File: img/acrobot_ts.pdf Graphic file (type pdf)
 
 <use img/acrobot_ts.pdf>
 Package pdftex.def Info: img/acrobot_ts.pdf used on input line 195.
 (pdftex.def)             Requested size: 132.07303pt x 112.53831pt.
- <img/pong.pdf, id=2038, 370.84798pt x 340.54703pt>
+ <img/pong.pdf, id=2030, 370.84798pt x 340.54703pt>
 File: img/pong.pdf Graphic file (type pdf)
 
 <use img/pong.pdf>
 Package pdftex.def Info: img/pong.pdf used on input line 203.
 (pdftex.def)             Requested size: 111.25525pt x 102.16489pt.
- <img/breakout.pdf, id=2039, 366.78593pt x 340.54703pt>
+ <img/breakout.pdf, id=2031, 366.78593pt x 340.54703pt>
 File: img/breakout.pdf Graphic file (type pdf)
 
 <use img/breakout.pdf>
 Package pdftex.def Info: img/breakout.pdf used on input line 205.
 (pdftex.def)             Requested size: 110.03662pt x 102.16489pt.
-
+ [59]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 22.89502pt.
@@ -2280,13 +2280,13 @@ LaTeX Warning: Reference `F:opt_results' on page 73 undefined on input line 269
 Chapter 7.
 [77
 
-] [78] [79] [80] <img/breakout.jpg, id=2653, 2190.1825pt x 1640.1275pt>
+] [78] [79] [80] <img/breakout.jpg, id=2654, 2190.1825pt x 1640.1275pt>
 File: img/breakout.jpg Graphic file (type jpg)
 
 <use img/breakout.jpg>
 Package pdftex.def Info: img/breakout.jpg used on input line 39.
 (pdftex.def)             Requested size: 142.36685pt x 106.61203pt.
- <img/humanoid.jpg, id=2654, 642.4pt x 354.32375pt>
+ <img/humanoid.jpg, id=2655, 642.4pt x 354.32375pt>
 File: img/humanoid.jpg Graphic file (type jpg)
 
 <use img/humanoid.jpg>
@@ -2310,7 +2310,7 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
 [89] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) [90]
-<img/msh.pdf, id=2736, 441.1481pt x 191.19022pt>
+<img/msh.pdf, id=2737, 441.1481pt x 191.19022pt>
 File: img/msh.pdf Graphic file (type pdf)
  <use img/msh.pdf>
 Package pdftex.def Info: img/msh.pdf used on input line 51.
@@ -2334,10 +2334,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 41158 strings out of 493029
- 869967 string characters out of 6136233
- 1145223 words of memory out of 5000000
- 43081 multiletter control sequences out of 15000+600000
+ 41159 strings out of 493029
+ 869974 string characters out of 6136233
+ 1145294 words of memory out of 5000000
+ 43082 multiletter control sequences out of 15000+600000
  118657 words of font info for 155 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,77p,2262b,2110s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2380,10 +2380,10 @@ e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
 mbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
-Output written on thesis.pdf (105 pages, 2282443 bytes).
+Output written on thesis.pdf (105 pages, 2282610 bytes).
 PDF statistics:
- 3042 PDF objects out of 3580 (max. 8388607)
- 2446 compressed objects within 25 object streams
+ 3043 PDF objects out of 3580 (max. 8388607)
+ 2447 compressed objects within 25 object streams
  672 named destinations out of 1000 (max. 500000)
  943 words of extra memory for PDF output out of 10000 (max. 10000000)
 

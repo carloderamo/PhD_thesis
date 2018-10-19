@@ -280,7 +280,7 @@ In the last years, different approaches have been proposed trying to overcome th
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Weighted $Q$-Learning}
+\subsubsection{Weighted $Q$-Learning}\label{S:wql}
 We propose to replace \gls{me} with \gls{we} in the \gls{wql} algorithm~\cite{deramo2016estimating}. \gls{wql} maintains an estimate of the mean value of the $Q$-function and its variance to compute the weights of \gls{we} (Algorithm \ref{A:WQ-Learning}).
 While the mean value corresponds to the current estimate of the $Q$-function, the variance is not straightforward to be computed. Indeed, it is not simply the variance of the $Q$-function approximator, but it is the variance of the process consisting of an update formula with a variable learning rate. Considering this, it can be shown that the variance can be computed incrementally at each step $t$ with:
 $$\sigma^2_t(s,a) \leftarrow n_t(s,a) \dfrac{(Q_{2_t}(s,a) - Q_t(s,a)^2)}{n_t(s,a) - 1} \omega_t(s,a),$$

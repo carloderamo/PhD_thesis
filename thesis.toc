@@ -89,7 +89,7 @@
 \contentsline {subsubsection}{Acrobot}{63}{subsubsection*.67}
 \contentsline {paragraph}{Details}{63}{paragraph*.68}
 \contentsline {paragraph}{Setting}{63}{paragraph*.69}
-\contentsline {paragraph}{Results}{64}{paragraph*.70}
+\contentsline {paragraph}{Results}{63}{paragraph*.70}
 \contentsline {subsection}{\numberline {5.4.3}Deep Reinforcement Learning}{64}{subsection.5.4.3}
 \contentsline {paragraph}{Details}{64}{paragraph*.71}
 \contentsline {paragraph}{Setting}{64}{paragraph*.72}
