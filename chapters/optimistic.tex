@@ -1,35 +1,34 @@
 \chapter{Exploration Driven by an Optimistic Bellman Equation}\label{C:opt}
-As described in Chapter~\ref{C:ts}, the \gls{ofu}-based techniques encourage exploration of unknown states hoping that they are more convenient than already known ones, thus the definition of optimism. There are two kinds of optimism:
+As described in Chapter~\ref{C:ts}, \gls{ofu}-based techniques encourage exploration of unknown states hoping they are more convenient than already known ones, hence the definition of optimism. There are two types of optimism:
 \begin{itemize}
 \item \textbf{confidence interval estimation}, such as IEQL+~\cite{meuleau1999exploration} and UCRL~\cite{auer2007logarithmic}, which directly estimates $Q$-value confidence intervals;
- \item \textbf{optimistic estimate} of the action-value, a method proposed for instance in~\cite{sutton1998reinforcement} about which subsequently~\cite{even2002convergence} proved convergence to a near-optimal solution.
+ \item \textbf{optimistic estimate} of the action value, a method proposed for instance in~\cite{sutton1998reinforcement} about which subsequently~\cite{even2002convergence} proved the convergence to a near-optimal solution.
 \end{itemize}
-While the work in Chapter~\ref{C:ts} deals with the first category of optimism-based algorithms, the work described in the following deals with the second one. This approach is inspired by the broad category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, that despite having less theoretical guarantees
+While the work in Chapter~\ref{C:ts} deals with the first category of optimism-based algorithms, the work described in the following deals with the latter. This approach is inspired by the broad category of algorithms based on \gls{im}~\cite{singh2004intrinsically}, which despite having less theoretical guarantees
 than Bayesian approaches, have been able to obtain impressive results~\cite{bellemare2016unifying}. As already discussed in Chapter~\ref{C:ts}, \gls{im}
-algorithms define an additional \textit{intrinsic} reward, which acts as an exploration bonus. Often, the additional reward is defined using heuristics, such as counting state visits and rewarding less visited states~\cite{ostrovski2017count}, or by \textit{surprise} which is the error in predicting future states~\cite{pathak2017curiosity}. However, the drawback of \gls{im} techniques is their lack of a principled definition of the intrinsic reward for exploration.
+algorithms define an \textit{intrinsic} reward replacing the extrinsic reward (or combining both), which acts as an exploration bonus. Often, the intrinsic reward is defined using heuristics, such as counting state visits and rewarding less visited states~\cite{ostrovski2017count}, or by the concept of \textit{surprise}, which is the error in predicting future states~\cite{pathak2017curiosity}. However, the drawback of \gls{im} techniques is their lack of a principled definition of the intrinsic reward for exploration.
 
-Considering this premise, we worked on the proposal of the \gls{obe}, a novel variant of \gls{be} which results in an optimistic action-value estimate
+Considering this premise, we worked on the proposal of the \gls{obe}, a novel variant of \gls{be} that results into an optimistic action-value estimate
 from an ensemble of action-value functions where the optimistic estimate is obtained from a maximum-entropy principle. For the exploration bonus that \gls{obe} implicitly defines, we can prove that the bonus decreases consistently with the number of
 state visits. Our proposed algorithm can be seen as a mixture of
-different techniques: as an approximated Bayesian method~\cite{engel2005reinforcement,vlassis2012bayesian} we estimate
-the uncertainty with an ensemble~\cite{osband2017deep}; like optimism-based methods~\cite{lai1985asymptotically,kearns2002near,brafman2002r,azizzadenesheli2517efficient} we select
-optimistic estimates, and like \gls{im} we propagate an implicit
+different techniques: as an approximate Bayesian method~\cite{engel2005reinforcement,vlassis2012bayesian} we estimate uncertainty with an ensemble~\cite{osband2017deep}; as optimism-based methods~\cite{lai1985asymptotically,kearns2002near,brafman2002r,azizzadenesheli2517efficient} we select
+optimistic estimates, and, as \gls{im}, we propagate an implicit
 exploration bonus~\cite{singh2004intrinsically,schmidhuber2008driven,white2010interval}.
 
 \section{Learning value function ensembles with optimistic estimate selection}
 \label{sec:obe}
-Ensemble methods~\cite{opitz1999popular} constitutes a popular set of \gls{ml} technique where multiple models are used to learn the same target function. In addition to being commonly used to improve the generalization of the prediction, ensemble methods offer a simple way to estimate its uncertainty. We consider the application of ensemble methods in the \gls{rl} framework with the purpose of approximating the action-value functions while having an estimate of their uncertainty, in order to apply the \gls{ofu} principle in action selection.
+Ensemble methods~\cite{opitz1999popular} constitute a popular set of \gls{ml} technique in which multiple models are used to learn the same target function. In addition to being commonly used to improve the generalization of the prediction, ensemble methods offer a simple way to estimate its uncertainty. We consider the application of ensemble methods in the \gls{rl} framework with the purpose of approximating the action-value functions while having an estimate of their uncertainty, in order to apply the \gls{ofu} principle in action selection.
 
 \subsection{An optimistic Bellman Equation for action-value function ensembles}
-Starting from the purpose of overestimating the action-value functions with the result of encouraging exploration, we propose \gls{obe} which propagates an optimistic estimate of the action-value function. In particular, \gls{obe} is a \gls{be} which incorporates the information about the uncertainty provided by an action-value function ensemble. We want to emphasize that, when all the action-value functions of the ensemble are identical, we assume that there is no uncertainty and under this condition the \gls{obe} will behave exactly equivalently to the classic \gls{be}. Indeed, we can prove that the fixed point $Q^*$ of \gls{obe} is the same of the classic \gls{be}; in other words, the \gls{obe} differs from the classic \gls{be} when the estimates in the ensemble are different among themselves, which usually happen when the action-value functions are approximated with a limited number of samples or with function approximators (e.g. neural networks). This makes sense, since when the perfect solution is available there is no need for optimism and exploration. 
-Note that the fact that \gls{obe} enjoys the properties of the classical \gls{be}, like contractivity and the existence of a unique fixed point, potentially enables its usage in value-based and actor-critic algorithms.
+Starting from the purpose of overestimating the action-value functions with the result of encouraging exploration, we propose \gls{obe} which propagates an optimistic estimate of the action-value function. In particular, \gls{obe} is a \gls{be} that incorporates the information about the uncertainty provided by an ensemble of action-value functions. We want to emphasize that, when all the action-value functions of the ensemble are identical, we assume that there is no uncertainty and, under this condition, the \gls{obe} will behave in exactly the same ways as the classic \gls{be}. Indeed, we can prove that the fixed point $Q^*$ of \gls{obe} is the same of the classic \gls{be}; in other words, the \gls{obe} differs from the classic \gls{be} when the estimates in the ensemble are different from each other, which usually happens when the action-value functions are approximated with a limited number of samples or with function approximators (e.g. neural networks). This makes sense since when the perfect solution is available there is no need for optimism and exploration. 
+Note that the fact that \gls{obe} enjoys the properties of the classic \gls{be}, such as contractivity and the existence of a unique fixed point, potentially enables its usage in value-based and actor-critic algorithms.
 
-The diversity in the action-value ensemble should be ideally consistent with the uncertainty of the estimation: when the estimate is certain, all the values in the ensemble should agree on the same value, otherwise the ensemble should have discordant values.
+The diversity in the action-value ensemble should ideally be consistent with the uncertainty of the estimate: when the estimate is certain, all the values in the ensemble should agree on the same value, otherwise the ensemble should have discordant values.
 Given an ensemble of action-value functions $\{Q_m\}_{m=1}^M$, we want to work out an optimistic estimate from the diverse estimates provided by the ensemble. The simplest and most optimistic solution is to select the highest value
 \begin{equation}
  \max_m Q_m(s,a).
 \end{equation}
-However selecting the highest estimate makes poor use of the information provided by the ensemble and can be sensible to noise. In order to mitigate this effect, we introduce a notion of \textit{belief} over the estimates where $b_m(s,a)$ is the belief of $Q_m(s,a)$. The main idea is to add an entropic regularization term to the objective
+However selecting the highest estimate makes poor use of the information provided by the ensemble and can be sensitive to noise. In order to mitigate this effect, we introduce a notion of \textit{belief} over the estimates where $b_m(s,a)$ is the belief of $Q_m(s,a)$. The main idea is to add an entropic regularization term to the objective
 \begin{equation}
  \max_{b(s,a)} \sum_m b_m(s,a) Q_m(s,a) - c \sum_{m} b_m \log b_m
 \end{equation}
@@ -37,7 +36,7 @@ or to bound the information loss
 \begin{equation}
 \sum_m b_m \log b_m < \psi.
 \end{equation}
-Hard constraint on the information loss is more appealing since the introduced hyper-parameter $\psi$ does not depend on the magnitude of the rewards but has no closed-form solution. In contrast, the penalization weighting constant $c$ introduced by the soft-constraint regularization term is sensitive to the magnitude of the rewards, but admits a closed-form solution.
+The hard constraint on the information loss is more appealing since the introduced hyper-parameter $\psi$ does not depend on the magnitude of the rewards, but has no closed-form solution. In contrast, the penalization weighing constant $c$ introduced by the soft-constraint regularization term is sensitive to the magnitude of the rewards, but admits a closed-form solution.
 Basing on these considerations, we define two different problems where we use an optimistic estimate of the action-value function.
 
 \subsubsection{Entropy-regularized optimistic action-value selection}
@@ -52,7 +51,7 @@ We define a \gls{be} over the action-value function ensemble by introducing an o
 \end{array}\nonumber
 \end{equation}\label{PROB:regularized}
 \end{probdef}
-\noindent with $u_m  =  \nicefrac{1}{M}$, $D_{KL}(b(s,a)\| u)$ is the \gls{kl} divergence between the belief $b(s,a)$ and the uniform distribution $u$, and $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$.
+\noindent where $u_m  =  \nicefrac{1}{M}$, $V_m'(s,a) \! = \! \sum_{s'} P(s'|s,a)\max_{a'}Q_m(s',a')$ and $D_{KL}(b(s,a)\| u)$ is the \gls{kl} divergence between the belief $b(s,a)$ and the uniform distribution $u$.
 The choice of using the relative entropy (i.e. \gls{kl}-divergence) instead of the absolute one has two main advantages: it admits a solution for $\eta \to 0$ and provides a normalization factor.
 Since Problem~\ref{PROB:regularized} is a convex constrained problem, it is solvable by dual optimization. Introducing $\lambda$ as Lagrangian multiplier for the constraint, we write the Lagrangian
 \begin{eqnarray}
@@ -69,8 +68,8 @@ Q_i(s,a) = \begin{cases}
 \overline{R}(s,a) + \frac{\gamma}M \sum_{m=1}^{M} V_m'(s,a) & \mathrm{otherwise}
 \end{cases}.
 \end{equation}
-Notice that $\eta>0$ leads to a positive (optimistic) biased estimation, while $\eta<0$ leads to a negative (pessimistic) estimate; in this work we will always assume $\eta>0$ (and therefore we refer to the equation as optimistic). 
-However, in general, the choice of $\eta$ is difficult since it depends on the magnitude of the reward function. For this reason we introduce the constrained version of the proposed problem.
+Notice that $\eta>0$ leads to a positive (optimistic) biased estimate, while $\eta<0$ leads to a negative (pessimistic) estimate; in this work, we will always assume $\eta>0$ (and therefore we refer to the equation as optimistic). 
+However, in general, the choice of $\eta$ is difficult since it depends on the magnitude of the reward function. For this reason, we introduce the constrained version of the proposed problem.
  
 \subsubsection{Optimistic action-value selection bounding the information loss}
 We bound the information loss between the distribution $b_m$ and the uniform distribution to maintain compatibility with Problem~\ref{PROB:regularized}. The information loss is bounded between $-\log M$ and $0$ where  $-\log M$ stands for complete information loss (i.e., only one model is selected) while $0$ corresponds to no information loss (i.e., uniform belief distribution). Constraining the information loss has succeeded in prior work, for instance in policy search methods such as~\cite{peters2010relative}.
@@ -92,10 +91,10 @@ L_i &\! = \!& f(s,a;b(s,a)) + \beta (D_{\mathrm{KL}}(b(s,a){\|}u) - \iota_{\max}
 Substituting $\beta$ with $\nicefrac{-1}{\eta}$ we note that Equation~\ref{E:lagrangian2} becomes identical to~\ref{E:lagrangian} except for a constant factor. Since we can not solve $\eta$ (or $\beta$) analytically, we obtain an approximate solution by iteratively optimizing $\eta$ (or $\beta$) and $b_m$ subsequently.
 \gls{obe} takes its name from the fact that when $\eta > 0$, the \textit{logsumexp} acts as a softmax operator. Such operator is also well known as an \textit{entropic mapping}, as it can be derived from a maximum-entropy principle.
 
-The use of the entropic mapping is not new in \gls{rl}: \cite{pmlr-v70-asadi17a} propose an interesting use of the entropic mapping as a soft-max over the action in the \gls{be}; \cite{peters2010relative} instead obtain it from an entropic regularization over the state-action distribution.
+The use of the entropic mapping is not new in \gls{rl}: an interesting use of the entropic mapping as a soft-max over the action in the \gls{be} is proposed in \cite{pmlr-v70-asadi17a}; another approach proposing an entropic regularization over the state-action distribution is described in \cite{peters2010relative}.
 
 \subsection{Relation to Intrinsic Motivation}
-In order to highlight the connection between \gls{obe} and \gls{im}, we reformulate \gls{obe} utilizing the unbiased average of the estimates instead of the logsumexp, and by introducing the resulting exploratory bonus $U$ which includes the positive bias
+To highlight the connection between \gls{obe} and \gls{im}, we reformulate \gls{obe} using the unbiased average of the estimates instead of the logsumexp, and by introducing the resulting exploratory bonus $U$ which includes the positive bias
 \begin{eqnarray}
 Q_i(s,a)\! &=&\! \overline{R}(s,a) + U(s,a) +  \gamma  \sum_{m=1}^M \frac{V_m'(s,a)}{M} \label{bonusBE}
 \end{eqnarray}
@@ -106,7 +105,7 @@ U(s,a) \! =\!  \frac{1}{\eta}\log\sum_{m=1}^M \frac{e^{\eta\gamma V_m'(s,a)}}{M}
 Noticing that $\dfrac{\sum_{i=1}^N e^{\eta x_i}}{N}$ is the \textit{sample moment generator} w.r.t. samples $\{x_i\}_{i=1}^N$ we can rephrase the exploration bonus as
 \begin{eqnarray}
 U(s,a)& = & \lim_{N \to +\infty}\frac{1}{\eta} \log [  1 + \sum_{n=2}^{N} \frac{(\eta\gamma)^n}{n!}\mathcal{M}_n(s,a)] \nonumber \\
-& = & \eta \gamma \mathcal{M}_2(s,a)  + O(\eta^2)\label{bonus}
+& = & \eta \gamma \mathcal{M}_2(s,a)  + O(\eta^2)\label{bonus},
 \end{eqnarray}
 where $\mathcal{M}_n$ is the $n$\textsuperscript{th} central moment of the random variable $V_m'$
 \begin{equation}
@@ -116,9 +115,9 @@ with
 \begin{equation}
 \overline{V}(s,a) = M^{-1} \sum_{m=1}^M V_m'(s,a).\nonumber
 \end{equation}
-Equation \eqref{bonusBE} shows that \gls{obe} is equivalent to \gls{be} with an additional bonus defined by Equation~\ref{bonus}. The bonus $U$ (for any positive $\eta$) is always positive, and provides a measure of the uncertainty w.r.t. $Q$. This is why \gls{obe} can be interpreted as a special principled form of \gls{im}.
+Equation~\eqref{bonusBE} shows that \gls{obe} is equivalent to \gls{be} with an additional bonus defined by Equation~\eqref{bonus}. The bonus $U$ (for any positive $\eta$) is always positive, and provides a measure of the uncertainty w.r.t. $Q$. This is why \gls{obe} can be interpreted as a special principled form of \gls{im}.
 
-\subsubsection{Explicit exploration} A general problem affecting \gls{im} algorithms, is that the policy greedy to the obtained action-value function, is not optimized for the original problem. As a solution to this issue we approximate two functions: $\tilde{Q}$, which will be updated using the true reward and $Q_E$ which will be updated using only the intrinsic reward \cite{szita2008many}. In this way we obtain both the \gls{im} policy $\pi_o(s) = \arg \max_{a} \tilde{Q}(s,a) + Q_E(s,a)$ and the classic policy  $\pi_u(s) = \arg \max_{a} \tilde{Q}(s,a)$.
+\subsubsection{Explicit exploration} A general problem affecting \gls{im} algorithms is that the policy greedy w.r.t. the obtained action-value function is not optimized for the original problem. As a solution to this issue, we approximate two functions: $\tilde{Q}$, which will be updated using the true reward and $Q_E$ which will be updated using only the intrinsic reward \cite{szita2008many}. In this way, we obtain both the \gls{im} policy $\pi_o(s) = \arg \max_{a} \tilde{Q}(s,a) + Q_E(s,a)$ and the classic policy  $\pi_u(s) = \arg \max_{a} \tilde{Q}(s,a)$.
 Define 
 \begin{eqnarray}
 	\tilde{Q}_i(s,a) = R(s,a) + \gamma \sum_{m=1}^M\frac{\tilde{V}_m'(s,a)}{M} \quad \text{with} \\
@@ -130,18 +129,18 @@ Q_E(s,a) & = & \sum_{t=0}^T \gamma^t U(s_t,a_t) \quad \text{where} \quad s_0 = s
 & = & \eta^{-1}\log \frac{\sum_{k=1}^M e^{\eta\gamma\max_{a'}\tilde{Q}_k(s',a') + Q_E(s',a')}}{M}\nonumber \\
 & &  -  \frac{\sum_{k=1}^M \gamma\max_{a'}\tilde{Q}_k(s',a')}{M}.
 \end{eqnarray}
-By a simple equation rearrangement, it is possible to show that $\tilde{Q}_i(s,a) + Q_E(s,a)$ is equivalent to $Q_i(s,a)$ as defined in the \gls{obe}~\ref{OBE}.
+By a simple equation rearrangement, it is possible to show that $\tilde{Q}_i(s,a) + Q_E(s,a)$ is equivalent to $Q_i(s,a)$ as defined in the \gls{obe}~\eqref{OBE}.
  
 \section{Optimistic value function estimators}
 The \gls{obe} offers a theoretical framework in which it is possible to develop optimistic value based algorithms. In fact, \gls{obe} enjoys all the desirable properties of the \gls{be} (e.g. max-norm contractivity). We present briefly two practical applications of the OBE that are optimistic variants of $Q$-learning and \gls{dqn} that we call, respectively, \gls{oql} and \gls{odqn}.
 \subsection{Optimistic $Q$-Learning}
-Motivated by the idea of employing an ensemble of regressors as is done in \gls{bdqn}~\cite{osband2017deep}, we assume to have $M$ randomly initialized $Q$-tables. Inspired by the well known $Q$-learning update rule~\ref{S:Q-Learning}, we derive an optimistic version which is consistent with the \gls{obe} as follows:
+Motivated by the idea of employing an ensemble of regressors as it is done in \gls{bdqn}~\cite{osband2017deep}, we assume to have $M$ randomly initialized $Q$-tables. Inspired by the well-known $Q$-learning update rule (see Section~\ref{S:Q-Learning}), we derive an optimistic version that is consistent with the \gls{obe} as follows:
 \begin{align*}
       \small  Q_{i, t+1}(s,a) &= (1-\alpha_t)Q_{i,t}(s,a)  \nonumber  \\
   & \small + \alpha_t (r_t + \frac{1}{\eta} \log M^{-1} \sum_{j=1}^M e^{\gamma \max_{a'} Q{j,t}(s', a')}).\nonumber
 \end{align*}
 \label{def:optimistic_qlearning}
-We show that, with the update rule proposed, given infinite visits of each state-action pair, all the tables will converge to the same values, and more precisely, after each update, the $n$-th central moment of the updated cell is scaled exactly by $(1 - \alpha_t)^n$:
+We show that, with the proposed update rule, given infinite visits of each state-action pair, all the tables will converge to the same values, and more precisely, after each update, the $n$-th central moment of the updated cell is scaled exactly by $(1 - \alpha_t)^n$:
 \begin{equation}
  \mathcal{M}_{n,t+1}(s,a) = (1-\alpha_t)^n \mathcal{M}_{n,t}(s,a) \label{momentdecreasing}
 \end{equation}
@@ -155,12 +154,12 @@ This implies that a cell updated $N$ times, with learning rates $\{\alpha_i\}$, 
  \item differing from several count-based approaches, our algorithm takes into account the impact of the learning rate;
  \item in the limit of an infinite number of visits, the exploration bonus converges to $0$.
 \end{enumerate}
-All the considerations done so far provide a deeper insight about how the algorithm works and its properties. However, in a more complex settings, (e.g., function approximation) the convergence to $0$ of the exploration bonus is not guaranteed in general.
+All the considerations made so far provide a deeper insight into the functioning of the algorithm and its properties. However, in more complex settings, (e.g., function approximation) convergence to $0$ of the exploration bonus is not guaranteed in general.
 
 \subsection{Optimistic Deep $Q$-Network}\label{sec:proposedalg}
-In addition to the novel \gls{oql} algorithm described previously which can be used for limited discrete state spaces, we
+In addition to the novel \gls{oql} algorithm described above that can be used for limited discrete state spaces, we
 propose another algorithm for continuous state spaces based on our \gls{obe} taking inspiration from the framework provided by \gls{bdqn}~\cite{osband2017deep}
-which uses an ensemble of neural networks to estimate the action-value function.
+that uses an ensemble of neural networks for estimating the action-value function.
 To get an unbiased performance evaluation, we decided to update $M-1$ components of the ensemble with the update rule provided by \gls{bdqn} and to use the remaining $M$-th component of the ensemble to approximate $Q_E$. Using the first component to approximate $Q_E$, we get for our new algorithm \gls{odqn} the loss
 \begin{eqnarray}
 	&\mathcal{L}_O(s,a) = (\eta^{-1}\log \frac{\sum_{k=2}^M
@@ -170,12 +169,12 @@ To get an unbiased performance evaluation, we decided to update $M-1$ components
 	 Q_k(s,a))^2.  \label{optimisticloss}
 \end{eqnarray}
 The exploratory bonus represented by $Q_E = Q_1$ in the proposed \gls{oql} and \gls{odqn} algorithms is needed to
-guide exploration during learning. During evaluation, we use majority voting on the remaining $M-1$
+guide exploration during learning. During the evaluation, we use majority voting on the remaining $M-1$
 components $\{Q_k\}_{k=2}^M$. While we always select an optimistic policy in \gls{oql} during the training phase, in
-\gls{odqn} the neural network function approximator may have problems learning to approximate the optimal
-policy: if there are not enough unbiased samples the approximator may learn to model only the optimistic
+\gls{odqn} the neural network function approximator may have problems in learning to approximate the optimal
+policy: if there are not enough unbiased samples, the approximator may learn to model only the optimistic
 biased samples. Note that in the tabular case, this is not a problem since there is no action-value function
-approximation. In order to mitigate this problem, we introduce a hyper-parameter $\chi$ which denotes the probability to select an optimistic policy $\pi_o$ in place of the unbiased one $\pi_u$. In this way, we can balance the number of unbiased and optimistic samples.
+approximation. To mitigate this problem, we introduce a hyper-parameter $\chi$ that denotes the probability of selecting an optimistic policy $\pi_o$ in place of the unbiased one $\pi_u$. In this way, we can balance the number of unbiased and optimistic samples.
 Algorithm \ref{optimisticdqn} shows the pseudocode of \gls{odqn}. 
 \begin{algorithm}[t]
 	\caption{Optimistic Deep $Q$-Network}
@@ -206,7 +205,7 @@ Algorithm \ref{optimisticdqn} shows the pseudocode of \gls{odqn}.
 \paragraph{Automatic hyper-parameter adaptation}
 \label{subsec:adaptive}
 Recalling that the regularization coefficient $\eta$ in the \gls{obe} is hard to tune, we want to focus our attention on Problem~\ref{PROB:constrversion}. We propose a way, inspired by~\cite{schulman2017proximal}, to optimize $\eta$.
-One of the optimization techniques proposed in this work is to measure the ``degree'' of constraint violation and to update the Lagrangian multiplier accordingly. We have to adapt the technique to multiple constraints, as the problem is defined for each state-action pair: we count the number of times the constraints have been violated and then update $\eta$. In more detail, suppose to have $N$ state-action pairs and for each pair $(s_i, a_i)$
+One of the optimization techniques proposed in this work is to measure the ``degree'' of constraint violation and to update the Lagrangian multiplier accordingly. We have to adapt the technique to multiple constraints, as the problem is defined for each state-action pair: we count the number of times the constraints have been violated and then we update $\eta$. More in detail, suppose to have $N$ state-action pairs and for each pair $(s_i, a_i)$
 \begin{eqnarray}
 \sum_m b_m(s_i,a_i) (\log b_m(s_i,a_i) + \log M) \leq \iota_{\max}, \label{batchconstr}
 \end{eqnarray}
@@ -216,12 +215,12 @@ where $\iota_{\max}$ is defined in Problem~\ref{PROB:constrversion}, while $b_m(
 \end{equation}
 In \gls{odqn}, we decided to count the number of constraints violated every $C$ time-steps (basically every update of the target network), using the samples of all the extracted mini-batches. See Algorithm~\ref{optimisticdqn} for further details. 
   
-\paragraph{Ensuring a prior distribution} As already discussed, it is important to maintain diversity in our ensemble, and this diversity should reflect the degree of uncertainty. For this reason, we should introduce a sort of prior distribution, as happens in the Bayesian framework. In the case of \gls{oql}, we observe that it is sufficient to randomly initialize each element of the ensemble, since diversity between estimates is a sufficient condition to obtain positive bonus.
-For \gls{odqn}, as is done in \gls{bdqn}, we choose to maintain the diversity between approximation, by a random initialization of each component parameters.
+\paragraph{Ensuring a prior distribution} As already discussed, it is important to maintain diversity in our ensemble and this diversity should reflect the degree of uncertainty. For this reason, we should introduce a sort of prior distribution, as happens in the Bayesian framework. In the case of \gls{oql}, we observe that it is sufficient to randomly initialize each element of the ensemble, since diversity between estimates is a sufficient condition to obtain a positive bonus.
+For \gls{odqn}, as is done in \gls{bdqn}, we choose to maintain the diversity between approximation, through a random initialization of the parameters of each component.
 
 \section{Experimental evaluation}
 \label{S:odqn_experiments}
-In the experiments, we compare \gls{oql} with a tabular variant of \gls{bdqn} which we call \gls{bql}, classical $Q$-learning and \gls{oiql}~\cite{sutton1998reinforcement}; on the other hand we preliminarily evaluate \gls{odqn} method with \gls{bdqn} and classical \gls{dqn} in a simple problem.
+In the experiments, we compare \gls{oql} with a tabular variant of \gls{bdqn} that we call \gls{bql}, classical $Q$-learning and \gls{oiql}~\cite{sutton1998reinforcement}; on the other hand, we preliminarily evaluate \gls{odqn} method with \gls{bdqn} and classical \gls{dqn} in a simple problem.
 
 \subsection{Settings}
 The environments are chosen to cover different types of dynamics and having sparse rewards: they are Frozen Lake as implemented in~\cite{gym}, Taxi as presented in Chapter~\ref{C:ts} and the chain in Figure~\ref{F:chain}.
@@ -250,10 +249,10 @@ The environments are chosen to cover different types of dynamics and having spar
   \end{tikzpicture}\caption{Structure of the Chain.}\label{F:chain}
 \end{figure*}
 
-\paragraph{Initialization of the action-value function} In the tabular setting, for \gls{oiql} we initialize the action-value function to $15$ in Taxi and to $1$ in Chain and Frozen Lake. For the other algorithms, we initialize $Q(s,a) \sim \mathcal{N}(\mu=0,\sigma=2)$, except $Q_E$ of \gls{oql} is initialized to $0$.
-In the taxi environment, we use a shared convolutional layer with multiple heads as described in \cite{osband2017deep}. In the case of \gls{odqn} we initialize the output layer corresponding to $Q_E$ to small values of the parameters, in order to obtain initially $Q_E \approx 0$. 
+\paragraph{Initialization of the action-value function} In the tabular setting, for \gls{oiql} we initialize the action-value function to $15$ in Taxi and to $1$ in Chain and Frozen Lake. For the other algorithms, we initialize $Q(s,a) \sim \mathcal{N}(\mu=0,\sigma=2)$, except $Q_E$ of \gls{oql} which is initialized to $0$.
+In the taxi environment, we use a shared convolutional layer with multiple heads as described in \cite{osband2017deep}. In the case of \gls{odqn} we initialize the output layer corresponding to $Q_E$ to small parameter values, in order to obtain initially $Q_E \approx 0$. 
 
-\paragraph{Hyper-parameters tuning} For the tabular settings, we did not run any hyper-parameter optimization. With neural networks we compare \gls{odqn} and \gls{bdqn} using the best hyper-parameter setup found for \gls{bdqn}. In \gls{oql} we use $\eta=10$ and for \gls{odqn}, we use $\chi=0.25$ and $\iota_{\max}=1$.
+\paragraph{Hyper-parameters tuning} For tabular settings, we did not run any hyper-parameter optimization. With neural networks, we compare \gls{odqn} and \gls{bdqn} using the best hyper-parameter setup found for \gls{bdqn}. In \gls{oql} we use $\eta=10$ and for \gls{odqn}, we use $\chi=0.25$ and $\iota_{\max}=1$.
 
 % \setlength\figureheight{4cm}
 % \setlength\figurewidth{4cm}
@@ -266,9 +265,9 @@ In the taxi environment, we use a shared convolutional layer with multiple heads
 % 	\label{F:opt_results}
 % \end{figure*}
 \subsection{Results}
-Figure~\ref{F:opt_results} summarizes the results obtained by averaging over $64$ different seed the tabular algorithms, and $100$ seeds \gls{dqn} and \gls{bdqn}. \gls{oql} learns faster than the other tabular algorithms. In the Chain environment, and in Taxi,
+Figure~\ref{F:opt_results} summarizes the results obtained by averaging over $64$ different seeds for the tabular algorithms, and $100$ seeds for \gls{dqn} and \gls{bdqn}. \gls{oql} learns faster than the other tabular algorithms. In the Chain environment and in Taxi,
 our algorithm \gls{oql} finds the highest reward faster than \gls{bql} or \gls{ql}. On the other hand, also \gls{oiql} seems to find
 high rewards fast, as shown in the box-plots. However, \gls{oiql} requires more training epochs to escape the high initial
-optimistic values of the value function. In contrast, \gls{oql} finds high values fast in all the problems while converging to a near-optimal solution.
+optimistic values of the value function. In contrast, \gls{oql} quickly finds high values in all problems while converging to a near-optimal solution.
 
-With neural network approximation, \gls{odqn} outperforms \gls{bdqn} in the Taxi environment demonstrating that the principles of \gls{obe} can apply also with function approximation. However, the simplicity of the environment makes this experiment only a first preliminary evaluation of \gls{odqn}.
+With the neural network approximation, \gls{odqn} outperforms \gls{bdqn} in the Taxi environment demonstrating that the principles of \gls{obe} can apply also with function approximation. However, the simplicity of the environment makes this experiment only a preliminary evaluation of \gls{odqn}.
