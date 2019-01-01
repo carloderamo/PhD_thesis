@@ -17,7 +17,7 @@
 \contentsline {section}{\numberline {2.1}Agent and environment}{9}{section.2.1}
 \contentsline {section}{\numberline {2.2}Markov Decision Processes}{10}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Value functions}{11}{subsection.2.2.1}
-\contentsline {section}{\numberline {2.3}Solving a MDP}{12}{section.2.3}
+\contentsline {section}{\numberline {2.3}Solving an MDP}{12}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Dynamic Programming}{12}{subsection.2.3.1}
 \contentsline {subsubsection}{Policy Iteration}{13}{subsubsection*.11}
 \contentsline {subsubsection}{Value Iteration}{13}{subsubsection*.12}

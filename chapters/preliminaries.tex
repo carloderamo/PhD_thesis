@@ -47,8 +47,8 @@ The mathematical framework for studying the interaction of the agent with the en
 \begin{itemize}
  \item $\mathcal{S}$ is the set of states where the agent can be in the environment;
  \item $\mathcal{A}$ is the set of actions that the agent can execute in the environment;
- \item $\mathcal{R}$ is the set of rewards obtainable by the agent;
- \item $\mathcal{T}$ is the \textit{transition function} consisting in the probability of reaching a state $s'$ executing action $a$ in state $s$: $\mathcal{T}(s, a) = P(s' | s, a)$;
+ \item $\mathcal{R}$ is the \textit{reward function};
+ \item $\mathcal{T}$ is the \textit{transition function} consisting in the probability of reaching a state $s'$ executing action $a$ in state $s$;
  \item $\gamma$ is the discount factor;
  \item $\mu$ is the probability for each state of being the initial one: $\mu(s) = P(s_0 = s)$.
 \end{itemize}
@@ -79,7 +79,7 @@ Subsequently, the optimal policy maximizes the action value function in each sta
  Q^*(s,a) = \max_\pi Q_\pi(s,a), \forall s \in \mathcal{S}, a \in \mathcal{A}.
 \end{equation}
 
-\section{Solving a MDP}
+\section{Solving an MDP}
 Value functions are the main concept used by several algorithms to address the problem of solving \glspl{mdp}. In the following, a description of algorithms exploiting value functions to solve \glspl{mdp} is provided, from the easiest to the hardest case.
 
 \subsection{Dynamic Programming}
