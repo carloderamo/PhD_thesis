@@ -12,7 +12,7 @@ RLPy~\cite{JMLR:v16:geramifard15a} is a good choice to do \gls{rl} experiments w
 
 Eventually, there are many libraries featuring a single algorithm. For instance, simple-dqn~\cite{simpledqn} implements the \gls{dqn} algorithm giving the possibility to replicate the experiments in~\cite{mnih2015human} and the low complexity of the code allows to significantly customize it. Of course, the usefulness of such a library is limited to projects related to \gls{dqn}.
 
-\section{Ideas and Concepts}
+\section{Ideas and concepts}
 Mushroom is an easily accessible, yet powerful, \gls{rl} library useful for research and didactic purposes.
 \paragraph{General purpose} Mushroom adapts to heterogeneous learning tasks based on the interaction of an agent with an environment. This is achieved by a common interface shared by different algorithms, even suitable for different problems: batch and online algorithms, episodic and infinite horizon tasks, on-policy and off-policy learning, and many others.
 \paragraph{Lightweight}
@@ -49,7 +49,7 @@ core.learn(n_episodes=300, n_steps_per_fit=50)
 \begin{figure}[t]
 \centering
  \includegraphics[width=.8\textwidth]{img/msh.pdf}
- \caption{Interaction between the agent and the environment when the \texttt{learn} method of the \texttt{Core} class is called. A dataset, collected during this interaction, is used to update the approximator (e.g. policy, $Q$-function).}
+ \caption[Agent-environment interaction]{Interaction between the agent and the environment when the \texttt{learn} method of the \texttt{Core} class is called. A dataset, collected during this interaction, is used to update the approximator (e.g. policy, $Q$-function).}
 \end{figure}\label{F:core}
 
 To simplify the implementation of generic \gls{rl} algorithms, and \gls{td} algorithms in particular, Mushroom offers a high-level interface for the function regressors. This interface supports the use of ensemble regressors that are created specifying the number of models in the ensemble. Moreover, it manages the regressor of the $Q$-function in the case of discrete action spaces: it transparently deals with the creation of a different regressor for each action or a single regressor with a different output for each action. The user should not care about the low-level implementation of these regressors, since everything is managed by the \texttt{Regressor} interface, which also supports generic function approximator. Furthermore, both parametric and non-parametric are transparently managed by the interface.

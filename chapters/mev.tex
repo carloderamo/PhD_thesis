@@ -1,8 +1,8 @@
-\chapter{Maximum Expected Value Estimation}\label{C:mev}
+\chapter{Maximum Expected Value estimation}\label{C:mev}
 \newcommand{\est}[1]{\hat\mu_*^{#1}}
 \newcommand{\transpose}[1]{{#1}^\texttt{T}}
 
-The estimation of the \gls{mev} of a set of random variables is required in several applications. Indeed, almost any decision-making process of acting involves the optimization of an expected utility function. For example, in everyday life decisions are usually made by considering the possible outcomes of each action based on partial information.
+The estimation of the \glsfirst{mev} of a set of random variables is required in several applications. Indeed, almost any decision-making process of acting involves the optimization of an expected utility function. For example, in everyday life decisions are usually made by considering the possible outcomes of each action based on partial information.
 While sometimes only the order of preference of these alternatives matters, many applications require an explicit estimation of the maximum utility.
 For instance, in \gls{rl} the optimal policy can be found by taking, in each state, the action that attains the maximum expected cumulative reward. The optimal value of an action in a state, in turn, depends on the \glspl{mev} of the actions available in the reached states.
 Since the errors propagate through all state-action pairs, a bad \gls{mev} estimator negatively affects learning speed~\cite{van2010double}.
@@ -100,7 +100,7 @@ The term $\prodi_{\mathcal{Z}} F^S_{\hat{\mu}_y}(x)^{dy} = P \left( \bigwedge_{y
  \Prodi_{\mathcal{Z}} F_{\hat{\mu}_y}^S(x)^{dy} = \exp{\left( \int_{\mathcal{Z}} \ln F_{\hat{\mu}_y}^S(x)dy \right)}.
 \end{equation}
 
-\subsubsection{Spatially Correlated Variables}
+\subsubsection{Spatially correlated variables}
 The issues that remain to be addressed are:
 \begin{enumerate}
  \item the computation of the empirical mean $\hat{\mu}_z(S)$;
@@ -121,7 +121,7 @@ As a result, the \gls{we} for the continuous case can be computed as follows:
 % \end{small}
 Since in the general case no closed-form solution exists for the above integrals, as in the finite case, the \gls{we} can be computed through numerical integration.
 
-\subsubsection{Gaussian Process Regression}
+\subsubsection{Gaussian Process regression}
 While several regression techniques can be exploited (e.g. linear regression), the natural choice, in this case, is the \gls{gp} regression since it provides both an estimate of the mean and variance of the process.
 Having a \gls{gp} trained on a dataset of $N$ samples $\mathcal{D}=\{z_i, q_i\}_{i=1}^{N}$, where $q_i$ is a sample drawn from the distribution of $z_i$.
 Our objective is to predict the target $q_*$ of an input variable $z_*$ such that $q_* = f(z_*) + \epsilon$ where $\epsilon \sim \mathcal{N}(0, \sigma_n^2)$.

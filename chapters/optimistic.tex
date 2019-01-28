@@ -1,5 +1,5 @@
-\chapter{Exploration Driven by an Optimistic Bellman Equation}\label{C:opt}
-As described in Chapter~\ref{C:ts}, \gls{ofu}-based techniques encourage exploration of unknown states hoping they are more convenient than already known ones, hence the definition of optimism. There are two types of optimism:
+\chapter{Exploration driven by an optimistic Bellman Equation}\label{C:opt}
+As described in Chapter~\ref{C:ts}, \glsfirst{ofu}-based techniques encourage exploration of unknown states hoping they are more convenient than already known ones, hence the definition of optimism. There are two types of optimism:
 \begin{itemize}
 \item \textbf{confidence interval estimation}, such as IEQL+~\cite{meuleau1999exploration} and UCRL~\cite{auer2007logarithmic}, which directly estimates $Q$-value confidence intervals;
  \item \textbf{optimistic estimate} of the action value, a method proposed for instance in~\cite{sutton1998reinforcement} about which subsequently~\cite{even2002convergence} proved the convergence to a near-optimal solution.
@@ -254,16 +254,16 @@ In the taxi environment, we use a shared convolutional layer with multiple heads
 
 \paragraph{Hyper-parameters tuning} For tabular settings, we did not run any hyper-parameter optimization. With neural networks, we compare \gls{odqn} and \gls{bdqn} using the best hyper-parameter setup found for \gls{bdqn}. In \gls{oql} we use $\eta=10$ and for \gls{odqn}, we use $\chi=0.25$ and $\iota_{\max}=1$.
 
-% \setlength\figureheight{4cm}
-% \setlength\figurewidth{4cm}
-% \begin{figure*}[t]
-% 	\input{img/performances.tex}
-% 	\caption[Results in Chain, Taxi and Frozen Lake]{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
-% 	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
-% 	 together with $95\%$ confidence intervals. The
-%      second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
-% 	\label{F:opt_results}
-% \end{figure*}
+\setlength\figureheight{4cm}
+\setlength\figurewidth{4cm}
+\begin{figure*}[t]
+	\input{img/performances.tex}
+	\caption[Results in Chain, Taxi and Frozen Lake]{The first row shows the average return for each tabular algorithm in the $N$-Chain, Taxi, and
+	 Frozen Lake environments and for each neural network based algorithm in the Taxi and Acrobot environments
+	 together with $95\%$ confidence intervals. The
+     second row shows the distribution over the number of time steps before observing the maximum reward in the \gls{mdp}.}
+	\label{F:opt_results}
+\end{figure*}
 \subsection{Results}
 Figure~\ref{F:opt_results} summarizes the results obtained by averaging over $64$ different seeds for the tabular algorithms, and $100$ seeds for \gls{dqn} and \gls{bdqn}. \gls{oql} learns faster than the other tabular algorithms. In the Chain environment and in Taxi,
 our algorithm \gls{oql} finds the highest reward faster than \gls{bql} or \gls{ql}. On the other hand, also \gls{oiql} seems to find
