@@ -29,7 +29,7 @@
 \contentsline {paragraph}{Fitted $Q$-Iteration}{17}{paragraph*.18}
 \contentsline {subsubsection}{Deep Reinforcement Learning}{17}{subsubsection*.19}
 \contentsline {paragraph}{Deep $Q$-Network}{17}{paragraph*.20}
-\contentsline {part}{\textlatin {II}\hspace {1em}Bellman Update}{19}{part.2}
+\contentsline {part}{\textlatin {II}\hspace {1em}Bellman update}{19}{part.2}
 \contentsline {chapter}{\numberline {3}Maximum Expected Value estimation}{21}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{22}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Related works}{22}{subsection.3.1.1}
